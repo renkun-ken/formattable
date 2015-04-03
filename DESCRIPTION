@@ -8,8 +8,7 @@ Description: Print data frames with multiple types of formatting in markdown
 Depends: R (>= 3.0)
 License: MIT + file license
 LazyData: true
-URL: http://renkun.me/formattable,
-    https://github.com/renkun-ken/formattable
+URL: https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
