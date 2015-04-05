@@ -3,9 +3,9 @@ formatter <- function(tag, ...) {
   args <- list(...)
 
   # if function to specify element inner text is missing,
-  # then use identify to preserve the default formatting of
+  # then use identify to preserve the default text of
   # the column value
-  if(all(nzchar(names(args)))) {
+  if(length(args) == 0L || (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
     args <- c(args, identity)
   }
 
