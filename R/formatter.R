@@ -14,9 +14,12 @@ formatter <- function(tag, ...) {
     values <- lapply(args, function(arg) {
       if(is.function(arg)) arg(x) else arg
     })
+    null_values <- vapply(values, is.null, logical(1L))
+    values[null_values] <- NA
     tags <- .mapply(function(...) {
       attrs <- list(...)
-      htmltools::tag(tag, attrs[!is.na(attrs)])
+      nulls <- vapply(attrs, is.null, logical(1L))
+      htmltools::tag(tag, attrs[!nulls & !is.na(attrs)])
     }, values, NULL)
     vapply(tags, as.character, character(1L))
   }
