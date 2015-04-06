@@ -1,0 +1,42 @@
+---
+title: "formattable demo"
+date: "April 1, 2015"
+output: html_document
+---
+
+```{r,results='hide',echo=FALSE,message=FALSE}
+library(formattable)
+```
+
+# demo 1
+
+* `mpg` is red if the value is greater than 80%-quantile
+* `am` is displayed as `yes` or `no`
+* `gear` is bold when the value is `4`
+* `qsec` is colorized by its value in red (higher value is redder)
+
+```{r,results='asis',echo=FALSE,message=FALSE}
+formattable(mtcars, list(
+  mpg = formatter("span", style = function(x)
+    style(color = ifelse(x > quantile(x, 0.8), "red", NA))),
+  am = formatter("span", function(x) ifelse(x == 1, "yes", "no")),
+  gear = formatter("span", style = function(x)
+    style("font-weight" = ifelse(x == 4, "bold", NA))),
+  qsec = formatter("span", style = function(x, m = 1 - order(x) / length(x))
+    style(color = rgb(m, 0, 0)))))
+```
+
+# demo 2
+
+* `conc` and `uptake` has colorized background
+
+```{r,results='asis',echo=FALSE,message=FALSE}
+data(CO2)
+formattable(CO2, list(
+  conc = formatter("span", style = function(x, m = 1 - x/max(x) * 0.8, ms = round(1-m)) 
+    style("display" = "block", "border-radius" = "4px", "background-color" = rgb(0.5, m, 0),
+      "padding-right" = "4px", "color" = rgb(1,1,1))),
+  uptake = formatter("span", style = function(x, m = 1-x/max(x), ms = round(1-m))
+    style("display" = "block", "border-radius" = "4px", "padding-right" = "4px",
+      "background-color" = rgb(m, m, 0.5), "color" = rgb(ms,ms,ms)))))
+```
