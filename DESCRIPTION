@@ -5,7 +5,7 @@ Authors@R: person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre"))
 Description: Print data frames with multiple types of formatting in markdown
     to improve the readability of data presented in tabular form rendered as
     web pages.
-Depends: R (>= 3.0)
+Depends: R (>= 2.14.1)
 Imports: htmltools, knitr
 License: MIT + file license
 LazyData: true
