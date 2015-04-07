@@ -34,9 +34,9 @@ formattable(mtcars, list(
 data(CO2)
 formattable(CO2, list(
   conc = formatter("span", style = function(x, m = 1 - x/max(x) * 0.8, ms = round(1-m)) 
-    style("display" = "block", "border-radius" = "4px", "background-color" = rgb(0.5, m, 0),
+    style("display" = "block", "border-radius" = "4px", "background-color" = rgb(0, m, 0),
       "padding-right" = "4px", "color" = rgb(1,1,1))),
   uptake = formatter("span", style = function(x, m = 1-x/max(x), ms = round(1-m))
     style("display" = "block", "border-radius" = "4px", "padding-right" = "4px",
-      "background-color" = rgb(m, m, 0.5), "color" = rgb(ms,ms,ms)))))
+      "background-color" = rgb(m, m, 0), "color" = rgb(ms,ms,ms)))))
 ```
