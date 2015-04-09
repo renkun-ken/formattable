@@ -1,6 +1,6 @@
 Package: formattable
 Title: Formatted Data Printing in Markdown
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre"))
 Description: Print data frames with multiple types of formatting in markdown
     to improve the readability of data presented in tabular form rendered as
@@ -13,3 +13,4 @@ URL: https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
+Suggests: testthat
