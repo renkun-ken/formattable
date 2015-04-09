@@ -28,9 +28,6 @@ NULL
 #' @param data data
 #' @param formatter A named list of formatter functions.
 #' @param ... additional parameters passed to \code{knitr::kable}
-#' @param format The output format: markdown or pandoc?
-#' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
-#' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
 #' @export
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in specific \code{format}.
@@ -61,6 +58,10 @@ NULL
 formattable <- function(data, formatter = list(), ...)
   UseMethod("formattable")
 
+#' @rdname formattable
+#' @param format The output format: markdown or pandoc?
+#' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
+#' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
 #' @export
 formattable.data.frame <- function(data, formatter = list(), format = c("markdown", "pandoc"), align = "r", ...) {
   format <- match.arg(format)
@@ -79,6 +80,7 @@ formattable.data.frame <- function(data, formatter = list(), format = c("markdow
   knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 
+#' @rdname formattable
 #' @export
 formattable.matrix <- function(data, formatter = list(), ...) {
   formattable.data.frame(data.frame(data, stringsAsFactors = FALSE), formatter = formatter, ...)

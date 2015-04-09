@@ -2,9 +2,16 @@
 % Please edit documentation in R/formattable.R
 \name{formattable}
 \alias{formattable}
+\alias{formattable.data.frame}
+\alias{formattable.matrix}
 \title{Create formatted table by column formatters}
 \usage{
 formattable(data, formatter = list(), ...)
+
+\method{formattable}{data.frame}(data, formatter = list(),
+  format = c("markdown", "pandoc"), align = "r", ...)
+
+\method{formattable}{matrix}(data, formatter = list(), ...)
 }
 \arguments{
 \item{data}{data}
