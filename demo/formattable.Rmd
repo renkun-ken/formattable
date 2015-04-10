@@ -22,7 +22,7 @@ formattable(mtcars, list(
   am = formatter("span", function(x) ifelse(x == 1, "yes", "no")),
   gear = formatter("span", style = function(x)
     style("font-weight" = ifelse(x == 4, "bold", NA))),
-  qsec = formatter("span", style = function(x, m = 1 - order(x) / length(x))
+  qsec = formatter("span", style = function(x, m = rank(x) / length(x))
     style(color = rgb(m, 0, 0)))))
 ```
 
