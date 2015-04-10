@@ -9,7 +9,7 @@
 #' to formatted data represented in HTML and CSS.
 #' @examples
 #' top10red <- formatter("span",
-#'   style = x ~ ifelse(order(x, decreasing = TRUE) <= 10, "color:red", NA))
+#'   style = x ~ ifelse(rank(-x) <= 10, "color:red", NA))
 #' yesno <- function(x) ifelse(x, "yes", "no")
 #' formattable(mtcars, list(mpg = top10red, qsec = top10red, am = yesno))
 #' @export
