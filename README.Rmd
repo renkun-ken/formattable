@@ -19,8 +19,7 @@ devtools::install_github("renkun-ken/formattable")
 
 ## Examples
 
-
-```r
+```{r}
 df <- data.frame(
   id = 1:10,
   name = c("Bob", "Ashley", "James", "David", "Jenny", 
@@ -36,19 +35,9 @@ df <- data.frame(
 
 Plain table:
 
-
-| id|name   | age|grade | test1_score| test2_score| final_score|registered |
-|--:|:------|---:|:-----|-----------:|-----------:|-----------:|:----------|
-|  1|Bob    |  28|C     |         8.9|         9.1|        9.00| TRUE      |
-|  2|Ashley |  27|A     |         9.5|         9.1|        9.30|FALSE      |
-|  3|James  |  30|A     |         9.6|         9.2|        9.40| TRUE      |
-|  4|David  |  28|C     |         8.9|         9.1|        9.00|FALSE      |
-|  5|Jenny  |  29|B     |         9.1|         8.9|        9.00| TRUE      |
-|  6|Hans   |  29|B     |         9.3|         8.5|        8.90| TRUE      |
-|  7|Leo    |  27|B     |         9.3|         9.2|        9.25| TRUE      |
-|  8|John   |  27|A     |         9.9|         9.3|        9.60|FALSE      |
-|  9|Emily  |  31|C     |         8.5|         9.1|        8.80|FALSE      |
-| 10|Lee    |  30|C     |         8.6|         8.8|        8.70|FALSE      |
+```{r,echo=FALSE,message=FALSE,results='asis'}
+knitr::kable(df)
+```
 
 Formatted table with the following visualizations:
 
@@ -57,8 +46,7 @@ Formatted table with the following visualizations:
 * `final_score` shows score and ranking. Top 3 are green, and others are gray.
 * `registered` texts are transformed to yes/no.
 
-
-```r
+```{r,eval=FALSE}
 library(formattable)
 score_colorizer <- formatter("span", 
   style = function(x) style(
