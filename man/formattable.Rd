@@ -9,7 +9,8 @@
 formattable(data, formatter = list(), ...)
 
 \method{formattable}{data.frame}(data, formatter = list(),
-  format = c("markdown", "pandoc"), align = "r", ...)
+  format = c("markdown", "pandoc"), align = "r",
+  digits = getOption("digits"), ...)
 
 \method{formattable}{matrix}(data, formatter = list(), ...)
 }

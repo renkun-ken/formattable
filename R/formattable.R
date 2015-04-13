@@ -63,10 +63,13 @@ formattable <- function(data, formatter = list(), ...)
 #' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
 #' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
 #' @export
-formattable.data.frame <- function(data, formatter = list(), format = c("markdown", "pandoc"), align = "r", ...) {
+formattable.data.frame <- function(data, formatter = list(), format = c("markdown", "pandoc"), align = "r", digits = getOption("digits"), ...) {
   format <- match.arg(format)
   envir <- parent.frame()
   xdf <- data.frame(mapply(function(x, name) {
+    if(is.numeric(x)) {
+      x <- round(x, digits)
+    }
     f <- formatter[[name]]
     if(is.null(f)) {
       x
