@@ -25,6 +25,8 @@ formattable(data, formatter = list(), ...)
 
 \item{align}{The alignment of columns: a character vector consisting of \code{'l'} (left),
 \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.}
+
+\item{digits}{An integer that all numeric columns are rounded to.}
 }
 \value{
 a \code{knitr_kable} object whose \code{print} method generates a

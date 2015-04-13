@@ -62,6 +62,7 @@ formattable <- function(data, formatter = list(), ...)
 #' @param format The output format: markdown or pandoc?
 #' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
 #' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
+#' @param digits An integer that all numeric columns are rounded to.
 #' @export
 formattable.data.frame <- function(data, formatter = list(), format = c("markdown", "pandoc"), align = "r", digits = getOption("digits"), ...) {
   format <- match.arg(format)
