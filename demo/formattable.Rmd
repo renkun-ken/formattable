@@ -79,3 +79,35 @@ formattable(df, list(
   registered = function(x) ifelse(x, "yes", "no")
 ))
 ```
+
+# demo 4
+
+```{r,results='asis',echo=FALSE,message=FALSE}
+formattable(df, list(
+  # bootstrap glyphicons
+  grade = formatter("span", 
+    style = x ~ style(color = switches(x, A="darkgreen",B="orange",C="darkred")), 
+    x ~ lapply(x, function(i) 
+      htmltools::tagList(htmltools::tag("i", list(class=paste0("glyphicon glyphicon-", 
+        switch(i, A="star",B="ok",C="remove")))), i))),
+  # bar
+  test1_score = formatter("span", 
+    style = x ~ style(color = "white", background = "green", 
+      "padding-left" = sprintf("%.0fpx", 4 + 76 * (x-min(x))/(max(x) - min(x))),
+      "padding-right" = "4px",
+      "border-radius" = "4px")),
+  # bar
+  test2_score = formatter("span", 
+    style = x ~ style(color = "white", background = "green", 
+      "padding-right" = sprintf("%.0fpx", 4 + 76 * (x-min(x))/(max(x) - min(x))),
+      "padding-left" = "4px",
+      "border-radius" = "4px")),
+  # gradient
+  final_score = formatter("span", 
+    style = x ~ style(display = "block",
+      background = rgb(0.3, 0, 1 - 0.8 * rank(-x) / length(x)),
+      color = "white", "padding-right" = "5px", "border-radius" = "4px")),
+  # text transform
+  registered = x ~ ifelse(x, "yes", "no")),
+  align = c("r","l","r","c","r","l","r","c"))
+```
