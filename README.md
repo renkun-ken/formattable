@@ -76,7 +76,7 @@ formattable(df, list(
   test2_score = score_colorizer,
   final_score = formatter("span",
     style = function(x) style(color = ifelse(rank(-x) <= 3, "green", "gray")),
-    function(x) sprintf("%.2f (ranking %02d)", x, rank(-x))),
+    function(x) sprintf("%.2f (rank: %02d)", x, rank(-x))),
   registered = function(x) ifelse(x, "yes", "no")
 ))
 ```
