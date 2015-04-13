@@ -40,3 +40,5 @@ style <- function(...) {
     paste(names(args), args, sep = ": ", collapse = "; ")
   }, dots, NULL))
 }
+
+# style helpers
