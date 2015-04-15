@@ -21,8 +21,8 @@ formattable(mtcars, list(
     style(color = ifelse(x > quantile(x, 0.8), "red", NA))),
   am = formatter("span", function(x) ifelse(x == 1, "yes", "no")),
   gear = formatter("span", style = function(x)
-    style("font-weight" = ifelse(x == 4, "bold", NA))),
-  qsec = formatter("span", style = function(x, m = rank(x) / length(x))
+    style(font.weight = ifelse(x == 4, "bold", NA))),
+  qsec = formatter("span", style = function(x, m = qrank(x))
     style(color = rgb(m, 0, 0)))))
 ```
 
@@ -34,11 +34,11 @@ formattable(mtcars, list(
 data(CO2)
 formattable(CO2, list(
   conc = formatter("span", style = function(x, m = 1 - x/max(x) * 0.8, ms = round(1-m)) 
-    style("display" = "block", "border-radius" = "4px", "background-color" = rgb(0, m, 0),
-      "padding-right" = "4px", "color" = rgb(1,1,1))),
+    style(display = "block", border.radius = "4px", background.color = rgb(0, m, 0),
+      padding.right = "4px", color = rgb(1,1,1))),
   uptake = formatter("span", style = function(x, m = 1-x/max(x), ms = round(1-m))
-    style("display" = "block", "border-radius" = "4px", "padding-right" = "4px",
-      "background-color" = rgb(m, m, 0), "color" = rgb(ms,ms,ms)))))
+    style(display = "block", border.radius = "4px", padding.right = "4px",
+      background.color = rgb(m, m, 0), color = rgb(ms,ms,ms)))))
 ```
 
 # demo 3
@@ -60,16 +60,16 @@ score_colorizer <- formatter("span",
   style = function(x) style(
     display = "block", 
     color = "white", 
-    "border-radius" = "4px",
-    "padding-right" = "4px",
-    background = rgb(0.2 + 0.8 * rank(-x) / length(x), 0.6, 0)))
+    border.radius = "4px",
+    padding.right = "4px",
+    background = rgb(0.2 + 0.8 * qrank(-x), 0.6, 0)))
 
 formattable(df, list(
   grade = formatter("span",
     style = function(x) 
       ifelse(x == "A", style(
         color = "green", 
-        "font-weight" = "bold"), NA)),
+        font.weight = "bold"), NA)),
   test1_score = score_colorizer,
   test2_score = score_colorizer,
   final_score = formatter("span",
@@ -87,26 +87,24 @@ formattable(df, list(
   # bootstrap glyphicons
   grade = formatter("span", 
     style = x ~ style(color = switches(x, A="darkgreen",B="orange",C="darkred")), 
-    x ~ lapply(x, function(i) 
-      htmltools::tagList(htmltools::tag("i", list(class=paste0("glyphicon glyphicon-", 
-        switch(i, A="star",B="ok",C="remove")))), i))),
+    x ~ icontext(switches(x, A="star",B="ok",C="remove"), x)),
   # bar
   test1_score = formatter("span", 
     style = x ~ style(color = "white", background = "green", 
-      "padding-left" = sprintf("%.0fpx", 4 + 76 * (x-min(x))/(max(x) - min(x))),
-      "padding-right" = "4px",
-      "border-radius" = "4px")),
+      padding.left = sprintf("%.0fpx", 4 + 76 * normalize(x)),
+      padding.right = "4px",
+      border.radius = "4px")),
   # bar
   test2_score = formatter("span", 
     style = x ~ style(color = "white", background = "green", 
-      "padding-right" = sprintf("%.0fpx", 4 + 76 * (x-min(x))/(max(x) - min(x))),
-      "padding-left" = "4px",
-      "border-radius" = "4px")),
+      padding.right = sprintf("%.0fpx", 4 + 76 * normalize(x)),
+      padding.left = "4px",
+      border.radius = "4px")),
   # gradient
   final_score = formatter("span", 
     style = x ~ style(display = "block",
-      background = rgb(0.3, 0, 1 - 0.8 * rank(-x) / length(x)),
-      color = "white", "padding-right" = "5px", "border-radius" = "4px")),
+      background = rgb(0.3, 0, 1 - 0.8 * qrank(x)),
+      color = "white", padding.right = "5px", border.radius = "4px")),
   # text transform
   registered = x ~ ifelse(x, "yes", "no")),
   align = c("r","l","r","c","r","l","r","c"))

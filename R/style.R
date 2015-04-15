@@ -37,8 +37,37 @@ style <- function(...) {
   as.character(.mapply(function(...) {
     args <- list(...)
     args <- args[!is.na(args)]
-    paste(names(args), args, sep = ": ", collapse = "; ")
+    paste(gsub(".", "-", names(args), fixed = TRUE), args, sep = ": ", collapse = "; ")
   }, dots, NULL))
 }
 
-# style helpers
+get_icon_class_prefix <- function(provider) {
+  gsub("*", provider, "* *-", fixed = TRUE)
+}
+
+#' Create icon-text elements
+#' @param icon a character vector or list of character vectors
+#' of icon names.
+#' @param text a character vector of contents.
+#' @param provider the provider of icon set.
+#' @param simplify logical to indicating whether to return
+#' the only element if \code{name} is a single value.
+#' @seealso \href{http://getbootstrap.com/components/#glyphicons}{Glyphicons in Bootstrap},
+#' \href{http://glyphicons.com/}{Glyphicons}
+#' @export
+#' @examples
+#' icontext("plus")
+#' icontext(c("star","star-empty"))
+#' icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)
+#' icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
+icontext <- function(icon, text = list(NULL), provider = "glyphicon",
+  simplify = TRUE) {
+  class_prefix <- get_icon_class_prefix(provider)
+  x <- .mapply(function(icon, text) {
+    htmltools::tagList(
+      lapply(icon, function(ico) {
+        htmltools::tag("i", list(class = paste0(class_prefix, ico)))
+      }), text)
+  }, list(icon, text), NULL)
+  if(length(x) == 1L) x[[1L]] else x
+}

@@ -20,3 +20,34 @@ switches <- function(EXPR, ..., SIMPLIFY = TRUE) {
   res <- lapply(EXPR, function(i) switch(i, ...))
   if(SIMPLIFY) simplify2array(res) else res
 }
+
+#' Quantile ranks of a vector
+#'
+#' The quantile rank of a number in a vector is the relative
+#' position of ranking resulted from rank divided by the length
+#' of vector.
+#' @param x a vector
+#' @param ... additional parameters passed to \code{rank}
+#' @seealso \code{\link{rank}}
+#' @export
+#' @examples
+#' qrank(mtcars$mpg)
+qrank <- function(x, ...) {
+  rank(x = x, ...) / length(x)
+}
+
+#' Normalize a vector to fit zero-to-one scale
+#'
+#' @param x a vector
+#' @param na.rm a logical indicating whether missing values
+#' should be removed
+#' @export
+#' @examples
+#' normalize(mtcars$mpg)
+normalize <- function(x, na.rm = FALSE) {
+  if(all(x == 0)) return(x)
+  max <- max(x, na.rm = na.rm)
+  min <- min(x, na.rm = na.rm)
+  if(max == min) return(rep(1, length(x)))
+  (x - min) / (max - min)
+}
