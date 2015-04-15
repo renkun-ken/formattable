@@ -8,4 +8,11 @@ test_that("formatter", {
     paste0("<span>", ifelse(c(1,0,0,1), "yes", "no"), "</span>"))
   expect_equal(formatter("span", x ~ ifelse(x, "yes", "no"))(c(1,0,0,1)),
     paste0("<span>", ifelse(c(1,0,0,1), "yes", "no"), "</span>"))
+
+  # dynamic scoping of formula
+  expect_equal(local({
+    yes <- "yes"
+    no <- "no"
+    formatter("span", x ~ ifelse(x, yes, no))(c(1,0,0,1))
+  }), paste0("<span>", ifelse(c(1,0,0,1), "yes", "no"), "</span>"))
 })
