@@ -86,8 +86,8 @@ formattable(df, list(
 formattable(df, list(
   # bootstrap glyphicons
   grade = formatter("span", 
-    style = x ~ style(color = switches(x, A="darkgreen",B="orange",C="darkred")), 
-    x ~ icontext(switches(x, A="star",B="ok",C="remove"), x)),
+    style = x ~ style(color = vmap(x, A="darkgreen",B="orange",C="darkred")), 
+    x ~ icontext(vmap(x, A="star",B="ok",C="remove"), x)),
   # bar
   test1_score = formatter("span", 
     style = x ~ style(color = "white", background = "green", 
