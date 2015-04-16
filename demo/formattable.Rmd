@@ -109,3 +109,20 @@ formattable(df, list(
   registered = x ~ ifelse(x, "yes", "no")),
   align = c("r","l","r","c","r","l","r","c"))
 ```
+
+# demo 5
+
+```{r,results='asis',echo=FALSE,message=FALSE}
+formattable(df, list(
+  grade = formatter("span",
+    style = x ~ vmap(x, A = style(color = "green", font.weight = "bold"), NA)),
+  test1_score = formatter("span",
+    style = x ~ style(color = csscolor(gradient(rank(x), "black", "red")))),
+  test2_score = formatter("span",
+    style = x ~ style(color = csscolor(gradient(rank(x), "black", "red")))),
+  final_score = formatter("span",
+    style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray"))),
+  registered = x ~ ifelse(x, "yes", "no")
+))
+```
+

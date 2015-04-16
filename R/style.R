@@ -71,3 +71,95 @@ icontext <- function(icon, text = list(NULL), provider = "glyphicon",
   }, list(icon, text), NULL)
   if(length(x) == 1L) x[[1L]] else x
 }
+
+check_rgb <- function(x, alpha = TRUE) {
+  grepl(if(alpha) "^#([0-9a-fA-F]{2}){3,4}$" else "^#([0-9a-fA-F]{2}){3}$", x)
+}
+
+check_rgba <- function(x) {
+  grepl("^#([0-9a-fA-F]{2}){4}$", x)
+}
+
+str2rgb <- function(x, alpha = NULL) {
+  is_rgb <- check_rgb(x)
+  if(missing(alpha) || is.null(alpha)) alpha <- any(check_rgba(x))
+  rownames <- c("red", "green", "blue", if(alpha) "alpha", NULL)
+  rows <- length(rownames)
+  res <- matrix(0L, rows, length(x), byrow = TRUE,
+    dimnames = list(rownames, names(x)))
+  rgbs <- x[is_rgb]
+  res[, is_rgb] <- matrix(strtoi(c(
+    substr(rgbs, 2L, 3L),
+    substr(rgbs, 4L, 5L),
+    substr(rgbs, 6L, 7L),
+    if(alpha) ifelse(nzchar(alphav <- substr(rgbs, 8L, 9L)), alphav, "FF") else NULL), 16L),
+    nrow = rows, byrow = TRUE)
+  res[, !is_rgb] <- col2rgb(x[!is_rgb], alpha = alpha)
+  res
+}
+
+#' Create a matrix from vector to represent colors in gradient
+#' @param x a numeric vector.
+#' @param min_color color of minimum value.
+#' @param max_color color of maximum value.
+#' @param alpha logical of whether to include alpha channel. \code{NULL}
+#' to let the function decide by input.
+#' @param use.names logical of whether to preserve names of input vector.
+#' @return a matrix with rgba columns in which each row corresponds to the rgba
+#' value (0-255) of each element in input vector \code{x}. Use \code{csscolor}
+#' to convert the matrix to css color strings compatible with web browsers.
+#' @seealso \code{\link{csscolor}}
+#' @export
+#' @examples
+#' gradient(c(1,2,3,4,5), "white", "red")
+#' gradient(c(5,4,3,2,1), "white", "red")
+#' gradient(c(1,3,2,4,5), "white", "red")
+#' gradient(c(1,3,2,4,5), rgb(0,0,0,0.5), rgb(0,0,0,1), alpha = TRUE)
+gradient <- function(x, min_color, max_color, alpha = NULL, use.names = TRUE) {
+  color_range <- str2rgb(c(min = min_color, max = max_color), alpha = alpha)
+  res <- (color_range[, "max", drop = FALSE] -
+      color_range[, "min", drop = FALSE]) %*% normalize(x) +
+    matrix(rep(color_range[, "min", drop = FALSE], length(x)), ncol = length(x))
+  storage.mode(res) <- "integer"
+  if(use.names) colnames(res) <- names(x)
+  res
+}
+
+#' Generate CSS-compatible color strings
+#' @param x color input
+#' @param format the output format of color strings
+#' @param use.names logical of whether to preserve the names of input
+#' @return a character vector of CSS-compatible color strings
+#' @export
+#' @examples
+#' csscolor(rgb(0, 0.5, 0.5))
+#' csscolor(c(rgb(0, 0.2, 0.2), rgb(0, 0.5, 0.2)))
+#' csscolor(rgb(0, 0.5, 0.5, 0.2))
+#' csscolor(gradient(c(1,2,3,4,5), "white", "red"))
+csscolor <- function(x, format = c("auto", "hex", "rgb", "rgba"),
+  use.names = TRUE)
+  UseMethod("csscolor")
+
+#' @export
+csscolor.character <- function(x, format = c("auto", "hex", "rgb", "rgba"), use.names = TRUE) {
+  format <- match.arg(format)
+  alpha <- all(check_rgb(x)) && any(check_rgba(x))
+  if(format == "auto") format <- if(alpha) "rgba" else "hex"
+  switch(format, hex = x,
+    csscolor.matrix(str2rgb(x, alpha = alpha), format = format, use.names = use.names))
+}
+
+#' @export
+csscolor.matrix <- function(x, format = c("auto", "hex", "rgb", "rgba"), use.names = TRUE) {
+  format <- match.arg(format)
+  alpha <- "alpha" %in% rownames(x)
+  if(format == "auto") format <- if(alpha) "rgba" else "hex"
+  cols <- switch(format, hex = {
+    hex <- format.hexmode(as.hexmode(x[c("red", "green", "blue"), ]), width = 2L)
+    paste0("#", hex[1L, ], hex[2L, ], hex[3L, ])
+  }, rgb = paste0("rgb(", x["red", ], ", ", x["green", ], ", ", x["blue", ], ")"),
+    rgba = paste0("rgba(", x["red", ], ", ", x["green", ], ", ", x["blue", ], ", ",
+      if(alpha) round(x["alpha", ] / 255, 2) else 1, ")"))
+  if(use.names) names(cols) <- colnames(x)
+  cols
+}
