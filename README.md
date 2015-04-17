@@ -52,32 +52,40 @@ Plain table:
 
 Formatted table with the following visualizations:
 
+* Ages are rendered in gradient.
 * All A grades are displayed in green bold.
-* `test1_score` and `test2_score` are background-colorized: orange (low score) to green (high score)
+* `test1_score` and `test2_score` are indicated by horizontal bars and are background-colorized: white (low score) to pink (high score)
 * `final_score` shows score and ranking. Top 3 are green, and others are gray.
-* `registered` texts are transformed to yes/no.
+* `registered` texts are transformed to an icon and yes/no text.
 
 
 ```r
 library(formattable)
-score_colorizer <- formatter("span", 
-  style = function(x) style(
-    display = "block", 
-    color = "white", 
-    "border-radius" = "4px",
-    "padding-right" = "4px",
-    background = rgb(0.2 + 0.8 * rank(-x) / length(x), 0.6, 0)))
+score_bar <- formatter("span", 
+  style = x ~ style(
+    border.radius = "4px",
+    padding.right = "4px",
+    padding.left = sprintf("%.2fpx", 6 + 54 * normalize(x)),
+    background = csscolor(gradient(x, "white", "pink"))
+  ))
 
 formattable(df, list(
+  age = formatter("span", 
+  style = x ~ style(
+    display = "block", 
+    border.radius = "4px",
+    padding.right = "4px",
+    background = csscolor(gradient(x, "white", "orange")))),
   grade = formatter("span",
-    style = function(x) 
-      ifelse(x == "A", style(color = "green", "font-weight" = "bold"), NA)),
-  test1_score = score_colorizer,
-  test2_score = score_colorizer,
+    style = x ~ ifelse(x == "A", style(color = "green", font.weight = "bold"), NA)),
+  test1_score = score_bar,
+  test2_score = score_bar,
   final_score = formatter("span",
-    style = function(x) style(color = ifelse(rank(-x) <= 3, "green", "gray")),
-    function(x) sprintf("%.2f (rank: %02d)", x, rank(-x))),
-  registered = function(x) ifelse(x, "yes", "no")
+    style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),
+    x ~ sprintf("%.2f (rank: %02d)", x, rank(-x))),
+  registered = formatter("span", 
+    style = x ~ style(color = ifelse(x, "green", "red")),
+    x ~ icontext(ifelse(x, "ok", "remove"), ifelse(x, "Yes", "No")))
 ))
 ```
 

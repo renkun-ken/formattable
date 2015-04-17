@@ -1,16 +1,16 @@
 Package: formattable
 Title: Formatted Data Printing in Markdown
-Version: 0.0.5
+Version: 0.0.5.1
 Authors@R: person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre"))
 Description: Print data frames with multiple types of formatting in markdown
     to improve the readability of data presented in tabular form rendered as
     web pages.
 Depends: R (>= 2.14.1)
-Date: 2015-04-16
+Date: 2015-04-17
 Imports: htmltools, knitr
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/renkun-ken/formattable
+URL: http://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
