@@ -91,7 +91,7 @@ formattable(df, list(
 
 ![formattable](./formattable.png?raw=true)
 
-**The icons used in the table is by [GLYPHICONS.com](http://GLYPHICONS.com) and included in [Bootstrap](http://getbootstrap.com/components/#glyphicons).**
+**The icon set used in the table is by [GLYPHICONS.com](http://GLYPHICONS.com) and included in [Bootstrap](http://getbootstrap.com/components/#glyphicons).**
 
 ## License
 
