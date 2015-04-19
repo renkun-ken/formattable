@@ -65,7 +65,7 @@ score_bar <- formatter("span",
   style = x ~ style(
     border.radius = "4px",
     padding.right = "4px",
-    padding.left = sprintf("%.2fpx", 6 + 54 * normalize(x)),
+    padding.left = sprintf("%.0fpx", 6 + 54 * normalize(x)),
     background = csscolor(gradient(x, "white", "pink"))
   ))
 

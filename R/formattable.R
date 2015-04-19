@@ -48,19 +48,20 @@ formattable.data.frame <- function(data, formatter = list(),
   format <- match.arg(format)
   envir <- parent.frame()
   xdf <- data.frame(mapply(function(x, name) {
-    if(is.numeric(x)) {
+    if (is.numeric(x)) {
       x <- round(x, digits)
     }
     f <- formatter[[name]]
-    if(is.null(f)) {
+    if (is.null(f)) {
       x
-    } else if(inherits(f, "formula")) {
+    } else if (inherits(f, "formula")) {
       eval_formula(f, x, envir)
     } else {
       f <- match.fun(f)
       f(x)
     }
-  }, data, names(data), SIMPLIFY = FALSE), row.names = row.names(data), stringsAsFactors = FALSE)
+  }, data, names(data), SIMPLIFY = FALSE),
+    row.names = row.names(data), stringsAsFactors = FALSE)
   knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 
