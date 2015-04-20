@@ -8,6 +8,33 @@
 #' @examples
 #' percent(rnorm(10, 0, 0.1))
 #' percent(rnorm(10, 0, 0.1), digits = 0)
-percent <- function(x, digits = 2L, format = "f", ...) {
-  paste0(formatC(100 * x, format = format, digits = digits, ...), "%")
+percent <- function(x)
+  UseMethod("percent")
+
+#' @export
+percent.default <- function(x) {
+  percent.numeric(as.numeric(x))
+}
+
+#' @export
+percent.numeric <- function(x) {
+  if ("percent" %in% (class <- class(x)))
+    return(x)
+  class(x) <- c("percent", class)
+  x
+}
+
+#' @export
+as.character.percent <- function(x, digits = 2L, format = "f", ...) {
+  paste0(formatC(100 * as.numeric(x), format = format, digits = digits, ...), "%")
+}
+
+#' @export
+format.percent <- function(x, ...) {
+  as.character.percent(x, ...)
+}
+
+#' @export
+print.percent <- function(x, ...) {
+  print(as.character.percent(x, ...), quote = FALSE)
 }

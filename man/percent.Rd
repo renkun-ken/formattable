@@ -4,7 +4,7 @@
 \alias{percent}
 \title{Percentage representation of numeric values}
 \usage{
-percent(x, digits = 2L, format = "f", ...)
+percent(x)
 }
 \arguments{
 \item{x}{a numeric vector.}
