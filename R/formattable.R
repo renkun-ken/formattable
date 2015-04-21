@@ -52,7 +52,7 @@ formattable.data.frame <- function(data, formatter = list(),
       x <- round(x, digits)
     }
     f <- formatter[[name]]
-    if (is.null(f)) {
+    value <- if (is.null(f)) {
       x
     } else if (inherits(f, "formula")) {
       eval_formula(f, x, envir)
@@ -60,6 +60,7 @@ formattable.data.frame <- function(data, formatter = list(),
       f <- match.fun(f)
       f(x)
     }
+    as.character(value)
   }, data, names(data), SIMPLIFY = FALSE),
     row.names = row.names(data), stringsAsFactors = FALSE)
   knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
