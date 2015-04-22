@@ -27,7 +27,8 @@ percent.numeric <- function(x) {
 #' @export
 as.character.percent <- function(x, digits = 2L, format = "f",
   na.encode = FALSE, justify = "none", ...) {
-  paste0(formatC(100 * as.numeric(x), format = format, digits = digits, ...), "%")
+  paste0(formatC(100 * as.numeric(x), format = format, digits = digits, ...),
+    ifelse(is.na(x), "", "%"))
 }
 
 #' @export
