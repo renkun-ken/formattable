@@ -2,6 +2,7 @@
 
 S3method(as.character,formattable)
 S3method(as.character,percent)
+S3method(c,percent)
 S3method(csscolor,character)
 S3method(csscolor,matrix)
 S3method(format,formattable)

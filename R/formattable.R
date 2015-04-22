@@ -48,7 +48,7 @@ formattable.default <- function(x, ..., prefix = "", suffix = "") {
 }
 
 #' @export
-as.character.formattable <- function(x, ..., formatter = "identity",
+as.character.formattable <- function(x, ...,
   justify = "none", na.encode = FALSE) {
   format_args <- attr(x, "format", exact = TRUE)
   custom_args <- list(...)

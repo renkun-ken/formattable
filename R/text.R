@@ -40,3 +40,8 @@ format.percent <- function(x, ...) {
 print.percent <- function(x, ...) {
   print(as.character.percent(x), ..., quote = FALSE)
 }
+
+#' @export
+c.percent <- function(x, ...) {
+  percent(c(unclass(x), ...))
+}
