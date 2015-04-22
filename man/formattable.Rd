@@ -3,23 +3,20 @@
 \name{formattable}
 \alias{formattable}
 \alias{formattable.data.frame}
-\alias{formattable.matrix}
 \title{Create formatted table by column formatters}
 \usage{
-formattable(data, formatter = list(), ...)
+formattable(x, ...)
 
-\method{formattable}{data.frame}(data, formatter = list(),
+\method{formattable}{data.frame}(x, formatter = list(),
   format = c("markdown", "pandoc"), align = "r",
   digits = getOption("digits"), ...)
-
-\method{formattable}{matrix}(data, formatter = list(), ...)
 }
 \arguments{
-\item{data}{data}
+\item{x}{data}
+
+\item{...}{additional parameters}
 
 \item{formatter}{A named list of formatter functions.}
-
-\item{...}{additional parameters passed to \code{knitr::kable}}
 
 \item{format}{The output format: markdown or pandoc?}
 
