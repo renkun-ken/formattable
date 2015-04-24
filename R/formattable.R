@@ -36,26 +36,38 @@
 formattable <- function(x, ...)
   UseMethod("formattable")
 
+create_obj0 <- function(x, class, attributes) {
+  if (!(class %in% (cls <- class(x))))
+    class(x) <- c(class, cls)
+  .mapply(function(name, value) {
+    attr(x, name) <<- value
+  }, list(names(attributes), attributes), NULL)
+  x
+}
+
+create_obj <- function(x, class, ...) {
+  create_obj0(x, class, list(...))
+}
+
+attr_default <- function(..., default = NULL) {
+  if (is.null(value <- attr(...))) default else value
+}
+
 #' @export
 formattable.default <- function(x, ..., prefix = "", suffix = "") {
-  if ("formattable" %in% (class <- class(x)))
-    return(x)
-  class(x) <- c("formattable", class)
-  attr(x, "format") <- list(...)
-  attr(x, "prefix") <- prefix
-  attr(x, "suffix") <- suffix
-  x
+  create_obj(x, "formattable", format = list(...), prefix = prefix, suffix = suffix)
 }
 
 #' @export
 as.character.formattable <- function(x, ...,
-  justify = "none", na.encode = FALSE) {
+  justify = "none", na.encode = FALSE, sep = "") {
   format_args <- attr(x, "format", exact = TRUE)
   custom_args <- list(...)
   format_args[names(custom_args)] <- custom_args
   str <- do.call(formatC, c(list(unclass(x)), format_args))
-  paste0(ifelse(is.na(x), "", attr(x, "prefix", exact = TRUE)), str,
-    ifelse(is.na(x), "", attr(x, "suffix", exact = TRUE)))
+  prefix <- ifelse(is.na(x), "", attr_default(x, "prefix", exact = TRUE, default = ""))
+  suffix <- ifelse(is.na(x), "", attr_default(x, "suffix", exact = TRUE, default = ""))
+  paste(prefix, str, suffix, sep = sep)
 }
 
 #' @export
@@ -66,6 +78,33 @@ print.formattable <- function(x, ...) {
 #' @export
 format.formattable <- function(x, ...) {
   as.character.formattable(x, ...)
+}
+
+#' @export
+`format<-` <- function(x, value)
+  UseMethod("format<-")
+
+#' @export
+`format<-.default` <- function(x, value) {
+  if(!is.list(value)) stop("value must be a list", call. = FALSE)
+  create_obj(x, "formattable", format = value)
+}
+
+#' @export
+`format<-.formattable` <- function(x, value) {
+  if(!is.list(value)) stop("value must be a list", call. = FALSE)
+  attr(x, "format") <- value
+  x
+}
+
+#' @export
+`[.formattable` <- function(x, ...) {
+  create_obj0(NextMethod("["), "formattable", attributes(x))
+}
+
+#' @export
+`[[.formattable` <- function(x, ...) {
+  create_obj0(NextMethod("[["), "formattable", attributes(x))
 }
 
 #' @rdname formattable

@@ -17,7 +17,7 @@ percent.default <- function(x) {
 }
 
 #' @export
-percent.numeric <- function(x) {
+percent.numeric <- function(x, ...) {
   if ("percent" %in% (class <- class(x)))
     return(x)
   class(x) <- c("percent", class)
