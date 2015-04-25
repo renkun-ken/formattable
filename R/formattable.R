@@ -133,6 +133,11 @@ format.formattable <- function(x, ...) {
   create_obj0(NextMethod("[["), "formattable", attributes(x))
 }
 
+#' @export
+c.formattable <- function(x, ...) {
+  create_obj0(NextMethod("c"), "formattable", attributes(x))
+}
+
 #' @rdname formattable
 #' @param formatter A named list of formatter functions.
 #' @param format The output format: markdown or pandoc?
