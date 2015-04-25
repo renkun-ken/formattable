@@ -4,14 +4,14 @@
 \alias{percent}
 \title{Percentage representation of numeric values}
 \usage{
-percent(x)
+percent(x, format = "f", digits = 2L, ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
 
-\item{digits}{an integer to indicate the number of digits of the percentage string.}
-
 \item{format}{format type passed to \code{\link{formatC}}.}
+
+\item{digits}{an integer to indicate the number of digits of the percentage string.}
 
 \item{...}{Additional parameters passed to \code{formatC}.}
 }

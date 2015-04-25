@@ -8,40 +8,36 @@
 #' @examples
 #' percent(rnorm(10, 0, 0.1))
 #' percent(rnorm(10, 0, 0.1), digits = 0)
-percent <- function(x)
-  UseMethod("percent")
-
-#' @export
-percent.default <- function(x) {
-  percent.numeric(as.numeric(x))
+percent <- function(x, format = "f", digits = 2L, ...) {
+  formattable(x, format = format, digits = 2L, ...,
+    preproc = function(x) x * 100,
+    postproc = function(str, x) paste0(str, ifelse(is.na(x), "", "%")))
 }
 
 #' @export
-percent.numeric <- function(x, ...) {
-  if ("percent" %in% (class <- class(x)))
-    return(x)
-  class(x) <- c("percent", class)
-  x
+decimal <- function(x, format = "f", big.mark = ",", ...) {
+  formattable(x, format = "f", big.mark = big.mark, ...)
 }
 
 #' @export
-as.character.percent <- function(x, digits = 2L, format = "f",
-  na.encode = FALSE, justify = "none", ...) {
-  paste0(formatC(100 * as.numeric(x), format = format, digits = digits, ...),
-    ifelse(is.na(x), "", "%"))
+currency <- function(x, symbol = "$", format = "f", big.mark = ",", digits = 2L, ...) {
+  formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
+    postproc = function(str, x) sprintf("%s%s", symbol, str))
 }
 
 #' @export
-format.percent <- function(x, ...) {
-  as.character.percent(x, ...)
+accounting <- function(x, format = "f", big.mark = ",", digits = 2L, ...) {
+  formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
+    postproc = function(str, x)
+      sprintf(ifelse(x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE)))
 }
 
 #' @export
-print.percent <- function(x, ...) {
-  print(as.character.percent(x), ..., quote = FALSE)
+scientific <- function(x, format = "e", ...) {
+  formattable(x, format = format, ...)
 }
 
 #' @export
-c.percent <- function(x, ...) {
-  percent(c(unclass(x), ...))
+datetime <- function(x, format = "", ...) {
+  formattable(x, format = format, ...)
 }

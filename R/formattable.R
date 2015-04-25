@@ -49,9 +49,14 @@ create_obj <- function(x, class, ...) {
   create_obj0(x, class, list(...))
 }
 
-unclass_obj <- function(x, class) {
+remove_class <- function(x, class) {
   cls <- class(x)
   class(x) <- cls[!(cls %in% class)]
+  x
+}
+
+remove_attributes <- function(x) {
+  attributes(x) <- NULL
   x
 }
 
@@ -60,40 +65,36 @@ attr_default <- function(..., default = NULL) {
 }
 
 #' @export
-formattable.default <- function(x, ..., prefix = "", suffix = "") {
+formattable.default <- function(x, ..., preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable", formatter = "formatC",
-    format = list(...), prefix = prefix, suffix = suffix)
+    format = list(...), preproc = preproc, postproc = postproc)
 }
 
 #' @export
-formattable.Date <- function(x, ...) {
+formattable.Date <- function(x, ..., preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable", formatter = "format",
-    format = list(...))
+    format = list(...), preproc = preproc, postproc = postproc)
 }
 
 #' @export
-formattable.POSIXct <- function(x, ...) {
+formattable.POSIXct <- function(x, ..., preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable", formatter = "format",
-    format = list(...))
+    format = list(...), preproc = preproc, postproc = postproc)
 }
 
 #' @export
-formattable.POSIXlt <- function(x, ...) {
+formattable.POSIXlt <- function(x, ..., preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable", formatter = "format",
-    format = list(...))
+    format = list(...), preproc = preproc, postproc = postproc)
+}
+
+fcall <- function(FUN, X, ...) {
+  if (is.null(FUN)) X else match.fun(FUN)(X, ...)
 }
 
 #' @export
-as.character.formattable <- function(x, ...,
-  justify = "none", na.encode = FALSE, trim = FALSE) {
-  formatter <- attr(x, "formatter", exact = TRUE)
-  format_args <- attr(x, "format", exact = TRUE)
-  custom_args <- list(...)
-  format_args[names(custom_args)] <- custom_args
-  str <- do.call(formatter, c(list(unclass_obj(x, "formattable")), format_args))
-  prefix <- ifelse(is.na(x), "", attr_default(x, "prefix", exact = TRUE, default = ""))
-  suffix <- ifelse(is.na(x), "", attr_default(x, "suffix", exact = TRUE, default = ""))
-  paste0(prefix, str, suffix)
+as.character.formattable <- function(x, ...) {
+  format.formattable(x, ...)
 }
 
 #' @export
@@ -102,8 +103,16 @@ print.formattable <- function(x, ...) {
 }
 
 #' @export
-format.formattable <- function(x, ...) {
-  as.character.formattable(x, ...)
+format.formattable <- function(x, ...,
+  justify = "none", na.encode = FALSE, trim = FALSE) {
+  formatter <- attr(x, "formatter", exact = TRUE)
+  format_args <- attr(x, "format", exact = TRUE)
+  custom_args <- list(...)
+  format_args[names(custom_args)] <- custom_args
+  x_value <- remove_class(x, "formattable")
+  value <- fcall(attr(x, "preproc", exact = TRUE), x_value)
+  str <- remove_attributes(do.call(formatter, c(list(value), format_args)))
+  fcall(attr(x, "postproc", exact = TRUE), str, x_value)
 }
 
 #' @export
@@ -136,6 +145,36 @@ format.formattable <- function(x, ...) {
 #' @export
 c.formattable <- function(x, ...) {
   create_obj0(NextMethod("c"), "formattable", attributes(x))
+}
+
+#' @export
+`+.formattable` <- function(x, y) {
+  create_obj0(NextMethod("+"), "formattable", attributes(x))
+}
+
+#' @export
+`-.formattable` <- function(x, y) {
+  create_obj0(NextMethod("-"), "formattable", attributes(x))
+}
+
+#' @export
+`*.formattable` <- function(x, y) {
+  create_obj0(NextMethod("*"), "formattable", attributes(x))
+}
+
+#' @export
+`/.formattable` <- function(x, y) {
+  create_obj0(NextMethod("/"), "formattable", attributes(x))
+}
+
+#' @export
+`%%.formattable` <- function(x, y) {
+  create_obj0(NextMethod("%%"), "formattable", attributes(x))
+}
+
+#' @export
+`rep.formattable` <- function(x, ...) {
+  create_obj0(NextMethod("rep"), "formattable", attributes(x))
 }
 
 #' @rdname formattable
