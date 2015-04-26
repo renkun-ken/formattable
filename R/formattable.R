@@ -173,7 +173,7 @@ c.formattable <- function(x, ...) {
 }
 
 #' @export
-`rep.formattable` <- function(x, ...) {
+rep.formattable <- function(x, ...) {
   create_obj0(NextMethod("rep"), "formattable", attributes(x))
 }
 
