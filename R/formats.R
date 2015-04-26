@@ -8,25 +8,25 @@
 #' @examples
 #' percent(rnorm(10, 0, 0.1))
 #' percent(rnorm(10, 0, 0.1), digits = 0)
-percent <- function(x, format = "f", digits = 2L, ...) {
+percent <- function(x, digits = 2L, format = "f", ...) {
   formattable(x, format = format, digits = 2L, ...,
     preproc = function(x) x * 100,
     postproc = function(str, x) paste0(str, ifelse(is.na(x), "", "%")))
 }
 
 #' @export
-decimal <- function(x, format = "f", big.mark = ",", digits = 2L, ...) {
+comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = 2L, ...)
 }
 
 #' @export
-currency <- function(x, symbol = "$", format = "f", big.mark = ",", digits = 2L, ...) {
+currency <- function(x, symbol = "$", digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = function(str, x) sprintf("%s%s", symbol, str))
 }
 
 #' @export
-accounting <- function(x, format = "f", big.mark = ",", digits = 2L, ...) {
+accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = function(str, x)
       sprintf(ifelse(x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE)))
