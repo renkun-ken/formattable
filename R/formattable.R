@@ -37,11 +37,9 @@ formattable <- function(x, ...)
   UseMethod("formattable")
 
 create_obj0 <- function(x, class, attributes) {
+  attributes(x) <- attributes
   if (!(class %in% (cls <- class(x))))
     class(x) <- c(class, cls)
-  .mapply(function(name, value) {
-    attr(x, name) <<- value
-  }, list(names(attributes), attributes), NULL)
   x
 }
 
