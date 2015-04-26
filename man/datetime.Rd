@@ -14,4 +14,9 @@ datetime(x, format = "", ...)
 \description{
 Date/time vector with formatting
 }
+\examples{
+datetime(as.Date("2015-02-01"))
+datetime(as.Date("2015-02-01"), format = "\%m/\%d/\%Y")
+datetime(Sys.time(), format = "\%Y\%m\%dT\%H\%M\%S")
+}
 

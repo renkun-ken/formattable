@@ -20,4 +20,9 @@ accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 \description{
 Numeric vector with accounting format
 }
+\examples{
+accounting(15320)
+accounting(-12500)
+accounting(c(1200, -3500, 2600), format = "d")
+}
 

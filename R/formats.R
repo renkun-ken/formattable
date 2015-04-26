@@ -9,6 +9,7 @@
 #' percent(rnorm(10, 0, 0.1))
 #' percent(rnorm(10, 0, 0.1), digits = 0)
 percent <- function(x, digits = 2L, format = "f", ...) {
+  stopifnot(is.numeric(x))
   formattable(x, format = format, digits = digits, ...,
     preproc = function(x) x * 100,
     postproc = function(str, x) paste0(str, ifelse(is.na(x), "", "%")))
@@ -18,7 +19,12 @@ percent <- function(x, digits = 2L, format = "f", ...) {
 #' @inheritParams percent
 #' @param big.mark thousands separator
 #' @export
+#' @examples
+#' comma(1000000)
+#' comma(c(1250000, 225000))
+#' comma(c(1250000, 225000), format = "d")
 comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
+  stopifnot(is.numeric(x))
   formattable(x, format = format, big.mark = big.mark, digits = 2L, ...)
 }
 
@@ -26,7 +32,12 @@ comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 #' @inheritParams comma
 #' @param symbol currency symbol
 #' @export
+#' @examples
+#' currency(200000)
+#' currency(1200000, "€")
+#' currency(1200000, "€", format = "d")
 currency <- function(x, symbol = "$", digits = 2L, format = "f", big.mark = ",", ...) {
+  stopifnot(is.numeric(x))
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = function(str, x) sprintf("%s%s", symbol, str))
 }
@@ -34,7 +45,12 @@ currency <- function(x, symbol = "$", digits = 2L, format = "f", big.mark = ",",
 #' Numeric vector with accounting format
 #' @inheritParams comma
 #' @export
+#' @examples
+#' accounting(15320)
+#' accounting(-12500)
+#' accounting(c(1200, -3500, 2600), format = "d")
 accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
+  stopifnot(is.numeric(x))
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = function(str, x)
       sprintf(ifelse(x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE)))
@@ -44,14 +60,24 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 #' @param format format type passed to \code{\link{formatC}}.
 #' @param ... additional parameter passed to \code{formattable}.
 #' @export
-scientific <- function(x, format = "e", ...) {
-  formattable(x, format = format, ...)
+#' @examples
+#' scientific(1250000)
+#' scientific(1253421, digits = 8)
+#' scientific(1253421, digits = 8, format = "E")
+scientific <- function(x, format = c("e", "E"), ...) {
+  stopifnot(is.numeric(x))
+  formattable(x, format = match.arg(format), ...)
 }
 
 #' Date/time vector with formatting
 #' @param format format type passed to \code{\link{format}}.
 #' @param ... additional parameter passed to \code{formattable}.
 #' @export
+#' @examples
+#' datetime(as.Date("2015-02-01"))
+#' datetime(as.Date("2015-02-01"), format = "%m/%d/%Y")
+#' datetime(Sys.time(), format = "%Y%m%dT%H%M%S")
 datetime <- function(x, format = "", ...) {
+  stopifnot(inherits(x, c("Date", "POSIXct", "POSIXlt")))
   formattable(x, format = format, ...)
 }

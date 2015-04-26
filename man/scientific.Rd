@@ -4,7 +4,7 @@
 \alias{scientific}
 \title{Numeric vector with scientific format}
 \usage{
-scientific(x, format = "e", ...)
+scientific(x, format = c("e", "E"), ...)
 }
 \arguments{
 \item{format}{format type passed to \code{\link{formatC}}.}
@@ -13,5 +13,10 @@ scientific(x, format = "e", ...)
 }
 \description{
 Numeric vector with scientific format
+}
+\examples{
+scientific(1250000)
+scientific(1253421, digits = 8)
+scientific(1253421, digits = 8, format = "E")
 }
 

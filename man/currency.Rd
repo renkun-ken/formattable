@@ -23,4 +23,9 @@ currency(x, symbol = "$", digits = 2L, format = "f", big.mark = ",",
 \description{
 Numeric vector with currency format
 }
+\examples{
+currency(200000)
+currency(1200000, "€")
+currency(1200000, "€", format = "d")
+}
 

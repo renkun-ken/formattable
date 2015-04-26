@@ -20,4 +20,9 @@ comma(x, digits = 2L, format = "f", big.mark = ",", ...)
 \description{
 Numeric vector with thousands separators
 }
+\examples{
+comma(1000000)
+comma(c(1250000, 225000))
+comma(c(1250000, 225000), format = "d")
+}
 
