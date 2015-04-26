@@ -71,6 +71,12 @@ formattable.default <- function(x, ..., preproc = NULL, postproc = NULL) {
 }
 
 #' @export
+formattable.logical <- function(x, ..., preproc = NULL, postproc = NULL) {
+  create_obj(x, "formattable", formatter= "ifelse",
+    format = list(...), preproc = preproc, postproc = postproc)
+}
+
+#' @export
 formattable.Date <- function(x, ..., preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable", formatter = "format",
     format = list(...), preproc = preproc, postproc = postproc)
