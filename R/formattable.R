@@ -1,66 +1,6 @@
-#' Create formatted table by column formatters
-#'
-#' This is an table generator that specializes in creating
-#' formatted table presented in a mix of markdown/reStructuredText and
-#' HTML elements. To generate a formatted table, each column of data
-#' frame can be transformed by formatter function.
-#' @param x data
-#' @param ... additional parameters
 #' @export
-#' @return a \code{knitr_kable} object whose \code{print} method generates a
-#' string-representation of \code{data} formatted by \code{formatter} in specific \code{format}.
-#' @examples
-#' # mtcars (mpg in red)
-#' formattable(mtcars,
-#'    list(mpg = formatter("span", style = "color:red")))
-#'
-#' # mtcars (mpg in red if greater than median)
-#' formattable(mtcars, list(mpg = formatter("span",
-#'    style = function(x) ifelse(x > median(x), "color:red", NA))))
-#'
-#' # mtcars (mpg in red if greater than median, using formula)
-#' formattable(mtcars, list(mpg = formatter("span",
-#'    style = x ~ ifelse(x > median(x), "color:red", NA))))
-#'
-#' # mtcars (mpg in gradient: the higher, the redder)
-#' formattable(mtcars, list(mpg = formatter("span",
-#'    style = x ~ style(color = rgb(x/max(x), 0, 0)))))
-#'
-#' # mtcars (mpg background in gradient: the higher, the redder)
-#' formattable(mtcars, list(mpg = formatter("span",
-#'    style = x ~ style(display = "block",
-#'    "border-radius" = "4px",
-#'    "padding-right" = "4px",
-#'    color = "white",
-#'    "background-color" = rgb(x/max(x), 0, 0)))))
 formattable <- function(x, ...)
   UseMethod("formattable")
-
-create_obj0 <- function(x, class, attributes) {
-  attributes(x) <- attributes
-  if (!(class %in% (cls <- class(x))))
-    class(x) <- c(class, cls)
-  x
-}
-
-create_obj <- function(x, class, ...) {
-  create_obj0(x, class, list(...))
-}
-
-remove_class <- function(x, class) {
-  cls <- class(x)
-  class(x) <- cls[!(cls %in% class)]
-  x
-}
-
-remove_attributes <- function(x) {
-  attributes(x) <- NULL
-  x
-}
-
-attr_default <- function(..., default = NULL) {
-  if (is.null(value <- attr(...))) default else value
-}
 
 #' @export
 formattable.default <- function(x, ..., preproc = NULL, postproc = NULL) {
@@ -92,10 +32,6 @@ formattable.POSIXlt <- function(x, ..., preproc = NULL, postproc = NULL) {
     format = list(...), preproc = preproc, postproc = postproc)
 }
 
-fcall <- function(FUN, X, ...) {
-  if (is.null(FUN)) X else match.fun(FUN)(X, ...)
-}
-
 #' @export
 as.character.formattable <- function(x, ...) {
   format.formattable(x, ...)
@@ -114,9 +50,9 @@ format.formattable <- function(x, ...,
   custom_args <- list(...)
   format_args[names(custom_args)] <- custom_args
   x_value <- remove_class(x, "formattable")
-  value <- fcall(attr(x, "preproc", exact = TRUE), x_value)
+  value <- call_or_default(attr(x, "preproc", exact = TRUE), x_value)
   str <- remove_attributes(do.call(formatter, c(list(value), format_args)))
-  fcall(attr(x, "postproc", exact = TRUE), str, x_value)
+  call_or_default(attr(x, "postproc", exact = TRUE), str, x_value)
 }
 
 #' @export
@@ -181,13 +117,45 @@ rep.formattable <- function(x, ...) {
   create_obj0(NextMethod("rep"), "formattable", attributes(x))
 }
 
-#' @rdname formattable
+#' Create formatted table by column formatters
+#'
+#' This is an table generator that specializes in creating
+#' formatted table presented in a mix of markdown/reStructuredText and
+#' HTML elements. To generate a formatted table, each column of data
+#' frame can be transformed by formatter function.
+#' @param x a \code{data.frame}.
 #' @param formatter A named list of formatter functions.
 #' @param format The output format: markdown or pandoc?
 #' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
 #' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
 #' @param digits An integer that all numeric columns are rounded to.
 #' @export
+#' @return a \code{knitr_kable} object whose \code{print} method generates a
+#' string-representation of \code{data} formatted by \code{formatter} in specific \code{format}.
+#' @examples
+#' # mtcars (mpg in red)
+#' formattable(mtcars,
+#'    list(mpg = formatter("span", style = "color:red")))
+#'
+#' # mtcars (mpg in red if greater than median)
+#' formattable(mtcars, list(mpg = formatter("span",
+#'    style = function(x) ifelse(x > median(x), "color:red", NA))))
+#'
+#' # mtcars (mpg in red if greater than median, using formula)
+#' formattable(mtcars, list(mpg = formatter("span",
+#'    style = x ~ ifelse(x > median(x), "color:red", NA))))
+#'
+#' # mtcars (mpg in gradient: the higher, the redder)
+#' formattable(mtcars, list(mpg = formatter("span",
+#'    style = x ~ style(color = rgb(x/max(x), 0, 0)))))
+#'
+#' # mtcars (mpg background in gradient: the higher, the redder)
+#' formattable(mtcars, list(mpg = formatter("span",
+#'    style = x ~ style(display = "block",
+#'    "border-radius" = "4px",
+#'    "padding-right" = "4px",
+#'    color = "white",
+#'    "background-color" = rgb(x/max(x), 0, 0)))))
 formattable.data.frame <- function(x, formatter = list(),
   format = c("markdown", "pandoc"), align = "r", digits = getOption("digits"), ...) {
   format <- match.arg(format)
