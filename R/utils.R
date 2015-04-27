@@ -1,5 +1,5 @@
-create_obj0 <- function(x, class, attributes) {
-  attributes(x) <- attributes
+create_obj0 <- function(x, class, attributes = list(), reset = FALSE) {
+  attributes(x)[if (reset) TRUE else names(attributes)] <- attributes
   if (!(class %in% (cls <- class(x))))
     class(x) <- c(class, cls)
   x

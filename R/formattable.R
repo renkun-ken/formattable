@@ -16,19 +16,19 @@ formattable.logical <- function(x, ..., preproc = NULL, postproc = NULL) {
 
 #' @export
 formattable.Date <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter = "format",
+  create_obj(x, "formattable", formatter = "format.Date",
     format = list(...), preproc = preproc, postproc = postproc)
 }
 
 #' @export
 formattable.POSIXct <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter = "format",
+  create_obj(x, "formattable", formatter = "format.POSIXct",
     format = list(...), preproc = preproc, postproc = postproc)
 }
 
 #' @export
 formattable.POSIXlt <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter = "format",
+  create_obj(x, "formattable", formatter = "format.POSIXlt",
     format = list(...), preproc = preproc, postproc = postproc)
 }
 
@@ -51,7 +51,8 @@ format.formattable <- function(x, ...,
   format_args[names(custom_args)] <- custom_args
   x_value <- remove_class(x, "formattable")
   value <- call_or_default(attr(x, "preproc", exact = TRUE), x_value)
-  str <- remove_attributes(do.call(formatter, c(list(value), format_args)))
+  str <- do.call(formatter, c(list(value), format_args))
+  if (is.atomic(x)) str <- remove_attributes(str)
   call_or_default(attr(x, "postproc", exact = TRUE), str, x_value)
 }
 
@@ -74,17 +75,23 @@ format.formattable <- function(x, ...,
 
 #' @export
 `[.formattable` <- function(x, ...) {
-  create_obj0(NextMethod("["), "formattable", attributes(x))
+  if(is.atomic(x)) {
+    create_obj0(NextMethod("["), "formattable", attributes(x))
+  } else NextMethod("[")
 }
 
 #' @export
 `[[.formattable` <- function(x, ...) {
-  create_obj0(NextMethod("[["), "formattable", attributes(x))
+  if(is.atomic(x)) {
+    create_obj0(NextMethod("[["), "formattable", attributes(x))
+  } else NextMethod("[[")
 }
 
 #' @export
 c.formattable <- function(x, ...) {
-  create_obj0(NextMethod("c"), "formattable", attributes(x))
+  if(is.atomic(x)) {
+    create_obj0(NextMethod("c"), "formattable", attributes(x))
+  } else NextMethod("c")
 }
 
 #' @export
@@ -115,6 +122,30 @@ c.formattable <- function(x, ...) {
 #' @export
 rep.formattable <- function(x, ...) {
   create_obj0(NextMethod("rep"), "formattable", attributes(x))
+}
+
+#' @export
+format_table <- function(x, formatter = list(),
+  format = c("markdown", "pandoc"), align = "r",
+  digits = getOption("digits"), ..., envir = parent.frame()) {
+  format <- match.arg(format)
+  xdf <- data.frame(mapply(function(x, name) {
+    if (is.numeric(x)) {
+      x <- round(x, digits)
+    }
+    f <- formatter[[name]]
+    value <- if (is.null(f)) {
+      x
+    } else if (inherits(f, "formula")) {
+      eval_formula(f, x, envir)
+    } else {
+      f <- match.fun(f)
+      f(x)
+    }
+    as.character(value)
+  }, x, names(x), SIMPLIFY = FALSE),
+    row.names = row.names(x), stringsAsFactors = FALSE)
+  knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 
 #' Create formatted table by column formatters
@@ -156,30 +187,12 @@ rep.formattable <- function(x, ...) {
 #'    "padding-right" = "4px",
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
-formattable.data.frame <- function(x, formatter = list(),
-  format = c("markdown", "pandoc"), align = "r", digits = getOption("digits"), ...) {
-  format <- match.arg(format)
-  envir <- parent.frame()
-  xdf <- data.frame(mapply(function(x, name) {
-    if (is.numeric(x)) {
-      x <- round(x, digits)
-    }
-    f <- formatter[[name]]
-    value <- if (is.null(f)) {
-      x
-    } else if (inherits(f, "formula")) {
-      eval_formula(f, x, envir)
-    } else {
-      f <- match.fun(f)
-      f(x)
-    }
-    as.character(value)
-  }, x, names(x), SIMPLIFY = FALSE),
-    row.names = row.names(x), stringsAsFactors = FALSE)
-  knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
+formattable.data.frame <- function(x, ...) {
+  create_obj(x, "formattable", formatter = "format_table",
+    format = list(..., envir = parent.frame()))
 }
 
 #' @export
-formattable.matrix <- function(x, formatter = list(), ...) {
-  formattable.data.frame(data.frame(x, stringsAsFactors = FALSE), formatter = formatter, ...)
+formattable.matrix <- function(x, ...) {
+  formattable.data.frame(data.frame(x, stringsAsFactors = FALSE), ...)
 }

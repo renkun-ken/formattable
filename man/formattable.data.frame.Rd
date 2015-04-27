@@ -4,9 +4,7 @@
 \alias{formattable.data.frame}
 \title{Create formatted table by column formatters}
 \usage{
-\method{formattable}{data.frame}(x, formatter = list(),
-  format = c("markdown", "pandoc"), align = "r",
-  digits = getOption("digits"), ...)
+\method{formattable}{data.frame}(x, ...)
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
