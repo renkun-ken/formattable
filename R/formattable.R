@@ -44,7 +44,7 @@ print.formattable <- function(x, ...) {
 
 #' @export
 format.formattable <- function(x, ...,
-  justify = "none", na.encode = FALSE, trim = FALSE) {
+  justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
   formatter <- attr(x, "formatter", exact = TRUE)
   format_args <- attr(x, "format", exact = TRUE)
   custom_args <- list(...)
@@ -52,8 +52,10 @@ format.formattable <- function(x, ...,
   x_value <- remove_class(x, "formattable")
   value <- call_or_default(attr(x, "preproc", exact = TRUE), x_value)
   str <- do.call(formatter, c(list(value), format_args))
-  if (is.atomic(x)) str <- remove_attributes(str)
-  call_or_default(attr(x, "postproc", exact = TRUE), str, x_value)
+  if (x_atomic <- is.atomic(x)) str <- remove_attributes(str)
+  str <- call_or_default(attr(x, "postproc", exact = TRUE), str, x_value)
+  if (use.names && x_atomic) names(str) <- names(x)
+  str
 }
 
 #' @export
