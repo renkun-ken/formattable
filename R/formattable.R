@@ -42,9 +42,16 @@ formattable <- function(data, formatter = list(), ...)
 #' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
 #' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
 #' @param digits An integer that all numeric columns are rounded to.
+#' @param row.names row names of the formatted data frame
+#' @param check.rows \code{TRUE} to check the consistency of rows in terms of lengths and
+#' names.
+#' @param check.names \code{TRUE} to make sure column names are valid variable names and
+#' are not duplicates by applying \code{make.names}. This argument is set to be \code{FALSE}
+#' by default to limit the behavior of this function only to formatting.
 #' @export
 formattable.data.frame <- function(data, formatter = list(),
-  format = c("markdown", "pandoc"), align = "r", digits = getOption("digits"), ...) {
+  format = c("markdown", "pandoc"), align = "r", digits = getOption("digits"), ...,
+  row.names = rownames(data), check.rows = FALSE, check.names = FALSE) {
   format <- match.arg(format)
   envir <- parent.frame()
   xdf <- data.frame(mapply(function(x, name) {
@@ -61,7 +68,8 @@ formattable.data.frame <- function(data, formatter = list(),
       f(x)
     }
   }, data, names(data), SIMPLIFY = FALSE),
-    row.names = row.names(data), stringsAsFactors = FALSE)
+    row.names = row.names, check.rows = check.rows, check.names = check.names,
+    stringsAsFactors = FALSE)
   knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 

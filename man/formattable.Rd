@@ -10,7 +10,8 @@ formattable(data, formatter = list(), ...)
 
 \method{formattable}{data.frame}(data, formatter = list(),
   format = c("markdown", "pandoc"), align = "r",
-  digits = getOption("digits"), ...)
+  digits = getOption("digits"), ..., row.names = rownames(data),
+  check.rows = FALSE, check.names = FALSE)
 
 \method{formattable}{matrix}(data, formatter = list(), ...)
 }
@@ -27,6 +28,15 @@ formattable(data, formatter = list(), ...)
 \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.}
 
 \item{digits}{An integer that all numeric columns are rounded to.}
+
+\item{row.names}{row names of the formatted data frame}
+
+\item{check.rows}{\code{TRUE} to check the consistency of rows in terms of lengths and
+names.}
+
+\item{check.names}{\code{TRUE} to make sure column names are valid variable names and
+are not duplicates by applying \code{make.names}. This argument is set to be \code{FALSE}
+by default to limit the behavior of this function only to formatting.}
 }
 \value{
 a \code{knitr_kable} object whose \code{print} method generates a
