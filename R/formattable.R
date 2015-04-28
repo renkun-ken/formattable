@@ -129,7 +129,10 @@ rep.formattable <- function(x, ...) {
 #' @export
 format_table <- function(x, formatter = list(),
   format = c("markdown", "pandoc"), align = "r",
-  digits = getOption("digits"), ..., envir = parent.frame()) {
+  digits = getOption("digits"), ...,
+  row.names = rownames(x), check.rows = FALSE, check.names = FALSE,
+  envir = parent.frame()) {
+  stopifnot(is.data.frame(x))
   format <- match.arg(format)
   xdf <- data.frame(mapply(function(x, name) {
     if (is.numeric(x)) {
@@ -146,7 +149,10 @@ format_table <- function(x, formatter = list(),
     }
     as.character(value)
   }, x, names(x), SIMPLIFY = FALSE),
-    row.names = row.names(x), stringsAsFactors = FALSE)
+    row.names = row.names,
+    check.rows = check.rows,
+    check.names = check.names,
+    stringsAsFactors = FALSE)
   knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 
