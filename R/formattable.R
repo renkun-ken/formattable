@@ -238,18 +238,22 @@ sum.formattable <- function(...) {
 }
 
 #' @export
-mean.formattable <- function(...) {
-  copy_obj(..1, NextMethod("mean"), "formattable")
+mean.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("mean"), "formattable")
 }
 
+#' @rdname stats median
+#' @importFrom stats median
 #' @export
-median.formattable <- function(...) {
-  copy_obj(..1, NextMethod("median"), "formattable")
+median.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("median"), "formattable")
 }
 
+#' @rdname stats quantile
+#' @importFrom stats quantile
 #' @export
-quantile.formattable <- function(...) {
-  copy_obj(..1, NextMethod("quantile"), "formattable")
+quantile.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("quantile"), "formattable")
 }
 
 #' Format a data frame with formatter functions
