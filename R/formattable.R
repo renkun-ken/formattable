@@ -11,8 +11,15 @@ formattable.default <- function(x, ..., preproc = NULL, postproc = NULL) {
 
 #' @export
 formattable.logical <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  create_obj(as.logical(x), "formattable",
     list(formatter= "ifelse",
+      format = list(...), preproc = preproc, postproc = postproc))
+}
+
+#' @export
+formattable.factor <- function(x, ..., preproc = NULL, postproc = NULL) {
+  create_obj(as.factor(x), "formattable",
+    list(formatter= "vmap",
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
