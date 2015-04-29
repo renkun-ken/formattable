@@ -17,6 +17,7 @@
 #' x <- c(1,1,2,1,2,2,1,1,2)
 #' vmap(x, "type-A", "type-B")
 vmap <- function(EXPR, ..., SIMPLIFY = TRUE) {
+  if (is.factor(EXPR)) EXPR <- as.character.factor(EXPR)
   res <- lapply(EXPR, switch, ...)
   if(SIMPLIFY) simplify2array(res) else res
 }
