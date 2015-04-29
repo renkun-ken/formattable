@@ -31,15 +31,17 @@ comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 #' Numeric vector with currency format
 #' @inheritParams comma
 #' @param symbol currency symbol
+#' @param sep separator between symbol and value
 #' @export
 #' @examples
 #' currency(200000)
-#' currency(1200000, "€")
-#' currency(1200000, "€", format = "d")
-currency <- function(x, symbol = "$", digits = 2L, format = "f", big.mark = ",", ...) {
+#' currency(1200000, "USD", sep = " ")
+#' currency(1200000, "USD", format = "d", sep = " ")
+currency <- function(x, symbol = "$",
+  digits = 2L, format = "f", big.mark = ",", ..., sep = "") {
   stopifnot(is.numeric(x))
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
-    postproc = function(str, x) sprintf("%s%s", symbol, str))
+    postproc = function(str, x) paste(symbol, str, sep = sep))
 }
 
 #' Numeric vector with accounting format

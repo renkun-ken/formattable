@@ -5,7 +5,7 @@
 \title{Numeric vector with currency format}
 \usage{
 currency(x, symbol = "$", digits = 2L, format = "f", big.mark = ",",
-  ...)
+  ..., sep = "")
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -19,13 +19,15 @@ currency(x, symbol = "$", digits = 2L, format = "f", big.mark = ",",
 \item{big.mark}{thousands separator}
 
 \item{...}{additional parameters passed to \code{formattable}.}
+
+\item{sep}{separator between symbol and value}
 }
 \description{
 Numeric vector with currency format
 }
 \examples{
 currency(200000)
-currency(1200000, "€")
-currency(1200000, "€", format = "d")
+currency(1200000, "USD", sep = " ")
+currency(1200000, "USD", format = "d", sep = " ")
 }
 
