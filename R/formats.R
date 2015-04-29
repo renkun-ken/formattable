@@ -60,6 +60,7 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 }
 
 #' Numeric vector with scientific format
+#' @param x a numeric vector.
 #' @param format format type passed to \code{\link{formatC}}.
 #' @param ... additional parameter passed to \code{formattable}.
 #' @export
@@ -73,6 +74,7 @@ scientific <- function(x, format = c("e", "E"), ...) {
 }
 
 #' Date/time vector with formatting
+#' @param x a Date, POSIXct, or POSIXlt object.
 #' @param format format type passed to \code{\link{format}}.
 #' @param ... additional parameter passed to \code{formattable}.
 #' @export

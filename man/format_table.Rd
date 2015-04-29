@@ -17,8 +17,6 @@ format_table(x, formatters = list(), format = c("markdown", "pandoc"),
 \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.}
 
 \item{digits}{An integer that all numeric columns are rounded to.}
-
-\item{formatter}{A named list of formatter functions.}
 }
 \value{
 a \code{knitr_kable} object whose \code{print} method generates a

@@ -7,6 +7,8 @@
 datetime(x, format = "", ...)
 }
 \arguments{
+\item{x}{a Date, POSIXct, or POSIXlt object.}
+
 \item{format}{format type passed to \code{\link{format}}.}
 
 \item{...}{additional parameter passed to \code{formattable}.}

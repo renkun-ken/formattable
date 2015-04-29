@@ -239,11 +239,11 @@ min.formattable <- function(...) {
 #' HTML elements. To generate a formatted table, each column of data
 #' frame can be transformed by formatter function.
 #' @param x a \code{data.frame}.
-#' @param formatter A named list of formatter functions.
 #' @param format The output format: markdown or pandoc?
 #' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
 #' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
 #' @param digits An integer that all numeric columns are rounded to.
+#' @inheritParams data.frame
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in
 #' specific \code{format}.
