@@ -1,12 +1,14 @@
 Package: formattable
-Title: Formatted Data Printing in Markdown
-Version: 0.0.5.1
+Title: Formatted Data Printing
+Version: 0.0.6
 Authors@R: person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre"))
-Description: Print data frames with multiple types of formatting in markdown
+Description: Provides functions to create formattable vectors and data frames.
+    Formattable vectors are printed with text formatting, and formattable
+    data frames are printed with multiple types of formatting in markdown
     to improve the readability of data presented in tabular form rendered as
     web pages.
 Depends: R (>= 2.14.1)
-Date: 2015-04-17
+Date: 2015-04-29
 Imports: htmltools, knitr
 License: MIT + file LICENSE
 LazyData: true

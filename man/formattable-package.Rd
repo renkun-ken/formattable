@@ -5,20 +5,29 @@
 \alias{formattable-package}
 \title{The formattable package}
 \description{
-This package is designed for applying formatting on data frames to be
-presented on web pages rendered from RMarkdown documents.
+This package is designed for applying formatting on vectors and
+data frames to make data presentation easier, richer, more flexible
+and convey more information.
 }
 \details{
-In a typical workflow of dynamic document production, \code{knitr} and
-\code{rmarkdown} are powerful tools to render documents with R code to different
+Atomic vectors are basic units to store data. Some data can be read more easily
+with formatting applied to it. A numeric vector, for example, stores a group of
+percentage numbers yet still shows in the form of typical floating numbers. This
+package provides functions to create commonly seen vectors with predefined
+formatting rules as well as customizable data structures with formatting. Using
+functions that create \code{formattable} objects, these objects stores the original
+data but are printed with formatting.
+
+On the other hand, in a typical workflow of dynamic document production, \code{knitr}
+and \code{rmarkdown} are powerful tools to render documents with R code to different
 types of portable documents.
 
 \code{knitr} package is able to render a RMarkdown document (markdown document
-with R code chunks) to Markdown document. \code{rmarkdown} calls \code{pandoc}
-to render markdown document to HTML web page. To put a table from a \code{data.frame}
-on the page, one may call \code{knitr::kable} to produce its markdown
-representation. By default the resulted table is in a plain theme with no
-additional formatting. However, in some cases, additional formatting
+with R code chunks to be executed sequentially) to Markdown document.
+\code{rmarkdown} calls \code{pandoc} to render markdown document to HTML web page.
+To put a table from a \code{data.frame} on the page, one may call \code{knitr::kable}
+to produce its markdown representation. By default the resulted table is in a plain
+theme with no additional formatting. However, in some cases, additional formatting
 may help clarify the information and make contrast of the data.
 }
 
