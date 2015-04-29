@@ -30,6 +30,6 @@ Create a formattable POSIXlt vector
 times <- as.POSIXlt("2015-04-10 09:30:15") + 1:5
 ftimes <- formattable(times, format = "\%Y\%m\%dT\%H\%M\%S")
 ftimes
-fdates + 30
+ftimes + 30
 }
 
