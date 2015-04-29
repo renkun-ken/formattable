@@ -2,9 +2,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/renkun-ken/formattable.png?branch=master)](https://travis-ci.org/renkun-ken/formattable) [![Coverage Status](https://coveralls.io/repos/renkun-ken/formattable/badge.svg)](https://coveralls.io/r/renkun-ken/formattable) [![Issue Stats](http://issuestats.com/github/renkun-ken/formattable/badge/issue?style=flat)](http://issuestats.com/github/renkun-ken/formattable) [![Issue Stats](http://issuestats.com/github/renkun-ken/formattable/badge/pr?style=flat)](http://issuestats.com/github/renkun-ken/formattable)
 
-In a typical workflow of dynamic document production, [knitr](https://github.com/yihui/knitr) and [rmarkdown](http://rmarkdown.rstudio.com/) are powerful tools to render documents with R code to different types of portable documents.
-
-knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls [pandoc](http://johnmacfarlane.net/pandoc) to render a markdown document to HTML web page. To put a table (`data.frame` in R) on the page, one may call `knitr::kable` to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.
+This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
 **This package is still on an initial stage. The APIs may change without notice.**
 
@@ -17,7 +15,87 @@ Currently, the package is only available on GitHub.
 devtools::install_github("renkun-ken/formattable")
 ```
 
-## Examples
+## Introduction
+
+Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects stores the original data but are printed with formatting.
+
+The package provides several typical formattable objects such as `percent`, `comma`, `currency`, `accounting` and `scientific`. These objects are essentially numeric vectors with pre-defined formatting rules and parameters. For example,
+
+
+```r
+library(formattable)
+p <- percent(c(0.1, 0.02, 0.03, 0.12))
+p
+```
+
+```
+## [1] 10.00% 2.00%  3.00%  12.00%
+```
+
+The percent vector is no different from a numeric vector but has a percentage representation as being
+printed. It works with arithmetic operations and common functions and preserves its formatting.
+
+
+```r
+p + 0.05
+```
+
+```
+## [1] 15.00% 7.00%  8.00%  17.00%
+```
+
+```r
+max(p)
+```
+
+```
+## [1] 12.00%
+```
+
+
+```r
+balance <- accounting(c(1000, 500, 200, -150, 0, 1200))
+balance
+```
+
+```
+## [1] 1,000.00 500.00   200.00   (150.00) 0.00     1,200.00
+```
+
+```r
+balance + 1000
+```
+
+```
+## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00
+```
+
+These functions are special cases of what `formattable()` can do, which applies highly customizable formatting to objects of a wide range of classes like `numeric`, `logical`, `factor`, `Date`, `data.frame`, etc. A typical data frame can look more friendly with `formattable` column vectors. For example,
+
+
+```r
+p <- data.frame(
+  id = c(1, 2, 3, 4, 5), 
+  name = c("A1", "A2", "B1", "B2", "C1"),
+  share = percent(c(0.3, 0.3, 0.1, 0.15, 0.15), format = "d"),
+  ready = formattable(c(TRUE, TRUE, FALSE, FALSE, TRUE), "yes", "no"))
+p
+```
+
+```
+##   id name share ready
+## 1  1   A1   30%   yes
+## 2  2   A2   30%   yes
+## 3  3   B1   10%    no
+## 4  4   B2   15%    no
+## 5  5   C1   15%   yes
+```
+
+## Formatting tables in dynamic document
+
+In a typical workflow of dynamic document production, [knitr](https://github.com/yihui/knitr) and [rmarkdown](http://rmarkdown.rstudio.com/) are powerful tools to render documents with R code to different types of portable documents.
+
+knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls [pandoc](http://johnmacfarlane.net/pandoc) to render a markdown document to HTML web page. To put a table (`data.frame` in R) on the page, one may call `knitr::kable` to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.
 
 
 ```r
@@ -39,13 +117,13 @@ Plain table:
 
 | id|name   | age|grade | test1_score| test2_score| final_score|registered |
 |--:|:------|---:|:-----|-----------:|-----------:|-----------:|:----------|
-|  1|Bob    |  28|C     |         8.9|         9.1|        9.00| TRUE      |
+|  1|Bob    |  28|C     |         8.9|         9.1|        9.00|TRUE       |
 |  2|Ashley |  27|A     |         9.5|         9.1|        9.30|FALSE      |
-|  3|James  |  30|A     |         9.6|         9.2|        9.40| TRUE      |
+|  3|James  |  30|A     |         9.6|         9.2|        9.40|TRUE       |
 |  4|David  |  28|C     |         8.9|         9.1|        9.00|FALSE      |
-|  5|Jenny  |  29|B     |         9.1|         8.9|        9.00| TRUE      |
-|  6|Hans   |  29|B     |         9.3|         8.5|        8.90| TRUE      |
-|  7|Leo    |  27|B     |         9.3|         9.2|        9.25| TRUE      |
+|  5|Jenny  |  29|B     |         9.1|         8.9|        9.00|TRUE       |
+|  6|Hans   |  29|B     |         9.3|         8.5|        8.90|TRUE       |
+|  7|Leo    |  27|B     |         9.3|         9.2|        9.25|TRUE       |
 |  8|John   |  27|A     |         9.9|         9.3|        9.60|FALSE      |
 |  9|Emily  |  31|C     |         8.5|         9.1|        8.80|FALSE      |
 | 10|Lee    |  30|C     |         8.6|         8.8|        8.70|FALSE      |

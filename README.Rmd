@@ -2,9 +2,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/renkun-ken/formattable.png?branch=master)](https://travis-ci.org/renkun-ken/formattable) [![Coverage Status](https://coveralls.io/repos/renkun-ken/formattable/badge.svg)](https://coveralls.io/r/renkun-ken/formattable) [![Issue Stats](http://issuestats.com/github/renkun-ken/formattable/badge/issue?style=flat)](http://issuestats.com/github/renkun-ken/formattable) [![Issue Stats](http://issuestats.com/github/renkun-ken/formattable/badge/pr?style=flat)](http://issuestats.com/github/renkun-ken/formattable)
 
-In a typical workflow of dynamic document production, [knitr](https://github.com/yihui/knitr) and [rmarkdown](http://rmarkdown.rstudio.com/) are powerful tools to render documents with R code to different types of portable documents.
-
-knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls [pandoc](http://johnmacfarlane.net/pandoc) to render a markdown document to HTML web page. To put a table (`data.frame` in R) on the page, one may call `knitr::kable` to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.
+This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
 **This package is still on an initial stage. The APIs may change without notice.**
 
@@ -17,7 +15,48 @@ Currently, the package is only available on GitHub.
 devtools::install_github("renkun-ken/formattable")
 ```
 
-## Examples
+## Introduction
+
+Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects stores the original data but are printed with formatting.
+
+The package provides several typical formattable objects such as `percent`, `comma`, `currency`, `accounting` and `scientific`. These objects are essentially numeric vectors with pre-defined formatting rules and parameters. For example,
+
+```{r}
+library(formattable)
+p <- percent(c(0.1, 0.02, 0.03, 0.12))
+p
+```
+
+The percent vector is no different from a numeric vector but has a percentage representation as being
+printed. It works with arithmetic operations and common functions and preserves its formatting.
+
+```{r}
+p + 0.05
+max(p)
+```
+
+```{r}
+balance <- accounting(c(1000, 500, 200, -150, 0, 1200))
+balance
+balance + 1000
+```
+
+These functions are special cases of what `formattable()` can do, which applies highly customizable formatting to objects of a wide range of classes like `numeric`, `logical`, `factor`, `Date`, `data.frame`, etc. A typical data frame can look more friendly with `formattable` column vectors. For example,
+
+```{r}
+p <- data.frame(
+  id = c(1, 2, 3, 4, 5), 
+  name = c("A1", "A2", "B1", "B2", "C1"),
+  share = percent(c(0.3, 0.3, 0.1, 0.15, 0.15), format = "d"),
+  ready = formattable(c(TRUE, TRUE, FALSE, FALSE, TRUE), "yes", "no"))
+p
+```
+
+## Formatting tables in dynamic document
+
+In a typical workflow of dynamic document production, [knitr](https://github.com/yihui/knitr) and [rmarkdown](http://rmarkdown.rstudio.com/) are powerful tools to render documents with R code to different types of portable documents.
+
+knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls [pandoc](http://johnmacfarlane.net/pandoc) to render a markdown document to HTML web page. To put a table (`data.frame` in R) on the page, one may call `knitr::kable` to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.
 
 ```{r}
 df <- data.frame(
