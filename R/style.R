@@ -41,8 +41,8 @@ style <- function(...) {
   }, dots, NULL))
 }
 
-get_icon_class_prefix <- function(provider) {
-  gsub("*", provider, "* *-", fixed = TRUE)
+get_icon_class_prefix <- function(provider, class_template) {
+  gsub("*", provider, class_template, fixed = TRUE)
 }
 
 #' Create icon-text elements
@@ -60,9 +60,11 @@ get_icon_class_prefix <- function(provider) {
 #' icontext(c("star","star-empty"))
 #' icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)
 #' icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
-icontext <- function(icon, text = list(NULL), provider = "glyphicon",
+icontext <- function(icon, text = list(NULL),
+  provider = getOption("formattable.icon.provider", "glyphicon"),
+  class_template = getOption("formattable.icon.class_template", "* *-"),
   simplify = TRUE) {
-  class_prefix <- get_icon_class_prefix(provider)
+  class_prefix <- get_icon_class_prefix(provider, class_template)
   x <- .mapply(function(icon, text) {
     htmltools::tagList(
       lapply(icon, function(ico) {
