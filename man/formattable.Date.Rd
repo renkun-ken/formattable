@@ -8,7 +8,7 @@
   preproc = NULL, postproc = NULL)
 }
 \arguments{
-\item{x}{an object.}
+\item{x}{a vector of class \code{Date}.}
 
 \item{...}{arguments to be passed to \code{formatter}.}
 

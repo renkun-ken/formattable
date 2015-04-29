@@ -8,7 +8,7 @@
   postproc = NULL)
 }
 \arguments{
-\item{x}{an object.}
+\item{x}{a logical vector.}
 
 \item{...}{arguments to be passed to \code{formatter}.}
 
@@ -28,7 +28,10 @@ Create a formattable logical vector
 }
 \examples{
 logi <- c(TRUE, TRUE, FALSE)
-formattable(logi, "yes", "no")
-!formattable(logi, "yes", "no")
+flogi <- formattable(logi, "yes", "no")
+flogi
+!flogi
+any(flogi)
+all(flogi)
 }
 

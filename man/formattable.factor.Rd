@@ -8,7 +8,7 @@
   postproc = NULL)
 }
 \arguments{
-\item{x}{an object.}
+\item{x}{a factor object.}
 
 \item{...}{arguments to be passed to \code{formatter}.}
 

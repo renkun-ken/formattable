@@ -2,21 +2,29 @@
 % Please edit documentation in R/formattable.R
 \name{formattable.data.frame}
 \alias{formattable.data.frame}
-\title{Attach column formatters to data frame}
+\title{Create a formattable data frame}
 \usage{
 \method{formattable}{data.frame}(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL)
 }
 \arguments{
-\item{x}{a \code{data.frame}.}
+\item{x}{a \code{data.frame}}
 
-\item{...}{arguments to be passed to \code{format_table}.}
+\item{...}{arguments to be passed to \code{formatter}.}
+
+\item{formatter}{formatting function, \code{format_table} in default.}
+
+\item{preproc}{pre-processor function that prepares \code{x} for
+formatting function.}
+
+\item{postproc}{post-processor function that transforms formatted
+output for printing.}
 }
 \value{
-a \code{formattable} object
+a \code{formattable data.frame}
 }
 \description{
-Attach column formatters to data frame
+This function attaches column formatters to data frame
 }
 \examples{
 # mtcars (mpg in red)

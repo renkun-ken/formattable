@@ -43,13 +43,17 @@ formattable.default <- function(x, ..., formatter = "formatC",
 
 #' Create a formattable logical vector
 #' @inheritParams formattable.default
+#' @param x a logical vector.
 #' @param formatter formatting function, \code{ifelse} in default.
 #' @export
 #' @return a \code{formattable} logical vector.
 #' @examples
 #' logi <- c(TRUE, TRUE, FALSE)
-#' formattable(logi, "yes", "no")
-#' !formattable(logi, "yes", "no")
+#' flogi <- formattable(logi, "yes", "no")
+#' flogi
+#' !flogi
+#' any(flogi)
+#' all(flogi)
 formattable.logical <- function(x, ..., formatter = "ifelse",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
@@ -59,6 +63,7 @@ formattable.logical <- function(x, ..., formatter = "ifelse",
 
 #' Create a formattable factor object
 #' @inheritParams formattable.default
+#' @param x a factor object.
 #' @param formatter formatting function, \code{vmap} in default.
 #' @export
 #' @return a \code{formattable} factor object.
@@ -74,6 +79,7 @@ formattable.factor <- function(x, ..., formatter = "vmap",
 
 #' Create a formattable Date vector
 #' @inheritParams formattable.default
+#' @param x a vector of class \code{Date}.
 #' @param formatter formatting function, \code{format.Date} in default.
 #' @export
 #' @return a \code{formattable} Date vector
@@ -89,7 +95,17 @@ formattable.Date <- function(x, ..., formatter = "format.Date",
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
+#' Create a formattable POSIXct vector
+#' @inheritParams formattable.default
+#' @param x a vector of class \code{POSIXct}.
+#' @param formatter formatting function, \code{format.POSIXct} in default.
 #' @export
+#' @return a \code{formattable} POSIXct vector
+#' @examples
+#' times <- as.POSIXct("2015-04-10 09:30:15") + 1:5
+#' ftimes <- formattable(times, format = "%Y%m%dT%H%M%S")
+#' ftimes
+#' fdates + 30
 formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
@@ -97,7 +113,17 @@ formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
+#' Create a formattable POSIXlt vector
+#' @inheritParams formattable.default
+#' @param x a vector of class \code{POSIXlt}.
+#' @param formatter formatting function, \code{format.POSIXlt} in default.
 #' @export
+#' @return a \code{formattable} POSIXlt vector
+#' @examples
+#' times <- as.POSIXlt("2015-04-10 09:30:15") + 1:5
+#' ftimes <- formattable(times, format = "%Y%m%dT%H%M%S")
+#' ftimes
+#' fdates + 30
 formattable.POSIXlt <- function(x, ..., formatter = "format.POSIXlt",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
@@ -302,12 +328,14 @@ format_table <- function(x, formatters = list(),
   knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 
-#' Attach column formatters to data frame
+#' Create a formattable data frame
 #'
-#' @param x a \code{data.frame}.
-#' @param ... arguments to be passed to \code{format_table}.
+#' This function attaches column formatters to data frame
+#' @inheritParams formattable.default
+#' @param x a \code{data.frame}
+#' @param formatter formatting function, \code{format_table} in default.
 #' @export
-#' @return a \code{formattable} object
+#' @return a \code{formattable data.frame}
 #' @examples
 #' # mtcars (mpg in red)
 #' formattable(mtcars,
