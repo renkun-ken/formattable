@@ -64,7 +64,7 @@ format.formattable <- function(x, ...,
   x_value <- remove_class(x, "formattable")
   value <- call_or_default(attrs$preproc, x_value)
   str <- do.call(attrs$formatter, c(list(value), format_args))
-  if (x_atomic <- is.atomic(x)) str <- revert_obj(str, "formattable")
+  if (x_atomic <- is.atomic(x)) str <- remove_attribute(str, "formattable")
   str <- call_or_default(attrs$postproc, str, x_value)
   if (use.names && x_atomic && !is.null(x_names <- names(x))) names(str) <- x_names
   str

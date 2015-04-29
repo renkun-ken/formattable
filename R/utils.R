@@ -16,16 +16,6 @@ remove_attribute <- function(x, which) {
   x
 }
 
-remove_attributes <- function(x) {
-  attributes(x) <- NULL
-  x
-}
-
-revert_obj <- function(x, class) {
-  attr(x, class) <- NULL
-  remove_attribute(x, class)
-}
-
 copy_obj <- function(src, target, class) {
   create_obj(target, class, get_attr(src, class))
 }
