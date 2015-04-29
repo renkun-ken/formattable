@@ -12,7 +12,7 @@
 
 \item{...}{arguments to be passed to \code{formatter}.}
 
-\item{formatter}{formatting function, \code{ifelse} in default.}
+\item{formatter}{formatting function, \code{formattable::ifelse} in default.}
 
 \item{preproc}{pre-processor function that prepares \code{x} for
 formatting function.}

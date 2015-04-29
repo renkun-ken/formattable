@@ -7,16 +7,15 @@
 \description{
 This package is designed for applying formatting on vectors and
 data frames to make data presentation easier, richer, more flexible
-and convey more information.
+and hopefully convey more information.
 }
 \details{
 Atomic vectors are basic units to store data. Some data can be read more easily
-with formatting applied to it. A numeric vector, for example, stores a group of
+with formatting. A numeric vector, for example, stores a group of
 percentage numbers yet still shows in the form of typical floating numbers. This
-package provides functions to create commonly seen vectors with predefined
-formatting rules as well as customizable data structures with formatting. Using
-functions that create \code{formattable} objects, these objects stores the original
-data but are printed with formatting.
+package provides functions to create data structures with predefined
+formatting rules so that these objects stores the original data but are printed
+with formatting.
 
 On the other hand, in a typical workflow of dynamic document production, \code{knitr}
 and \code{rmarkdown} are powerful tools to render documents with R code to different

@@ -5,6 +5,10 @@ create_obj <- function(x, class, attributes = list()) {
   x
 }
 
+ifelse <- function(test, yes, no, ...) {
+  base::ifelse(test, yes, no)
+}
+
 remove_class <- function(x, class) {
   cls <- class(x)
   class(x) <- cls[!(cls %in% class)]

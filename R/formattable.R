@@ -44,7 +44,7 @@ formattable.default <- function(x, ..., formatter = "formatC",
 #' Create a formattable logical vector
 #' @inheritParams formattable.default
 #' @param x a logical vector.
-#' @param formatter formatting function, \code{ifelse} in default.
+#' @param formatter formatting function, \code{formattable::ifelse} in default.
 #' @export
 #' @return a \code{formattable} logical vector.
 #' @examples
@@ -230,6 +230,26 @@ max.formattable <- function(...) {
 #' @export
 min.formattable <- function(...) {
   copy_obj(..1, NextMethod("min"), "formattable")
+}
+
+#' @export
+sum.formattable <- function(...) {
+  copy_obj(..1, NextMethod("sum"), "formattable")
+}
+
+#' @export
+mean.formattable <- function(...) {
+  copy_obj(..1, NextMethod("mean"), "formattable")
+}
+
+#' @export
+median.formattable <- function(...) {
+  copy_obj(..1, NextMethod("median"), "formattable")
+}
+
+#' @export
+quantile.formattable <- function(...) {
+  copy_obj(..1, NextMethod("quantile"), "formattable")
 }
 
 #' Format a data frame with formatter functions
