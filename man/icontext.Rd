@@ -4,10 +4,10 @@
 \alias{icontext}
 \title{Create icon-text elements}
 \usage{
-icontext(icon, text = list(NULL),
+icontext(icon, text = list(NULL), ..., simplify = TRUE,
   provider = getOption("formattable.icon.provider", "glyphicon"),
-  class_template = getOption("formattable.icon.class_template", "* *-"),
-  simplify = TRUE)
+  class_template = getOption("formattable.icon.class_template",
+  "{provider} {provider}-{icon}"))
 }
 \arguments{
 \item{icon}{a character vector or list of character vectors
@@ -15,10 +15,16 @@ of icon names.}
 
 \item{text}{a character vector of contents.}
 
-\item{provider}{the provider of icon set.}
+\item{...}{additional parameters (reserved)}
 
 \item{simplify}{logical to indicating whether to return
-the only element if \code{name} is a single value.}
+the only element if a single-valued list is resulted.}
+
+\item{provider}{the provider of icon set.}
+
+\item{class_template}{a character value to specifiy to template of the class
+with \code{"{provider}"} to represent \code{provider} value and \code{"{icon}"} to
+represent \code{icon} values.}
 }
 \description{
 Create icon-text elements

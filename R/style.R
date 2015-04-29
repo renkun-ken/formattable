@@ -41,17 +41,17 @@ style <- function(...) {
   }, dots, NULL))
 }
 
-get_icon_class_prefix <- function(provider, class_template) {
-  gsub("*", provider, class_template, fixed = TRUE)
-}
-
 #' Create icon-text elements
 #' @param icon a character vector or list of character vectors
 #' of icon names.
 #' @param text a character vector of contents.
-#' @param provider the provider of icon set.
 #' @param simplify logical to indicating whether to return
-#' the only element if \code{name} is a single value.
+#' the only element if a single-valued list is resulted.
+#' @param ... additional parameters (reserved)
+#' @param provider the provider of icon set.
+#' @param class_template a character value to specifiy to template of the class
+#' with \code{"{provider}"} to represent \code{provider} value and \code{"{icon}"} to
+#' represent \code{icon} values.
 #' @seealso \href{http://getbootstrap.com/components/#glyphicons}{Glyphicons in Bootstrap},
 #' \href{http://glyphicons.com/}{Glyphicons}
 #' @export
@@ -60,16 +60,15 @@ get_icon_class_prefix <- function(provider, class_template) {
 #' icontext(c("star","star-empty"))
 #' icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)
 #' icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
-icontext <- function(icon, text = list(NULL),
+icontext <- function(icon, text = list(NULL), ..., simplify = TRUE,
   provider = getOption("formattable.icon.provider", "glyphicon"),
-  class_template = getOption("formattable.icon.class_template", "* *-"),
-  simplify = TRUE) {
-  class_prefix <- get_icon_class_prefix(provider, class_template)
+  class_template = getOption("formattable.icon.class_template", "{provider} {provider}-{icon}")) {
+  class_template <- gsub("{provider}", provider, class_template, fixed = TRUE)
   x <- .mapply(function(icon, text) {
     htmltools::tagList(
-      lapply(icon, function(ico) {
-        htmltools::tag("i", list(class = paste0(class_prefix, ico)))
-      }), text)
+      lapply(icon, function(ico)
+        htmltools::tag("i",
+          list(class = gsub("{icon}", ico, class_template, fixed = TRUE)))), text)
   }, list(icon, text), NULL)
   if(length(x) == 1L) x[[1L]] else x
 }
