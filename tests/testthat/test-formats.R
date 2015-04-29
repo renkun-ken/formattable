@@ -45,22 +45,3 @@ test_that("scientific", {
     c("-5.30E+03","1.05E+04","2.03E+04","3.50E+04" ))
   expect_error(scientific("a"))
 })
-
-test_that("datetime", {
-  dt <- as.Date("2015-01-01") + 1:5
-  obj <- datetime(dt, format = "%Y%m%d")
-  expect_is(obj, "formattable")
-  expect_equal(format(obj), format(dt, "%Y%m%d"))
-
-  dt <- as.POSIXct("2015-01-01 09:15:20") + 1:5
-  obj <- datetime(dt, format = "%Y%m%dT%H%M%S")
-  expect_is(obj, "formattable")
-  expect_equal(format(obj), format(dt, "%Y%m%dT%H%M%S"))
-
-  dt <- as.POSIXlt("2015-01-01 09:15:20") + 1:5
-  obj <- datetime(dt, format = "%Y%m%dT%H%M%S")
-  expect_is(obj, "formattable")
-  expect_equal(format(obj), format(dt, "%Y%m%dT%H%M%S"))
-
-  expect_error(datetime("a"))
-})

@@ -72,17 +72,3 @@ scientific <- function(x, format = c("e", "E"), ...) {
   stopifnot(is.numeric(x))
   formattable(x, format = match.arg(format), ...)
 }
-
-#' Date/time vector with formatting
-#' @param x a Date, POSIXct, or POSIXlt object.
-#' @param format format type passed to \code{\link{format}}.
-#' @param ... additional parameter passed to \code{formattable}.
-#' @export
-#' @examples
-#' datetime(as.Date("2015-02-01"))
-#' datetime(as.Date("2015-02-01"), format = "%m/%d/%Y")
-#' datetime(Sys.time(), format = "%Y%m%dT%H%M%S")
-datetime <- function(x, format = "", ...) {
-  stopifnot(inherits(x, c("Date", "POSIXct", "POSIXlt")))
-  formattable(x, format = format, ...)
-}
