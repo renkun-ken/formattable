@@ -50,16 +50,16 @@ print.formattable <- function(x, ...) {
 #' @export
 format.formattable <- function(x, ...,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
-  formatter <- attr(x, "formatter", exact = TRUE)
-  format_args <- attr(x, "format", exact = TRUE)
+  attrs <- get_attr(x, "formattable")
+  format_args <- attrs$format
   custom_args <- list(...)
   format_args[names(custom_args)] <- custom_args
   x_value <- remove_class(x, "formattable")
-  value <- call_or_default(attr(x, "preproc", exact = TRUE), x_value)
-  str <- do.call(formatter, c(list(value), format_args))
-  if (x_atomic <- is.atomic(x)) str <- remove_attributes(str)
-  str <- call_or_default(attr(x, "postproc", exact = TRUE), str, x_value)
-  if (use.names && x_atomic) names(str) <- names(x)
+  value <- call_or_default(attrs$preproc, x_value)
+  str <- do.call(attrs$formatter, c(list(value), format_args))
+  if (x_atomic <- is.atomic(x)) str <- revert_obj(str, "formattable")
+  str <- call_or_default(attrs$postproc, str, x_value)
+  if (use.names && x_atomic && !is.null(x_names <- names(x))) names(str) <- x_names
   str
 }
 
@@ -82,53 +82,47 @@ format.formattable <- function(x, ...,
 
 #' @export
 `[.formattable` <- function(x, ...) {
-  if(is.atomic(x)) {
-    create_obj(NextMethod("["), "formattable", formattable_attributes(x))
-  } else NextMethod("[")
+  if(is.atomic(x)) copy_obj(x, NextMethod("["), "formattable") else NextMethod("[")
 }
 
 #' @export
 `[[.formattable` <- function(x, ...) {
-  if(is.atomic(x)) {
-    create_obj(NextMethod("[["), "formattable", formattable_attributes(x))
-  } else NextMethod("[[")
+  if(is.atomic(x)) copy_obj(x, NextMethod("[["), "formattable") else NextMethod("[[")
 }
 
 #' @export
 c.formattable <- function(x, ...) {
-  if(is.atomic(x)) {
-    create_obj(NextMethod("c"), "formattable", formattable_attributes(x))
-  } else NextMethod("c")
+  if(is.atomic(x)) copy_obj(x, NextMethod("c"), "formattable") else NextMethod("c")
 }
 
 #' @export
 `+.formattable` <- function(x, y) {
-  create_obj(NextMethod("+"), "formattable", formattable_attributes(x))
+  copy_obj(x, NextMethod("+"), "formattable")
 }
 
 #' @export
 `-.formattable` <- function(x, y) {
-  create_obj(NextMethod("-"), "formattable", formattable_attributes(x))
+  copy_obj(x, NextMethod("-"), "formattable")
 }
 
 #' @export
 `*.formattable` <- function(x, y) {
-  create_obj(NextMethod("*"), "formattable", formattable_attributes(x))
+  copy_obj(x, NextMethod("*"), "formattable")
 }
 
 #' @export
 `/.formattable` <- function(x, y) {
-  create_obj(NextMethod("/"), "formattable", formattable_attributes(x))
+  copy_obj(x, NextMethod("/"), "formattable")
 }
 
 #' @export
 `%%.formattable` <- function(x, y) {
-  create_obj(NextMethod("%%"), "formattable", formattable_attributes(x))
+  copy_obj(x, NextMethod("%%"), "formattable")
 }
 
 #' @export
 rep.formattable <- function(x, ...) {
-  create_obj(NextMethod("rep"), "formattable", formattable_attributes(x))
+  copy_obj(x, NextMethod("rep"), "formattable")
 }
 
 #' @export

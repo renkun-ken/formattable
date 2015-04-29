@@ -1,8 +1,5 @@
-formattable.attributes <- c("formatter", "format", "preproc", "postproc")
-
-create_obj <- function(x, class, attributes = list(), reset = FALSE) {
-  if (reset) attributes(x) <- attributes else
-    attributes(x)[names(attributes)] <- attributes
+create_obj <- function(x, class, attributes = list()) {
+  attr(x, class) <- attributes
   if (!(class %in% (cls <- class(x))))
     class(x) <- c(class, cls)
   x
@@ -14,21 +11,37 @@ remove_class <- function(x, class) {
   x
 }
 
+remove_attribute <- function(x, which) {
+  attr(x, which) <- NULL
+  x
+}
+
 remove_attributes <- function(x) {
   attributes(x) <- NULL
   x
 }
 
-attr_default <- function(..., default = NULL) {
-  if (is.null(value <- attr(...))) default else value
+revert_obj <- function(x, class) {
+  attr(x, class) <- NULL
+  remove_attribute(x, class)
+}
+
+copy_obj <- function(src, target, class) {
+  create_obj(target, class, get_attr(src, class))
+}
+
+attr_default <- function(x, class, default = NULL) {
+  if (is.null(value <- attr(x, class, exact = TRUE))) default else value
+}
+
+get_attr <- function(x, class) {
+  if (is.null(value <- attr(x, class, exact = TRUE)))
+    stop("missing attribute for class '", class, "'.", call. = FALSE) else
+      value
 }
 
 call_or_default <- function(FUN, X, ...) {
   if (is.null(FUN)) X else match.fun(FUN)(X, ...)
-}
-
-formattable_attributes <- function(x, fields = formattable.attributes) {
-  attributes(x)[field]
 }
 
 eval_formula <- function(x, data, envir) {
