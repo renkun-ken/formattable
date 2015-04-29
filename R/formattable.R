@@ -105,7 +105,7 @@ formattable.Date <- function(x, ..., formatter = "format.Date",
 #' times <- as.POSIXct("2015-04-10 09:30:15") + 1:5
 #' ftimes <- formattable(times, format = "%Y%m%dT%H%M%S")
 #' ftimes
-#' fdates + 30
+#' ftimes + 30
 formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
