@@ -1,3 +1,5 @@
+formattable.attributes <- c("formatter", "format", "preproc", "postproc")
+
 create_obj <- function(x, class, attributes = list(), reset = FALSE) {
   if (reset) attributes(x) <- attributes else
     attributes(x)[names(attributes)] <- attributes
@@ -25,8 +27,8 @@ call_or_default <- function(FUN, X, ...) {
   if (is.null(FUN)) X else match.fun(FUN)(X, ...)
 }
 
-formattable_attributes <- function(x, fields = c("formatter", "format", "preproc", "postproc")) {
-  attributes(x)[fields]
+formattable_attributes <- function(x, fields = formattable.attributes) {
+  attributes(x)[field]
 }
 
 eval_formula <- function(x, data, envir) {
