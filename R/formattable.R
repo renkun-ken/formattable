@@ -158,23 +158,6 @@ format.formattable <- function(x, ...,
 }
 
 #' @export
-`format<-` <- function(x, value)
-  UseMethod("format<-")
-
-#' @export
-`format<-.default` <- function(x, value) {
-  if(!is.list(value)) stop("value must be a list", call. = FALSE)
-  create_obj(x, "formattable", list(format = value))
-}
-
-#' @export
-`format<-.formattable` <- function(x, value) {
-  if(!is.list(value)) stop("value must be a list", call. = FALSE)
-  attr(x, "format") <- value
-  x
-}
-
-#' @export
 `[.formattable` <- function(x, ...) {
   if(is.atomic(x)) copy_obj(x, NextMethod("["), "formattable") else NextMethod("[")
 }
@@ -247,16 +230,6 @@ max.formattable <- function(...) {
 #' @export
 min.formattable <- function(...) {
   copy_obj(..1, NextMethod("min"), "formattable")
-}
-
-#' @export
-pmax.formattable <- function(...) {
-  copy_obj(..1, NextMethod("pmax"), "formattable")
-}
-
-#' @export
-pmin.formattable <- function(...) {
-  copy_obj(..1, NextMethod("pmin"), "formattable")
 }
 
 #' Format a data frame with formatter functions
