@@ -46,12 +46,12 @@ formattable.POSIXlt <- function(x, ..., preproc = NULL, postproc = NULL) {
 
 #' @export
 as.character.formattable <- function(x, ...) {
-  format.formattable(x, ...)
+  as.character(format.formattable(x), ...)
 }
 
 #' @export
 print.formattable <- function(x, ...) {
-  print(as.character.formattable(x), ..., quote = is.character(x))
+  print(format.formattable(x), ..., quote = is.character(x))
 }
 
 #' @export
