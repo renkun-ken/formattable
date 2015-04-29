@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>formattable by renkun-ken</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">formattable</h1>
+      <h2 class="project-tagline">Formattable Data Structures</h2>
+      <a href="https://github.com/renkun-ken/formattable" class="btn">View on GitHub</a>
+      <a href="https://github.com/renkun-ken/formattable/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/renkun-ken/formattable/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="formattable" class="anchor" href="#formattable" aria-hidden="true"><span class="octicon octicon-link"></span></a>formattable</h1>
+
+<p><a href="https://travis-ci.org/renkun-ken/formattable"><img src="https://travis-ci.org/renkun-ken/formattable.png?branch=master" alt="Travis-CI Build Status"></a> <a href="https://coveralls.io/r/renkun-ken/formattable"><img src="https://coveralls.io/repos/renkun-ken/formattable/badge.svg" alt="Coverage Status"></a> <a href="http://issuestats.com/github/renkun-ken/formattable"><img src="http://issuestats.com/github/renkun-ken/formattable/badge/issue?style=flat" alt="Issue Stats"></a> <a href="http://issuestats.com/github/renkun-ken/formattable"><img src="http://issuestats.com/github/renkun-ken/formattable/badge/pr?style=flat" alt="Issue Stats"></a></p>
+
+<p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
+
+<p><strong>This package is still on an initial stage. The APIs may change without notice.</strong></p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<p>Currently, the package is only available on GitHub.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-c"># install.packages("devtools")</span>
+<span class="pl-e">devtools</span><span class="pl-k">::</span>install_github(<span class="pl-s"><span class="pl-pds">"</span>renkun-ken/formattable<span class="pl-pds">"</span></span>)</pre></div>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects stores the original data but are printed with formatting.</p>
+
+<p>The package provides several typical formattable objects such as <code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code> and <code>scientific</code>. These objects are essentially numeric vectors with pre-defined formatting rules and parameters. For example,</p>
+
+<div class="highlight highlight-r"><pre>library(<span class="pl-smi">formattable</span>)
+<span class="pl-smi">p</span> <span class="pl-k">&lt;-</span> percent(c(<span class="pl-c1">0.1</span>, <span class="pl-c1">0.02</span>, <span class="pl-c1">0.03</span>, <span class="pl-c1">0.12</span>))
+<span class="pl-smi">p</span></pre></div>
+
+<pre><code>## [1] 10.00% 2.00%  3.00%  12.00%
+</code></pre>
+
+<p>The percent vector is no different from a numeric vector but has a percentage representation as being
+printed. It works with arithmetic operations and common functions and preserves its formatting.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-smi">p</span> <span class="pl-k">+</span> <span class="pl-c1">0.05</span></pre></div>
+
+<pre><code>## [1] 15.00% 7.00%  8.00%  17.00%
+</code></pre>
+
+<div class="highlight highlight-r"><pre>max(<span class="pl-smi">p</span>)</pre></div>
+
+<pre><code>## [1] 12.00%
+</code></pre>
+
+<div class="highlight highlight-r"><pre><span class="pl-smi">balance</span> <span class="pl-k">&lt;-</span> accounting(c(<span class="pl-c1">1000</span>, <span class="pl-c1">500</span>, <span class="pl-c1">200</span>, <span class="pl-k">-</span><span class="pl-c1">150</span>, <span class="pl-c1">0</span>, <span class="pl-c1">1200</span>))
+<span class="pl-smi">balance</span></pre></div>
+
+<pre><code>## [1] 1,000.00 500.00   200.00   (150.00) 0.00     1,200.00
+</code></pre>
+
+<div class="highlight highlight-r"><pre><span class="pl-smi">balance</span> <span class="pl-k">+</span> <span class="pl-c1">1000</span></pre></div>
+
+<pre><code>## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00
+</code></pre>
+
+<p>These functions are special cases of what <code>formattable()</code> can do, which applies highly customizable formatting to objects of a wide range of classes like <code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code>, etc. A typical data frame can look more friendly with <code>formattable</code> column vectors. For example,</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-smi">p</span> <span class="pl-k">&lt;-</span> <span class="pl-k">data.frame</span>(
+  <span class="pl-v">id</span> <span class="pl-k">=</span> c(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>), 
+  <span class="pl-v">name</span> <span class="pl-k">=</span> c(<span class="pl-s"><span class="pl-pds">"</span>A1<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>A2<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>B1<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>B2<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>C1<span class="pl-pds">"</span></span>),
+  <span class="pl-v">balance</span> <span class="pl-k">=</span> accounting(c(<span class="pl-c1">52500</span>, <span class="pl-c1">36150</span>, <span class="pl-c1">25000</span>, <span class="pl-c1">18300</span>, <span class="pl-c1">7600</span>), <span class="pl-v">format</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>d<span class="pl-pds">"</span></span>),
+  <span class="pl-v">growth</span> <span class="pl-k">=</span> percent(c(<span class="pl-c1">0.3</span>, <span class="pl-c1">0.3</span>, <span class="pl-c1">0.1</span>, <span class="pl-c1">0.15</span>, <span class="pl-c1">0.15</span>), <span class="pl-v">format</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>d<span class="pl-pds">"</span></span>),
+  <span class="pl-v">ready</span> <span class="pl-k">=</span> formattable(c(<span class="pl-c1">TRUE</span>, <span class="pl-c1">TRUE</span>, <span class="pl-c1">FALSE</span>, <span class="pl-c1">FALSE</span>, <span class="pl-c1">TRUE</span>), <span class="pl-s"><span class="pl-pds">"</span>yes<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>no<span class="pl-pds">"</span></span>))
+<span class="pl-smi">p</span></pre></div>
+
+<pre><code>##   id name balance growth ready
+## 1  1   A1  52,500    30%   yes
+## 2  2   A2  36,150    30%   yes
+## 3  3   B1  25,000    10%    no
+## 4  4   B2  18,300    15%    no
+## 5  5   C1   7,600    15%   yes
+</code></pre>
+
+<h2>
+<a id="formatting-tables-in-dynamic-document" class="anchor" href="#formatting-tables-in-dynamic-document" aria-hidden="true"><span class="octicon octicon-link"></span></a>Formatting tables in dynamic document</h2>
+
+<p>In a typical workflow of dynamic document production, <a href="https://github.com/yihui/knitr">knitr</a> and <a href="http://rmarkdown.rstudio.com/">rmarkdown</a> are powerful tools to render documents with R code to different types of portable documents.</p>
+
+<p>knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls <a href="http://johnmacfarlane.net/pandoc">pandoc</a> to render a markdown document to HTML web page. To put a table (<code>data.frame</code> in R) on the page, one may call <code>knitr::kable</code> to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-smi">df</span> <span class="pl-k">&lt;-</span> <span class="pl-k">data.frame</span>(
+  <span class="pl-v">id</span> <span class="pl-k">=</span> <span class="pl-c1">1</span><span class="pl-k">:</span><span class="pl-c1">10</span>,
+  <span class="pl-v">name</span> <span class="pl-k">=</span> c(<span class="pl-s"><span class="pl-pds">"</span>Bob<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Ashley<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>James<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>David<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Jenny<span class="pl-pds">"</span></span>, 
+    <span class="pl-s"><span class="pl-pds">"</span>Hans<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Leo<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>John<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Emily<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Lee<span class="pl-pds">"</span></span>), 
+  <span class="pl-v">age</span> <span class="pl-k">=</span> c(<span class="pl-c1">28</span>, <span class="pl-c1">27</span>, <span class="pl-c1">30</span>, <span class="pl-c1">28</span>, <span class="pl-c1">29</span>, <span class="pl-c1">29</span>, <span class="pl-c1">27</span>, <span class="pl-c1">27</span>, <span class="pl-c1">31</span>, <span class="pl-c1">30</span>),
+  <span class="pl-v">grade</span> <span class="pl-k">=</span> c(<span class="pl-s"><span class="pl-pds">"</span>C<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>C<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>B<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>B<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>B<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>C<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>C<span class="pl-pds">"</span></span>),
+  <span class="pl-v">test1_score</span> <span class="pl-k">=</span> c(<span class="pl-c1">8.9</span>, <span class="pl-c1">9.5</span>, <span class="pl-c1">9.6</span>, <span class="pl-c1">8.9</span>, <span class="pl-c1">9.1</span>, <span class="pl-c1">9.3</span>, <span class="pl-c1">9.3</span>, <span class="pl-c1">9.9</span>, <span class="pl-c1">8.5</span>, <span class="pl-c1">8.6</span>),
+  <span class="pl-v">test2_score</span> <span class="pl-k">=</span> c(<span class="pl-c1">9.1</span>, <span class="pl-c1">9.1</span>, <span class="pl-c1">9.2</span>, <span class="pl-c1">9.1</span>, <span class="pl-c1">8.9</span>, <span class="pl-c1">8.5</span>, <span class="pl-c1">9.2</span>, <span class="pl-c1">9.3</span>, <span class="pl-c1">9.1</span>, <span class="pl-c1">8.8</span>),
+  <span class="pl-v">final_score</span> <span class="pl-k">=</span> c(<span class="pl-c1">9</span>, <span class="pl-c1">9.3</span>, <span class="pl-c1">9.4</span>, <span class="pl-c1">9</span>, <span class="pl-c1">9</span>, <span class="pl-c1">8.9</span>, <span class="pl-c1">9.25</span>, <span class="pl-c1">9.6</span>, <span class="pl-c1">8.8</span>, <span class="pl-c1">8.7</span>),
+  <span class="pl-v">registered</span> <span class="pl-k">=</span> c(<span class="pl-c1">TRUE</span>, <span class="pl-c1">FALSE</span>, <span class="pl-c1">TRUE</span>, <span class="pl-c1">FALSE</span>, <span class="pl-c1">TRUE</span>, <span class="pl-c1">TRUE</span>, <span class="pl-c1">TRUE</span>, <span class="pl-c1">FALSE</span>, <span class="pl-c1">FALSE</span>, <span class="pl-c1">FALSE</span>),
+  <span class="pl-v">stringsAsFactors</span> <span class="pl-k">=</span> <span class="pl-c1">FALSE</span>)</pre></div>
+
+<p>Plain table:</p>
+
+<table>
+<thead>
+<tr>
+<th align="right">id</th>
+<th align="left">name</th>
+<th align="right">age</th>
+<th align="left">grade</th>
+<th align="right">test1_score</th>
+<th align="right">test2_score</th>
+<th align="right">final_score</th>
+<th align="left">registered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">1</td>
+<td align="left">Bob</td>
+<td align="right">28</td>
+<td align="left">C</td>
+<td align="right">8.9</td>
+<td align="right">9.1</td>
+<td align="right">9.00</td>
+<td align="left">TRUE</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">Ashley</td>
+<td align="right">27</td>
+<td align="left">A</td>
+<td align="right">9.5</td>
+<td align="right">9.1</td>
+<td align="right">9.30</td>
+<td align="left">FALSE</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">James</td>
+<td align="right">30</td>
+<td align="left">A</td>
+<td align="right">9.6</td>
+<td align="right">9.2</td>
+<td align="right">9.40</td>
+<td align="left">TRUE</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">David</td>
+<td align="right">28</td>
+<td align="left">C</td>
+<td align="right">8.9</td>
+<td align="right">9.1</td>
+<td align="right">9.00</td>
+<td align="left">FALSE</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="left">Jenny</td>
+<td align="right">29</td>
+<td align="left">B</td>
+<td align="right">9.1</td>
+<td align="right">8.9</td>
+<td align="right">9.00</td>
+<td align="left">TRUE</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="left">Hans</td>
+<td align="right">29</td>
+<td align="left">B</td>
+<td align="right">9.3</td>
+<td align="right">8.5</td>
+<td align="right">8.90</td>
+<td align="left">TRUE</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td align="left">Leo</td>
+<td align="right">27</td>
+<td align="left">B</td>
+<td align="right">9.3</td>
+<td align="right">9.2</td>
+<td align="right">9.25</td>
+<td align="left">TRUE</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="left">John</td>
+<td align="right">27</td>
+<td align="left">A</td>
+<td align="right">9.9</td>
+<td align="right">9.3</td>
+<td align="right">9.60</td>
+<td align="left">FALSE</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="left">Emily</td>
+<td align="right">31</td>
+<td align="left">C</td>
+<td align="right">8.5</td>
+<td align="right">9.1</td>
+<td align="right">8.80</td>
+<td align="left">FALSE</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="left">Lee</td>
+<td align="right">30</td>
+<td align="left">C</td>
+<td align="right">8.6</td>
+<td align="right">8.8</td>
+<td align="right">8.70</td>
+<td align="left">FALSE</td>
+</tr>
+</tbody>
+</table>
+
+<p>Formatted table with the following visualizations:</p>
+
+<ul>
+<li>Ages are rendered in gradient.</li>
+<li>All A grades are displayed in green bold.</li>
+<li>
+<code>test1_score</code> and <code>test2_score</code> are indicated by horizontal bars and are background-colorized: white (low score) to pink (high score)</li>
+<li>
+<code>final_score</code> shows score and ranking. Top 3 are green, and others are gray.</li>
+<li>
+<code>registered</code> texts are transformed to an icon and yes/no text.</li>
+</ul>
+
+<div class="highlight highlight-r"><pre>library(<span class="pl-smi">formattable</span>)
+<span class="pl-smi">score_bar</span> <span class="pl-k">&lt;-</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>, 
+  <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(
+    <span class="pl-v">border.radius</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
+    <span class="pl-v">padding.right</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
+    <span class="pl-v">padding.left</span> <span class="pl-k">=</span> sprintf(<span class="pl-s"><span class="pl-pds">"</span>%.0fpx<span class="pl-pds">"</span></span>, <span class="pl-c1">6</span> <span class="pl-k">+</span> <span class="pl-c1">54</span> <span class="pl-k">*</span> normalize(<span class="pl-smi">x</span>)),
+    <span class="pl-v">background</span> <span class="pl-k">=</span> csscolor(gradient(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>))
+  ))
+
+formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
+  <span class="pl-v">age</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>, 
+  <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(
+    <span class="pl-v">display</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>block<span class="pl-pds">"</span></span>, 
+    <span class="pl-v">border.radius</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
+    <span class="pl-v">padding.right</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
+    <span class="pl-v">background</span> <span class="pl-k">=</span> csscolor(gradient(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>orange<span class="pl-pds">"</span></span>)))),
+  <span class="pl-v">grade</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
+    <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> ifelse(<span class="pl-smi">x</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, style(<span class="pl-v">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-v">font.weight</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>bold<span class="pl-pds">"</span></span>), <span class="pl-c1">NA</span>)),
+  <span class="pl-v">test1_score</span> <span class="pl-k">=</span> <span class="pl-smi">score_bar</span>,
+  <span class="pl-v">test2_score</span> <span class="pl-k">=</span> <span class="pl-smi">score_bar</span>,
+  <span class="pl-v">final_score</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
+    <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(<span class="pl-v">color</span> <span class="pl-k">=</span> ifelse(rank(<span class="pl-k">-</span><span class="pl-smi">x</span>) <span class="pl-k">&lt;</span><span class="pl-k">=</span> <span class="pl-c1">3</span>, <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gray<span class="pl-pds">"</span></span>)),
+    <span class="pl-smi">x</span> <span class="pl-k">~</span> sprintf(<span class="pl-s"><span class="pl-pds">"</span>%.2f (rank: %02d)<span class="pl-pds">"</span></span>, <span class="pl-smi">x</span>, rank(<span class="pl-k">-</span><span class="pl-smi">x</span>))),
+  <span class="pl-v">registered</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>, 
+    <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(<span class="pl-v">color</span> <span class="pl-k">=</span> ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>red<span class="pl-pds">"</span></span>)),
+    <span class="pl-smi">x</span> <span class="pl-k">~</span> icontext(ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>ok<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>remove<span class="pl-pds">"</span></span>), ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>Yes<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>No<span class="pl-pds">"</span></span>)))
+))</pre></div>
+
+<p><img src="https://raw.githubusercontent.com/renkun-ken/formattable/master/formattable.png" alt="formattable"></p>
+
+<p><strong>The icon set used in the table is by <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> and included in <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a>.</strong></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This package is under <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/renkun-ken/formattable">formattable</a> is maintained by <a href="https://github.com/renkun-ken">renkun-ken</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-47159422-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
+
