@@ -35,6 +35,7 @@ comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 #' @export
 #' @examples
 #' currency(200000)
+#' currency(200000, "\U20AC")
 #' currency(1200000, "USD", sep = " ")
 #' currency(1200000, "USD", format = "d", sep = " ")
 currency <- function(x, symbol = "$",

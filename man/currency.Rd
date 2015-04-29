@@ -27,6 +27,7 @@ Numeric vector with currency format
 }
 \examples{
 currency(200000)
+currency(200000, "\\U20AC")
 currency(1200000, "USD", sep = " ")
 currency(1200000, "USD", format = "d", sep = " ")
 }
