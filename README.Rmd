@@ -47,7 +47,8 @@ These functions are special cases of what `formattable()` can do, which applies 
 p <- data.frame(
   id = c(1, 2, 3, 4, 5), 
   name = c("A1", "A2", "B1", "B2", "C1"),
-  share = percent(c(0.3, 0.3, 0.1, 0.15, 0.15), format = "d"),
+  balance = accounting(c(52500, 36150, 25000, 18300, 7600), format = "d"),
+  growth = percent(c(0.3, 0.3, 0.1, 0.15, 0.15), format = "d"),
   ready = formattable(c(TRUE, TRUE, FALSE, FALSE, TRUE), "yes", "no"))
 p
 ```
