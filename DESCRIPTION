@@ -1,5 +1,5 @@
 Package: formattable
-Title: Formatted Data Printing
+Title: Formattable Data Structures
 Version: 0.0.6
 Authors@R: person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre"))
 Description: Provides functions to create formattable vectors and data frames.
