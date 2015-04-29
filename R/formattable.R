@@ -239,11 +239,30 @@ min.formattable <- function(...) {
 #' HTML elements. To generate a formatted table, each column of data
 #' frame can be transformed by formatter function.
 #' @param x a \code{data.frame}.
+#' @param formatters a list of formatter functions or formulas.
+#' The existing columns of \code{x} will be applied the formatter
+#' function in \code{formatters} if it exists.
+#'
+#' If a formatter is specified by formula, then the formula will be
+#' interpreted as a lambda expression with its left-hand side being
+#' a symbol and right-hand side being the expression using the symbol
+#' to represent the column values. The formula expression will be evaluated
+#' in \code{envir}, that, to maintain consistency, should be the calling
+#' environment in which the formula is created and all symbols are defined
+#' at runtime.
 #' @param format The output format: markdown or pandoc?
-#' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
-#' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
+#' @param align The alignment of columns: a character vector consisting
+#' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
+#' By default, all columns are right-aligned.
 #' @param digits An integer that all numeric columns are rounded to.
-#' @inheritParams data.frame
+#' @param ... additional parameters to be passed to \code{knitr::kable}.
+#' @param row.names row names to give to the data frame to knit
+#' @param check.rows if TRUE then the rows are checked for consistency
+#' of length and names.
+#' @param check.names \code{TRUE} to check names of data frame to make
+#' valid symbol names. This argument is \code{FALSE} by default.
+#' @param envir The environment in which to evaluate the right-hand side
+#' of the formulas in \code{formatters} if any.
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in
 #' specific \code{format}.

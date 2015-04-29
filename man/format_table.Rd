@@ -11,12 +11,38 @@ format_table(x, formatters = list(), format = c("markdown", "pandoc"),
 \arguments{
 \item{x}{a \code{data.frame}.}
 
+\item{formatters}{a list of formatter functions or formulas.
+The existing columns of \code{x} will be applied the formatter
+function in \code{formatters} if it exists.
+
+If a formatter is specified by formula, then the formula will be
+interpreted as a lambda expression with its left-hand side being
+a symbol and right-hand side being the expression using the symbol
+to represent the column values. The formula expression will be evaluated
+in \code{envir}, that, to maintain consistency, should be the calling
+environment in which the formula is created and all symbols are defined
+at runtime.}
+
 \item{format}{The output format: markdown or pandoc?}
 
-\item{align}{The alignment of columns: a character vector consisting of \code{'l'} (left),
-\code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.}
+\item{align}{The alignment of columns: a character vector consisting
+of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
+By default, all columns are right-aligned.}
 
 \item{digits}{An integer that all numeric columns are rounded to.}
+
+\item{...}{additional parameters to be passed to \code{knitr::kable}.}
+
+\item{row.names}{row names to give to the data frame to knit}
+
+\item{check.rows}{if TRUE then the rows are checked for consistency
+of length and names.}
+
+\item{check.names}{\code{TRUE} to check names of data frame to make
+valid symbol names. This argument is \code{FALSE} by default.}
+
+\item{envir}{The environment in which to evaluate the right-hand side
+of the formulas in \code{formatters} if any.}
 }
 \value{
 a \code{knitr_kable} object whose \code{print} method generates a
