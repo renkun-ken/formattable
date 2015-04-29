@@ -1,13 +1,9 @@
-create_obj0 <- function(x, class, attributes = list(), reset = FALSE) {
+create_obj <- function(x, class, attributes = list(), reset = FALSE) {
   if (reset) attributes(x) <- attributes else
     attributes(x)[names(attributes)] <- attributes
   if (!(class %in% (cls <- class(x))))
     class(x) <- c(class, cls)
   x
-}
-
-create_obj <- function(x, class, ...) {
-  create_obj0(x, class, list(...))
 }
 
 remove_class <- function(x, class) {
@@ -27,6 +23,10 @@ attr_default <- function(..., default = NULL) {
 
 call_or_default <- function(FUN, X, ...) {
   if (is.null(FUN)) X else match.fun(FUN)(X, ...)
+}
+
+formattable_attributes <- function(x, fields = c("formatter", "format", "preproc", "postproc")) {
+  attributes(x)[fields]
 }
 
 eval_formula <- function(x, data, envir) {

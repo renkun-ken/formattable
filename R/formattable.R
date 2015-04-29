@@ -4,32 +4,37 @@ formattable <- function(x, ...)
 
 #' @export
 formattable.default <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter = "formatC",
-    format = list(...), preproc = preproc, postproc = postproc)
+  create_obj(x, "formattable",
+    list(formatter = "formatC",
+      format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
 formattable.logical <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter= "ifelse",
-    format = list(...), preproc = preproc, postproc = postproc)
+  create_obj(x, "formattable",
+    list(formatter= "ifelse",
+      format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
 formattable.Date <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter = "format.Date",
-    format = list(...), preproc = preproc, postproc = postproc)
+  create_obj(x, "formattable",
+    list(formatter = "format.Date",
+      format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
 formattable.POSIXct <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter = "format.POSIXct",
-    format = list(...), preproc = preproc, postproc = postproc)
+  create_obj(x, "formattable",
+    list(formatter = "format.POSIXct",
+      format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
 formattable.POSIXlt <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable", formatter = "format.POSIXlt",
-    format = list(...), preproc = preproc, postproc = postproc)
+  create_obj(x, "formattable",
+    list(formatter = "format.POSIXlt",
+      format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
@@ -65,7 +70,7 @@ format.formattable <- function(x, ...,
 #' @export
 `format<-.default` <- function(x, value) {
   if(!is.list(value)) stop("value must be a list", call. = FALSE)
-  create_obj(x, "formattable", format = value)
+  create_obj(x, "formattable", list(format = value))
 }
 
 #' @export
@@ -78,52 +83,52 @@ format.formattable <- function(x, ...,
 #' @export
 `[.formattable` <- function(x, ...) {
   if(is.atomic(x)) {
-    create_obj0(NextMethod("["), "formattable", attributes(x))
+    create_obj(NextMethod("["), "formattable", formattable_attributes(x))
   } else NextMethod("[")
 }
 
 #' @export
 `[[.formattable` <- function(x, ...) {
   if(is.atomic(x)) {
-    create_obj0(NextMethod("[["), "formattable", attributes(x))
+    create_obj(NextMethod("[["), "formattable", formattable_attributes(x))
   } else NextMethod("[[")
 }
 
 #' @export
 c.formattable <- function(x, ...) {
   if(is.atomic(x)) {
-    create_obj0(NextMethod("c"), "formattable", attributes(x))
+    create_obj(NextMethod("c"), "formattable", formattable_attributes(x))
   } else NextMethod("c")
 }
 
 #' @export
 `+.formattable` <- function(x, y) {
-  create_obj0(NextMethod("+"), "formattable", attributes(x))
+  create_obj(NextMethod("+"), "formattable", formattable_attributes(x))
 }
 
 #' @export
 `-.formattable` <- function(x, y) {
-  create_obj0(NextMethod("-"), "formattable", attributes(x))
+  create_obj(NextMethod("-"), "formattable", formattable_attributes(x))
 }
 
 #' @export
 `*.formattable` <- function(x, y) {
-  create_obj0(NextMethod("*"), "formattable", attributes(x))
+  create_obj(NextMethod("*"), "formattable", formattable_attributes(x))
 }
 
 #' @export
 `/.formattable` <- function(x, y) {
-  create_obj0(NextMethod("/"), "formattable", attributes(x))
+  create_obj(NextMethod("/"), "formattable", formattable_attributes(x))
 }
 
 #' @export
 `%%.formattable` <- function(x, y) {
-  create_obj0(NextMethod("%%"), "formattable", attributes(x))
+  create_obj(NextMethod("%%"), "formattable", formattable_attributes(x))
 }
 
 #' @export
 rep.formattable <- function(x, ...) {
-  create_obj0(NextMethod("rep"), "formattable", attributes(x))
+  create_obj(NextMethod("rep"), "formattable", formattable_attributes(x))
 }
 
 #' @export
@@ -196,8 +201,8 @@ format_table <- function(x, formatter = list(),
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
 formattable.data.frame <- function(x, ...) {
-  create_obj(x, "formattable", formatter = "format_table",
-    format = list(..., envir = parent.frame()))
+  create_obj(x, "formattable",
+    list(formatter = "format_table", format = list(..., envir = parent.frame())))
 }
 
 #' @export
