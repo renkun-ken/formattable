@@ -24,7 +24,11 @@ output for printing.}
 a \code{formattable data.frame}
 }
 \description{
-This function attaches column formatters to data frame
+This function creates a formattable data frame by attaching
+column formatters to the data frame. Each time the data frame
+is printed or converted to string representation, the formatter
+function will use the column formatter functions to generate
+formatted columns.
 }
 \examples{
 # mtcars (mpg in red)

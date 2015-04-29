@@ -330,7 +330,11 @@ format_table <- function(x, formatters = list(),
 
 #' Create a formattable data frame
 #'
-#' This function attaches column formatters to data frame
+#' This function creates a formattable data frame by attaching
+#' column formatters to the data frame. Each time the data frame
+#' is printed or converted to string representation, the formatter
+#' function will use the column formatter functions to generate
+#' formatted columns.
 #' @inheritParams formattable.default
 #' @param x a \code{data.frame}
 #' @param formatter formatting function, \code{format_table} in default.
