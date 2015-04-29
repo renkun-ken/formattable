@@ -2,31 +2,21 @@
 % Please edit documentation in R/formattable.R
 \name{formattable.data.frame}
 \alias{formattable.data.frame}
-\title{Create formatted table by column formatters}
+\title{Attach column formatters to data frame}
 \usage{
-\method{formattable}{data.frame}(x, ...)
+\method{formattable}{data.frame}(x, ..., formatter = "format_table",
+  preproc = NULL, postproc = NULL)
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
 
-\item{formatter}{A named list of formatter functions.}
-
-\item{format}{The output format: markdown or pandoc?}
-
-\item{align}{The alignment of columns: a character vector consisting of \code{'l'} (left),
-\code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.}
-
-\item{digits}{An integer that all numeric columns are rounded to.}
+\item{...}{arguments to be passed to \code{format_table}.}
 }
 \value{
-a \code{knitr_kable} object whose \code{print} method generates a
-string-representation of \code{data} formatted by \code{formatter} in specific \code{format}.
+a \code{formattable} object
 }
 \description{
-This is an table generator that specializes in creating
-formatted table presented in a mix of markdown/reStructuredText and
-HTML elements. To generate a formatted table, each column of data
-frame can be transformed by formatter function.
+Attach column formatters to data frame
 }
 \examples{
 # mtcars (mpg in red)

@@ -1,46 +1,107 @@
+#' Generic function to create formattable object
+#'
+#' This function is a generic function to create \code{formattable}
+#' object, i.e. an object to which a formatting function and
+#' related attribute are attached. The object works as ordinary object
+#' yet has specially defined behavior as being printed or converted to
+#' a string representation.
+#'
+#' @param x an object.
+#' @param ... arguments to be passed to methods.
 #' @export
+#' @return a \code{formattable} object
 formattable <- function(x, ...)
   UseMethod("formattable")
 
+#' Create a formattable object
+#' @inheritParams formattable
+#' @param ... arguments to be passed to \code{formatter}.
+#' @param formatter formatting function, \code{formatC} in default.
+#' @param preproc pre-processor function that prepares \code{x} for
+#' formatting function.
+#' @param postproc post-processor function that transforms formatted
+#' output for printing.
 #' @export
-formattable.default <- function(x, ..., preproc = NULL, postproc = NULL) {
+#' @return a \code{formattable} object that inherits from the original
+#' object.
+#' @examples
+#' formattable(rnorm(10), digits = 1)
+#' formattable(rnorm(10), format = "f", digits = 1)
+#' formattable(rnorm(10), format = "f",
+#'   flag="+", digits = 1)
+#' formattable(1:10,
+#'   postproc = function(str, x) paste0(str, "px"))
+#' formattable(1:10,
+#'   postproc = function(str, x)
+#'     paste(str, ifelse(x <= 1, "unit", "units")))
+formattable.default <- function(x, ..., formatter = "formatC",
+  preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
-    list(formatter = "formatC",
+    list(formatter = formatter,
+      format = list(...), preproc = preproc, postproc = postproc))
+}
+
+#' Create a formattable logical vector
+#' @inheritParams formattable.default
+#' @param formatter formatting function, \code{ifelse} in default.
+#' @export
+#' @return a \code{formattable} logical vector.
+#' @examples
+#' logi <- c(TRUE, TRUE, FALSE)
+#' formattable(logi, "yes", "no")
+#' !formattable(logi, "yes", "no")
+formattable.logical <- function(x, ..., formatter = "ifelse",
+  preproc = NULL, postproc = NULL) {
+  create_obj(x, "formattable",
+    list(formatter = formatter,
+      format = list(...), preproc = preproc, postproc = postproc))
+}
+
+#' Create a formattable factor object
+#' @inheritParams formattable.default
+#' @param formatter formatting function, \code{vmap} in default.
+#' @export
+#' @return a \code{formattable} factor object.
+#' @examples
+#' formattable(as.factor(c("a", "b", "b", "c")),
+#'   a = "good", b = "fair", c = "bad")
+formattable.factor <- function(x, ..., formatter = "vmap",
+  preproc = NULL, postproc = NULL) {
+  create_obj(x, "formattable",
+    list(formatter = formatter,
+      format = list(...), preproc = preproc, postproc = postproc))
+}
+
+#' Create a formattable Date vector
+#' @inheritParams formattable.default
+#' @param formatter formatting function, \code{format.Date} in default.
+#' @export
+#' @return a \code{formattable} Date vector
+#' @examples
+#' dates <- as.Date("2015-04-10") + 1:5
+#' fdates <- formattable(dates, format = "%m/%d/%Y")
+#' fdates
+#' fdates + 30
+formattable.Date <- function(x, ..., formatter = "format.Date",
+  preproc = NULL, postproc = NULL) {
+  create_obj(x, "formattable",
+    list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
-formattable.logical <- function(x, ..., preproc = NULL, postproc = NULL) {
+formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
+  preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
-    list(formatter= "ifelse",
+    list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
-formattable.factor <- function(x, ..., preproc = NULL, postproc = NULL) {
+formattable.POSIXlt <- function(x, ..., formatter = "format.POSIXlt",
+  preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
-    list(formatter= "vmap",
-      format = list(...), preproc = preproc, postproc = postproc))
-}
-
-#' @export
-formattable.Date <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
-    list(formatter = "format.Date",
-      format = list(...), preproc = preproc, postproc = postproc))
-}
-
-#' @export
-formattable.POSIXct <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
-    list(formatter = "format.POSIXct",
-      format = list(...), preproc = preproc, postproc = postproc))
-}
-
-#' @export
-formattable.POSIXlt <- function(x, ..., preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
-    list(formatter = "format.POSIXlt",
+    list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
@@ -133,7 +194,86 @@ rep.formattable <- function(x, ...) {
 }
 
 #' @export
-format_table <- function(x, formatter = list(),
+`&.formattable` <- function(x, y) {
+  copy_obj(x, NextMethod("&"), "formattable")
+}
+
+#' @export
+`|.formattable` <- function(x, y) {
+  copy_obj(x, NextMethod("|"), "formattable")
+}
+
+#' @export
+all.formattable <- function(...) {
+  copy_obj(..1, NextMethod("all"), "formattable")
+}
+
+#' @export
+any.formattable <- function(...) {
+  copy_obj(..1, NextMethod("any"), "formattable")
+}
+
+#' @export
+max.formattable <- function(...) {
+  copy_obj(..1, NextMethod("max"), "formattable")
+}
+
+#' @export
+min.formattable <- function(...) {
+  copy_obj(..1, NextMethod("min"), "formattable")
+}
+
+#' @export
+pmax.formattable <- function(...) {
+  copy_obj(..1, NextMethod("pmax"), "formattable")
+}
+
+#' @export
+pmin.formattable <- function(...) {
+  copy_obj(..1, NextMethod("pmin"), "formattable")
+}
+
+#' Format a data frame with formatter functions
+#'
+#' This is an table generator that specializes in creating
+#' formatted table presented in a mix of markdown/reStructuredText and
+#' HTML elements. To generate a formatted table, each column of data
+#' frame can be transformed by formatter function.
+#' @param x a \code{data.frame}.
+#' @param formatter A named list of formatter functions.
+#' @param format The output format: markdown or pandoc?
+#' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
+#' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
+#' @param digits An integer that all numeric columns are rounded to.
+#' @return a \code{knitr_kable} object whose \code{print} method generates a
+#' string-representation of \code{data} formatted by \code{formatter} in
+#' specific \code{format}.
+#' @export
+#' @examples
+#' # mtcars (mpg in red)
+#' format_table(mtcars,
+#'    list(mpg = formatter("span", style = "color:red")))
+#'
+#' # mtcars (mpg in red if greater than median)
+#' format_table(mtcars, list(mpg = formatter("span",
+#'    style = function(x) ifelse(x > median(x), "color:red", NA))))
+#'
+#' # mtcars (mpg in red if greater than median, using formula)
+#' format_table(mtcars, list(mpg = formatter("span",
+#'    style = x ~ ifelse(x > median(x), "color:red", NA))))
+#'
+#' # mtcars (mpg in gradient: the higher, the redder)
+#' format_table(mtcars, list(mpg = formatter("span",
+#'    style = x ~ style(color = rgb(x/max(x), 0, 0)))))
+#'
+#' # mtcars (mpg background in gradient: the higher, the redder)
+#' format_table(mtcars, list(mpg = formatter("span",
+#'    style = x ~ style(display = "block",
+#'    "border-radius" = "4px",
+#'    "padding-right" = "4px",
+#'    color = "white",
+#'    "background-color" = rgb(x/max(x), 0, 0)))))
+format_table <- function(x, formatters = list(),
   format = c("markdown", "pandoc"), align = "r",
   digits = getOption("digits"), ...,
   row.names = rownames(x), check.rows = FALSE, check.names = FALSE,
@@ -144,7 +284,7 @@ format_table <- function(x, formatter = list(),
     if (is.numeric(x)) {
       x <- round(x, digits)
     }
-    f <- formatter[[name]]
+    f <- formatters[[name]]
     value <- if (is.null(f)) {
       x
     } else if (inherits(f, "formula")) {
@@ -162,21 +302,12 @@ format_table <- function(x, formatter = list(),
   knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 
-#' Create formatted table by column formatters
+#' Attach column formatters to data frame
 #'
-#' This is an table generator that specializes in creating
-#' formatted table presented in a mix of markdown/reStructuredText and
-#' HTML elements. To generate a formatted table, each column of data
-#' frame can be transformed by formatter function.
 #' @param x a \code{data.frame}.
-#' @param formatter A named list of formatter functions.
-#' @param format The output format: markdown or pandoc?
-#' @param align The alignment of columns: a character vector consisting of \code{'l'} (left),
-#' \code{'c'} (center), and/or \code{'r'} (right). By default, all columns are right-aligned.
-#' @param digits An integer that all numeric columns are rounded to.
+#' @param ... arguments to be passed to \code{format_table}.
 #' @export
-#' @return a \code{knitr_kable} object whose \code{print} method generates a
-#' string-representation of \code{data} formatted by \code{formatter} in specific \code{format}.
+#' @return a \code{formattable} object
 #' @examples
 #' # mtcars (mpg in red)
 #' formattable(mtcars,
@@ -201,9 +332,11 @@ format_table <- function(x, formatter = list(),
 #'    "padding-right" = "4px",
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
-formattable.data.frame <- function(x, ...) {
+formattable.data.frame <- function(x, ..., formatter = "format_table",
+  preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
-    list(formatter = "format_table", format = list(..., envir = parent.frame())))
+    list(formatter = "formatter", format = list(..., envir = parent.frame()),
+      preproc = preproc, postproc = postproc))
 }
 
 #' @export
