@@ -12,7 +12,7 @@ percent <- function(x, digits = 2L, format = "f", ...) {
   stopifnot(is.numeric(x))
   formattable(x, format = format, digits = digits, ...,
     preproc = function(x) x * 100,
-    postproc = function(str, x) paste0(str, ifelse(is.na(x), "", "%")))
+    postproc = function(str, x) paste0(str, ifelse(is.finite(x), "%", "")))
 }
 
 #' Numeric vector with thousands separators
