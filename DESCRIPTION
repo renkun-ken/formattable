@@ -1,6 +1,6 @@
 Package: formattable
 Title: Formattable Data Structures
-Version: 0.0.6
+Version: 0.0.6.1
 Authors@R: person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre"))
 Description: Provides functions to create formattable vectors and data frames.
     Formattable vectors are printed with text formatting, and formattable
@@ -8,7 +8,7 @@ Description: Provides functions to create formattable vectors and data frames.
     to improve the readability of data presented in tabular form rendered as
     web pages.
 Depends: R (>= 2.14.1)
-Date: 2015-04-29
+Date: 2015-05-01
 Imports: htmltools, knitr
 License: MIT + file LICENSE
 LazyData: true

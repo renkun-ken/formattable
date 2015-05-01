@@ -242,6 +242,31 @@ mean.formattable <- function(x, ...) {
   copy_obj(x, NextMethod("mean"), "formattable")
 }
 
+#' @export
+unique.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("unique"), "formattable")
+}
+
+#' @export
+diff.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("diff"), "formattable")
+}
+
+#' @export
+cummax.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("cummax"), "formattable")
+}
+
+#' @export
+cummin.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("cummin"), "formattable")
+}
+
+#' @export
+cumsum.formattable <- function(x, ...) {
+  copy_obj(x, NextMethod("cumsum"), "formattable")
+}
+
 #' @rdname stats median
 #' @importFrom stats median
 #' @export
