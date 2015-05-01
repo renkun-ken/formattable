@@ -168,8 +168,8 @@ format.formattable <- function(x, ...,
 }
 
 #' @export
-c.formattable <- function(x, ...) {
-  if(is.atomic(x)) copy_obj(x, NextMethod("c"), "formattable") else NextMethod("c")
+c.formattable <- function(..., recursive = FALSE) {
+  copy_obj(..1, NextMethod("c"), "formattable")
 }
 
 #' @export
