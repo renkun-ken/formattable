@@ -139,6 +139,7 @@ as.character.formattable <- function(x, ...) {
 #' @export
 print.formattable <- function(x, ...) {
   print(format.formattable(x), ..., quote = is.character(x))
+  x
 }
 
 #' @export
@@ -278,7 +279,7 @@ median.formattable <- function(x, ...) {
 #' @importFrom stats quantile
 #' @export
 quantile.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("quantile"), "formattable")
+  copy_obj(x, quantile(remove_class(x, "formattable")), "formattable")
 }
 
 #' Format a data frame with formatter functions
