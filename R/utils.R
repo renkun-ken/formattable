@@ -35,10 +35,13 @@ call_or_default <- function(FUN, X, ...) {
 }
 
 eval_formula <- function(x, data, envir) {
-  if(!is.symbol(symbol <- x[[2L]])) {
-    stop("The formula should specify a symbol", call. = FALSE)
+  if (length(x) == 2L) {
+    eval(x[[2L]], NULL, envir)
+  } else if (is.symbol(symbol <- x[[2L]])) {
+    eval_args <- list(data)
+    names(eval_args) <- as.character(symbol)
+    eval(x[[3L]], eval_args, envir)
+  } else {
+    stop("The formula should be either '~ expr' or 'x ~ expr'", call. = FALSE)
   }
-  eval_args <- list(data)
-  names(eval_args) <- as.character(symbol)
-  eval(x[[3L]], eval_args, envir)
 }
