@@ -33,6 +33,7 @@ test_that("formattable.default", {
   expect_equivalent(format(quantile(obj)), formatC(quantile(num), format = "f", digits = 4L))
   expect_equivalent(format(sort(obj)), formatC(sort(num), format = "f", digits = 4L))
   expect_equivalent(c(formattable(1), 2), formattable(c(1,2)))
+  expect_output(invisible(print(formattable(2, digits = 4, format = "f"))), "^\\[1\\] 2.0000$")
 })
 
 test_that("formattable.logical", {
@@ -93,10 +94,16 @@ test_that("formattable.data.frame", {
   expect_is(format_table(mtcars, list(mpg = formatter("span",
     style = function(x) ifelse(x > median(x), "color:red", NA)))),
     "knitr_kable")
-  expect_is(format_table(mtcars, list(mpg = formatter("span",
-    style = x ~ style(display = "block",
-      "border-radius" = "4px",
-      "padding-right" = "4px",
-      color = "white",
-      "background-color" = rgb(x/max(x), 0, 0))))), "knitr_kable")
+  expect_is(format_table(mtcars,
+    list(vs = x ~ formattable(as.logical(x), "yes", "no"))),
+    "knitr_kable")
+  expect_is(format_table(mtcars, list(vs = ~ "unknown")), "knitr_kable")
+  expect_error(format_table(mtcars, list(vs = f(a,b) ~ "unknown")))
+})
+
+test_that("formattable.matrix", {
+  m <- rnorm(100)
+  dim(m) <- c(50,2)
+  colnames(m) <- c("a","b")
+  expect_is(formattable(m), "formattable")
 })
