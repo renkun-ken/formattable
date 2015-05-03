@@ -24,10 +24,6 @@ copy_obj <- function(src, target, class) {
   create_obj(target, class, get_attr(src, class))
 }
 
-attr_default <- function(x, class, default = NULL) {
-  if (is.null(value <- attr(x, class, exact = TRUE))) default else value
-}
-
 get_attr <- function(x, class) {
   if (is.null(value <- attr(x, class, exact = TRUE)))
     stop("missing attribute for class '", class, "'.", call. = FALSE) else
