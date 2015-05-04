@@ -415,5 +415,5 @@ formattable.data.frame <- function(x, ..., formatter = "format_table",
 
 #' @export
 formattable.matrix <- function(x, ...) {
-  formattable.data.frame(data.frame(x, stringsAsFactors = FALSE), ...)
+  formattable.data.frame(data.frame(x, check.names = FALSE, stringsAsFactors = FALSE), ...)
 }
