@@ -1,47 +1,56 @@
 context("formats")
 
 test_that("percent", {
-  obj <- percent(c(-0.05, 0.15,0.252,0.3003))
+  data <- c(-0.05, 0.15,0.252,0.3003)
+  obj <- percent(data)
   expect_is(obj, "formattable")
   expect_equal(format(obj), c("-5.00%","15.00%","25.20%","30.03%"))
-  expect_equal(format(obj, digits = 0), c("-5%","15%","25%","30%"))
+  expect_equal(format(percent(data, digits = 0)), c("-5%","15%","25%","30%"))
+  expect_equal(format(percent(obj, digits = 0)), c("-5%","15%","25%","30%"))
   expect_error(percent("a"))
 })
 
 test_that("comma", {
-  obj <- comma(c(-5300,10500,20300,35010))
+  data <- c(-5300,10500,20300,35010)
+  obj <- comma(data)
   expect_is(obj, "formattable")
   expect_equal(format(obj), c("-5,300.00","10,500.00","20,300.00","35,010.00"))
-  expect_equal(format(obj, digits = 0), c("-5,300","10,500","20,300","35,010"))
-  expect_equal(format(obj, digits = 0, big.mark = "/"), c("-5/300","10/500","20/300","35/010"))
+  expect_equal(format(comma(data, digits = 0)), c("-5,300","10,500","20,300","35,010"))
+  expect_equal(format(comma(obj, digits = 0, big.mark = "/")),
+    c("-5/300","10/500","20/300","35/010"))
   expect_error(comma("a"))
 })
 
 test_that("currency", {
-  obj <- currency(c(-5300,10500,20300,35010))
+  data <- c(-5300,10500,20300,35010)
+  obj <- currency(data)
   expect_is(obj, "formattable")
   expect_equal(format(obj), c("$-5,300.00","$10,500.00","$20,300.00","$35,010.00"))
-  expect_equal(format(obj, digits = 0), c("$-5,300","$10,500","$20,300","$35,010"))
-  expect_equal(format(obj, digits = 0, big.mark = "/"), c("$-5/300","$10/500","$20/300","$35/010"))
+  expect_equal(format(currency(data, digits = 0)), c("$-5,300","$10,500","$20,300","$35,010"))
+  expect_equal(format(currency(obj, digits = 0, big.mark = "/")),
+    c("$-5/300","$10/500","$20/300","$35/010"))
   expect_equal(format(currency(1000, "USD", digits = 0, sep = " ")), "USD 1,000")
   expect_error(currency("a"))
 })
 
 test_that("accounting", {
-  obj <- accounting(c(-5300,10500,20300,35010))
+  data <- c(-5300,10500,20300,35010)
+  obj <- accounting(data)
   expect_is(obj, "formattable")
   expect_equal(format(obj), c("(5,300.00)","10,500.00","20,300.00","35,010.00"))
-  expect_equal(format(obj, digits = 0), c("(5,300)","10,500","20,300","35,010"))
-  expect_equal(format(obj, digits = 0, big.mark = "/"), c("(5/300)","10/500","20/300","35/010"))
+  expect_equal(format(accounting(data, digits = 0)), c("(5,300)","10,500","20,300","35,010"))
+  expect_equal(format(accounting(obj, digits = 0, big.mark = "/")),
+    c("(5/300)","10/500","20/300","35/010"))
   expect_error(accounting("a"))
 })
 
 test_that("scientific", {
-  obj <- scientific(c(-5300,10500,20300,35010))
+  data <- c(-5300,10500,20300,35010)
+  obj <- scientific(data)
   expect_is(obj, "formattable")
-  expect_equal(format(obj, format = "e", digits = 2),
+  expect_equal(format(scientific(data, format = "e", digits = 2)),
     c("-5.30e+03","1.05e+04","2.03e+04","3.50e+04" ))
-  expect_equal(format(obj, format = "E", digits = 2),
+  expect_equal(format(scientific(data, format = "E", digits = 2)),
     c("-5.30E+03","1.05E+04","2.03E+04","3.50E+04" ))
   expect_error(scientific("a"))
 })

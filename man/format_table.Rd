@@ -5,8 +5,8 @@
 \title{Format a data frame with formatter functions}
 \usage{
 format_table(x, formatters = list(), format = c("markdown", "pandoc"),
-  align = "r", digits = getOption("digits"), ..., row.names = rownames(x),
-  check.rows = FALSE, check.names = FALSE, envir = parent.frame())
+  align = "r", ..., row.names = rownames(x), check.rows = FALSE,
+  check.names = FALSE, envir = parent.frame())
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
@@ -28,8 +28,6 @@ at runtime.}
 \item{align}{The alignment of columns: a character vector consisting
 of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 By default, all columns are right-aligned.}
-
-\item{digits}{An integer that all numeric columns are rounded to.}
 
 \item{...}{additional parameters to be passed to \code{knitr::kable}.}
 

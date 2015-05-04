@@ -147,8 +147,6 @@ format.formattable <- function(x, ...,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
   attrs <- get_attr(x, "formattable")
   format_args <- attrs$format
-  custom_args <- list(...)
-  format_args[names(custom_args)] <- custom_args
   x_value <- remove_class(x, "formattable")
   value <- call_or_default(attrs$preproc, x_value)
   str <- do.call(attrs$formatter, c(list(value), format_args))
@@ -304,7 +302,6 @@ quantile.formattable <- function(x, ...) {
 #' @param align The alignment of columns: a character vector consisting
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 #' By default, all columns are right-aligned.
-#' @param digits An integer that all numeric columns are rounded to.
 #' @param ... additional parameters to be passed to \code{knitr::kable}.
 #' @param row.names row names to give to the data frame to knit
 #' @param check.rows if TRUE then the rows are checked for consistency
@@ -342,26 +339,16 @@ quantile.formattable <- function(x, ...) {
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
 format_table <- function(x, formatters = list(),
-  format = c("markdown", "pandoc"), align = "r",
-  digits = getOption("digits"), ...,
+  format = c("markdown", "pandoc"), align = "r", ...,
   row.names = rownames(x), check.rows = FALSE, check.names = FALSE,
   envir = parent.frame()) {
   stopifnot(is.data.frame(x))
   format <- match.arg(format)
   xdf <- data.frame(mapply(function(x, name) {
-    if (is.numeric(x)) {
-      x <- round(x, digits)
-    }
     f <- formatters[[name]]
-    value <- if (is.null(f)) {
-      x
-    } else if (inherits(f, "formula")) {
-      eval_formula(f, x, envir)
-    } else {
-      f <- match.fun(f)
-      f(x)
-    }
-    as.character(value)
+    if (is.null(f)) x
+    else if (inherits(f, "formula")) eval_formula(f, x, envir)
+    else match.fun(f)(x)
   }, x, names(x), SIMPLIFY = FALSE),
     row.names = row.names,
     check.rows = check.rows,
