@@ -13,6 +13,18 @@
 formattable <- function(x, ...)
   UseMethod("formattable")
 
+#' Test for objects of type 'formattable'
+#' @param x an object
+#' @return \code{TRUE} if \code{x} has class 'formattable';
+#' \code{FALSE} otherwise.
+#' @export
+#' @examples
+#' is.formattable(10)
+#' is.formattable(formattable(10))
+is.formattable <- function(x) {
+  "formattable" %in% class(x)
+}
+
 #' Create a formattable object
 #' @inheritParams formattable
 #' @param ... arguments to be passed to \code{formatter}.

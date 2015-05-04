@@ -107,3 +107,8 @@ test_that("formattable.matrix", {
   colnames(m) <- c("a","b")
   expect_is(formattable(m), "formattable")
 })
+
+test_that("is.formattable", {
+  expect_equal(is.formattable(1), FALSE)
+  expect_equal(is.formattable(formattable(1)), TRUE)
+})
