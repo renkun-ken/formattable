@@ -25,7 +25,7 @@ percent <- function(x, digits = 2L, format = "f", ...) {
 #' comma(c(1250000, 225000), format = "d")
 comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   stopifnot(is.numeric(x))
-  formattable(x, format = format, big.mark = big.mark, digits = 2L, ...)
+  formattable(x, format = format, big.mark = big.mark, digits = digits, ...)
 }
 
 #' Numeric vector with currency format
