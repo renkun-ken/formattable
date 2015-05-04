@@ -358,9 +358,10 @@ format_table <- function(x, formatters = list(),
   format <- match.arg(format)
   xdf <- data.frame(mapply(function(x, name) {
     f <- formatters[[name]]
-    if (is.null(f)) x
+    value <- if (is.null(f)) x
     else if (inherits(f, "formula")) eval_formula(f, x, envir)
     else match.fun(f)(x)
+    if (is.formattable(value)) as.character.formattable(value) else value
   }, x, names(x), SIMPLIFY = FALSE),
     row.names = row.names,
     check.rows = check.rows,
