@@ -39,7 +39,7 @@
 <h2>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects stores the original data but are printed with formatting.</p>
+<p>Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.</p>
 
 <p>The package provides several typical formattable objects such as <code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code> and <code>scientific</code>. These objects are essentially numeric vectors with pre-defined formatting rules and parameters. For example,</p>
 
@@ -74,7 +74,7 @@ printed. It works with arithmetic operations and common functions and preserves 
 <pre><code>## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00
 </code></pre>
 
-<p>These functions are special cases of what <code>formattable()</code> can do, which applies highly customizable formatting to objects of a wide range of classes like <code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code>, etc. A typical data frame can look more friendly with <code>formattable</code> column vectors. For example,</p>
+<p>These functions are special cases of what <code>formattable()</code> can do. <code>formattable()</code> applies highly customizable formatting to objects of a wide range of classes like <code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code>, etc. A typical data frame may look more friendly with <code>formattable</code> column vectors. For example,</p>
 
 <div class="highlight highlight-r"><pre><span class="pl-smi">p</span> <span class="pl-k">&lt;-</span> <span class="pl-k">data.frame</span>(
   <span class="pl-v">id</span> <span class="pl-k">=</span> c(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>), 
@@ -271,7 +271,7 @@ formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
     <span class="pl-smi">x</span> <span class="pl-k">~</span> icontext(ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>ok<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>remove<span class="pl-pds">"</span></span>), ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>Yes<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>No<span class="pl-pds">"</span></span>)))
 ))</pre></div>
 
-<p><img src="https://raw.githubusercontent.com/renkun-ken/formattable/master/formattable.png" alt="formattable"></p>
+<p><img src="https://github.com/renkun-ken/formattable/blob/master/formattable.png?raw=true" alt="formattable"></p>
 
 <p><strong>The icon set used in the table is by <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> and included in <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a>.</strong></p>
 
