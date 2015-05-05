@@ -17,7 +17,7 @@ devtools::install_github("renkun-ken/formattable")
 
 ## Introduction
 
-Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects stores the original data but are printed with formatting.
+Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.
 
 The package provides several typical formattable objects such as `percent`, `comma`, `currency`, `accounting` and `scientific`. These objects are essentially numeric vectors with pre-defined formatting rules and parameters. For example,
 
@@ -70,7 +70,7 @@ balance + 1000
 ## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00
 ```
 
-These functions are special cases of what `formattable()` can do, which applies highly customizable formatting to objects of a wide range of classes like `numeric`, `logical`, `factor`, `Date`, `data.frame`, etc. A typical data frame can look more friendly with `formattable` column vectors. For example,
+These functions are special cases of what `formattable()` can do. `formattable()` applies highly customizable formatting to objects of a wide range of classes like `numeric`, `logical`, `factor`, `Date`, `data.frame`, etc. A typical data frame may look more friendly with `formattable` column vectors. For example,
 
 
 ```r
