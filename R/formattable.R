@@ -150,7 +150,12 @@ as.character.formattable <- function(x, ...) {
 
 #' @export
 print.formattable <- function(x, ...) {
-  print(format.formattable(x), ..., quote = is.character(x))
+  args <- list(...)
+  print_args <- attr(x, "formattable", exact = TRUE)$print
+  if (is.null(print_args)) print_args <- list()
+  print_args[names(args)] <- args
+  if(is.null(print_args$quote)) print_args$quote <- is.character(x)
+  do.call("print", c(list(format.formattable(x)), print_args))
   x
 }
 
