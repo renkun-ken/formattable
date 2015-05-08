@@ -37,7 +37,12 @@ style <- function(...) {
   as.character(.mapply(function(...) {
     args <- list(...)
     args <- args[!is.na(args)]
-    paste(gsub(".", "-", names(args), fixed = TRUE), args, sep = ": ", collapse = "; ")
+    argnames <- names(args)
+    argnames <- if(is.null(argnames)) "" else gsub(".", "-", argnames, fixed = TRUE)
+    attrs <- .mapply(function(name, value) {
+      paste0(name, ifelse(nzchar(name), ": ", ""), paste0(value, collapse = " "))
+    }, list(name = argnames, value = args), NULL)
+    paste0(attrs, collapse = "; ")
   }, dots, NULL))
 }
 
