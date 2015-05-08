@@ -72,3 +72,48 @@ scientific <- function(x, format = c("e", "E"), ...) {
   stopifnot(is.numeric(x))
   formattable(x, format = match.arg(format), ...)
 }
+
+
+
+#' Formattable object with prefix
+#' @param x an object
+#' @param prefix a character vector put in front of each non-missing
+#' value in \code{x} as being formatted.
+#' @param sep separator
+#' @param ... additional parameter passed to \code{formattable}.
+#' @param na.text text for missing values in \code{x}.
+#' @export
+#' @examples
+#' prefix(1:10, "A")
+#' prefix(1:10, "Choice", sep = " ")
+#' prefix(c(1:10, NA), prefix = "A", na.text = "(missing)")
+#' prefix(rnorm(10, 10), "*", format = "d")
+prefix <- function(x, prefix = "", sep = "", ..., na.text = NULL) {
+  formattable(x, ...,
+    preproc = NULL,
+    postproc = function(str, x)
+      paste0(ifelse(xna <- is.na(x), "", paste0(prefix, sep)),
+        if(is.null(na.text)) str else ifelse(xna, na.text, str)))
+}
+
+#' Formattable object with suffix
+#' @param x an object
+#' @param suffix a character vector put behind each non-missing
+#' value in \code{x} as being formatted.
+#' @param sep separator
+#' @param ... additional parameter passed to \code{formattable}.
+#' @param na.text text for missing values in \code{x}.
+#' @export
+#' @examples
+#' suffix(1:10, "px")
+#' suffix(1:10, ifelse(1:10 >= 2, "units", "unit"), sep = " ")
+#' suffix(c(1:10, NA), "km/h", na.text = "(missing)")
+suffix <- function(x, suffix = "", sep = "", ..., na.text = NULL) {
+  formattable(x, ...,
+    preproc = NULL,
+    postproc = function(str, x) {
+      xna <- is.na(x)
+      paste0(if(is.null(na.text)) str else ifelse(xna, na.text, str),
+        ifelse(xna, "", paste0(sep, suffix)))
+    })
+}
