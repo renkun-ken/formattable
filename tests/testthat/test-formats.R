@@ -67,6 +67,10 @@ test_that("prefix", {
   data <- rnorm(10)
   expect_equal(format(prefix(data, "?", format = "f", digits = 2L)),
     paste0("?", formatC(data, format = "f", digits = 2L)))
+  expect_equal(format(prefix(percent(data), ">")),
+    paste0(">", format(percent(data))))
+  expect_equal(format(prefix(percent(data), ">")+0.1),
+    paste0(">", format(percent(data)+0.1)))
 })
 
 test_that("suffix", {
@@ -80,4 +84,8 @@ test_that("suffix", {
   data <- rnorm(10)
   expect_equal(format(suffix(data, "?", format = "f", digits = 2L)),
     paste0(formatC(data, format = "f", digits = 2L), "?"))
+  expect_equal(format(suffix(percent(data), ">")),
+    paste0(format(percent(data)), ">"))
+  expect_equal(format(suffix(percent(data), ">")+0.1),
+    paste0(format(percent(data)+0.1), ">"))
 })
