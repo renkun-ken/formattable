@@ -88,12 +88,12 @@ scientific <- function(x, format = c("e", "E"), ...) {
 #' prefix(1:10, "Choice", sep = " ")
 #' prefix(c(1:10, NA), prefix = "A", na.text = "(missing)")
 #' prefix(rnorm(10, 10), "*", format = "d")
+#' prefix(percent(c(0.1,0.25)), ">")
 prefix <- function(x, prefix = "", sep = "", ..., na.text = NULL) {
   formattable(x, ...,
-    preproc = NULL,
-    postproc = function(str, x)
+    postproc = list(function(str, x)
       paste0(ifelse(xna <- is.na(x), "", paste0(prefix, sep)),
-        if(is.null(na.text)) str else ifelse(xna, na.text, str)))
+        if(is.null(na.text)) str else ifelse(xna, na.text, str))))
 }
 
 #' Formattable object with suffix
@@ -108,12 +108,12 @@ prefix <- function(x, prefix = "", sep = "", ..., na.text = NULL) {
 #' suffix(1:10, "px")
 #' suffix(1:10, ifelse(1:10 >= 2, "units", "unit"), sep = " ")
 #' suffix(c(1:10, NA), "km/h", na.text = "(missing)")
+#' suffix(percent(c(0.1, 0.25)), "*")
 suffix <- function(x, suffix = "", sep = "", ..., na.text = NULL) {
   formattable(x, ...,
-    preproc = NULL,
-    postproc = function(str, x) {
+    postproc = list(function(str, x) {
       xna <- is.na(x)
       paste0(if(is.null(na.text)) str else ifelse(xna, na.text, str),
         ifelse(xna, "", paste0(sep, suffix)))
-    })
+    }))
 }

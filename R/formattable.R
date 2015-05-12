@@ -144,6 +144,19 @@ formattable.POSIXlt <- function(x, ..., formatter = "format.POSIXlt",
 }
 
 #' @export
+formattable.formattable <- function(x, ..., formatter, preproc, postproc) {
+  attrs <- attr(x, "formattable", exact = TRUE)
+  if (!missing(formatter)) attrs$formatter <- formatter
+  if (!missing(...)) attrs$format <- list(...)
+  if (!missing(preproc))
+    attrs$preproc <- if (is.list(preproc)) c(preproc, attrs$preproc) else preproc
+  if (!missing(postproc))
+    attrs$postproc <- if (is.list(postproc)) c(attrs$postproc, postproc) else postproc
+  attr(x, "formattable") <- attrs
+  x
+}
+
+#' @export
 as.character.formattable <- function(x, ...) {
   as.character(format.formattable(x), ...)
 }
@@ -164,11 +177,17 @@ format.formattable <- function(x, ...,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
   attrs <- get_attr(x, "formattable")
   format_args <- attrs$format
-  x_value <- remove_class(x, "formattable")
-  value <- call_or_default(attrs$preproc, x_value)
+  value <- remove_class(x, "formattable")
+  if (length(attrs$preproc)) {
+    preproc_list <- if (is.list(attrs$preproc)) attrs$preproc else list(attrs$preproc)
+    for (preproc in preproc_list) value <- call_or_default(preproc, value)
+  }
   str <- do.call(attrs$formatter, c(list(value), format_args))
   if (x_atomic <- is.atomic(x)) str <- remove_attribute(str, "formattable")
-  str <- call_or_default(attrs$postproc, str, x_value)
+  if (length(attrs$postproc)) {
+    postproc_list <- if (is.list(attrs$postproc)) attrs$postproc else list(attrs$postproc)
+    for (postproc in postproc_list) str <- call_or_default(postproc, str, value)
+  }
   if (use.names && x_atomic && !is.null(x_names <- names(x))) names(str) <- x_names
   str
 }
