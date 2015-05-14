@@ -30,6 +30,18 @@ is printed or converted to string representation, the formatter
 function will use the column formatter functions to generate
 formatted columns.
 }
+\details{
+The formattable data frame is a data frame with lazy-bindings
+of prespecified column formatters. The formatters will not be
+applied until the data frame is printed to console or a
+dynamic document. If the formatter function has no side effect,
+the formattable data frame will not be changed even if the
+formatters are applied to produce the printed version.
+
+To produce formattable data frame as HTML table in R markdown
+document, the chunk option \code{result} must set to be \code{'asis'}
+so that the output is rendered directly.
+}
 \examples{
 # mtcars (mpg in red)
 formattable(mtcars,
