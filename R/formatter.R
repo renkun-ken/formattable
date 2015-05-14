@@ -26,11 +26,9 @@ formatter <- function(.tag, ...) {
   # create a closure for formattable to build output string
   function(x) {
     values <- lapply(args, function(arg) {
-      value <- if(is.function(arg)) {
-        arg(x)
-      } else if(inherits(arg, "formula")) {
-        eval_formula(arg, x, envir)
-      } else arg
+      value <- if(is.function(arg)) arg(x)
+      else if(inherits(arg, "formula")) eval_formula(arg, x, envir)
+      else arg
       if(is.null(value)) NA else value
     })
     tags <- .mapply(function(...) {
