@@ -39,7 +39,7 @@ the formattable data frame will not be changed even if the
 formatters are applied to produce the printed version.
 
 To produce formattable data frame as HTML table in R markdown
-document, the chunk option \code{result} must set to be \code{'asis'}
+document, the chunk option \code{result} must be \code{'asis'}
 so that the output is rendered directly.
 }
 \examples{
