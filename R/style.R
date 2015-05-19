@@ -106,11 +106,13 @@ str2rgb <- function(x, alpha = NULL) {
 
 #' Create a matrix from vector to represent colors in gradient
 #' @param x a numeric vector.
-#' @param min_color color of minimum value.
-#' @param max_color color of maximum value.
+#' @param min.color color of minimum value.
+#' @param max.color color of maximum value.
 #' @param alpha logical of whether to include alpha channel. \code{NULL}
 #' to let the function decide by input.
 #' @param use.names logical of whether to preserve names of input vector.
+#' @param na.rm logical indicating whether to ignore missing values as \code{x}
+#' is normalized. (defult is \code{TRUE})
 #' @return a matrix with rgba columns in which each row corresponds to the rgba
 #' value (0-255) of each element in input vector \code{x}. Use \code{csscolor}
 #' to convert the matrix to css color strings compatible with web browsers.
@@ -121,10 +123,10 @@ str2rgb <- function(x, alpha = NULL) {
 #' gradient(c(5,4,3,2,1), "white", "red")
 #' gradient(c(1,3,2,4,5), "white", "red")
 #' gradient(c(1,3,2,4,5), rgb(0,0,0,0.5), rgb(0,0,0,1), alpha = TRUE)
-gradient <- function(x, min_color, max_color, alpha = NULL, use.names = TRUE) {
-  color_range <- str2rgb(c(min = min_color, max = max_color), alpha = alpha)
+gradient <- function(x, min.color, max.color, alpha = NULL, use.names = TRUE, na.rm = TRUE) {
+  color_range <- str2rgb(c(min = min.color, max = max.color), alpha = alpha)
   res <- (color_range[, "max", drop = FALSE] -
-      color_range[, "min", drop = FALSE]) %*% normalize(x) +
+      color_range[, "min", drop = FALSE]) %*% normalize(x, na.rm = na.rm) +
     matrix(rep(color_range[, "min", drop = FALSE], length(x)), ncol = length(x))
   storage.mode(res) <- "integer"
   if(use.names) colnames(res) <- names(x)

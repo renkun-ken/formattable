@@ -4,19 +4,23 @@
 \alias{gradient}
 \title{Create a matrix from vector to represent colors in gradient}
 \usage{
-gradient(x, min_color, max_color, alpha = NULL, use.names = TRUE)
+gradient(x, min.color, max.color, alpha = NULL, use.names = TRUE,
+  na.rm = TRUE)
 }
 \arguments{
 \item{x}{a numeric vector.}
 
-\item{min_color}{color of minimum value.}
+\item{min.color}{color of minimum value.}
 
-\item{max_color}{color of maximum value.}
+\item{max.color}{color of maximum value.}
 
 \item{alpha}{logical of whether to include alpha channel. \code{NULL}
 to let the function decide by input.}
 
 \item{use.names}{logical of whether to preserve names of input vector.}
+
+\item{na.rm}{logical indicating whether to ignore missing values as \code{x}
+is normalized. (defult is \code{TRUE})}
 }
 \value{
 a matrix with rgba columns in which each row corresponds to the rgba
