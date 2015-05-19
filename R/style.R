@@ -166,10 +166,10 @@ csscolor.matrix <- function(x, format = c("auto", "hex", "rgb", "rgba"),
   na_cols <- apply(x, 2L, function(col) any(is.na(col)))
   cols <- switch(format, hex = {
     hex <- format.hexmode(as.hexmode(x[c("red", "green", "blue"), ]), width = 2L)
-    paste0("#", hex[1L, ], hex[2L, ], hex[3L, ])
-  }, rgb = paste0("rgb(", x["red", ], ", ", x["green", ], ", ", x["blue", ], ")"),
-    rgba = paste0("rgba(", x["red", ], ", ", x["green", ], ", ", x["blue", ], ", ",
-      if(alpha) round(x["alpha", ] / 255, 2) else 1, ")"))
+    sprintf("#%s%s%s", hex[1L, ], hex[2L, ], hex[3L, ])
+  }, rgb = sprintf("rgb(%d, %d, %d)", x["red",], x["green",], x["blue", ]),
+    rgba = sprintf("rgba(%d, %d, %d, %g)", x["red",], x["green",], x["blue", ],
+      if(alpha) round(x["alpha", ] / 255L, 2L) else 1))
   cols[na_cols] <- NA
   if(use.names) names(cols) <- colnames(x)
   cols
