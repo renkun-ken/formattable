@@ -71,6 +71,10 @@ test_that("gradient", {
   expect_equal(gradient(c(x=1,y=2,z=3), "white", "red", use.names = FALSE),
     matrix(c(255, 255, 255, 255, 127, 127, 255, 0, 0), 3, 3,
       dimnames = list(c("red","green","blue"))))
+  expect_equal(gradient(c(1:3, NA), "white", "red"),
+    matrix(c(255, 255, 255, 255, 127, 127, 255, 0, 0, NA, NA, NA), 3, 4,
+      dimnames = list(c("red","green","blue"))))
+  expect_error(gradient(c(1:3, NA), "white", "red", na.rm = FALSE), "missing value")
 })
 
 test_that("csscolor", {
@@ -81,4 +85,6 @@ test_that("csscolor", {
     c("#ffffff", "#ffbfbf", "#ff7f7f", "#ff3f3f", "#ff0000"))
   expect_equal(csscolor(gradient(c(1,3,2), rgb(0, 0.1, 0.2, 0.5), rgb(0, 0.1, 0.2, 1))),
     c("rgba(0, 26, 51, 0.5)", "rgba(0, 26, 51, 1)", "rgba(0, 26, 51, 0.75)"))
+  expect_equal(csscolor(gradient(c(1:3, NA), "white", "red")),
+    c("#ffffff", "#ff7f7f", "#ff0000", NA))
 })
