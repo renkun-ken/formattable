@@ -1,6 +1,6 @@
 # formattable
 
-[![Travis-CI Build Status](https://travis-ci.org/renkun-ken/formattable.png?branch=master)](https://travis-ci.org/renkun-ken/formattable) [![Coverage Status](https://coveralls.io/repos/renkun-ken/formattable/badge.svg)](https://coveralls.io/r/renkun-ken/formattable)
+[![Travis-CI Build Status](https://travis-ci.org/renkun-ken/formattable.png?branch=master)](https://travis-ci.org/renkun-ken/formattable) [![Coverage Status](https://coveralls.io/repos/renkun-ken/formattable/badge.svg)](https://coveralls.io/r/renkun-ken/formattable) [![CRAN Version](http://www.r-pkg.org/badges/version/formattable)](http://cran.rstudio.com/web/packages/formattable)
 
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
