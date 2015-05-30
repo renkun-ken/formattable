@@ -18,26 +18,12 @@ df <- data.frame(
   registered = c(TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE),
   stringsAsFactors = FALSE)
 
-score_bar <- formatter("span", 
-  style = x ~ style(
-    display = "block",
-    border.radius = "4px",
-    padding.right = "4px",
-    width = percent(normalize(x, 0.2)),
-    background = csscolor(gradient(x, "lightyellow", "pink"))
-  ))
-
 formattable(df, list(
-  age = formatter("span", 
-    style = x ~ style(
-      display = "block", 
-      border.radius = "4px",
-      padding.right = "4px",
-      background = csscolor(gradient(x, "lightyellow", "orange")))),
+  age = color_tile("lightyellow", "orange"),
   grade = formatter("span",
     style = x ~ ifelse(x == "A", style(color = "green", font.weight = "bold"), NA)),
-  test1_score = score_bar,
-  test2_score = score_bar,
+  test1_score = color_bar("pink", 0.2),
+  test2_score = color_text("black", "red"),
   final_score = formatter("span",
     style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),
     x ~ sprintf("%.2f (rank: %02d)", x, rank(-x))),

@@ -38,3 +38,48 @@ formatter <- function(.tag, ...) {
     vapply(tags, as.character, character(1L))
   }
 }
+
+#' Create a color-tile formatter
+#'
+#' @param ... parameters passed to \code{gradient}.
+#' @export
+#' @examples
+#' formattable(mtcars, list(mpg = color_tile("white", "pink")))
+color_tile <- function(...) {
+  formatter("span",
+    style = function(x) style(
+      display = "block",
+      padding = "0 4px",
+      "border-radius" = "4px",
+      "background-color" = csscolor(gradient(x, ...))))
+}
+
+#' Create a color-bar formatter
+#'
+#' @param color the background color of the bars
+#' @param ... parameters passed to \code{normalize} function.
+#' @export
+#' @examples
+#' formattable(mtcars, list(mpg = color_bar("pink", 0.2)))
+color_bar <- function(color, ...) {
+  formatter("span",
+    style = function(x) style(
+      display = "block",
+      width = percent(normalize(x, ...)),
+      "border-radius" = "4px",
+      "padding-right" = "4px",
+      "background-color" = csscolor(color)
+    ))
+}
+
+#' Create a color-text formatter
+#'
+#' @param ... parameters passed to \code{gradient}.
+#' @export
+#' @examples
+#' formattable(mtcars, list(mpg = color_text("black", "red")))
+color_text <- function(...) {
+  formatter("span",
+    style = function(x) style(
+      color = csscolor(gradient(x, ...))))
+}
