@@ -142,9 +142,10 @@ Formatted table with the following visualizations:
 library(formattable)
 score_bar <- formatter("span", 
   style = x ~ style(
+    display = "block",
     border.radius = "4px",
     padding.right = "4px",
-    padding.left = sprintf("%.0fpx", 6 + 54 * normalize(x)),
+    width = percent(normalize(x, 0.1, 0.8)),
     background = csscolor(gradient(x, "white", "pink"))
   ))
 

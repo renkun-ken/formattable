@@ -1,6 +1,5 @@
 ---
 title: "formattable demo"
-date: "April 1, 2015"
 output: html_document
 ---
 
