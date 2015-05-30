@@ -4,10 +4,14 @@
 \alias{normalize}
 \title{Normalize a vector to fit zero-to-one scale}
 \usage{
-normalize(x, na.rm = FALSE)
+normalize(x, min = 0, max = 1, na.rm = FALSE)
 }
 \arguments{
 \item{x}{a vector}
+
+\item{min}{numeric value. The lower bound of the interval to normalize \code{x}.}
+
+\item{max}{numeric value. The upper bound of the interval to normalize \code{x}.}
 
 \item{na.rm}{a logical indicating whether missing values
 should be removed}

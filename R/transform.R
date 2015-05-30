@@ -40,15 +40,18 @@ qrank <- function(x, ...) {
 #' Normalize a vector to fit zero-to-one scale
 #'
 #' @param x a vector
+#' @param min numeric value. The lower bound of the interval to normalize \code{x}.
+#' @param max numeric value. The upper bound of the interval to normalize \code{x}.
 #' @param na.rm a logical indicating whether missing values
 #' should be removed
 #' @export
 #' @examples
 #' normalize(mtcars$mpg)
-normalize <- function(x, na.rm = FALSE) {
+normalize <- function(x, min = 0, max = 1, na.rm = FALSE) {
+  stopifnot(min <= max)
   if(all(x == 0)) return(x)
-  max <- max(x, na.rm = na.rm)
-  min <- min(x, na.rm = na.rm)
-  if(max == min) return(rep(1, length(x)))
-  (x - min) / (max - min)
+  xmax <- max(x, na.rm = na.rm)
+  xmin <- min(x, na.rm = na.rm)
+  if(xmax == xmin) return(rep(1, length(x)))
+  min + (max - min) * (x - xmin) / (xmax - xmin)
 }

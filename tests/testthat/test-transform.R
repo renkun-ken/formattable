@@ -25,6 +25,8 @@ test_that("normalize", {
   n <- 100
   x <- rnorm(n)
   expect_equal(normalize(x), (x-min(x)) / (max(x) - min(x)))
+  expect_equal(normalize(x, 0.5, 0.8), 0.5 + 0.3 * normalize(x))
+  expect_error(normalize(x, 0.5, 0.1))
 
   x <- rnorm(n)
   x <- x - min(x, na.rm = TRUE) + 1
