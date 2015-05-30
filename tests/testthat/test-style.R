@@ -87,4 +87,5 @@ test_that("csscolor", {
     c("rgba(0, 26, 51, 0.5)", "rgba(0, 26, 51, 1)", "rgba(0, 26, 51, 0.75)"))
   expect_equal(csscolor(gradient(c(1:3, NA), "white", "red")),
     c("#ffffff", "#ff7f7f", "#ff0000", NA))
+  expect_equal(csscolor(gradient(0.1, "black", "white")), "#ffffff")
 })

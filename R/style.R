@@ -165,11 +165,20 @@ csscolor.matrix <- function(x, format = c("auto", "hex", "rgb", "rgba"),
   if(format == "auto") format <- if(alpha) "rgba" else "hex"
   na_cols <- apply(x, 2L, function(col) any(is.na(col)))
   cols <- switch(format, hex = {
-    hex <- format.hexmode(as.hexmode(x[c("red", "green", "blue"), ]), width = 2L)
-    sprintf("#%s%s%s", hex[1L, ], hex[2L, ], hex[3L, ])
-  }, rgb = sprintf("rgb(%d, %d, %d)", x["red",], x["green",], x["blue", ]),
-    rgba = sprintf("rgba(%d, %d, %d, %g)", x["red",], x["green",], x["blue", ],
-      if(alpha) round(x["alpha", ] / 255L, 2L) else 1))
+    hex <- format.hexmode(as.hexmode(x[c("red", "green", "blue"), , drop = FALSE]), width = 2L)
+    sprintf("#%s%s%s",
+      hex[1L, , drop = FALSE],
+      hex[2L, , drop = FALSE],
+      hex[3L, , drop = FALSE])
+  }, rgb = sprintf("rgb(%d, %d, %d)",
+    x["red", , drop = FALSE],
+    x["green", ,drop = FALSE],
+    x["blue", ,drop = FALSE]),
+    rgba = sprintf("rgba(%d, %d, %d, %g)",
+      x["red", ,drop = FALSE],
+      x["green", ,drop = FALSE],
+      x["blue", ,drop = FALSE],
+      if(alpha) round(x["alpha", ,drop = FALSE] / 255L, 2L) else 1))
   cols[na_cols] <- NA
   if(use.names) names(cols) <- colnames(x)
   cols
