@@ -89,26 +89,13 @@ Formatted table with the following visualizations:
 
 ```{r, eval=FALSE}
 library(formattable)
-score_bar <- formatter("span", 
-  style = x ~ style(
-    display = "block",
-    border.radius = "4px",
-    padding.right = "4px",
-    width = percent(normalize(x, 0.1, 0.8)),
-    background = csscolor(gradient(x, "white", "pink"))
-  ))
 
 formattable(df, list(
-  age = formatter("span", 
-  style = x ~ style(
-    display = "block", 
-    border.radius = "4px",
-    padding.right = "4px",
-    background = csscolor(gradient(x, "white", "orange")))),
+  age = color_tile("white", "orange"),
   grade = formatter("span",
     style = x ~ ifelse(x == "A", style(color = "green", font.weight = "bold"), NA)),
-  test1_score = score_bar,
-  test2_score = score_bar,
+  test1_score = color_bar("white", "pink"),
+  test2_score = color_bar("white", "pink"),
   final_score = formatter("span",
     style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),
     x ~ sprintf("%.2f (rank: %02d)", x, rank(-x))),
