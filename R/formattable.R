@@ -344,8 +344,6 @@ quantile.formattable <- function(x, ...) {
 #' of length and names.
 #' @param check.names \code{TRUE} to check names of data frame to make
 #' valid symbol names. This argument is \code{FALSE} by default.
-#' @param envir The environment in which to evaluate the right-hand side
-#' of the formulas in \code{formatters} if any.
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in
 #' specific \code{format}.
@@ -376,14 +374,13 @@ quantile.formattable <- function(x, ...) {
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
 format_table <- function(x, formatters = list(),
   format = c("markdown", "pandoc"), align = "r", ...,
-  row.names = rownames(x), check.rows = FALSE, check.names = FALSE,
-  envir = parent.frame()) {
+  row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
   stopifnot(is.data.frame(x))
   format <- match.arg(format)
   xdf <- data.frame(mapply(function(x, name) {
     f <- formatters[[name]]
     value <- if (is.null(f)) x
-    else if (inherits(f, "formula")) eval_formula(f, x, envir)
+    else if (inherits(f, "formula")) eval_formula(f, x)
     else match.fun(f)(x)
     if (is.formattable(value)) as.character.formattable(value) else value
   }, x, names(x), SIMPLIFY = FALSE),

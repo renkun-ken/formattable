@@ -15,11 +15,11 @@
 #' @export
 formatter <- function(.tag, ...) {
   args <- list(...)
-  envir <- parent.frame()
   # if function to specify element inner text is missing,
   # then use identify to preserve the default text of
   # the column value
-  if(length(args) == 0L || (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
+  if(length(args) == 0L ||
+      (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
     args <- c(args, identity)
   }
 
@@ -27,7 +27,7 @@ formatter <- function(.tag, ...) {
   function(x) {
     values <- lapply(args, function(arg) {
       value <- if(is.function(arg)) arg(x)
-      else if(inherits(arg, "formula")) eval_formula(arg, x, envir)
+      else if(inherits(arg, "formula")) eval_formula(arg, x)
       else arg
       if(is.null(value)) NA else value
     })

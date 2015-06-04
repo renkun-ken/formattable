@@ -6,7 +6,7 @@
 \usage{
 format_table(x, formatters = list(), format = c("markdown", "pandoc"),
   align = "r", ..., row.names = rownames(x), check.rows = FALSE,
-  check.names = FALSE, envir = parent.frame())
+  check.names = FALSE)
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
@@ -38,9 +38,6 @@ of length and names.}
 
 \item{check.names}{\code{TRUE} to check names of data frame to make
 valid symbol names. This argument is \code{FALSE} by default.}
-
-\item{envir}{The environment in which to evaluate the right-hand side
-of the formulas in \code{formatters} if any.}
 }
 \value{
 a \code{knitr_kable} object whose \code{print} method generates a
