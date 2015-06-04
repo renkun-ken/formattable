@@ -244,26 +244,13 @@ printed. It works with arithmetic operations and common functions and preserves 
 </ul>
 
 <div class="highlight highlight-r"><pre>library(<span class="pl-smi">formattable</span>)
-<span class="pl-smi">score_bar</span> <span class="pl-k">&lt;-</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>, 
-  <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(
-    <span class="pl-v">display</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>block<span class="pl-pds">"</span></span>,
-    <span class="pl-v">border.radius</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
-    <span class="pl-v">padding.right</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
-    <span class="pl-v">width</span> <span class="pl-k">=</span> percent(normalize(<span class="pl-smi">x</span>, <span class="pl-c1">0.1</span>, <span class="pl-c1">0.8</span>)),
-    <span class="pl-v">background</span> <span class="pl-k">=</span> csscolor(gradient(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>))
-  ))
 
 formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
-  <span class="pl-v">age</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>, 
-  <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(
-    <span class="pl-v">display</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>block<span class="pl-pds">"</span></span>, 
-    <span class="pl-v">border.radius</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
-    <span class="pl-v">padding.right</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>4px<span class="pl-pds">"</span></span>,
-    <span class="pl-v">background</span> <span class="pl-k">=</span> csscolor(gradient(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>orange<span class="pl-pds">"</span></span>)))),
+  <span class="pl-v">age</span> <span class="pl-k">=</span> color_tile(<span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>orange<span class="pl-pds">"</span></span>),
   <span class="pl-v">grade</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
     <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> ifelse(<span class="pl-smi">x</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, style(<span class="pl-v">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-v">font.weight</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>bold<span class="pl-pds">"</span></span>), <span class="pl-c1">NA</span>)),
-  <span class="pl-v">test1_score</span> <span class="pl-k">=</span> <span class="pl-smi">score_bar</span>,
-  <span class="pl-v">test2_score</span> <span class="pl-k">=</span> <span class="pl-smi">score_bar</span>,
+  <span class="pl-v">test1_score</span> <span class="pl-k">=</span> color_bar(<span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>),
+  <span class="pl-v">test2_score</span> <span class="pl-k">=</span> color_bar(<span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>),
   <span class="pl-v">final_score</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
     <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(<span class="pl-v">color</span> <span class="pl-k">=</span> ifelse(rank(<span class="pl-k">-</span><span class="pl-smi">x</span>) <span class="pl-k">&lt;</span><span class="pl-k">=</span> <span class="pl-c1">3</span>, <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gray<span class="pl-pds">"</span></span>)),
     <span class="pl-smi">x</span> <span class="pl-k">~</span> sprintf(<span class="pl-s"><span class="pl-pds">"</span>%.2f (rank: %02d)<span class="pl-pds">"</span></span>, <span class="pl-smi">x</span>, rank(<span class="pl-k">-</span><span class="pl-smi">x</span>))),
