@@ -4,3 +4,7 @@ dependencies:
     src: "htmlwidgets/lib/bootstrap"
     script: bootstrap.min.js
     stylesheet: bootstrap.min.css
+#  - name: markdown-js
+#    version: 0.5.0
+#    src: "htmlwidgets/lib/markdown-js"
+#    script: markdown.js

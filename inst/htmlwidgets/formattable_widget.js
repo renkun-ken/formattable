@@ -11,7 +11,7 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
-    el.innerHTML = x.html
+    el.innerHTML = x.html // to test js markdown conversion , markdown.toHTML( x.md )].join(' ')
   },
 
   resize: function(el, width, height, instance) {
