@@ -87,7 +87,7 @@ Formatted table with the following visualizations:
 * `final_score` shows score and ranking. Top 3 are green, and others are gray.
 * `registered` texts are transformed to an icon and yes/no text.
 
-```{r, eval=FALSE}
+```{r results='asis'}
 library(formattable)
 
 formattable(df, list(

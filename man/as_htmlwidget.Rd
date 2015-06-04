@@ -4,7 +4,7 @@
 \alias{as_htmlwidget}
 \title{Convert formattable to an htmlwidget}
 \usage{
-as_htmlwidget(formattable = NULL, width = NULL, height = NULL)
+as_htmlwidget(formattable = NULL, width = "100\%", height = NULL)
 }
 \description{
 formattable was originally designed to work in \code{rmarkdown} environments.
@@ -22,6 +22,28 @@ as_htmlwidget(
    "padding-right" = "4px",
    color = "white",
    "background-color" = rgb(x/max(x), 0, 0))))
+  )
+)
+
+# since an htmlwidget, composes well with other tags
+library(htmltools)
+
+browsable(
+  tagList(
+    tags$div( class="jumbotron"
+              ,tags$h1( class = "text-center"
+                        ,tags$span(class = "glyphicon glyphicon-fire")
+                        ,"experimental as_htmlwidget at work"
+              )
+    )
+    ,tags$div( class = "row"
+               ,tags$div( class = "col-sm-2"
+                          ,tags$p(class="bg-primary", "Hi, I am formattable htmlwidget.")
+               )
+               ,tags$div( class = "col-sm-6"
+                          ,as_htmlwidget( formattable( mtcars ) )
+               )
+    )
   )
 )
 }
