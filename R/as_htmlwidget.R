@@ -28,13 +28,20 @@ as_htmlwidget <- function(formattable = NULL, width = NULL, height = NULL) {
   if(!inherits(formattable,"formattable")) stop( "expect formattable to be a formattable", call. = F)
 
   html = markdown::markdownToHTML(
-    text = formattable:::as.character.formattable(formattable)
+    text = gsub(
+      x = as.character(formattable)
+      , pattern = "\n"
+      , replacement = ""
+    )
     , fragment.only = T
   )
+
+  md = as.character(formattable)
 
   # forward options using x
   x = list(
     html = html
+    , md = md
   )
 
   # create widget
