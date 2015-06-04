@@ -34,7 +34,7 @@ call_or_default <- function(FUN, X, ...) {
   if (is.null(FUN)) X else match.fun(FUN)(X, ...)
 }
 
-eval_formula <- function(x, data, envir) {
+eval_formula <- function(x, data, envir = environment(x)) {
   if (length(x) == 2L) {
     eval(x[[2L]], NULL, envir)
   } else if (is.symbol(symbol <- x[[2L]])) {
