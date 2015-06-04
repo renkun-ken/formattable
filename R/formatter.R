@@ -1,5 +1,6 @@
 #' Create a formatter function making HTML elements
 #'
+#' @importFrom htmltools tag
 #' @param .tag HTML tag name
 #' @param ... functions to create attributes of HTML element from data colums.
 #' The unnamed element will serve as the function to produce the inner text of the

@@ -322,6 +322,7 @@ quantile.formattable <- function(x, ...) {
 #' formatted table presented in a mix of markdown/reStructuredText and
 #' HTML elements. To generate a formatted table, each column of data
 #' frame can be transformed by formatter function.
+#' @importFrom knitr kable
 #' @param x a \code{data.frame}.
 #' @param formatters a list of formatter functions or formulas.
 #' The existing columns of \code{x} will be applied the formatter
