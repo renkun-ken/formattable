@@ -53,3 +53,11 @@ as_htmlwidget <- function(formattable = NULL, width = NULL, height = NULL) {
     package = 'formattable'
   )
 }
+
+
+#' @importFrom shiny bootstrapPage
+formattable_widget_html <- function( name, package, id, style, class, width, height ){
+  shiny:::bootstrapPage(
+    htmltools::tags$div( id = id, class = class, style = style )
+  )
+}

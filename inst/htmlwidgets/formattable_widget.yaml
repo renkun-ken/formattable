@@ -1,9 +1,9 @@
-dependencies:
-  - name: bootstrap
-    version: 3.3.2
-    src: "htmlwidgets/lib/bootstrap"
-    script: bootstrap.min.js
-    stylesheet: bootstrap.min.css
+#dependencies:
+#  - name: bootstrap
+#    version: 3.3.2
+#    src: "htmlwidgets/lib/bootstrap"
+#    script: bootstrap.min.js
+#    stylesheet: bootstrap.min.css
 #  - name: markdown-js
 #    version: 0.5.0
 #    src: "htmlwidgets/lib/markdown-js"
