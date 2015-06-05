@@ -6,6 +6,11 @@ This package is designed for applying formatting on vectors and data frames to m
 
 **This package is still on an initial stage. The APIs may change without notice.**
 
+
+```{r}
+interactive()
+```
+
 ## Install
 
 Currently, the package is only available on GitHub.

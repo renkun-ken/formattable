@@ -168,8 +168,14 @@ print.formattable <- function(x, ...) {
   if (is.null(print_args)) print_args <- list()
   print_args[names(args)] <- args
   if(is.null(print_args$quote)) print_args$quote <- is.character(x)
-  do.call("print", c(list(format.formattable(x)), print_args))
-  x
+  if(interactive()){
+    y <- as_htmlwidget(x)
+    print(y)
+    y
+  } else {
+    do.call("print", c(list(format.formattable(x)), print_args))
+    x
+  }
 }
 
 #' @export
