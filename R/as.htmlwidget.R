@@ -20,7 +20,7 @@ as.htmlwidget <- function(x, ...)
 #' @param x a \code{formattable} object to convert
 #' @param width a valid \code{CSS} width
 #' @param height a valid \code{CSS} height
-#'
+#' @param ... reserved for more parameters
 #' @return a \code{htmlwidget} object
 #'
 #' @examples
@@ -59,45 +59,26 @@ as.htmlwidget <- function(x, ...)
 #'   )
 #' )
 #' }
-#' @import htmlwidgets markdown
+#' @importFrom markdown markdownToHTML
+#' @importFrom htmlwidgets createWidget
 #'
 #' @export
 #'
-as.htmlwidget.formattable <- function(x = NULL, width = "100%", height = NULL) {
-
-  if(!inherits(x,"formattable")) stop( "expect formattable to be a formattable", call. = F)
-
-  html = markdown::markdownToHTML(
-    text = gsub(
-      x = as.character(x)
-      , pattern = "\n"
-      , replacement = ""
-    )
-    , fragment.only = T
-  )
-
-  md = as.character(x)
-
+as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
+  if(!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
+  html <- markdown::markdownToHTML(
+    text = gsub(x = as.character(x), pattern = "\n", replacement = ""),
+    fragment.only = TRUE)
+  md <- as.character(x)
   # forward options using x
-  x = list(
-    html = html
-    , md = md
-  )
+  x <- list(html = html, md = md)
 
   # create widget
-  htmlwidgets::createWidget(
-    name = 'formattable_widget',
-    x,
-    width = width,
-    height = height,
-    package = 'formattable'
-  )
+  htmlwidgets::createWidget(name = 'formattable_widget', x, width = width,
+    height = height, package = 'formattable')
 }
 
-
 #' @importFrom shiny bootstrapPage
-formattable_widget_html <- function( name, package, id, style, class, width, height ){
-  shiny:::bootstrapPage(
-    htmltools::tags$div( id = id, class = class, style = style )
-  )
+formattable_widget_html <- function(name, package, id, style, class, width, height){
+  shiny::bootstrapPage(htmltools::tags$div(id = id, class = class, style = style))
 }

@@ -22,7 +22,7 @@ formattable <- function(x, ...)
 #' is.formattable(10)
 #' is.formattable(formattable(10))
 is.formattable <- function(x) {
-  "formattable" %in% class(x)
+  inherits(x, "formattable")
 }
 
 #' Create a formattable object
@@ -161,21 +161,27 @@ as.character.formattable <- function(x, ...) {
   as.character(format.formattable(x), ...)
 }
 
-#' @export
-print.formattable <- function(x, ...) {
+print_formattable <- function(x, ...)
+  UseMethod("print_formattable")
+
+print_formattable.default <- function(x, ...) {
   args <- list(...)
   print_args <- attr(x, "formattable", exact = TRUE)$print
   if (is.null(print_args)) print_args <- list()
   print_args[names(args)] <- args
   if(is.null(print_args$quote)) print_args$quote <- is.character(x)
-  if(interactive() && inherits(x,"data.frame")){
-    y <- as.htmlwidget(x)
-    print(y)
-    y
-  } else {
-    do.call("print", c(list(format.formattable(x)), print_args))
-    x
-  }
+  do.call("print", c(list(format.formattable(x)), print_args))
+  x
+}
+
+print_formattable.data.frame <- function(x, ...) {
+  if (interactive()) print(as.htmlwidget(x), ...)
+  else NextMethod("print_formattable")
+}
+
+#' @export
+print.formattable <- function(x, ...) {
+  print_formattable(x, ...)
 }
 
 #' @export
