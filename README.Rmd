@@ -117,7 +117,7 @@ formattable(df, list(
 ## Experimental `htmlwidget`
 
 ```{r}
-as_htmlwidget(
+as.htmlwidget(
   formattable(df, list(
     age = color_tile("white", "orange"),
     grade = formatter("span",

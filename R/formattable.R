@@ -168,8 +168,8 @@ print.formattable <- function(x, ...) {
   if (is.null(print_args)) print_args <- list()
   print_args[names(args)] <- args
   if(is.null(print_args$quote)) print_args$quote <- is.character(x)
-  if(interactive()){
-    y <- as_htmlwidget(x)
+  if(interactive() && inherits(x,"data.frame")){
+    y <- as.htmlwidget(x)
     print(y)
     y
   } else {

@@ -1,15 +1,33 @@
+#' Generic function to create an htmlwidget
+#'
+#' This function is a generic function to create an \code{htmlwidget}
+#' to allow HTML/JS from R in multiple contexts.
+#'
+#' @param x an object.
+#' @param ... arguments to be passed to methods.
+#' @export
+#' @return a \code{htmlwidget} object
+as.htmlwidget <- function(x, ...)
+  UseMethod("as.htmlwidget")
+
+
 #' Convert formattable to an htmlwidget
 #'
 #' formattable was originally designed to work in \code{rmarkdown} environments.
 #' Conversion of a formattable to a htmlwidget will allow use in other contexts
 #' such as console, RStudio Viewer, and Shiny.
 #'
+#' @param x a \code{formattable} object to convert
+#' @param width a valid \code{CSS} width
+#' @param height a valid \code{CSS} height
+#'
+#' @return a \code{htmlwidget} object
 #'
 #' @examples
 #' \dontrun{
 #' library(formattable)
 #' # mtcars (mpg background in gradient: the higher, the redder)
-#' as_htmlwidget(
+#' as.htmlwidget(
 #'   formattable(mtcars, list(mpg = formatter("span",
 #'    style = x ~ style(display = "block",
 #'    "border-radius" = "4px",
@@ -27,7 +45,7 @@
 #'     tags$div( class="jumbotron"
 #'               ,tags$h1( class = "text-center"
 #'                         ,tags$span(class = "glyphicon glyphicon-fire")
-#'                         ,"experimental as_htmlwidget at work"
+#'                         ,"experimental as.htmlwidget at work"
 #'               )
 #'     )
 #'     ,tags$div( class = "row"
@@ -35,7 +53,7 @@
 #'                           ,tags$p(class="bg-primary", "Hi, I am formattable htmlwidget.")
 #'                )
 #'                ,tags$div( class = "col-sm-6"
-#'                           ,as_htmlwidget( formattable( mtcars ) )
+#'                           ,as.htmlwidget( formattable( mtcars ) )
 #'                )
 #'     )
 #'   )
@@ -45,20 +63,20 @@
 #'
 #' @export
 #'
-as_htmlwidget <- function(formattable = NULL, width = "100%", height = NULL) {
+as.htmlwidget.formattable <- function(x = NULL, width = "100%", height = NULL) {
 
-  if(!inherits(formattable,"formattable")) stop( "expect formattable to be a formattable", call. = F)
+  if(!inherits(x,"formattable")) stop( "expect formattable to be a formattable", call. = F)
 
   html = markdown::markdownToHTML(
     text = gsub(
-      x = as.character(formattable)
+      x = as.character(x)
       , pattern = "\n"
       , replacement = ""
     )
     , fragment.only = T
   )
 
-  md = as.character(formattable)
+  md = as.character(x)
 
   # forward options using x
   x = list(
