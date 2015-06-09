@@ -443,7 +443,7 @@ format_table <- function(x, formatters = list(),
 formattable.data.frame <- function(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
-    list(formatter = formatter, format = list(..., envir = parent.frame()),
+    list(formatter = formatter, format = list(...),
       preproc = preproc, postproc = postproc))
 }
 
