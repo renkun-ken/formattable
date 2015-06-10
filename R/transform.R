@@ -48,6 +48,8 @@ qrank <- function(x, ...) {
 #' @examples
 #' normalize(mtcars$mpg)
 normalize <- function(x, min = 0, max = 1, na.rm = FALSE) {
+  if (!is.numeric(x)) stop("x must be numeric")
+  x <- unclass(x)
   stopifnot(min <= max)
   if(all(x == 0)) return(x)
   xmax <- max(x, na.rm = na.rm)
