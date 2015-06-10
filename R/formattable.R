@@ -175,7 +175,8 @@ print.formattable <- function(x, ...) {
 #' @export
 format.formattable <- function(x, ...,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
-  attrs <- get_attr(x, "formattable")
+  attrs <- attr(x, "formattable", exact = TRUE)
+  if (is.null(attrs)) return(NextMethod("format"))
   format_args <- attrs$format
   value <- remove_class(x, "formattable")
   if (length(attrs$preproc)) {
