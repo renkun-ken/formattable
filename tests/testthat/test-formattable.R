@@ -99,6 +99,10 @@ test_that("formattable.data.frame", {
     "knitr_kable")
   expect_is(format_table(mtcars, list(vs = ~ "unknown")), "knitr_kable")
   expect_error(format_table(mtcars, list(vs = f(a,b) ~ "unknown")))
+  expect_true({
+    capture.output(print(formattable(mtcars)))
+    TRUE
+  })
 })
 
 test_that("formattable.matrix", {
