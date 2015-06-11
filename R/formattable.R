@@ -177,8 +177,8 @@ print_formattable.default <- function(x, ...) {
 print_formattable.data.frame <- function(x, ...) {
   # one more check to see if markdown format
   #  if it is then do htmlwidget conversion
-  format = get_attr(x,"formattable")$format$format
-  is_markdown = is.null(format) ||  format == "markdown"
+  format <- get_attr(x,"formattable")$format$format
+  is_markdown <- is.null(format) ||  format == "markdown"
 
   if (interactive() && is_markdown) print(as.htmlwidget(x), ...)
   else NextMethod("print_formattable")
