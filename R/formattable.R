@@ -192,7 +192,8 @@ print.formattable <- function(x, ...) {
 #' @export
 format.formattable <- function(x, ...,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
-  attrs <- get_attr(x, "formattable")
+  attrs <- attr(x, "formattable", exact = TRUE)
+  if (is.null(attrs)) return(NextMethod("format"))
   format_args <- attrs$format
   value <- remove_class(x, "formattable")
   if (length(attrs$preproc)) {
@@ -460,7 +461,7 @@ format_table <- function(x, formatters = list(),
 formattable.data.frame <- function(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
-    list(formatter = formatter, format = list(..., envir = parent.frame()),
+    list(formatter = formatter, format = list(...),
       preproc = preproc, postproc = postproc))
 }
 

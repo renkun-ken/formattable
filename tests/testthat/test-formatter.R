@@ -27,13 +27,16 @@ test_that("formatters", {
   f1 <- color_tile("white", "pink")
   f1(0.1)
   f1(rnorm(10))
+  f1(percent(rnorm(10)))
 
   f2 <- color_bar("pink", 0.2)
   f2(0.1)
   f2(rnorm(10))
+  f2(percent(rnorm(10)))
 
   f3 <- color_text("green", "red")
   f3(0.1)
   f3(rnorm(10))
+  f3(percent(rnorm(10)))
 })
 

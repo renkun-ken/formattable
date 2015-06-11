@@ -34,4 +34,6 @@ test_that("normalize", {
   expect_error(normalize(x), "missing value")
   expect_equal(normalize(x, na.rm = TRUE),
     (x-min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)))
+
+  expect_equal(normalize(c(NA,NA,NA), na.rm = TRUE), c(0,0,0))
 })

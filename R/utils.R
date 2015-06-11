@@ -21,13 +21,7 @@ remove_attribute <- function(x, which) {
 }
 
 copy_obj <- function(src, target, class) {
-  create_obj(target, class, get_attr(src, class))
-}
-
-get_attr <- function(x, class) {
-  if (is.null(value <- attr(x, class, exact = TRUE)))
-    stop("missing attribute for class '", class, "'.", call. = FALSE) else
-      value
+  create_obj(target, class, attr(src, class, exact = TRUE))
 }
 
 call_or_default <- function(FUN, X, ...) {
