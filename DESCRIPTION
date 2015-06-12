@@ -1,19 +1,24 @@
 Package: formattable
 Title: Formattable Data Structures
-Version: 0.0.13.3
-Authors@R: person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre"))
+Version: 0.0.14.2
+Authors@R: c(
+    person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre")),
+    person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
+    )
 Description: Provides functions to create formattable vectors and data frames.
     Formattable vectors are printed with text formatting, and formattable
     data frames are printed with multiple types of formatting in markdown
     to improve the readability of data presented in tabular form rendered as
     web pages.
 Depends: R (>= 2.14.1)
-Date: 2015-06-10
-Imports: htmltools, knitr
+Date: 2015-06-12
+Imports: htmltools, htmlwidgets, markdown, knitr, shiny
 License: MIT + file LICENSE
 LazyData: true
 URL: http://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
-Suggests: testthat
+Suggests: testthat,
+    knitr
+VignetteBuilder: knitr

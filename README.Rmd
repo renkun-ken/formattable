@@ -6,6 +6,11 @@ This package is designed for applying formatting on vectors and data frames to m
 
 **This package is still on an initial stage. The APIs may change without notice.**
 
+
+```{r}
+interactive()
+```
+
 ## Install
 
 Currently, the package is only available on GitHub.
@@ -87,7 +92,7 @@ Formatted table with the following visualizations:
 * `final_score` shows score and ranking. Top 3 are green, and others are gray.
 * `registered` texts are transformed to an icon and yes/no text.
 
-```{r, eval=FALSE}
+```{r results='asis'}
 library(formattable)
 
 formattable(df, list(
@@ -108,6 +113,10 @@ formattable(df, list(
 ![formattable](./formattable.png?raw=true)
 
 **The icon set used in the table is by [GLYPHICONS.com](http://GLYPHICONS.com) and included in [Bootstrap](http://getbootstrap.com/components/#glyphicons).**
+
+## `htmlwidget` conversion in interactive environments
+
+`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `as.character`.
 
 ## License
 

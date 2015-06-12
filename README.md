@@ -160,6 +160,10 @@ formattable(df, list(
 
 **The icon set used in the table is by [GLYPHICONS.com](http://GLYPHICONS.com) and included in [Bootstrap](http://getbootstrap.com/components/#glyphicons).**
 
+## `htmlwidget` conversion in interactive environments
+
+`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `as.character`.
+
 ## License
 
 This package is under [MIT License](http://opensource.org/licenses/MIT).

@@ -22,7 +22,7 @@ formattable <- function(x, ...)
 #' is.formattable(10)
 #' is.formattable(formattable(10))
 is.formattable <- function(x) {
-  "formattable" %in% class(x)
+  inherits(x, "formattable")
 }
 
 #' Create a formattable object
@@ -161,8 +161,10 @@ as.character.formattable <- function(x, ...) {
   as.character(format.formattable(x), ...)
 }
 
-#' @export
-print.formattable <- function(x, ...) {
+print_formattable <- function(x, ...)
+  UseMethod("print_formattable")
+
+print_formattable.default <- function(x, ...) {
   args <- list(...)
   print_args <- attr(x, "formattable", exact = TRUE)$print
   if (is.null(print_args)) print_args <- list()
@@ -170,6 +172,21 @@ print.formattable <- function(x, ...) {
   if(is.null(print_args$quote)) print_args$quote <- is.character(x)
   do.call("print", c(list(format.formattable(x)), print_args))
   x
+}
+
+print_formattable.data.frame <- function(x, ...) {
+  # one more check to see if markdown format
+  #  if it is then do htmlwidget conversion
+  format <- attr(x, "formattable", exact = TRUE)$format$format
+  is_markdown <- is.null(format) ||  format == "markdown"
+
+  if (interactive() && is_markdown) print(as.htmlwidget(x), ...)
+  else NextMethod("print_formattable")
+}
+
+#' @export
+print.formattable <- function(x, ...) {
+  print_formattable(x, ...)
 }
 
 #' @export
