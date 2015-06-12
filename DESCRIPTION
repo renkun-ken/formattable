@@ -19,4 +19,6 @@ URL: http://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
-Suggests: testthat
+Suggests: testthat,
+    knitr
+VignetteBuilder: knitr
