@@ -114,26 +114,9 @@ formattable(df, list(
 
 **The icon set used in the table is by [GLYPHICONS.com](http://GLYPHICONS.com) and included in [Bootstrap](http://getbootstrap.com/components/#glyphicons).**
 
-## Experimental `htmlwidget`
+## `htmlwidget` conversion in interactive environments
 
-```{r}
-as.htmlwidget(
-  formattable(df, list(
-    age = color_tile("white", "orange"),
-    grade = formatter("span",
-      style = x ~ ifelse(x == "A", style(color = "green", font.weight = "bold"), NA)),
-    test1_score = color_bar("pink", 0.2),
-    test2_score = color_bar("pink", 0.2),
-    final_score = formatter("span",
-      style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),
-      x ~ sprintf("%.2f (rank: %02d)", x, rank(-x))),
-    registered = formatter("span", 
-      style = x ~ style(color = ifelse(x, "green", "red")),
-      x ~ icontext(ifelse(x, "ok", "remove"), ifelse(x, "Yes", "No")))
-  ))
-  , width = "100%"
-)
-```
+`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `as.character`.
 
 ## License
 
