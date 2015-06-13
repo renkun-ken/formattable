@@ -4,7 +4,7 @@
 
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
-**This package is still on an initial stage. The APIs may change without notice.**
+**This package is still under active development. The APIs may be unstable.**
 
 ## Install
 
@@ -162,7 +162,7 @@ formattable(df, list(
 
 ## `htmlwidget` conversion in interactive environments
 
-`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `as.character`.
+`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `format_table` that calls `knitr::kable` with formatters or call `as.character` with the `formattable data.frame` object.
 
 ## License
 
