@@ -26,7 +26,7 @@
 
 <p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
 
-<p><strong>This package is still on an initial stage. The APIs may change without notice.</strong></p>
+<p><strong>This package is still under active development. The APIs may be unstable.</strong></p>
 
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
@@ -259,9 +259,15 @@ formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
     <span class="pl-smi">x</span> <span class="pl-k">~</span> icontext(ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>ok<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>remove<span class="pl-pds">"</span></span>), ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>Yes<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>No<span class="pl-pds">"</span></span>)))
 ))</pre></div>
 
-<p><img src="https://github.com/renkun-ken/formattable/raw/master/formattable.png?raw=true" alt="formattable"></p>
+<p><img src="https://raw.githubusercontent.com/renkun-ken/formattable/master/formattable.png" alt="formattable"></p>
 
 <p><strong>The icon set used in the table is by <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> and included in <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a>.</strong></p>
+
+<h2>
+<a id="htmlwidget-conversion-in-interactive-environments" class="anchor" href="#htmlwidget-conversion-in-interactive-environments" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<code>htmlwidget</code> conversion in interactive environments</h2>
+
+<p><code>formattable</code> will automatically convert to an <code>htmlwidget</code> when in an <code>interactive()</code> context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the <code>markdown</code> table output, please use <code>format_table</code> that calls <code>knitr::kable</code> with formatters or call <code>as.character</code> with the <code>formattable data.frame</code> object.</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
