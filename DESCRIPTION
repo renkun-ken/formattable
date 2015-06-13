@@ -2,7 +2,7 @@ Package: formattable
 Title: Formattable Data Structures
 Version: 0.0.14.2
 Authors@R: c(
-    person("Kun", "Ren", , "renkun@outlook.com", role = c("aut", "cre")),
+    person("Kun", "Ren", role = c("aut", "cre"), email = "renkun@outlook.com"),
     person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
     )
 Description: Provides functions to create formattable vectors and data frames.
@@ -19,6 +19,4 @@ URL: http://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
-Suggests: testthat,
-    knitr
-VignetteBuilder: knitr
+Suggests: testthat
