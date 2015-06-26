@@ -222,116 +222,116 @@ format.formattable <- function(x, ...,
 
 #' @export
 c.formattable <- function(..., recursive = FALSE) {
-  copy_obj(..1, NextMethod("c"), "formattable")
+  fcreate_obj(c, "formattable", ...)
 }
 
 #' @export
 `+.formattable` <- function(x, y) {
-  copy_obj(x, NextMethod("+"), "formattable")
+  cop_create_obj(`+`, "formattable", x, y)
 }
 
 #' @export
 `-.formattable` <- function(x, y) {
-  copy_obj(x, NextMethod("-"), "formattable")
+  cop_create_obj(`-`, "formattable", x, y)
 }
 
 #' @export
 `*.formattable` <- function(x, y) {
-  copy_obj(x, NextMethod("*"), "formattable")
+  cop_create_obj(`*`, "formattable", x, y)
 }
 
 #' @export
 `/.formattable` <- function(x, y) {
-  copy_obj(x, NextMethod("/"), "formattable")
+  fcreate_obj(`/`, "formattable", x, unclass(y))
 }
 
 #' @export
 `%%.formattable` <- function(x, y) {
-  copy_obj(x, NextMethod("%%"), "formattable")
+  fcreate_obj(`%%`, "formattable", x, unclass(y))
 }
 
 #' @export
 rep.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("rep"), "formattable")
+  fcreate_obj(rep, "formattable", x, ...)
 }
 
 #' @export
 `&.formattable` <- function(x, y) {
-  copy_obj(x, NextMethod("&"), "formattable")
+  fcreate_obj(`&`, "formattable", x, unclass(y))
 }
 
 #' @export
 `|.formattable` <- function(x, y) {
-  copy_obj(x, NextMethod("|"), "formattable")
+  fcreate_obj(`|`, "formattable", x, unclass(y))
 }
 
 #' @export
 all.formattable <- function(...) {
-  copy_obj(..1, NextMethod("all"), "formattable")
+  fcreate_obj(all, "formattable", ...)
 }
 
 #' @export
 any.formattable <- function(...) {
-  copy_obj(..1, NextMethod("any"), "formattable")
+  fcreate_obj(any, "formattable", ...)
 }
 
 #' @export
 max.formattable <- function(...) {
-  copy_obj(..1, NextMethod("max"), "formattable")
+  fcreate_obj(max, "formattable", ...)
 }
 
 #' @export
 min.formattable <- function(...) {
-  copy_obj(..1, NextMethod("min"), "formattable")
+  fcreate_obj(min, "formattable", ...)
 }
 
 #' @export
 sum.formattable <- function(...) {
-  copy_obj(..1, NextMethod("sum"), "formattable")
+  fcreate_obj(sum, "formattable", ...)
 }
 
 #' @export
 mean.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("mean"), "formattable")
+  fcreate_obj(mean, "formattable", x, ...)
 }
 
 #' @export
 unique.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("unique"), "formattable")
+  fcreate_obj(unique, "formattable", x, ...)
 }
 
 #' @export
 diff.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("diff"), "formattable")
+  fcreate_obj(diff, "formattable", x, ...)
 }
 
 #' @export
 cummax.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("cummax"), "formattable")
+  fcreate_obj(cummax, "formattable", x, ...)
 }
 
 #' @export
 cummin.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("cummin"), "formattable")
+  fcreate_obj(cummin, "formattable", x, ...)
 }
 
 #' @export
 cumsum.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("cumsum"), "formattable")
+  fcreate_obj(cumsum, "formattable", x, ...)
 }
 
 #' @rdname stats median
 #' @importFrom stats median
 #' @export
 median.formattable <- function(x, ...) {
-  copy_obj(x, NextMethod("median"), "formattable")
+  fcreate_obj(median, "formattable", x, ...)
 }
 
 #' @rdname stats quantile
 #' @importFrom stats quantile
 #' @export
 quantile.formattable <- function(x, ...) {
-  copy_obj(x, quantile(remove_class(x, "formattable")), "formattable")
+  fcreate_obj(quantile, "formattable", x, ...)
 }
 
 #' Format a data frame with formatter functions
