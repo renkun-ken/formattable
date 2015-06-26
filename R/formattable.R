@@ -211,6 +211,11 @@ format.formattable <- function(x, ...,
 }
 
 #' @export
+as.list.formattable <- function(x) {
+  lapply(seq_along(x), function(i) x[i])
+}
+
+#' @export
 `[.formattable` <- function(x, ...) {
   if(is.atomic(x)) copy_obj(x, NextMethod("["), "formattable") else NextMethod("[")
 }

@@ -84,6 +84,13 @@ test_that("foramttable operators", {
   expect_equal(format(2 * percent(0.5)), "100.00%")
 })
 
+test_that("formattable methods", {
+  expect_equal(as.list(percent(c(0.1, 0.2))),
+    list(percent(0.1), percent(0.2)))
+  expect_equal(lapply(percent(c(0.1, 0.2)), identity),
+    list(percent(0.1), percent(0.2)))
+})
+
 test_that("formattable.data.frame", {
   obj <- formattable(mtcars)
   expect_is(obj, c("formattable", "data.frame"))
