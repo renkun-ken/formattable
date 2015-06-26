@@ -211,7 +211,7 @@ format.formattable <- function(x, ...,
 }
 
 #' @export
-as.list.formattable <- function(x) {
+as.list.formattable <- function(x, ...) {
   lapply(seq_along(x), function(i) x[i])
 }
 
