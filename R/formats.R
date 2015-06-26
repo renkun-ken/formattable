@@ -15,6 +15,21 @@ percent <- function(x, digits = 2L, format = "f", ...) {
     postproc = function(str, x) paste0(str, ifelse(is.finite(x), "%", "")))
 }
 
+#' Numeric vector showing pre-specific digits
+#'
+#' @param x a numeric vector
+#' @param digits an integer to indicate the number of digits to show.
+#' @param format format type passed to \code{\link{formatC}}.
+#' @param ... additional parameters passed to \code{formattable}.
+#' @export
+#' @examples
+#' digits(pi, 2)
+#' digits(123.45678, 3)
+digits <- function(x, digits, format = "f", ...) {
+  stopifnot(is.numeric(x))
+  formattable(x, format = format, digits = digits, ...)
+}
+
 #' Numeric vector with thousands separators
 #' @inheritParams percent
 #' @param big.mark thousands separator
