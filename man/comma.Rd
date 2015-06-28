@@ -2,9 +2,16 @@
 % Please edit documentation in R/formats.R
 \name{comma}
 \alias{comma}
+\alias{comma.character}
+\alias{comma.numeric}
 \title{Numeric vector with thousands separators}
 \usage{
-comma(x, digits = 2L, format = "f", big.mark = ",", ...)
+comma(x, digits, format = "f", big.mark = ",", ...)
+
+\method{comma}{numeric}(x, digits = 2L, format = "f", big.mark = ",", ...)
+
+\method{comma}{character}(x, digits = max(get_digits(x)), format = "f",
+  big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -24,5 +31,6 @@ Numeric vector with thousands separators
 comma(1000000)
 comma(c(1250000, 225000))
 comma(c(1250000, 225000), format = "d")
+comma("123,345.123")
 }
 
