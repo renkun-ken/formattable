@@ -1,6 +1,8 @@
 percent_preproc <- function(x) x * 100
 percent_postproc <- function(str, x)
   sprintf("%s%s", str, ifelse(is.finite(x), "%", ""))
+accounting_postproc <- function(str, x)
+  sprintf(ifelse(x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE))
 
 #' Numeric vector with percentage representation
 #'
@@ -45,8 +47,7 @@ percent.character <- function(x, digits = NA, format = "f", ...) {
 #' digits(pi, 2)
 #' digits(123.45678, 3)
 digits <- function(x, digits, format = "f", ...) {
-  stopifnot(is.numeric(x))
-  formattable(x, format = format, digits = digits, ...)
+  formattable(as.numeric(x), format = format, digits = digits, ...)
 }
 
 #' Numeric vector with thousands separators
@@ -89,8 +90,7 @@ currency <- function(x, symbol = "$",
 accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   stopifnot(is.numeric(x))
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
-    postproc = function(str, x)
-      sprintf(ifelse(x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE)))
+    postproc = "accounting_postproc")
 }
 
 #' Numeric vector with scientific format
@@ -103,8 +103,7 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 #' scientific(1253421, digits = 8)
 #' scientific(1253421, digits = 8, format = "E")
 scientific <- function(x, format = c("e", "E"), ...) {
-  stopifnot(is.numeric(x))
-  formattable(x, format = match.arg(format), ...)
+  formattable(as.numeric(x), format = match.arg(format), ...)
 }
 
 
