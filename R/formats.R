@@ -82,16 +82,34 @@ comma.character <- function(x,
 #' @param symbol currency symbol
 #' @param sep separator between symbol and value
 #' @export
+currency <- function(x, symbol, digits,
+  format = "f", big.mark = ",", ...)
+  UseMethod("currency")
+
+#' @rdname currency
+#' @export
 #' @examples
 #' currency(200000)
 #' currency(200000, "\U20AC")
 #' currency(1200000, "USD", sep = " ")
 #' currency(1200000, "USD", format = "d", sep = " ")
-currency <- function(x, symbol = "$",
+currency.numeric <- function(x, symbol = "$",
   digits = 2L, format = "f", big.mark = ",", ..., sep = "") {
-  stopifnot(is.numeric(x))
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
-    postproc = function(str, x) paste(symbol, str, sep = sep))
+    postproc = function(str, x) sprintf("%s%s%s",
+      ifelse(is.na(x), "", symbol), sep, str))
+}
+
+#' @rdname currency
+#' @export
+#' @examples
+#' currency("$ 120,250.50")
+#' currency("HK$ 120,250.50", symbol = "HK$")
+currency.character <- function(x, symbol = "$",
+  digits = max(get_digits(x)), format = "f", big.mark = ",", ...) {
+  num <- gsub(symbol, "", gsub(big.mark, "", x, fixed = TRUE), fixed = TRUE)
+  currency.numeric(as.numeric(num), symbol = symbol, digits = digits,
+    format = format, big.mark = big.mark, ...)
 }
 
 #' Numeric vector with accounting format

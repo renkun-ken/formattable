@@ -44,7 +44,12 @@ test_that("currency", {
   expect_equal(format(currency(obj, digits = 0, big.mark = "/")),
     c("$-5/300","$10/500","$20/300","$35/010"))
   expect_equal(format(currency(1000, "USD", digits = 0, sep = " ")), "USD 1,000")
-  expect_error(currency("a"))
+  expect_warning(currency("a"))
+  expect_equal(currency("$ 123,234.50"), currency(123234.50))
+  expect_equal(currency(c("$ 123,234.50", "$123.503")),
+    currency(c(123234.500, 123.503), digits = 3))
+  expect_equal(currency(c("HK$ 123,234.50", "HK$ 123.503"), symbol = "HK$"),
+    currency(c(123234.500, 123.503), symbol = "HK$", digits = 3))
 })
 
 test_that("accounting", {
