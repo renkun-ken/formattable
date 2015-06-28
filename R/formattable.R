@@ -165,12 +165,15 @@ print_formattable <- function(x, ...)
   UseMethod("print_formattable")
 
 print_formattable.default <- function(x, ...) {
-  args <- list(...)
-  print_args <- attr(x, "formattable", exact = TRUE)$print
-  if (is.null(print_args)) print_args <- list()
-  print_args[names(args)] <- args
-  if(is.null(print_args$quote)) print_args$quote <- is.character(x)
-  do.call("print", c(list(format.formattable(x)), print_args))
+  if (length(x) == 0L) cat(sprintf("%s(0)", paste0(class(x), collapse = " ")))
+  else {
+    args <- list(...)
+    print_args <- attr(x, "formattable", exact = TRUE)$print
+    if (is.null(print_args)) print_args <- list()
+    print_args[names(args)] <- args
+    if(is.null(print_args$quote)) print_args$quote <- is.character(x)
+    do.call("print", c(list(format.formattable(x)), print_args))
+  }
   x
 }
 
