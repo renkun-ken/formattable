@@ -24,6 +24,11 @@ percent.numeric <- function(x, digits = 2L, format = "f", ...) {
     preproc = "percent_preproc", postproc = "percent_postproc")
 }
 
+#' @export
+percent.default <- function(x, ...) {
+  percent.numeric(as.numeric(x), ...)
+}
+
 #' @rdname percent
 #' @export
 #' @examples
@@ -67,6 +72,11 @@ comma.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...)
 }
 
+#' @export
+comma.default <- function(x, ...) {
+  comma.numeric(as.numeric(x), ...)
+}
+
 #' @rdname comma
 #' @export
 #' @examples
@@ -100,6 +110,11 @@ currency.numeric <- function(x, symbol = "$",
       ifelse(is.na(x), "", symbol), sep, str))
 }
 
+#' @export
+currency.default <- function(x, ...) {
+  currency.numeric(as.numeric(x), ...)
+}
+
 #' @rdname currency
 #' @export
 #' @examples
@@ -127,6 +142,11 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...)
 accounting.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = "accounting_postproc")
+}
+
+#' @export
+accounting.default <- function(x, ...) {
+  accounting.numeric(as.numeric(x), ...)
 }
 
 #' @rdname accounting
