@@ -7,7 +7,11 @@ test_that("percent", {
   expect_equal(format(obj), c("-5.00%","15.00%","25.20%","30.03%"))
   expect_equal(format(percent(data, digits = 0)), c("-5%","15%","25%","30%"))
   expect_equal(format(percent(obj, digits = 0)), c("-5%","15%","25%","30%"))
-  expect_error(percent("a"))
+  expect_warning(percent("a"), regexp = "NA")
+  expect_equal(percent("1.00%"), percent(0.01))
+  expect_equal(percent("1%"), percent(0.01, digits = 0L))
+  expect_equal(percent(c("1.00%", "1%")), percent(c(0.01, 0.01)))
+  expect_equal(percent(c("1.00%", "1.5")), percent(c(0.01, 1.5)))
 })
 
 test_that("digits", {
@@ -60,7 +64,7 @@ test_that("scientific", {
     c("-5.30e+03","1.05e+04","2.03e+04","3.50e+04" ))
   expect_equal(format(scientific(data, format = "E", digits = 2)),
     c("-5.30E+03","1.05E+04","2.03E+04","3.50E+04" ))
-  expect_error(scientific("a"))
+  expect_warning(scientific("a"), "NA")
 })
 
 test_that("prefix", {

@@ -57,3 +57,13 @@ eval_formula <- function(x, data, envir = environment(x)) {
     stop("The formula should be either '~ expr' or 'x ~ expr'", call. = FALSE)
   }
 }
+
+get_digits <- function(x) {
+  has_decimal_point <- grepl(".", x, fixed = TRUE)
+  valid <- grepl("([0-9]+)|([0-9]*\\.[0-9]*)", x)
+  decimals <- gsub("[0-9]*\\.([0-9]*).*$", "\\1", x)
+  digits <- nchar(decimals)
+  digits[!valid] <- NA_integer_
+  digits[valid & !has_decimal_point] <- 0L
+  digits
+}

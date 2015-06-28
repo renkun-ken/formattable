@@ -2,9 +2,15 @@
 % Please edit documentation in R/formats.R
 \name{percent}
 \alias{percent}
-\title{Numeric vector with percentage format}
+\alias{percent.character}
+\alias{percent.numeric}
+\title{Numeric vector with percentage representation}
 \usage{
-percent(x, digits = 2L, format = "f", ...)
+percent(x, digits, format = "f", ...)
+
+\method{percent}{numeric}(x, digits = 2L, format = "f", ...)
+
+\method{percent}{character}(x, digits = NA, format = "f", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -16,10 +22,12 @@ percent(x, digits = 2L, format = "f", ...)
 \item{...}{additional parameters passed to \code{formattable}.}
 }
 \description{
-Numeric vector with percentage format
+Numeric vector with percentage representation
 }
 \examples{
 percent(rnorm(10, 0, 0.1))
 percent(rnorm(10, 0, 0.1), digits = 0)
+percent("0.5\%")
+percent(c("15.5\%", "25.12\%", "73.5"))
 }
 
