@@ -2,7 +2,7 @@ percent_preproc <- function(x) x * 100
 percent_postproc <- function(str, x)
   sprintf("%s%s", str, ifelse(is.finite(x), "%", ""))
 accounting_postproc <- function(str, x)
-  sprintf(ifelse(x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE))
+  sprintf(ifelse(is.na(x) | x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE))
 
 #' Numeric vector with percentage representation
 #'
@@ -97,14 +97,30 @@ currency <- function(x, symbol = "$",
 #' Numeric vector with accounting format
 #' @inheritParams comma
 #' @export
+accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...)
+  UseMethod("accounting")
+
+#' @rdname accounting
+#' @export
 #' @examples
 #' accounting(15320)
 #' accounting(-12500)
 #' accounting(c(1200, -3500, 2600), format = "d")
-accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
-  stopifnot(is.numeric(x))
+accounting.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = "accounting_postproc")
+}
+
+#' @rdname accounting
+#' @export
+#' @examples
+#' accounting(c("123,23.50", "(123.243)"))
+accounting.character <- function(x, digits = max(get_digits(x)),
+  format = "f", big.mark = ",", ...) {
+  sgn <- ifelse(grepl("\\(.+\\)", x), -1, 1)
+  num <- gsub("\\((.+)\\)", "\\1", gsub(big.mark, "", x, fixed = TRUE))
+  accounting.numeric(sgn * as.numeric(num), digits = digits,
+    format = format, big.mark = big.mark, ...)
 }
 
 #' Numeric vector with scientific format
@@ -119,8 +135,6 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 scientific <- function(x, format = c("e", "E"), ...) {
   formattable(as.numeric(x), format = match.arg(format), ...)
 }
-
-
 
 #' Formattable object with prefix
 #' @param x an object

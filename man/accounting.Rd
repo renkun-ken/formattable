@@ -2,9 +2,17 @@
 % Please edit documentation in R/formats.R
 \name{accounting}
 \alias{accounting}
+\alias{accounting.character}
+\alias{accounting.numeric}
 \title{Numeric vector with accounting format}
 \usage{
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
+
+\method{accounting}{numeric}(x, digits = 2L, format = "f", big.mark = ",",
+  ...)
+
+\method{accounting}{character}(x, digits = max(get_digits(x)), format = "f",
+  big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -24,5 +32,6 @@ Numeric vector with accounting format
 accounting(15320)
 accounting(-12500)
 accounting(c(1200, -3500, 2600), format = "d")
+accounting(c("123,23.50", "(123.243)"))
 }
 
