@@ -50,6 +50,8 @@ test_that("currency", {
     currency(c(123234.500, 123.503), digits = 3))
   expect_equal(currency(c("HK$ 123,234.50", "HK$ 123.503"), symbol = "HK$"),
     currency(c(123234.500, 123.503), symbol = "HK$", digits = 3))
+  expect_equal(currency(c("HK$ 123,234.50", "HK$ 123.503")),
+    currency(c(123234.500, 123.503), symbol = "HK$", digits = 3))
 })
 
 test_that("accounting", {

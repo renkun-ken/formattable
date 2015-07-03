@@ -115,14 +115,22 @@ currency.default <- function(x, ...) {
   currency.numeric(as.numeric(x), ...)
 }
 
+get_currency_symbol <- function(x) {
+  sym <- unique(gsub("\\d|\\s|\\,|\\.", "", x))
+  if (length(sym) > 1L) warning("Cannot find a unique symbol", call. = FALSE)
+  sym[[1L]]
+}
+
 #' @rdname currency
 #' @export
 #' @examples
 #' currency("$ 120,250.50")
 #' currency("HK$ 120,250.50", symbol = "HK$")
-currency.character <- function(x, symbol = "$",
+#' currency("HK$ 120, 250.50")
+currency.character <- function(x, symbol = get_currency_symbol(x),
   digits = max(get_digits(x)), format = "f", big.mark = ",", ...) {
-  num <- gsub(symbol, "", gsub(big.mark, "", x, fixed = TRUE), fixed = TRUE)
+  if (any(invalid <- !grepl("\\d", x))) warning("Invalid input in 'x': ", paste(x[invalid], collapse = ", "), call. = FALSE)
+  num <- gsub("[^0-9\\.]", "", gsub(big.mark, "", x, fixed = TRUE))
   currency.numeric(as.numeric(num), symbol = symbol, digits = digits,
     format = format, big.mark = big.mark, ...)
 }

@@ -11,8 +11,8 @@ currency(x, symbol, digits, format = "f", big.mark = ",", ...)
 \method{currency}{numeric}(x, symbol = "$", digits = 2L, format = "f",
   big.mark = ",", ..., sep = "")
 
-\method{currency}{character}(x, symbol = "$", digits = max(get_digits(x)),
-  format = "f", big.mark = ",", ...)
+\method{currency}{character}(x, symbol = get_currency_symbol(x),
+  digits = max(get_digits(x)), format = "f", big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -39,5 +39,6 @@ currency(1200000, "USD", sep = " ")
 currency(1200000, "USD", format = "d", sep = " ")
 currency("$ 120,250.50")
 currency("HK$ 120,250.50", symbol = "HK$")
+currency("HK$ 120, 250.50")
 }
 
