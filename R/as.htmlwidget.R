@@ -88,3 +88,14 @@ as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
 formattable_widget_html <- function(name, package, id, style, class, width, height) {
   shiny::bootstrapPage(htmltools::tags$div(id = id, class = class, style = style))
 }
+
+
+#'Shiny integration. Height 100% because function wont accept NULL as per the above
+formattableOutput <- function(outputId, width = "100%", height = "0") {
+  shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
+}
+
+renderFormattable <- function(expr, env = parent.frame(), quoted = FALSE) {
+  if (!quoted) { expr <- substitute(as.htmlwidget(expr)) } # force quoted
+  shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
+}
