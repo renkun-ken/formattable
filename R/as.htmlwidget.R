@@ -93,19 +93,20 @@ formattable_widget_html <- function(name, package, id, style, class, width, heig
 #' @param outputId output variable to read from
 #' @param width a valid \code{CSS} width or a number
 #' @param height valid \code{CSS} height or a number
-#'
+#' @importFrom htmlwidgets shinyWidgetOutput
 #' @export
 formattableOutput <- function(outputId, width = "100%", height = "0") {
-  shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
+  htmlwidgets::shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
 }
 
 #' Widget render function for use in Shiny
 #' @param expr an expression that generates a valid \code{formattable} object
 #' @param env the environment in which to evaluate expr.
-#' @param quoted is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
-#'
+#' @param quoted is expr a quoted expression (with quote())?
+#' This is useful if you want to save an expression in a variable.
+#' @importFrom htmlwidgets shinyRenderWidget
 #' @export
 renderFormattable <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(as.htmlwidget(expr)) } # force quoted
-  shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
 }
