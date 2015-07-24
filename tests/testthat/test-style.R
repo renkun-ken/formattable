@@ -79,7 +79,7 @@ test_that("gradient", {
 
 test_that("csscolor", {
   expect_equal(csscolor(rgb(0, 0.5, 0.5)), "#008080")
-  expect_equal(csscolor(c(rgb(0, 0.5, 0.5), rgb(0, 0.2, 0.3))), c("#008080","#00334D"))
+  expect_equal(csscolor(c(rgb(0, 0.5, 0.5), rgb(0, 0.2, 0.5))), c("#008080","#003380"))
   expect_equal(csscolor(rgb(0, 0.5, 0.5, 1)), "rgba(0, 128, 128, 1)")
   expect_equal(csscolor(gradient(c(1,2,3,4,5), "white", "red")),
     c("#ffffff", "#ffbfbf", "#ff7f7f", "#ff3f3f", "#ff0000"))
