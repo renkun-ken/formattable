@@ -22,7 +22,10 @@
       <h1>
 <a id="formattable" class="anchor" href="#formattable" aria-hidden="true"><span class="octicon octicon-link"></span></a>formattable</h1>
 
-<p><a href="https://travis-ci.org/renkun-ken/formattable"><img src="https://travis-ci.org/renkun-ken/formattable.png?branch=master" alt="Travis-CI Build Status"></a> <a href="https://coveralls.io/r/renkun-ken/formattable"><img src="https://coveralls.io/repos/renkun-ken/formattable/badge.svg" alt="Coverage Status"></a> <a href="http://cran.rstudio.com/web/packages/formattable"><img src="http://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a></p>
+<p><a href="https://travis-ci.org/renkun-ken/formattable"><img src="https://travis-ci.org/renkun-ken/formattable.png?branch=master" alt="Linux Build Status"></a> 
+<a href="https://ci.appveyor.com/project/renkun-ken/formattable"><img src="https://ci.appveyor.com/api/projects/status/github/renkun-ken/formattable?svg=true" alt="Windows Build status"></a>
+<a href="https://coveralls.io/r/renkun-ken/formattable"><img src="https://coveralls.io/repos/renkun-ken/formattable/badge.svg" alt="Coverage Status"></a>
+<a href="http://cran.rstudio.com/web/packages/formattable"><img src="http://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a></p>
 
 <p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
 
@@ -264,8 +267,7 @@ formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
 <p><strong>The icon set used in the table is by <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> and included in <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a>.</strong></p>
 
 <h2>
-<a id="htmlwidget-conversion-in-interactive-environments" class="anchor" href="#htmlwidget-conversion-in-interactive-environments" aria-hidden="true"><span class="octicon octicon-link"></span></a>
-<code>htmlwidget</code> conversion in interactive environments</h2>
+<a id="htmlwidget-conversion-in-interactive-environments" class="anchor" href="#htmlwidget-conversion-in-interactive-environments" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>htmlwidget</code> conversion in interactive environments</h2>
 
 <p><code>formattable</code> will automatically convert to an <code>htmlwidget</code> when in an <code>interactive()</code> context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the <code>markdown</code> table output, please use <code>format_table</code> that calls <code>knitr::kable</code> with formatters or call <code>as.character</code> with the <code>formattable data.frame</code> object.</p>
 
