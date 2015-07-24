@@ -1,34 +1,37 @@
-# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
+## Sample .travis.yml file for use with metacran/r-builder
+## See https://github.com/metacran/r-builder for details.
 
 language: c
 
-sudo: required
-
 before_install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
+  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
+  - chmod 755 pkg-build.sh
+  - ./pkg-build.sh bootstrap
 
 install:
-  - ./travis-tool.sh install_deps
-  - ./travis-tool.sh github_package jimhester/covr
+  - ./pkg-build.sh install_github jimhester/covr
+  - ./pkg-build.sh install_deps
 
-script: ./travis-tool.sh run_tests
+script:
+  - ./pkg-build.sh run_tests
 
 after_success:
-  - Rscript -e 'library(covr);coveralls();codecov()'
+  - Rscript -e 'library(covr);coveralls()'
 
 after_failure:
-  - ./travis-tool.sh dump_logs
-
-env:
-  - WARNINGS_ARE_ERRORS=1
-
-branches:
-  except:
-  - gh-pages
+  - ./pkg-build.sh dump_logs
 
 notifications:
   email:
     on_success: change
     on_failure: change
+
+env:
+  matrix:
+    - RVERSION=oldrel
+    - RVERSION=release
+    - RVERSION=devel
+
+branches:
+  except:
+  - gh-pages
