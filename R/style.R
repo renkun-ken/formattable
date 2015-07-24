@@ -86,6 +86,7 @@ check_rgba <- function(x) {
   grepl("^#([0-9a-fA-F]{2}){4}$", x)
 }
 
+#' @importFrom grDevices col2rgb
 str2rgb <- function(x, alpha = NULL) {
   is_rgb <- check_rgb(x)
   if(missing(alpha) || is.null(alpha)) alpha <- any(check_rgba(x))
@@ -100,7 +101,7 @@ str2rgb <- function(x, alpha = NULL) {
     substr(rgbs, 6L, 7L),
     if(alpha) ifelse(nzchar(alphav <- substr(rgbs, 8L, 9L)), alphav, "FF") else NULL), 16L),
     nrow = rows, byrow = TRUE)
-  res[, !is_rgb] <- col2rgb(x[!is_rgb], alpha = alpha)
+  res[, !is_rgb] <- grDevices::col2rgb(x[!is_rgb], alpha = alpha)
   res
 }
 
