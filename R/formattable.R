@@ -172,9 +172,9 @@ print_formattable.default <- function(x, ...) {
     if (is.null(print_args)) print_args <- list()
     print_args[names(args)] <- args
     if(is.null(print_args$quote)) print_args$quote <- is.character(x)
-    do.call("print", c(list(format.formattable(x)), print_args))
+    do.call(print, c(list(format.formattable(x)), print_args))
   }
-  x
+  invisible(x)
 }
 
 print_formattable.data.frame <- function(x, ...) {
@@ -183,7 +183,7 @@ print_formattable.data.frame <- function(x, ...) {
   format <- attr(x, "formattable", exact = TRUE)$format$format
   is_markdown <- is.null(format) ||  format == "markdown"
 
-  if (interactive() && is_markdown) print(as.htmlwidget(x), ...)
+  if (is_markdown) print(as.htmlwidget(x), ...)
   else NextMethod("print_formattable")
 }
 
@@ -191,6 +191,21 @@ print_formattable.data.frame <- function(x, ...) {
 print.formattable <- function(x, ...) {
   print_formattable(x, ...)
 }
+
+knit_print_formattable <- function(x, ...)
+  UseMethod("knit_print_formattable")
+
+knit_print_formattable.default <- print_formattable.default
+
+#' @importFrom knitr asis_output
+knit_print_formattable.data.frame <- function(x, ...) {
+  knitr::asis_output(paste0("", "", format.formattable(x), "", collapse = "\n"))
+}
+
+#' @export
+#' @importFrom knitr knit_print
+knit_print.formattable <- function(x, ...)
+  knit_print_formattable(x, ...)
 
 #' @export
 format.formattable <- function(x, ...,

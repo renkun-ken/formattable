@@ -14,7 +14,7 @@ library(formattable)
 * `gear` is bold when the value is `4`
 * `qsec` is colorized by its value in red (higher value is redder)
 
-```{r,results='asis',echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE}
 formattable(mtcars, list(
   mpg = formatter("span", style = function(x)
     style(color = ifelse(x > quantile(x, 0.8), "red", NA))),
@@ -29,7 +29,7 @@ formattable(mtcars, list(
 
 * `conc` and `uptake` has colorized background
 
-```{r,results='asis',echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE}
 data(CO2)
 formattable(CO2, list(
   conc = formatter("span", style = function(x, m = 1 - x/max(x) * 0.8, ms = round(1-m)) 
@@ -42,7 +42,7 @@ formattable(CO2, list(
 
 # demo 3
 
-```{r,results='asis',echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE}
 df <- data.frame(
   id = 1:10,
   name = c("Bob", "Ashley", "James", "David", "Jenny", 
@@ -81,7 +81,7 @@ formattable(df, list(
 
 # demo 4
 
-```{r,results='asis',echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE}
 formattable(df, list(
   # bootstrap glyphicons
   grade = formatter("span", 
@@ -111,7 +111,7 @@ formattable(df, list(
 
 # demo 5
 
-```{r,results='asis',echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE}
 formattable(df, list(
   grade = formatter("span",
     style = x ~ vmap(x, A = style(color = "green", font.weight = "bold"), NA)),

@@ -3,7 +3,7 @@ title: "colorbar"
 output: html_document
 ---
 
-```{r,results='asis',echo=FALSE,message=FALSE}
+```{r,echo=FALSE,message=FALSE}
 library(formattable)
 
 df <- data.frame(
