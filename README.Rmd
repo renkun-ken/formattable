@@ -7,8 +7,6 @@
 
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
-**This package is still under active development. The APIs may be unstable.**
-
 ## Install
 
 Currently, the package is only available on GitHub.
