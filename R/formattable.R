@@ -199,7 +199,7 @@ knit_print_formattable.default <- print_formattable.default
 
 #' @importFrom knitr asis_output
 knit_print_formattable.data.frame <- function(x, ...) {
-  knitr::asis_output(paste0("", "", format.formattable(x), "", collapse = "\n"))
+  knitr::asis_output(sprintf("\n%s\n", paste0(as.character(x), collapse = "\n")))
 }
 
 #' @export
