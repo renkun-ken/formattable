@@ -65,16 +65,15 @@ as.htmlwidget <- function(x, ...)
 #' @export
 #'
 as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
-  if(!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
-  html <- gsub( # change align to bootstrap class for align
-    x = markdown::markdownToHTML(
-      text = gsub(x = as.character(x), pattern = "\n", replacement = "") #remove line breaks
-      ,fragment.only = TRUE
-    )
-    ,pattern = 'align=\"'
-    ,replacement = 'class=\"text-'
-  )
+  if (!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
   md <- as.character(x)
+  html <- gsub(x = # change align to bootstrap class for align
+    markdown::markdownToHTML(
+      text = gsub(x = md,
+        pattern = "\n", replacement = "", fixed = TRUE), #remove line breaks
+        fragment.only = TRUE),
+    pattern = 'th align="', replacement = 'th class="text-', fixed = TRUE)
+
   # forward options using x
   x <- list(html = html, md = md)
 
