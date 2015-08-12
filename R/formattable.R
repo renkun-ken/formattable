@@ -171,7 +171,7 @@ print_formattable.default <- function(x, ...) {
     print_args <- attr(x, "formattable", exact = TRUE)$print
     if (is.null(print_args)) print_args <- list()
     print_args[names(args)] <- args
-    if(is.null(print_args$quote)) print_args$quote <- is.character(x)
+    if (is.null(print_args$quote)) print_args$quote <- is.character(x)
     do.call(print, c(list(format.formattable(x)), print_args))
   }
   invisible(x)
@@ -417,10 +417,16 @@ quantile.formattable <- function(x, ...) {
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
 format_table <- function(x, formatters = list(),
-  format = c("markdown", "pandoc"), align = "r", ...,
+  format = c("markdown", "pandoc"), align = "r", ..., caption = NULL,
   row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
   stopifnot(is.data.frame(x))
   format <- match.arg(format)
+
+  if (format == "markdown" && is.character(caption) &&
+      length(caption) && nzchar(caption)) {
+    warning("markdown table currently does not support caption, use format = 'pandoc' instead.", call. = TRUE)
+  }
+
   xdf <- data.frame(mapply(function(x, name) {
     f <- formatters[[name]]
     value <- if (is.null(f)) x
@@ -432,7 +438,7 @@ format_table <- function(x, formatters = list(),
     check.rows = check.rows,
     check.names = check.names,
     stringsAsFactors = FALSE)
-  knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
+  knitr::kable(xdf, format = format, align = align, escape = FALSE, caption = caption, ...)
 }
 
 #' Create a formattable data frame

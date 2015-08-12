@@ -5,8 +5,8 @@
 \title{Format a data frame with formatter functions}
 \usage{
 format_table(x, formatters = list(), format = c("markdown", "pandoc"),
-  align = "r", ..., row.names = rownames(x), check.rows = FALSE,
-  check.names = FALSE)
+  align = "r", ..., caption = NULL, row.names = rownames(x),
+  check.rows = FALSE, check.names = FALSE)
 }
 \arguments{
 \item{x}{a \code{data.frame}.}

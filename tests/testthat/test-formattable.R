@@ -111,12 +111,11 @@ test_that("formattable.data.frame", {
   expect_is(format_table(mtcars,
     list(vs = x ~ formattable(as.logical(x), "yes", "no"))),
     "knitr_kable")
-  expect_is(format_table(mtcars, list(vs = ~ "unknown")), "knitr_kable")
+  expect_is(format_table(mtcars, list(vs = ~"unknown")), "knitr_kable")
   expect_error(format_table(mtcars, list(vs = f(a,b) ~ "unknown")))
-  expect_true({
-    capture.output(print(formattable(mtcars)))
-    TRUE
-  })
+  expect_true({capture.output(print(formattable(mtcars))); TRUE})
+  expect_warning(capture.output(print(format_table(mtcars, caption = "mtcars"))),
+    "markdown table currently does not support caption")
 })
 
 test_that("formattable.matrix", {
