@@ -237,12 +237,12 @@ as.list.formattable <- function(x, ...) {
 
 #' @export
 `[.formattable` <- function(x, ...) {
-  if(is.atomic(x)) copy_obj(x, NextMethod("["), "formattable") else NextMethod("[")
+  if (is.atomic(x)) copy_obj(x, NextMethod("["), "formattable") else NextMethod("[")
 }
 
 #' @export
 `[[.formattable` <- function(x, ...) {
-  if(is.atomic(x)) copy_obj(x, NextMethod("[["), "formattable") else NextMethod("[[")
+  if (is.atomic(x)) copy_obj(x, NextMethod("[["), "formattable") else NextMethod("[[")
 }
 
 #' @export
@@ -383,6 +383,7 @@ quantile.formattable <- function(x, ...) {
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 #' By default, all columns are right-aligned.
 #' @param ... additional parameters to be passed to \code{knitr::kable}.
+#' @param caption table caption.
 #' @param row.names row names to give to the data frame to knit
 #' @param check.rows if TRUE then the rows are checked for consistency
 #' of length and names.

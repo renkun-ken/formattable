@@ -31,6 +31,8 @@ By default, all columns are right-aligned.}
 
 \item{...}{additional parameters to be passed to \code{knitr::kable}.}
 
+\item{caption}{table caption.}
+
 \item{row.names}{row names to give to the data frame to knit}
 
 \item{check.rows}{if TRUE then the rows are checked for consistency
