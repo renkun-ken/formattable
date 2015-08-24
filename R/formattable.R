@@ -421,6 +421,7 @@ format_table <- function(x, formatters = list(),
   format = c("markdown", "pandoc"), align = "r", ..., caption = NULL,
   row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
   stopifnot(is.data.frame(x))
+  if (nrow(x) == 0L) formatters <- list()
   format <- match.arg(format)
 
   if (format == "markdown" && is.character(caption) &&
