@@ -34,11 +34,12 @@
 #' @export
 style <- function(...) {
   dots <- list(...)
+  dots <- dots[vapply(dots, length, integer(1L)) > 0L]
   as.character(.mapply(function(...) {
     args <- list(...)
     args <- args[!is.na(args)]
     argnames <- names(args)
-    argnames <- if(is.null(argnames)) "" else gsub(".", "-", argnames, fixed = TRUE)
+    argnames <- if (is.null(argnames)) "" else gsub(".", "-", argnames, fixed = TRUE)
     attrs <- .mapply(function(name, value) {
       paste0(name, ifelse(nzchar(name), ": ", ""), paste0(value, collapse = " "))
     }, list(name = argnames, value = args), NULL)
@@ -75,11 +76,11 @@ icontext <- function(icon, text = list(NULL), ..., simplify = TRUE,
         htmltools::tag("i",
           list(class = gsub("{icon}", ico, class_template, fixed = TRUE)))), text)
   }, list(icon, text), NULL)
-  if(length(x) == 1L) x[[1L]] else x
+  if (length(x) == 1L) x[[1L]] else x
 }
 
 check_rgb <- function(x, alpha = TRUE) {
-  grepl(if(alpha) "^#([0-9a-fA-F]{2}){3,4}$" else "^#([0-9a-fA-F]{2}){3}$", x)
+  grepl(if (alpha) "^#([0-9a-fA-F]{2}){3,4}$" else "^#([0-9a-fA-F]{2}){3}$", x)
 }
 
 check_rgba <- function(x) {
@@ -89,8 +90,8 @@ check_rgba <- function(x) {
 #' @importFrom grDevices col2rgb
 str2rgb <- function(x, alpha = NULL) {
   is_rgb <- check_rgb(x)
-  if(missing(alpha) || is.null(alpha)) alpha <- any(check_rgba(x))
-  rownames <- c("red", "green", "blue", if(alpha) "alpha", NULL)
+  if (missing(alpha) || is.null(alpha)) alpha <- any(check_rgba(x))
+  rownames <- c("red", "green", "blue", if (alpha) "alpha", NULL)
   rows <- length(rownames)
   res <- matrix(0L, rows, length(x), byrow = TRUE,
     dimnames = list(rownames, names(x)))
@@ -99,7 +100,7 @@ str2rgb <- function(x, alpha = NULL) {
     substr(rgbs, 2L, 3L),
     substr(rgbs, 4L, 5L),
     substr(rgbs, 6L, 7L),
-    if(alpha) ifelse(nzchar(alphav <- substr(rgbs, 8L, 9L)), alphav, "FF") else NULL), 16L),
+    if (alpha) ifelse(nzchar(alphav <- substr(rgbs, 8L, 9L)), alphav, "FF") else NULL), 16L),
     nrow = rows, byrow = TRUE)
   res[, !is_rgb] <- grDevices::col2rgb(x[!is_rgb], alpha = alpha)
   res
@@ -128,11 +129,12 @@ gradient <- function(x, min.color, max.color, alpha = NULL, use.names = TRUE, na
   if (!is.numeric(x)) stop("x should be numeric")
   x <- unclass(x)
   color_range <- str2rgb(c(min = min.color, max = max.color), alpha = alpha)
-  res <- (color_range[, "max", drop = FALSE] -
+  res <- if (length(x) > 0L) (color_range[, "max", drop = FALSE] -
       color_range[, "min", drop = FALSE]) %*% normalize(x, na.rm = na.rm) +
     matrix(rep(color_range[, "min", drop = FALSE], length(x)), ncol = length(x))
+  else str2rgb(x, alpha = alpha)
   storage.mode(res) <- "integer"
-  if(use.names) colnames(res) <- names(x)
+  if (use.names) colnames(res) <- names(x)
   res
 }
 
@@ -155,7 +157,7 @@ csscolor <- function(x, format = c("auto", "hex", "rgb", "rgba"),
 csscolor.character <- function(x, format = c("auto", "hex", "rgb", "rgba"), use.names = TRUE) {
   format <- match.arg(format)
   alpha <- all(check_rgb(x)) && any(check_rgba(x))
-  if(format == "auto") format <- if(alpha) "rgba" else "hex"
+  if (format == "auto") format <- if (alpha) "rgba" else "hex"
   switch(format, hex = x,
     csscolor.matrix(str2rgb(x, alpha = alpha), format = format, use.names = use.names))
 }
@@ -165,7 +167,7 @@ csscolor.matrix <- function(x, format = c("auto", "hex", "rgb", "rgba"),
   use.names = TRUE) {
   format <- match.arg(format)
   alpha <- "alpha" %in% rownames(x)
-  if(format == "auto") format <- if(alpha) "rgba" else "hex"
+  if (format == "auto") format <- if (alpha) "rgba" else "hex"
   na_cols <- apply(x, 2L, function(col) any(is.na(col)))
   cols <- switch(format, hex = {
     hex <- format.hexmode(as.hexmode(x[c("red", "green", "blue"), , drop = FALSE]), width = 2L)
@@ -181,8 +183,8 @@ csscolor.matrix <- function(x, format = c("auto", "hex", "rgb", "rgba"),
       x["red", ,drop = FALSE],
       x["green", ,drop = FALSE],
       x["blue", ,drop = FALSE],
-      if(alpha) round(x["alpha", ,drop = FALSE] / 255L, 2L) else 1))
+      if (alpha) round(x["alpha", ,drop = FALSE] / 255L, 2L) else 1))
   cols[na_cols] <- NA
-  if(use.names) names(cols) <- colnames(x)
+  if (use.names) names(cols) <- colnames(x)
   cols
 }

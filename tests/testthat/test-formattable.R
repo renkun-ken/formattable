@@ -116,6 +116,9 @@ test_that("formattable.data.frame", {
   expect_true({capture.output(print(formattable(mtcars))); TRUE})
   expect_warning(capture.output(print(format_table(mtcars, caption = "mtcars"))),
     "markdown table currently does not support caption")
+
+  df <- data.frame(id = integer(), name = character(), value = numeric())
+  expect_true({capture.output(print(formattable(df, list(value = color_tile("red", "blue")))));TRUE})
 })
 
 test_that("formattable.matrix", {

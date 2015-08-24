@@ -15,6 +15,8 @@ test_that("style", {
     c("color: red; border: 1px", "border: 2px"))
   expect_equal(style(color = "red", "border: 0px"), "color: red; border: 0px")
   expect_equal(style("color: red", "border: 0px"), "color: red; border: 0px")
+  expect_equal(style(), character())
+  expect_equal(style(x = 1:3, y = integer()), style(x = 1:3))
 })
 
 test_that("icontext", {
@@ -65,15 +67,16 @@ test_that("gradient", {
   expect_equal(gradient(c(1,2,3,4), rgb(1,1,0,0), rgb(1,0,0,1), alpha = TRUE),
     matrix(c(255, 255, 0, 0, 255, 170, 0, 85, 255, 85, 0, 170, 255, 0, 0, 255), 4, 4,
       dimnames = list(c("red","green","blue","alpha"))))
-  expect_equal(gradient(c(x=1,y=2,z=3), "white", "red", use.names = TRUE),
+  expect_equal(gradient(c(x = 1,y = 2,z = 3), "white", "red", use.names = TRUE),
     matrix(c(255, 255, 255, 255, 127, 127, 255, 0, 0), 3, 3,
       dimnames = list(c("red","green","blue"), c("x","y","z"))))
-  expect_equal(gradient(c(x=1,y=2,z=3), "white", "red", use.names = FALSE),
+  expect_equal(gradient(c(x = 1,y = 2,z = 3), "white", "red", use.names = FALSE),
     matrix(c(255, 255, 255, 255, 127, 127, 255, 0, 0), 3, 3,
       dimnames = list(c("red","green","blue"))))
   expect_equal(gradient(c(1:3, NA), "white", "red"),
     matrix(c(255, 255, 255, 255, 127, 127, 255, 0, 0, NA, NA, NA), 3, 4,
       dimnames = list(c("red","green","blue"))))
+  expect_equal(ncol(gradient(numeric(), "red", "blue")), 0L)
   expect_error(gradient(c(1:3, NA), "white", "red", na.rm = FALSE), "missing value")
 })
 
