@@ -17,7 +17,7 @@ script:
   - ./pkg-build.sh run_tests
 
 after_success:
-  - Rscript -e 'library(covr);coveralls()'
+  - if [[ ! -z "$COVERAGE" ]];then ./pkg-build.sh run_script -e 'covr::coveralls();covr::codecov()'; fi
 
 after_failure:
   - ./pkg-build.sh dump_logs
@@ -31,7 +31,7 @@ env:
   matrix:
     - RVERSION=oldrel
     - RVERSION=release
-    - RVERSION=devel
+    - RVERSION=devel COVERAGE=true
 
 branches:
   except:
