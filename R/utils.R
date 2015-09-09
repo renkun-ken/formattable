@@ -34,7 +34,10 @@ fcreate_obj <- function(f, class, x, ...) {
 
 cop_create_obj <- function(op, class, x, y) {
   if (inherits(x, class)) {
-    create_obj(op(remove_class(x, class), unclass(y)), class, attr(x, class, exact = TRUE))
+    if (missing(y))
+      create_obj(op(remove_class(x, class)), class, attr(x, class, exact = TRUE))
+    else
+      create_obj(op(remove_class(x, class), unclass(y)), class, attr(x, class, exact = TRUE))
   } else if (inherits(y, class)) {
     create_obj(op(unclass(x), remove_class(y, class)), class, attr(y, class, exact = TRUE))
   } else {

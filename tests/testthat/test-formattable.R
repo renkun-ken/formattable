@@ -16,6 +16,7 @@ test_that("formattable.default", {
   expect_equivalent(format(obj[[3]]), formatC(num[[3]], format = "f", digits = 4L))
   expect_equivalent(format(obj + 0.123456), formatC(num + 0.123456, format = "f", digits = 4L))
   expect_equivalent(format(obj - 0.123456), formatC(num - 0.123456, format = "f", digits = 4L))
+  expect_equivalent(format(-obj), formatC(-num, format = "f", digits = 4L))
   expect_equivalent(format(obj * 0.123456), formatC(num * 0.123456, format = "f", digits = 4L))
   expect_equivalent(format(obj / 0.123456), formatC(num / 0.123456, format = "f", digits = 4L))
   expect_equivalent(formattable(1:10) %% 2, formattable(1:10 %% 2))
