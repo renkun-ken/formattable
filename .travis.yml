@@ -17,7 +17,7 @@ script:
   - ./pkg-build.sh run_tests
 
 after_success:
-  - if [[ ! -z "$COVERAGE" ]];then ./pkg-build.sh run_script -e 'covr::coveralls();covr::codecov()'; fi
+  - if [[ ! -z "$COVERAGE" ]];then ./pkg-build.sh run_script -e 'covr::codecov()'; fi
 
 after_failure:
   - ./pkg-build.sh dump_logs
