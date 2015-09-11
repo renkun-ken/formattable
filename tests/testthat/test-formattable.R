@@ -54,7 +54,7 @@ test_that("formattable.factor", {
   obj <- formattable(values, a = "good", b = "fair", c = "bad")
   expect_is(obj, c("formattable", "factor"))
   expect_equal(format(obj), vmap(values, a = "good", b = "fair", c = "bad"))
-  expect_equal(format(c(obj, "c")), vmap(c(values, "c"), a = "good", b = "fair", c = "bad"))
+  expect_equal(format(c(obj, as.factor("c"))), vmap(c(values, as.factor("c")), a = "good", b = "fair", c = "bad"))
 })
 
 test_that("formattable.Date", {

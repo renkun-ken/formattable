@@ -158,7 +158,7 @@ formattable.formattable <- function(x, ..., formatter, preproc, postproc) {
 
 #' @export
 as.character.formattable <- function(x, ...) {
-  as.character(format.formattable(x), ...)
+  format.formattable(x)
 }
 
 print_formattable <- function(x, ...)
@@ -178,13 +178,7 @@ print_formattable.default <- function(x, ...) {
 }
 
 print_formattable.data.frame <- function(x, ...) {
-  # one more check to see if markdown format
-  #  if it is then do htmlwidget conversion
-  format <- attr(x, "formattable", exact = TRUE)$format$format
-  is_markdown <- is.null(format) ||  format == "markdown"
-
-  if (is_markdown) print(as.htmlwidget(x), ...)
-  else NextMethod("print_formattable")
+  print(as.htmlwidget(x), ...)
 }
 
 #' @export
@@ -211,10 +205,12 @@ knit_print.formattable <- function(x, ...)
 
 #' @export
 format.formattable <- function(x, ...,
+  format = NULL,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
   attrs <- attr(x, "formattable", exact = TRUE)
   if (is.null(attrs)) return(NextMethod("format"))
   format_args <- attrs$format
+  format_args[names(format)] <- format
   value <- remove_class(x, "formattable")
   if (length(attrs$preproc)) {
     preproc_list <- if (is.list(attrs$preproc)) attrs$preproc else list(attrs$preproc)
@@ -227,7 +223,7 @@ format.formattable <- function(x, ...,
     for (postproc in postproc_list) str <- call_or_default(postproc, str, value)
   }
   if (use.names && x_atomic && !is.null(x_names <- names(x))) names(str) <- x_names
-  str
+  as.character(str)
 }
 
 #' @export
@@ -423,12 +419,6 @@ format_table <- function(x, formatters = list(),
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
   format <- match.arg(format)
-
-  if (format == "markdown" && is.character(caption) &&
-      length(caption) && nzchar(caption)) {
-    warning("markdown table currently does not support caption, use format = 'pandoc' instead.", call. = TRUE)
-  }
-
   xdf <- data.frame(mapply(function(x, name) {
     f <- formatters[[name]]
     value <- if (is.null(f)) x

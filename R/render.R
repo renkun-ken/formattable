@@ -66,7 +66,7 @@ as.htmlwidget <- function(x, ...)
 #'
 as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   if (!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
-  md <- as.character(x)
+  md <- format(x, format = list(format = "markdown"))
   html <- gsub(x = # change align to bootstrap class for align
     markdown::markdownToHTML(
       text = gsub(x = md,
