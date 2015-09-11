@@ -379,7 +379,6 @@ quantile.formattable <- function(x, ...) {
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 #' By default, all columns are right-aligned.
 #' @param ... additional parameters to be passed to \code{knitr::kable}.
-#' @param caption table caption.
 #' @param row.names row names to give to the data frame to knit
 #' @param check.rows if TRUE then the rows are checked for consistency
 #' of length and names.
@@ -414,7 +413,7 @@ quantile.formattable <- function(x, ...) {
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
 format_table <- function(x, formatters = list(),
-  format = c("markdown", "pandoc"), align = "r", ..., caption = NULL,
+  format = c("markdown", "pandoc"), align = "r", ...,
   row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
@@ -430,7 +429,7 @@ format_table <- function(x, formatters = list(),
     check.rows = check.rows,
     check.names = check.names,
     stringsAsFactors = FALSE)
-  knitr::kable(xdf, format = format, align = align, escape = FALSE, caption = caption, ...)
+  knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
 }
 
 #' Create a formattable data frame

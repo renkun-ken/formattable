@@ -5,8 +5,8 @@
 \title{Format a data frame with formatter functions}
 \usage{
 format_table(x, formatters = list(), format = c("markdown", "pandoc"),
-  align = "r", ..., caption = NULL, row.names = rownames(x),
-  check.rows = FALSE, check.names = FALSE)
+  align = "r", ..., row.names = rownames(x), check.rows = FALSE,
+  check.names = FALSE)
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
@@ -30,8 +30,6 @@ of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 By default, all columns are right-aligned.}
 
 \item{...}{additional parameters to be passed to \code{knitr::kable}.}
-
-\item{caption}{table caption.}
 
 \item{row.names}{row names to give to the data frame to knit}
 
