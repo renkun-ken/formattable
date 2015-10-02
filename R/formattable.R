@@ -254,7 +254,7 @@ as.list.formattable <- function(x, ...) {
 }
 
 #' @export
-`[<-.formattable` <- function(x, ...) {
+`[<-.formattable` <- function(x, ..., value) {
   value <- NextMethod("[<-")
   reset_class(x, value, "formattable")
 }
@@ -268,7 +268,7 @@ as.list.formattable <- function(x, ...) {
 }
 
 #' @export
-`[[<-.formattable` <- function(x, ...) {
+`[[<-.formattable` <- function(x, ..., value) {
   value <- NextMethod("[[<-")
   reset_class(x, value, "formattable")
 }
