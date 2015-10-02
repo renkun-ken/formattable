@@ -1,7 +1,16 @@
 context("formattable")
 
 test_that("formattable.default", {
-
+  obj <- structure(list(x = 1,y = 2), class = c("test_object", "list"))
+  fobj <- formattable(obj, formatter = function(obj) {
+    digits <- attr(obj, "formattable", TRUE)$format$digits
+    if (is.null(digits)) digits <- 2L
+    sprintf("text_object { x: %s, y: %s }", round(obj$x, digits), round(obj$y, digits))
+  })
+  expect_is(fobj, c("formattable", "test_object", "list"))
+  expect_equal(fobj$x, obj$x)
+  expect_equal(fobj$y, obj$y)
+  expect_equal(format(fobj), "text_object { x: 1, y: 2 }")
 })
 
 test_that("formattable.numeric", {
@@ -15,10 +24,31 @@ test_that("formattable.numeric", {
   obj <- formattable(num)
   obj_attr <- attr(obj, "formattable", TRUE)
   expect_is(obj, c("formattable", "integer"))
+  obj[5] <- 0L
+  expect_is(obj, c("formattable", "integer"))
+  expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+
   obj[5] <- 2.5
   expect_is(obj, c("formattable", "numeric"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+
   obj[6] <- "abc"
+  expect_is(obj, c("formattable", "character"))
+  expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+
+  num <- 1:10
+  obj <- formattable(num)
+  obj_attr <- attr(obj, "formattable", TRUE)
+  expect_is(obj, c("formattable", "integer"))
+  obj[[5]] <- 0L
+  expect_is(obj, c("formattable", "integer"))
+  expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+
+  obj[[5]] <- 2.5
+  expect_is(obj, c("formattable", "numeric"))
+  expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+
+  obj[[6]] <- "abc"
   expect_is(obj, c("formattable", "character"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
@@ -49,6 +79,7 @@ test_that("formattable.numeric", {
   expect_equivalent(format(quantile(obj)), formatC(quantile(num), format = "f", digits = 4L))
   expect_equivalent(format(sort(obj)), formatC(sort(num), format = "f", digits = 4L))
   expect_equivalent(c(formattable(1), 2), formattable(c(1,2)))
+  expect_identical(cop_create_obj(`+`, "test", 1,2), structure(3, class = c("test", "numeric")))
   expect_output(invisible(print(formattable(2, digits = 4, format = "f"))), "^\\[1\\] 2.0000$")
 })
 
@@ -135,6 +166,9 @@ test_that("formattable.data.frame", {
   expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, ], "formattable", TRUE))
   expect_identical(attr(df, "formattable", TRUE), attr(df[, c("cyl", "mpg")], "formattable", TRUE))
   expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, c("cyl", "mpg")], "formattable", TRUE))
+  knit_df <- knit_print.formattable(df)
+  expect_is(knit_df, "knit_asis")
+  expect_true(is.character(knit_df))
 
   df <- data.frame(id = integer(), name = character(), value = numeric())
   expect_true({capture.output(print(formattable(df, list(value = color_tile("red", "blue")))));TRUE})
