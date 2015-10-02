@@ -24,11 +24,6 @@ percent.numeric <- function(x, digits = 2L, format = "f", ...) {
     preproc = "percent_preproc", postproc = "percent_postproc")
 }
 
-#' @export
-percent.default <- function(x, ...) {
-  percent.numeric(as.numeric(x), ...)
-}
-
 #' @rdname percent
 #' @export
 #' @examples
@@ -72,11 +67,6 @@ comma.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...)
 }
 
-#' @export
-comma.default <- function(x, ...) {
-  comma.numeric(as.numeric(x), ...)
-}
-
 #' @rdname comma
 #' @export
 #' @examples
@@ -110,11 +100,6 @@ currency.numeric <- function(x, symbol = "$",
       ifelse(is.na(x), "", symbol), sep, str))
 }
 
-#' @export
-currency.default <- function(x, ...) {
-  currency.numeric(as.numeric(x), ...)
-}
-
 get_currency_symbol <- function(x) {
   sym <- unique(gsub("\\d|\\s|\\,|\\.", "", x))
   if (length(sym) > 1L) warning("Cannot find a unique symbol", call. = FALSE)
@@ -129,7 +114,8 @@ get_currency_symbol <- function(x) {
 #' currency("HK$ 120, 250.50")
 currency.character <- function(x, symbol = get_currency_symbol(x),
   digits = max(get_digits(x)), format = "f", big.mark = ",", ...) {
-  if (any(invalid <- !grepl("\\d", x))) warning("Invalid input in 'x': ", paste(x[invalid], collapse = ", "), call. = FALSE)
+  if (any(invalid <- !grepl("\\d", x)))
+    warning("Invalid input in 'x': ", paste(x[invalid], collapse = ", "), call. = FALSE)
   num <- gsub("[^0-9\\.]", "", gsub(big.mark, "", x, fixed = TRUE))
   currency.numeric(as.numeric(num), symbol = symbol, digits = digits,
     format = format, big.mark = big.mark, ...)
@@ -150,11 +136,6 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...)
 accounting.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = "accounting_postproc")
-}
-
-#' @export
-accounting.default <- function(x, ...) {
-  accounting.numeric(as.numeric(x), ...)
 }
 
 #' @rdname accounting
