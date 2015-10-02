@@ -233,12 +233,18 @@ as.list.formattable <- function(x, ...) {
 
 #' @export
 `[.formattable` <- function(x, ...) {
-  if (is.atomic(x)) copy_obj(x, NextMethod("["), "formattable") else NextMethod("[")
+  value <- NextMethod("[")
+  if (is.atomic(x) || is.data.frame(x))
+    copy_obj(x, value, "formattable")
+  else value
 }
 
 #' @export
 `[[.formattable` <- function(x, ...) {
-  if (is.atomic(x)) copy_obj(x, NextMethod("[["), "formattable") else NextMethod("[[")
+  value <- NextMethod("[[")
+  if (is.atomic(x))
+    copy_obj(x, value, "formattable")
+  else value
 }
 
 #' @export

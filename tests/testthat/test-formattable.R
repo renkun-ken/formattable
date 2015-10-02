@@ -116,6 +116,11 @@ test_that("formattable.data.frame", {
   expect_error(format_table(mtcars, list(vs = f(a,b) ~ "unknown")))
   expect_true({capture.output(print(formattable(mtcars))); TRUE})
 
+  df <- formattable(mtcars, list(mpg = color_tile("red", "green")))
+  expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, ], "formattable", TRUE))
+  expect_identical(attr(df, "formattable", TRUE), attr(df[, c("cyl", "mpg")], "formattable", TRUE))
+  expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, c("cyl", "mpg")], "formattable", TRUE))
+
   df <- data.frame(id = integer(), name = character(), value = numeric())
   expect_true({capture.output(print(formattable(df, list(value = color_tile("red", "blue")))));TRUE})
 })
