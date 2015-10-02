@@ -37,7 +37,21 @@ is.formattable <- function(x) {
 #' @return a \code{formattable} object that inherits from the original
 #' object.
 #' @examples
-#' formattable(rnorm(10), digits = 1)
+#' formattable(rnorm(10), formatter = "formatC", digits = 1)
+formattable.default <- function(x, ..., formatter,
+  preproc = NULL, postproc = NULL) {
+  create_obj(x, "formattable",
+    list(formatter = formatter,
+      format = list(...), preproc = preproc, postproc = postproc))
+}
+
+#' Create a formattable numeric vector
+#' @inheritParams formattable.default
+#' @param x a numeric vector.
+#' @param formatter formatting function, \link{formatC} in default.
+#' @export
+#' @return a \code{formattable} numeric vector.
+#' @examples
 #' formattable(rnorm(10), format = "f", digits = 1)
 #' formattable(rnorm(10), format = "f",
 #'   flag="+", digits = 1)
@@ -46,7 +60,7 @@ is.formattable <- function(x) {
 #' formattable(1:10,
 #'   postproc = function(str, x)
 #'     paste(str, ifelse(x <= 1, "unit", "units")))
-formattable.default <- function(x, ..., formatter = "formatC",
+formattable.numeric <- function(x, ..., formatter = "formatC",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
     list(formatter = formatter,
@@ -240,11 +254,23 @@ as.list.formattable <- function(x, ...) {
 }
 
 #' @export
+`[<-.formattable` <- function(x, ...) {
+  value <- NextMethod("[<-")
+  reset_class(x, value, "formattable")
+}
+
+#' @export
 `[[.formattable` <- function(x, ...) {
   value <- NextMethod("[[")
   if (is.atomic(x))
     copy_obj(x, value, "formattable")
   else value
+}
+
+#' @export
+`[[<-.formattable` <- function(x, ...) {
+  value <- NextMethod("[[<-")
+  reset_class(x, value, "formattable")
 }
 
 #' @export

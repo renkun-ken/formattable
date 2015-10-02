@@ -9,6 +9,11 @@ create_obj <- function(x, class, attributes) {
   set_class(x, class)
 }
 
+reset_class <- function(src, target, class) {
+  if (storage.mode(target) == storage.mode(src)) target
+  else set_class(unclass(target), class)
+}
+
 ifelse <- function(test, yes, no, ...) {
   base::ifelse(test, yes, no)
 }

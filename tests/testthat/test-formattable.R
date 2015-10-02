@@ -1,11 +1,26 @@
 context("formattable")
 
 test_that("formattable.default", {
+
+})
+
+test_that("formattable.numeric", {
   num <- rnorm(10)
   obj <- formattable(num, format = "f", digits = 2L)
   expect_is(obj, c("formattable", "numeric"))
   expect_equal(format(obj), formatC(num, format = "f", digits = 2L))
   expect_equal(format(c(obj, 0.1)), formatC(c(num,0.1), format = "f", digits = 2L))
+
+  num <- 1:10
+  obj <- formattable(num)
+  obj_attr <- attr(obj, "formattable", TRUE)
+  expect_is(obj, c("formattable", "integer"))
+  obj[5] <- 2.5
+  expect_is(obj, c("formattable", "numeric"))
+  expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+  obj[6] <- "abc"
+  expect_is(obj, c("formattable", "character"))
+  expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
   num <- rnorm(10)
   names(num) <- letters[seq_along(num)]
