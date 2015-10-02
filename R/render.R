@@ -78,14 +78,15 @@ as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   x <- list(html = html, md = md)
 
   # create widget
-  htmlwidgets::createWidget(name = 'formattable_widget', x, width = width,
-    height = height, package = 'formattable')
+  htmlwidgets::createWidget("formattable_widget", x, width = width,
+    height = height, package = "formattable")
 }
 
 #' @importFrom shiny bootstrapPage
 #' @importFrom htmltools tags
 formattable_widget_html <- function(name, package, id, style, class, width, height) {
-  shiny::bootstrapPage(htmltools::tags$div(id = id, class = class, style = style))
+  shiny::bootstrapPage(htmltools::tags$div(id = id, class = class, style = style,
+    width = width, height = height))
 }
 
 #' Widget output function for use in Shiny
