@@ -5,3 +5,4 @@
 ^formattable\.png$
 ^README\.Rmd$
 ^README\.html$
+^.*\.o$
