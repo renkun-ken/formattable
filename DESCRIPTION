@@ -10,13 +10,21 @@ Description: Provides functions to create formattable vectors and data frames.
     data frames are printed with multiple types of formatting in markdown
     to improve the readability of data presented in tabular form rendered as
     web pages.
-Depends: R (>= 2.14.1)
+Depends:
+    R (>= 2.14.1)
 Date: 2015-10-02
-Imports: htmltools, htmlwidgets, markdown, knitr, shiny
+Imports:
+    htmltools,
+    htmlwidgets,
+    markdown,
+    knitr,
+    shiny
 License: MIT + file LICENSE
 LazyData: true
 URL: http://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
-Suggests: testthat
+Suggests:
+    testthat
+RoxygenNote: 5.0.0

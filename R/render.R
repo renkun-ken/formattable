@@ -61,9 +61,7 @@ as.htmlwidget <- function(x, ...)
 #' }
 #' @importFrom markdown markdownToHTML
 #' @importFrom htmlwidgets createWidget
-#'
 #' @export
-#'
 as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   if (!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
   md <- format(x, format = list(format = "markdown"))
