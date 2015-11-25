@@ -19,7 +19,7 @@ formatter <- function(.tag, ...) {
   # if function to specify element inner text is missing,
   # then use identify to preserve the default text of
   # the column value
-  if(length(args) == 0L ||
+  if (length(args) == 0L ||
       (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
     args <- c(args, identity)
   }
@@ -33,10 +33,14 @@ formatter <- function(.tag, ...) {
       else arg
       if (is.null(value)) NA else value
     })
-    tags <- .mapply(function(...) {
-      attrs <- list(...)
-      htmltools::tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
-    }, values, NULL)
+    tags <- if (length(x) == 1L) {
+      list(htmltools::tag(.tag, values[!is.na(values) & nzchar(values)]))
+    } else {
+      .mapply(function(...) {
+        attrs <- list(...)
+        htmltools::tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
+      }, values, NULL)
+    }
     vapply(tags, as.character, character(1L))
   }
 }

@@ -76,7 +76,7 @@ icontext <- function(icon, text = list(NULL), ..., simplify = TRUE,
         htmltools::tag("i",
           list(class = gsub("{icon}", ico, class_template, fixed = TRUE)))), text)
   }, list(icon, text), NULL)
-  if (length(x) == 1L) x[[1L]] else x
+  if (simplify && length(x) == 1L) x[[1L]] else x
 }
 
 check_rgb <- function(x, alpha = TRUE) {

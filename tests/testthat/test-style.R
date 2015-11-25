@@ -52,6 +52,17 @@ test_that("icontext", {
       htmltools::tagList(lapply(icon, function(i)
         htmltools::tags$i(class = paste0("glyphicon glyphicon-", i))), text)
     }, list(icon_names, texts), NULL), as.character, character(1L)))
+
+  stars <- 3
+  icon_names <- lapply(stars, function(n) rep("plus", n))
+  texts <- sprintf("level %d", stars)
+
+  expect_equal(vapply(icontext(icon_names, texts, simplify = FALSE), as.character, character(1L)),
+    vapply(.mapply(function(icon, text) {
+      htmltools::tagList(lapply(icon, function(i)
+        htmltools::tags$i(class = paste0("glyphicon glyphicon-", i))), text)
+    }, list(icon_names, texts), NULL), as.character, character(1L)))
+
 })
 
 test_that("gradient", {
