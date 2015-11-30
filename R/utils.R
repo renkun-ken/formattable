@@ -54,11 +54,11 @@ call_or_default <- function(FUN, X, ...) {
   if (is.null(FUN)) X else match.fun(FUN)(X, ...)
 }
 
-eval_formula <- function(x, data, envir = environment(x)) {
+eval_formula <- function(x, var, data, envir = environment(x)) {
   if (length(x) == 2L) {
-    eval(x[[2L]], NULL, envir)
+    eval(x[[2L]], if (!missing(data) && is.list(data)) data else NULL, envir)
   } else if (is.symbol(symbol <- x[[2L]])) {
-    eval_args <- list(data)
+    eval_args <- list(var)
     names(eval_args) <- as.character(symbol)
     eval(x[[3L]], eval_args, envir)
   } else {

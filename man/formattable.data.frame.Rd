@@ -62,5 +62,9 @@ formattable(mtcars, list(mpg = formatter("span",
    "padding-right" = "4px",
    color = "white",
    "background-color" = rgb(x/max(x), 0, 0)))))
+
+# mtcars (mpg in red if vs == 1 and am == 1)
+formattable(mtcars, list(mpg = formatter("span",
+    style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 }
 

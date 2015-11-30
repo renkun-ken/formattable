@@ -14,13 +14,16 @@ test_that("formatter", {
     formatter("span", x ~ ifelse(x, yes_string, no_string))(c(TRUE, FALSE))
   }), paste0("<span>", c("YES","NO"), "</span>"))
 
-
   # dynamic scoping of formula
   expect_equal(local({
     yes <- "yes"
     no <- "no"
     formatter("span", x ~ ifelse(x, yes, no))(c(1,0,0,1))
   }), paste0("<span>", ifelse(c(1,0,0,1), "yes", "no"), "</span>"))
+
+  df <- data.frame(x = c(-1, 0 ,1), y = c(-1, 0 ,1))
+  expect_equal(formatter("span", ~ifelse(x >= 0 & y >= 0, "yes", "no"))(NULL, df),
+    paste0("<span>", ifelse(df$x >= 0 & df$y >= 0, "yes", "no"), "</span>"))
 })
 
 

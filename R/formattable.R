@@ -444,19 +444,24 @@ quantile.formattable <- function(x, ...) {
 #'    "padding-right" = "4px",
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
+#'
+#' # mtcars (mpg in red if vs == 1 and am == 1)
+#' format_table(mtcars, list(mpg = formatter("span",
+#'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 format_table <- function(x, formatters = list(),
   format = c("markdown", "pandoc"), align = "r", ...,
   row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
   format <- match.arg(format)
-  xdf <- data.frame(mapply(function(x, name) {
+  xdf <- data.frame(mapply(function(name, value) {
     f <- formatters[[name]]
-    value <- if (is.null(f)) x
-    else if (inherits(f, "formula")) eval_formula(f, x)
-    else match.fun(f)(x)
-    if (is.formattable(value)) as.character.formattable(value) else value
-  }, x, names(x), SIMPLIFY = FALSE),
+    fvalue <- if (is.null(f)) value
+    else if (inherits(f, "formula")) eval_formula(f, value, x)
+    else if (inherits(f, "formatter")) f(value, x)
+    else match.fun(f)(value)
+    if (is.formattable(fvalue)) as.character.formattable(fvalue) else fvalue
+  }, names(x), x, SIMPLIFY = FALSE),
     row.names = row.names,
     check.rows = check.rows,
     check.names = check.names,
@@ -509,6 +514,10 @@ format_table <- function(x, formatters = list(),
 #'    "padding-right" = "4px",
 #'    color = "white",
 #'    "background-color" = rgb(x/max(x), 0, 0)))))
+#'
+#' # mtcars (mpg in red if vs == 1 and am == 1)
+#' formattable(mtcars, list(mpg = formatter("span",
+#'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 formattable.data.frame <- function(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",

@@ -12,7 +12,8 @@ formatter(.tag, ...)
 \item{...}{functions to create attributes of HTML element from data colums.
 The unnamed element will serve as the function to produce the inner text of the
 element. If no unnamed element is provided, \code{identity} function will be used
-to preserve the string representation of the colum values.}
+to preserve the string representation of the colum values. Function and formula are
+accepted. See details for how different forms of formula will behave differently.}
 }
 \value{
 a function that transforms a column of data (usually an atomic vector)
@@ -20,6 +21,22 @@ to formatted data represented in HTML and CSS.
 }
 \description{
 Create a formatter function making HTML elements
+}
+\details{
+This function creates a \code{formatter} object which is essentially a
+closure taking a value and optionally the dataset behind.
+
+The formatter produces a character vector of HTML elements represented
+as strings. The tag name of the elements are specified by \code{.tag},
+and its attributes are calculated with the given functions or formulas
+specified in \code{...} given the input vector and/or dataset in behind.
+
+Formula like \code{x ~ expr} will behave like \code{function(x) expr}.
+Formula like \code{~expr} will be evaluated in different manner: \code{expr}
+will be evaluated in the data frame with the enclosing environment being
+the formula environment. If a column is formatted according to multiple
+other columns, \code{~expr} should be used and the column names can directly
+appear in \code{expr}.
 }
 \examples{
 top10red <- formatter("span",
