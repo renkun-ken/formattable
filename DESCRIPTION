@@ -2,7 +2,7 @@ Package: formattable
 Title: Formattable Data Structures
 Version: 0.1.5
 Authors@R: c(
-    person("Kun", "Ren", role = c("aut", "cre"), email = "renkun@outlook.com"),
+    person("Kun", "Ren", role = c("aut", "cre"), email = "ken@renkun.me"),
     person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
     )
 Description: Provides functions to create formattable vectors and data frames.
@@ -12,7 +12,7 @@ Description: Provides functions to create formattable vectors and data frames.
     web pages.
 Depends:
     R (>= 2.14.1)
-Date: 2015-11-30
+Date: 2015-12-03
 Imports:
     htmltools,
     htmlwidgets,
