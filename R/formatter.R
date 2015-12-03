@@ -29,6 +29,12 @@
 #'   style = x ~ ifelse(rank(-x) <= 10, "color:red", NA))
 #' yesno <- function(x) ifelse(x, "yes", "no")
 #' formattable(mtcars, list(mpg = top10red, qsec = top10red, am = yesno))
+#'
+#' # format one column by other two columns
+#' # make cyl red for records with both mpg and disp rank <= 20
+#' f1 <- formatter("span",
+#'   style = ~ ifelse(rank(-mpg) <= 20 & rank(-disp) <= 20, "color:red", NA))
+#' formattable(mtcars, list(cyl = f1))
 #' @export
 formatter <- function(.tag, ...) {
   fcall <- match.call(expand.dots = TRUE)
