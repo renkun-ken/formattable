@@ -7,7 +7,7 @@
 
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
-このパッケージは、ベクトルおよびデータフレームにフォーマットを適用するために作られました。これにより、データを「より簡単に」「よりリッチに」「より柔軟に」「できるだけ多くの情報を伝えるように」提示することができます。
+このパッケージは、ベクトルおよびデータフレームに書式を適用するために開発されました。これにより、データを「より簡単に」「よりリッチに」「より柔軟に」「できるだけ多くの情報を伝えるように」提示することができます。
 
 ## インストール
 
@@ -29,11 +29,11 @@ install.packages("formattable")
 
 Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.
 
-ベクトルはデータを保存するための基本的な単位です。データの中には、フォーマットを適用することで、より簡単に読み取ることができるようになるものがあります。例えば、複数のパーセント値からなる数値ベクトルは、R ではいまだに通常の小数点形式で表示されます。このパッケージは、あらかじめ定義されたルールに従って、データ構造を作成するための関数を提供します。これにより、元のデータを保持したまま、表示の際にはフォーマットを適用することができます。
+ベクトルはデータを保存するための基本的な単位です。データの中には、書式を適用することで、可読性が高まるものがあります。例えば、Rにおいて複数のパーセント値からなる数値ベクトルは通常の小数点形式で表示されます。このパッケージは、あらかじめ定義された書式のルールに従って、データ構造を作成するための関数を提供します。これにより、元のデータを保持したまま、表示の際には書式を適用することができます。
 
 The package provides several typical formattable objects such as `percent`, `comma`, `currency`, `accounting` and `scientific`. These objects are essentially numeric vectors with pre-defined formatting rules and parameters. For example,
 
-このパッケージは、典型的なフォーマット可能オブジェクトとして、`percent`, `comma`, `currency`, `accounting`, `scientific` を提供しています。これらのオブジェクトは、基本的には数値ベクトルですが、あらかじめ定義されたフォーマットルールとパラメータを持っています。例えば、
+このパッケージでは`percent`, `comma`, `currency`, `accounting`, `scientific`など典型的な書式 を提供しています。これらのオブジェクトは、基本的には数値ベクトルですが、あらかじめ定義された書式ルールとパラメータを持っています。例えば、
 
 
 ```r
@@ -49,7 +49,7 @@ p
 The percent vector is no different from a numeric vector but has a percentage representation as being
 printed. It works with arithmetic operations and common functions and preserves its formatting.
 
-このパーセントベクトルは、通常の数値ベクトルと違いはありません。ただし、表示したときに、パーセントで表示されます。四則演算や基本関数の適用を行っても、この性質は保持されます。
+このパーセントベクトルは、通常の数値ベクトルと違いはありません。ただし、コンソール上に表示したときに、パーセントで表示されます。四則演算や基本関数の適用を行っても、この書式は保持されます。
 
 
 ```r
@@ -88,7 +88,7 @@ balance + 1000
 
 These functions are special cases of what `formattable()` can do. `formattable()` applies highly customizable formatting to objects of a wide range of classes like `numeric`, `logical`, `factor`, `Date`, `data.frame`, etc. A typical data frame may look more friendly with `formattable` column vectors. For example,
 
-上で見た関数は、`formattable()` 関数でできることの特別なケースです。`formattable()` を使えば、`numeric`, `logical`, `factor`, `Date`, `data.frame` などの幅広いクラスのオブジェクトに対して、高度にカスタマイズされたフォーマットを適用することができます。典型的なデータフレームは、カラムに対して `formattable` を適用することによって、より親切な表示になるかもしれません。例えば、
+上で見た関数は、`formattable()` 関数でできることの特別なケースです。`formattable()` を使えば、`numeric`, `logical`, `factor`, `Date`, `data.frame` などの幅広いクラスのオブジェクトに対して、高度にカスタマイズされた書式を適用することができます。典型的なデータフレームは、列単位で`formattable()` を適用することによって、より読みやすくなるでしょう。例えば、
 
 
 ```r
@@ -111,7 +111,7 @@ p
 ```
 
 ## Formatting tables in dynamic document
-## 動的ドキュメント中のテーブル(表)のフォーマット
+## 動的ドキュメント中のテーブル(表)の書式
 
 In a typical workflow of dynamic document production, [knitr](https://github.com/yihui/knitr) and [rmarkdown](http://rmarkdown.rstudio.com/) are powerful tools to render documents with R code to different types of portable documents.
 
@@ -120,7 +120,7 @@ In a typical workflow of dynamic document production, [knitr](https://github.com
 knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls [pandoc](http://johnmacfarlane.net/pandoc) to render a markdown document to HTML web page. To put a table (`data.frame` in R) on the page, one may call `knitr::kable` to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.
 
 knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、[pandoc](http://johnmacfarlane.net/pandoc) を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の `data.frame` をテーブル(表)として置きたいときは、`knitr::kable` 関数を使って markdown 形式に変換することができます。
-この結果のテーブルは、デフォルトでは特にフォーマットされません。しかしながら、フォーマットを追加することにより、情報が明確化され、データが対比しやすくなる場合があります。本パッケージは、動的ドキュメントの中で、フォーマットされたテーブルを生成するための関数を提供します。
+kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。
 
 
 ```r
@@ -194,14 +194,14 @@ formattable(df, list(
 
 **The icon set used in the table is by [GLYPHICONS.com](http://GLYPHICONS.com) and included in [Bootstrap](http://getbootstrap.com/components/#glyphicons).**
 
-**テーブルで使用されるアイコンセットは [GLYPHICONS.com](http://GLYPHICONS.com) によるものです。これは [Bootstrap](http://getbootstrap.com/components/#glyphicons) に含まれます。**
+**テーブルで使用されるアイコンセットは [GLYPHICONS.com](http://GLYPHICONS.com) によるものです。これは [Bootstrap](http://getbootstrap.com/components/#glyphicons) に含まれています。**
 
 ## `htmlwidget` conversion in interactive environments
 ## インタラクティブな環境における `htmlwidget` への自動変換
 
 `formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `format_table` that calls `knitr::kable` with formatters or call `as.character` with the `formattable data.frame` object.
 
-`formattable` は、コンソールや RStudio IDE などの `interactive()` な状況では、自動的に `htmlwidget` へと変換されます。この変換を避けたい場合や、`markdown` 形式のテーブル出力を見たい場合は、`format_table` 関数を使って下さい。この関数は、`knitr::kable` をフォーマッタ付きで呼び出すことができます。もしくは、`formattable data.frame` オブジェクトに対しては `as.character` を呼び出して下さい。
+`formattable` オブジェクト は、コンソールや RStudio IDE などの `interactive()` な状況では、自動的に `htmlwidget` オブジェクト へと変換されます。この変換を避けたい場合や、`markdown` 形式のテーブル出力を見たい場合は、`format_table` 関数を使って下さい。この関数は、`knitr::kable` に書式を適用して整形した状態で呼び出すことができます。もしくは、`formattable data.frame` オブジェクトに対しては `as.character` を呼び出して下さい。
 
 ## License
 ## ライセンス
