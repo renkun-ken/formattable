@@ -3,12 +3,12 @@
 \name{comma}
 \alias{comma}
 \alias{comma.character}
-\alias{comma.numeric}
+\alias{comma.default}
 \title{Numeric vector with thousands separators}
 \usage{
 comma(x, digits, format = "f", big.mark = ",", ...)
 
-\method{comma}{numeric}(x, digits = 2L, format = "f", big.mark = ",", ...)
+\method{comma}{default}(x, digits = 2L, format = "f", big.mark = ",", ...)
 
 \method{comma}{character}(x, digits = max(get_digits(x)), format = "f",
   big.mark = ",", ...)

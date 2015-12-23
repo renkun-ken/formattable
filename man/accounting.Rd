@@ -3,12 +3,12 @@
 \name{accounting}
 \alias{accounting}
 \alias{accounting.character}
-\alias{accounting.numeric}
+\alias{accounting.default}
 \title{Numeric vector with accounting format}
 \usage{
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 
-\method{accounting}{numeric}(x, digits = 2L, format = "f", big.mark = ",",
+\method{accounting}{default}(x, digits = 2L, format = "f", big.mark = ",",
   ...)
 
 \method{accounting}{character}(x, digits = max(get_digits(x)), format = "f",

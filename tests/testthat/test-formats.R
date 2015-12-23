@@ -12,6 +12,7 @@ test_that("percent", {
   expect_equal(percent("1%"), percent(0.01, digits = 0L))
   expect_equal(percent(c("1.00%", "1%")), percent(c(0.01, 0.01)))
   expect_equal(percent(c("1.00%", "1.5")), percent(c(0.01, 1.5)))
+  expect_is(percent(NA), "numeric")
 })
 
 test_that("digits", {
@@ -20,6 +21,7 @@ test_that("digits", {
   expect_is(obj, c("formattable", "numeric"))
   expect_equal(format(obj), formatC(data, format = "f", digits = 1))
   expect_equal(format(digits(data, 2)), formatC(data, format = "f", digits = 2))
+  expect_is(digits(NA, 2), "numeric")
 })
 
 test_that("comma", {
@@ -33,6 +35,7 @@ test_that("comma", {
   expect_warning(comma("a"))
   expect_equal(comma("123,234.56"), comma(123234.56))
   expect_equal(comma(c("1.23", "1,233.1232")), comma(c(1.23, 1233.1232), digits = 4))
+  expect_is(comma(NA), "numeric")
 })
 
 test_that("currency", {
@@ -53,6 +56,7 @@ test_that("currency", {
     currency(c(123234.500, 123.503), symbol = "HK$", digits = 3))
   expect_equal(currency(c("HK$ 123,234.50", "HK$ 123.503")),
     currency(c(123234.500, 123.503), symbol = "HK$", digits = 3))
+  expect_is(currency(NA), "numeric")
 })
 
 test_that("accounting", {
@@ -66,6 +70,7 @@ test_that("accounting", {
   expect_warning(accounting("a"))
   expect_equal(accounting(c("123,23.50", "(123.243)")),
     accounting(c(12323.5, -123.243), digits = 3))
+  expect_is(accounting(NA), "numeric")
 })
 
 test_that("scientific", {
@@ -77,6 +82,7 @@ test_that("scientific", {
   expect_equal(format(scientific(data, format = "E", digits = 2)),
     c("-5.30E+03","1.05E+04","2.03E+04","3.50E+04" ))
   expect_warning(scientific("a"), "NA")
+  expect_is(scientific(NA), "numeric")
 })
 
 test_that("prefix", {
@@ -93,8 +99,8 @@ test_that("prefix", {
     paste0("?", formatC(data, format = "f", digits = 2L)))
   expect_equal(format(prefix(percent(data), ">")),
     paste0(">", format(percent(data))))
-  expect_equal(format(prefix(percent(data), ">")+0.1),
-    paste0(">", format(percent(data)+0.1)))
+  expect_equal(format(prefix(percent(data), ">") + 0.1),
+    paste0(">", format(percent(data) + 0.1)))
 })
 
 test_that("suffix", {
@@ -110,6 +116,6 @@ test_that("suffix", {
     paste0(formatC(data, format = "f", digits = 2L), "?"))
   expect_equal(format(suffix(percent(data), ">")),
     paste0(format(percent(data)), ">"))
-  expect_equal(format(suffix(percent(data), ">")+0.1),
-    paste0(format(percent(data)+0.1), ">"))
+  expect_equal(format(suffix(percent(data), ">") + 0.1),
+    paste0(format(percent(data) + 0.1), ">"))
 })

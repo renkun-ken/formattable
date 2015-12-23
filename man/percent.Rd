@@ -3,12 +3,12 @@
 \name{percent}
 \alias{percent}
 \alias{percent.character}
-\alias{percent.numeric}
+\alias{percent.default}
 \title{Numeric vector with percentage representation}
 \usage{
 percent(x, digits, format = "f", ...)
 
-\method{percent}{numeric}(x, digits = 2L, format = "f", ...)
+\method{percent}{default}(x, digits = 2L, format = "f", ...)
 
 \method{percent}{character}(x, digits = NA, format = "f", ...)
 }

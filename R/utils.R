@@ -1,3 +1,5 @@
+as_numeric <- function(x) if (is.numeric(x)) x else as.numeric(x)
+
 set_class <- function(x, class) {
   if (!inherits(x, class))
     class(x) <- c(class, class(x))

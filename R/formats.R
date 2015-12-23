@@ -19,8 +19,8 @@ percent <- function(x, digits, format = "f", ...)
 #' @examples
 #' percent(rnorm(10, 0, 0.1))
 #' percent(rnorm(10, 0, 0.1), digits = 0)
-percent.numeric <- function(x, digits = 2L, format = "f", ...) {
-  formattable(x, format = format, digits = digits, ...,
+percent.default <- function(x, digits = 2L, format = "f", ...) {
+  formattable(as_numeric(x), format = format, digits = digits, ...,
     preproc = "percent_preproc", postproc = "percent_postproc")
 }
 
@@ -33,7 +33,7 @@ percent.character <- function(x, digits = NA, format = "f", ...) {
   valid <- grepl("^(.+)\\s*%$", x)
   pct <- gsub("^(.+)\\s*%$", "\\1", x)
   if (is.na(digits)) digits <- max(get_digits(x) - ifelse(valid, 0, 2))
-  percent.numeric(as.numeric(pct) / ifelse(valid, 100, 1), digits = digits, format = "f")
+  percent.default(as.numeric(pct) / ifelse(valid, 100, 1), digits = digits, format = "f")
 }
 
 #' Numeric vector showing pre-specific digits
@@ -63,8 +63,8 @@ comma <- function(x, digits, format = "f", big.mark = ",", ...)
 #' comma(1000000)
 #' comma(c(1250000, 225000))
 #' comma(c(1250000, 225000), format = "d")
-comma.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
-  formattable(x, format = format, big.mark = big.mark, digits = digits, ...)
+comma.default <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
+  formattable(as_numeric(x), format = format, big.mark = big.mark, digits = digits, ...)
 }
 
 #' @rdname comma
@@ -73,7 +73,7 @@ comma.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 #' comma("123,345.123")
 comma.character <- function(x,
   digits = max(get_digits(x)), format = "f", big.mark = ",", ...) {
-  comma.numeric(as.numeric(gsub(big.mark, "", x, fixed = TRUE)),
+  comma.default(as.numeric(gsub(big.mark, "", x, fixed = TRUE)),
     digits = digits, format = format, big.mark = big.mark, ...)
 }
 
@@ -93,8 +93,9 @@ currency <- function(x, symbol, digits,
 #' currency(200000, "\U20AC")
 #' currency(1200000, "USD", sep = " ")
 #' currency(1200000, "USD", format = "d", sep = " ")
-currency.numeric <- function(x, symbol = "$",
+currency.default <- function(x, symbol = "$",
   digits = 2L, format = "f", big.mark = ",", ..., sep = "") {
+  x <- as_numeric(x)
   formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
     postproc = function(str, x) sprintf("%s%s%s",
       ifelse(is.na(x), "", symbol), sep, str))
@@ -117,7 +118,7 @@ currency.character <- function(x, symbol = get_currency_symbol(x),
   if (any(invalid <- !grepl("\\d", x)))
     warning("Invalid input in 'x': ", paste(x[invalid], collapse = ", "), call. = FALSE)
   num <- gsub("[^0-9\\.]", "", gsub(big.mark, "", x, fixed = TRUE))
-  currency.numeric(as.numeric(num), symbol = symbol, digits = digits,
+  currency.default(as.numeric(num), symbol = symbol, digits = digits,
     format = format, big.mark = big.mark, ...)
 }
 
@@ -133,8 +134,8 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...)
 #' accounting(15320)
 #' accounting(-12500)
 #' accounting(c(1200, -3500, 2600), format = "d")
-accounting.numeric <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
-  formattable(x, format = format, big.mark = big.mark, digits = digits, ...,
+accounting.default <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
+  formattable(as_numeric(x), format = format, big.mark = big.mark, digits = digits, ...,
     postproc = "accounting_postproc")
 }
 
@@ -146,7 +147,7 @@ accounting.character <- function(x, digits = max(get_digits(x)),
   format = "f", big.mark = ",", ...) {
   sgn <- ifelse(grepl("\\(.+\\)", x), -1, 1)
   num <- gsub("\\((.+)\\)", "\\1", gsub(big.mark, "", x, fixed = TRUE))
-  accounting.numeric(sgn * as.numeric(num), digits = digits,
+  accounting.default(sgn * as.numeric(num), digits = digits,
     format = format, big.mark = big.mark, ...)
 }
 
@@ -160,7 +161,7 @@ accounting.character <- function(x, digits = max(get_digits(x)),
 #' scientific(1253421, digits = 8)
 #' scientific(1253421, digits = 8, format = "E")
 scientific <- function(x, format = c("e", "E"), ...) {
-  formattable(as.numeric(x), format = match.arg(format), ...)
+  formattable(as_numeric(x), format = match.arg(format), ...)
 }
 
 #' Formattable object with prefix
@@ -181,7 +182,7 @@ prefix <- function(x, prefix = "", sep = "", ..., na.text = NULL) {
   formattable(x, ...,
     postproc = list(function(str, x)
       paste0(ifelse(xna <- is.na(x), "", paste0(prefix, sep)),
-        if(is.null(na.text)) str else ifelse(xna, na.text, str))))
+        if (is.null(na.text)) str else ifelse(xna, na.text, str))))
 }
 
 #' Formattable object with suffix
@@ -201,7 +202,7 @@ suffix <- function(x, suffix = "", sep = "", ..., na.text = NULL) {
   formattable(x, ...,
     postproc = list(function(str, x) {
       xna <- is.na(x)
-      paste0(if(is.null(na.text)) str else ifelse(xna, na.text, str),
+      paste0(if (is.null(na.text)) str else ifelse(xna, na.text, str),
         ifelse(xna, "", paste0(sep, suffix)))
     }))
 }

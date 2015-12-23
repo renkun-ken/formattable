@@ -3,12 +3,12 @@
 \name{currency}
 \alias{currency}
 \alias{currency.character}
-\alias{currency.numeric}
+\alias{currency.default}
 \title{Numeric vector with currency format}
 \usage{
 currency(x, symbol, digits, format = "f", big.mark = ",", ...)
 
-\method{currency}{numeric}(x, symbol = "$", digits = 2L, format = "f",
+\method{currency}{default}(x, symbol = "$", digits = 2L, format = "f",
   big.mark = ",", ..., sep = "")
 
 \method{currency}{character}(x, symbol = get_currency_symbol(x),
