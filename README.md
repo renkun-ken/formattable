@@ -7,6 +7,8 @@
 
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
+This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](https://github.com/hoxo-m), [@dichika](https://github.com/dichika) and [@teramonagi](https://github.com/teramonagi).
+
 ## Install
 
 Currently, the package is only available on GitHub.
