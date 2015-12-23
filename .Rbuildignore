@@ -3,6 +3,7 @@
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^formattable\.png$
-^README\.Rmd$
+^README.*\.Rmd$
+^README\..*\.md$
 ^README\.html$
 ^.*\.o$
