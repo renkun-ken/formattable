@@ -11,11 +11,19 @@ This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](h
 
 ## Install
 
-Currently, the package is only available on GitHub.
+The package is available on both GitHub and CRAN.
+
+Install from GitHub:
 
 ```r
 # install.packages("devtools")
 devtools::install_github("renkun-ken/formattable")
+```
+
+Install from CRAN:
+
+```r
+install.package("formattable")
 ```
 
 ## Introduction
