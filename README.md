@@ -23,7 +23,7 @@ devtools::install_github("renkun-ken/formattable")
 Install from CRAN:
 
 ```r
-install.package("formattable")
+install.packages("formattable")
 ```
 
 ## Introduction
