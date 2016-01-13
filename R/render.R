@@ -105,6 +105,6 @@ formattableOutput <- function(outputId, width = "100%", height = "0") {
 #' @importFrom htmlwidgets shinyRenderWidget
 #' @export
 renderFormattable <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(as.htmlwidget(expr)) } # force quoted
+  if (!quoted) { expr <- substitute(formattable::as.htmlwidget(expr)) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
 }
