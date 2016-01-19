@@ -10,7 +10,7 @@ before_install:
   - ./pkg-build.sh bootstrap
 
 install:
-  - ./pkg-build.sh install_github jimhester/covr
+  - if [[ ! -z "$COVERAGE" ]];then ./pkg-build.sh install_github jimhester/covr; fi
   - ./pkg-build.sh install_deps
 
 script:
