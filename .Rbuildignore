@@ -6,4 +6,5 @@
 ^README.*\.Rmd$
 ^README\..*\.md$
 ^README\.html$
+^LICENSE\.md$
 ^.*\.o$
