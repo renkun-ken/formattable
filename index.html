@@ -20,7 +20,7 @@
 
     <section class="main-content">
       <h1>
-<a id="formattable" class="anchor" href="#formattable" aria-hidden="true"><span class="octicon octicon-link"></span></a>formattable</h1>
+<a id="formattable" class="anchor" href="#formattable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>formattable</h1>
 
 <p><a href="https://travis-ci.org/renkun-ken/formattable"><img src="https://travis-ci.org/renkun-ken/formattable.png?branch=master" alt="Linux Build Status"></a> 
 <a href="https://ci.appveyor.com/project/renkun-ken/formattable"><img src="https://ci.appveyor.com/api/projects/status/github/renkun-ken/formattable?svg=true" alt="Windows Build status"></a>
@@ -29,10 +29,23 @@
 
 <p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
 
-<p>This document is also translated into <a href="https://github.com/renkun-ken/formattable/blob/master/README.ja.md">日本語</a> by <a href="https://github.com/hoxo-m">@hoxo_m</a>, <a href="https://github.com/dichika">@dichika</a> and <a href="https://github.com/teramonagi">@teramonagi</a>.</p>
+<p>This document is also translated into <a href="./README.ja.md">日本語</a> by <a href="https://github.com/hoxo-m">@hoxo_m</a>, <a href="https://github.com/dichika">@dichika</a> and <a href="https://github.com/teramonagi">@teramonagi</a>.</p>
 
 <h2>
-<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+<a id="breaking-changes" class="anchor" href="#breaking-changes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Breaking changes</h2>
+
+<p>In development version 0.1.7:</p>
+
+<ul>
+<li>
+<code>color_bar</code> is now broken into two versions using different transform functions:
+<code>normalize_bar</code> uses <code>normalize</code>, the same as <code>color_bar</code> in previous versions,
+and <code>proportion_bar</code> uses newly introduced <code>proportion</code> as <code>x / max(abs(x))</code> to
+create bars of proportional width. (#42, #49)</li>
+</ul>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
 
 <p>The package is available on both GitHub and CRAN.</p>
 
@@ -43,10 +56,10 @@
 
 <p>Install from CRAN:</p>
 
-<div class="highlight highlight-source-r"><pre>install.package(<span class="pl-s"><span class="pl-pds">"</span>formattable<span class="pl-pds">"</span></span>)</pre></div>
+<div class="highlight highlight-source-r"><pre>install.packages(<span class="pl-s"><span class="pl-pds">"</span>formattable<span class="pl-pds">"</span></span>)</pre></div>
 
 <h2>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
 
 <p>Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.</p>
 
@@ -102,7 +115,7 @@ printed. It works with arithmetic operations and common functions and preserves 
 </code></pre>
 
 <h2>
-<a id="formatting-tables-in-dynamic-document" class="anchor" href="#formatting-tables-in-dynamic-document" aria-hidden="true"><span class="octicon octicon-link"></span></a>Formatting tables in dynamic document</h2>
+<a id="formatting-tables-in-dynamic-document" class="anchor" href="#formatting-tables-in-dynamic-document" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Formatting tables in dynamic document</h2>
 
 <p>In a typical workflow of dynamic document production, <a href="https://github.com/yihui/knitr">knitr</a> and <a href="http://rmarkdown.rstudio.com/">rmarkdown</a> are powerful tools to render documents with R code to different types of portable documents.</p>
 
@@ -258,8 +271,8 @@ formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
   <span class="pl-v">age</span> <span class="pl-k">=</span> color_tile(<span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>orange<span class="pl-pds">"</span></span>),
   <span class="pl-v">grade</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
     <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> ifelse(<span class="pl-smi">x</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, style(<span class="pl-v">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-v">font.weight</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>bold<span class="pl-pds">"</span></span>), <span class="pl-c1">NA</span>)),
-  <span class="pl-v">test1_score</span> <span class="pl-k">=</span> color_bar(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">0.2</span>),
-  <span class="pl-v">test2_score</span> <span class="pl-k">=</span> color_bar(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">0.2</span>),
+  <span class="pl-v">test1_score</span> <span class="pl-k">=</span> normalize_bar(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">0.2</span>),
+  <span class="pl-v">test2_score</span> <span class="pl-k">=</span> normalize_bar(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">0.2</span>),
   <span class="pl-v">final_score</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
     <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(<span class="pl-v">color</span> <span class="pl-k">=</span> ifelse(rank(<span class="pl-k">-</span><span class="pl-smi">x</span>) <span class="pl-k">&lt;</span><span class="pl-k">=</span> <span class="pl-c1">3</span>, <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gray<span class="pl-pds">"</span></span>)),
     <span class="pl-smi">x</span> <span class="pl-k">~</span> sprintf(<span class="pl-s"><span class="pl-pds">"</span>%.2f (rank: %02d)<span class="pl-pds">"</span></span>, <span class="pl-smi">x</span>, rank(<span class="pl-k">-</span><span class="pl-smi">x</span>))),
@@ -273,12 +286,12 @@ formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
 <p><strong>The icon set used in the table is by <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> and included in <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a>.</strong></p>
 
 <h2>
-<a id="htmlwidget-conversion-in-interactive-environments" class="anchor" href="#htmlwidget-conversion-in-interactive-environments" aria-hidden="true"><span class="octicon octicon-link"></span></a>htmlwidget conversion in interactive environments</h2>
+<a id="htmlwidget-conversion-in-interactive-environments" class="anchor" href="#htmlwidget-conversion-in-interactive-environments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>htmlwidget</code> conversion in interactive environments</h2>
 
 <p><code>formattable</code> will automatically convert to an <code>htmlwidget</code> when in an <code>interactive()</code> context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the <code>markdown</code> table output, please use <code>format_table</code> that calls <code>knitr::kable</code> with formatters or call <code>as.character</code> with the <code>formattable data.frame</code> object.</p>
 
 <h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
 
 <p>This package is under <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
 
