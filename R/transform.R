@@ -19,7 +19,7 @@
 vmap <- function(EXPR, ..., SIMPLIFY = TRUE) {
   if (is.factor(EXPR)) EXPR <- as.character.factor(EXPR)
   res <- lapply(EXPR, switch, ...)
-  if(SIMPLIFY) simplify2array(res) else res
+  if (SIMPLIFY) simplify2array(res) else res
 }
 
 #' Quantile ranks of a vector
@@ -39,11 +39,10 @@ qrank <- function(x, ...) {
 
 #' Normalize a vector to fit zero-to-one scale
 #'
-#' @param x a vector
+#' @param x a numeric vector
 #' @param min numeric value. The lower bound of the interval to normalize \code{x}.
 #' @param max numeric value. The upper bound of the interval to normalize \code{x}.
-#' @param na.rm a logical indicating whether missing values
-#' should be removed
+#' @param na.rm a logical indicating whether missing values should be removed
 #' @export
 #' @examples
 #' normalize(mtcars$mpg)
@@ -57,4 +56,15 @@ normalize <- function(x, min = 0, max = 1, na.rm = FALSE) {
   xmin <- min(x, na.rm = na.rm)
   if (xmax == xmin) return(rep(1, length(x)))
   min + (max - min) * (x - xmin) / (xmax - xmin)
+}
+
+#' Rescale a vector relative to the maximal absolute value in the vector
+#'
+#' @param x a numeric vector
+#' @param na.rm a logical indicating whether missing values should be removed
+#' @export
+#' @examples
+#' proportion(mtcars$mpg)
+proportion <- function(x, na.rm = FALSE) {
+  x / max(abs(x), na.rm = na.rm)
 }

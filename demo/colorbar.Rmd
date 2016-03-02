@@ -22,7 +22,7 @@ formattable(df, list(
   age = color_tile("lightyellow", "orange"),
   grade = formatter("span",
     style = x ~ ifelse(x == "A", style(color = "green", font.weight = "bold"), NA)),
-  test1_score = color_bar("pink", 0.2),
+  test1_score = color_bar("pink"),
   test2_score = color_text("black", "red"),
   final_score = formatter("span",
     style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),

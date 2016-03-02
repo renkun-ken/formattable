@@ -24,7 +24,7 @@ test_that("qrank", {
 test_that("normalize", {
   n <- 100
   x <- rnorm(n)
-  expect_equal(normalize(x), (x-min(x)) / (max(x) - min(x)))
+  expect_equal(normalize(x), (x - min(x)) / (max(x) - min(x)))
   expect_equal(normalize(x, 0.5, 0.8), 0.5 + 0.3 * normalize(x))
   expect_error(normalize(x, 0.5, 0.1))
 
@@ -33,7 +33,16 @@ test_that("normalize", {
   x[sample(1:n, 10, replace = FALSE)] <- NA
   expect_error(normalize(x), "missing value")
   expect_equal(normalize(x, na.rm = TRUE),
-    (x-min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)))
+    (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)))
 
   expect_equal(normalize(c(NA,NA,NA), na.rm = TRUE), c(0,0,0))
+})
+
+test_that("proportion", {
+  n <- 100
+  x <- rbinom(n, 100, 0.8)
+  expect_equal(proportion(x), x / max(abs(x)))
+
+  x <- rnorm(n)
+  expect_equal(proportion(x), x / max(abs(x)))
 })

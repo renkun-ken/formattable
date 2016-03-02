@@ -86,6 +86,7 @@ color_tile <- function(...) {
     style = function(x) style(
       display = "block",
       padding = "0 4px",
+      direction = "rtl",
       "border-radius" = "4px",
       "background-color" = csscolor(gradient(x, ...))))
 }
@@ -93,19 +94,49 @@ color_tile <- function(...) {
 #' Create a color-bar formatter
 #'
 #' @param color the background color of the bars
-#' @param ... parameters passed to \code{normalize} function.
+#' @param fun the transform function that maps the input vector to
+#' values from 0 to 1
+#' @param ... additional parameters passed to \code{fun}
 #' @export
 #' @examples
-#' formattable(mtcars, list(mpg = color_bar("pink", 0.2)))
-color_bar <- function(color, ...) {
+#' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
+color_bar <- function(color, fun, ...) {
+  fun <- match.fun(fun)
   formatter("span",
     style = function(x) style(
       display = "block",
-      width = percent(normalize(x, ...)),
+      direction = "rtl",
       "border-radius" = "4px",
-      "padding-right" = "4px",
-      "background-color" = csscolor(color)
+      "padding-right" = "2px",
+      "background-color" = csscolor(color),
+      width = percent(fun(x, ...))
     ))
+}
+
+#' Create a color-bar formatter using normalize
+#'
+#' @param color the background color of the bars
+#' @param ... additional parameters passed to \code{normalize}
+#' @export
+#' @examples
+#' formattable(mtcars, list(mpg = normalize_bar()))
+#' @seealso
+#' \link{color_bar}, \link{normalize}
+normalize_bar <- function(color = "lightgray", ...) {
+  color_bar(color = color, fun = normalize, ...)
+}
+
+#' Create a color-bar formatter using proportion
+#'
+#' @param color the background color of the bars
+#' @param ... additional parameters passed to \code{proportion}
+#' @export
+#' @examples
+#' formattable(mtcars, list(mpg = proportion_bar()))
+#' @seealso
+#' \link{color_bar}, \link{proportion}
+proportion_bar <- function(color = "lightgray", ...) {
+  color_bar(color = color, fun = proportion, ...)
 }
 
 #' Create a color-text formatter
