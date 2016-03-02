@@ -100,6 +100,8 @@ color_tile <- function(...) {
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
+#' @seealso
+#' \link{normalize_bar}, \link{proportion_bar}
 color_bar <- function(color, fun, ...) {
   fun <- match.fun(fun)
   formatter("span",

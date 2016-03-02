@@ -20,4 +20,7 @@ Create a color-bar formatter
 \examples{
 formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 }
+\seealso{
+\link{normalize_bar}, \link{proportion_bar}
+}
 
