@@ -52,9 +52,9 @@ normalize <- function(x, min = 0, max = 1, na.rm = FALSE) {
   if (!is.numeric(x)) stop("x must be numeric")
   x <- unclass(x)
   if (min > max) stop("min <= max must be satisfied")
-  if(all(x == 0, na.rm = na.rm)) return(x)
+  if (all(x == 0, na.rm = na.rm)) return(x)
   xmax <- max(x, na.rm = na.rm)
   xmin <- min(x, na.rm = na.rm)
-  if(xmax == xmin) return(rep(1, length(x)))
+  if (xmax == xmin) return(rep(1, length(x)))
   min + (max - min) * (x - xmin) / (xmax - xmin)
 }

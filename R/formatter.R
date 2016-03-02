@@ -57,11 +57,11 @@ formatter <- function(.tag, ...) {
       if (is.null(value)) NA else value
     })
     tags <- if (length(x) == 1L) {
-      list(htmltools::tag(.tag, values[!is.na(values) & nzchar(values)]))
+      list(tag(.tag, values[!is.na(values) & nzchar(values)]))
     } else {
       .mapply(function(...) {
         attrs <- list(...)
-        htmltools::tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
+        tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
       }, values, NULL)
     }
     vapply(tags, as.character, character(1L))
