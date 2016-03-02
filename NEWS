@@ -1,0 +1,16 @@
+# Version 0.1.7
+
+## Breaking changes
+
+* `color_bar` is now broken into two versions using different transform functions:
+  * `normalize_bar` uses `normalize`, the same as `color_bar` in previous versions
+  * `proportion_bar` uses newly introduced `proportion` as `x / max(abs(x))` to
+  create bars of proportional width. (#42, #49)
+
+# Version 0.1.6
+
+* Fix #43
+
+# Version 0.1.5
+
+* Released to CRAN

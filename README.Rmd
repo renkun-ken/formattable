@@ -9,6 +9,15 @@ This package is designed for applying formatting on vectors and data frames to m
 
 This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](https://github.com/hoxo-m), [@dichika](https://github.com/dichika) and [@teramonagi](https://github.com/teramonagi).
 
+## Breaking changes
+
+In development version 0.1.7:
+
+* `color_bar` is now broken into two versions using different transform functions:
+  `normalize_bar` uses `normalize`, the same as `color_bar` in previous versions,
+  and `proportion_bar` uses newly introduced `proportion` as `x / max(abs(x))` to
+  create bars of proportional width. (#42, #49)
+
 ## Install
 
 The package is available on both GitHub and CRAN.
