@@ -236,8 +236,9 @@ format.formattable <- function(x, ...,
     postproc_list <- if (is.list(attrs$postproc)) attrs$postproc else list(attrs$postproc)
     for (postproc in postproc_list) str <- call_or_default(postproc, str, value)
   }
+  str <- as.character(str)
   if (use.names && x_atomic && !is.null(x_names <- names(x))) names(str) <- x_names
-  as.character(str)
+  str
 }
 
 #' @export
