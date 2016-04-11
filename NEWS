@@ -7,6 +7,10 @@
   * `proportion_bar` uses newly introduced `proportion` as `x / max(abs(x))` to
   create bars of proportional width. (#42, #49)
 
+## Bug fixes
+
+* Fix: named vectors lose their names (#56)
+
 # Version 0.1.6
 
 * Fix #43
