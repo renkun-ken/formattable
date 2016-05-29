@@ -11,12 +11,11 @@ Description: Provides functions to create formattable vectors and data frames.
     to improve the readability of data presented in tabular form rendered as
     web pages.
 Depends:
-    R (>= 2.14.1)
-Date: 2016-04-11
+    R (> 3.0.2)
+Date: 2016-05-29
 Imports:
     htmltools,
     htmlwidgets,
-    markdown,
     knitr,
     shiny
 License: MIT + file LICENSE

@@ -450,7 +450,7 @@ quantile.formattable <- function(x, ...) {
 #' format_table(mtcars, list(mpg = formatter("span",
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 format_table <- function(x, formatters = list(),
-  format = c("markdown", "pandoc"), align = "r", ...,
+  format = c("html", "markdown", "pandoc"), align = "r", ...,
   row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()

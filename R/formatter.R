@@ -85,8 +85,8 @@ color_tile <- function(...) {
   formatter("span",
     style = function(x) style(
       display = "block",
-      padding = "0 4px",
       direction = "rtl",
+      padding = "0 4px",
       "border-radius" = "4px",
       "background-color" = csscolor(gradient(x, ...))))
 }
@@ -106,7 +106,7 @@ color_bar <- function(color, fun, ...) {
   fun <- match.fun(fun)
   formatter("span",
     style = function(x) style(
-      display = "block",
+      display = "inline-block",
       direction = "rtl",
       "border-radius" = "4px",
       "padding-right" = "2px",
