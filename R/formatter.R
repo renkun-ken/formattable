@@ -15,7 +15,7 @@
 #' the formula environment. If a column is formatted according to multiple
 #' other columns, \code{~expr} should be used and the column names can directly
 #' appear in \code{expr}.
-#' @importFrom htmltools tag
+#' @importFrom htmltools tag doRenderTags
 #' @param .tag HTML tag name
 #' @param ... functions to create attributes of HTML element from data colums.
 #' The unnamed element will serve as the function to produce the inner text of the
@@ -39,12 +39,10 @@
 formatter <- function(.tag, ...) {
   fcall <- match.call(expand.dots = TRUE)
   args <- list(...)
-  # if function to specify element inner text is missing,
-  # then use identify to preserve the default text of
-  # the column value
+
   if (length(args) == 0L ||
       (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
-    args <- c(args, identity)
+    args <- c(args, format)
   }
 
   # create a closure for formattable to build output string
@@ -64,7 +62,14 @@ formatter <- function(.tag, ...) {
         tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
       }, values, NULL)
     }
-    vapply(tags, as.character, character(1L))
+    res <- vapply(tags, doRenderTags, character(1L))
+    if (is.matrix(x)) {
+      dim(res) <- dim(x)
+      dimnames(res) <- dimnames(x)
+    } else {
+      names(res) <- names(x)
+    }
+    res
   }, class = c("formatter", "function"))
 }
 
@@ -73,6 +78,15 @@ print.formatter <- function(x, ...) {
   env <- environment(x)
   print(env$fcall, ...)
   invisible(x)
+}
+
+#' @export
+area <- function(row, col) {
+  structure(list(
+    row = if (missing(row)) TRUE else substitute(row),
+    col = if (missing(col)) TRUE else substitute(col),
+    envir = parent.frame()),
+    class = "area")
 }
 
 #' Create a color-tile formatter
@@ -85,10 +99,9 @@ color_tile <- function(...) {
   formatter("span",
     style = function(x) style(
       display = "block",
-      direction = "rtl",
       padding = "0 4px",
       "border-radius" = "4px",
-      "background-color" = csscolor(gradient(x, ...))))
+      "background-color" = csscolor(gradient(as.numeric(x), ...))))
 }
 
 #' Create a color-bar formatter
@@ -111,7 +124,7 @@ color_bar <- function(color, fun, ...) {
       "border-radius" = "4px",
       "padding-right" = "2px",
       "background-color" = csscolor(color),
-      width = percent(fun(x, ...))
+      width = percent(fun(as.numeric(x), ...))
     ))
 }
 
@@ -150,5 +163,5 @@ proportion_bar <- function(color = "lightgray", ...) {
 color_text <- function(...) {
   formatter("span",
     style = function(x) style(
-      color = csscolor(gradient(x, ...))))
+      color = csscolor(gradient(as.numeric(x), ...))))
 }

@@ -1,3 +1,6 @@
+base_ifelse <- base::ifelse
+base_format <- base::format
+
 as_numeric <- function(x) if (is.numeric(x)) x else as.numeric(x)
 
 set_class <- function(x, class) {
@@ -17,7 +20,7 @@ reset_class <- function(src, target, class) {
 }
 
 ifelse <- function(test, yes, no, ...) {
-  base::ifelse(test, yes, no)
+  base_ifelse(test, yes, no)
 }
 
 remove_class <- function(x, class) {
@@ -71,4 +74,10 @@ eval_formula <- function(x, var, data, envir = environment(x)) {
 get_digits <- function(x) {
   ifelse(grepl(".", x, fixed = TRUE),
     nchar(gsub("^.*\\.([0-9]*).*$", "\\1", x)), 0L)
+}
+
+seq_list <- function(x) {
+  lst <- as.list(seq_along(x))
+  names(lst) <- x
+  lst
 }
