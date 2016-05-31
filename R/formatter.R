@@ -16,7 +16,7 @@
 #' other columns, \code{~expr} should be used and the column names can directly
 #' appear in \code{expr}.
 #' @importFrom htmltools tag doRenderTags
-#' @param .tag HTML tag name
+#' @param .tag HTML tag name. Uses \code{span} by default.
 #' @param ... functions to create attributes of HTML element from data colums.
 #' The unnamed element will serve as the function to produce the inner text of the
 #' element. If no unnamed element is provided, \code{identity} function will be used
@@ -36,7 +36,7 @@
 #'   style = ~ ifelse(rank(-mpg) <= 20 & rank(-disp) <= 20, "color:red", NA))
 #' formattable(mtcars, list(cyl = f1))
 #' @export
-formatter <- function(.tag, ...) {
+formatter <- function(.tag = "span", ...) {
   fcall <- match.call(expand.dots = TRUE)
   args <- list(...)
 
@@ -80,7 +80,15 @@ print.formatter <- function(x, ...) {
   invisible(x)
 }
 
+#' Create an area to apply formatter
+#' @param row an expression of row range
+#' @param col an expression of column range
 #' @export
+#' @examples
+#' area(col = c("mpg", "cyl"))
+#' area(col = mpg:cyl)
+#' area(row = 1)
+#' area(row = 1:10, col = 5:10)
 area <- function(row, col) {
   structure(list(
     row = if (missing(row)) TRUE else substitute(row),
@@ -108,14 +116,14 @@ color_tile <- function(...) {
 #'
 #' @param color the background color of the bars
 #' @param fun the transform function that maps the input vector to
-#' values from 0 to 1
+#' values from 0 to 1. Uses \code{proportion} by default.
 #' @param ... additional parameters passed to \code{fun}
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 #' @seealso
 #' \link{normalize_bar}, \link{proportion_bar}
-color_bar <- function(color, fun, ...) {
+color_bar <- function(color = "lightgray", fun = "proportion", ...) {
   fun <- match.fun(fun)
   formatter("span",
     style = function(x) style(
