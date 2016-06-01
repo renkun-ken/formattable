@@ -458,7 +458,8 @@ format_table <- function(x, formatters = list(),
   format <- match.arg(format)
   cols <- colnames(x)
   mat <- vapply(x, base_format, character(nrow(x)), digits = digits)
-  rownames(mat) <- row.names
+  dim(mat) <- dim(x)
+  dimnames(mat) <- dimnames(x)
   for (fi in seq_along(formatters)) {
     fn <- names(formatters)[[fi]]
     f <- formatters[[fi]]
