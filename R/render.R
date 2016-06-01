@@ -74,16 +74,16 @@ as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
     height = height, package = "formattable", ...)
 }
 
-#' @importFrom shiny bootstrapLib
 #' @importFrom htmltools tags attachDependencies
+#' @importFrom shiny bootstrapLib
 #' @importFrom rmarkdown html_dependency_jquery
 formattable_widget_html <- function(name, package, id, style, class, width, height) {
   attachDependencies(
     htmltools::tags$div(id = id, class = class, style = style,
       width = width, height = height),
-    list(
-      rmarkdown:::html_dependency_jquery(),
-      shiny:::bootstrapLib()
+    c(
+      attr(shiny::bootstrapLib(), "html_dependencies"),
+      list(rmarkdown::html_dependency_jquery())
     )
   )
 }
