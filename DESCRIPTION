@@ -18,7 +18,7 @@ Imports:
     htmlwidgets,
     knitr,
     rmarkdown,
-    shiny(>= 0.13.0)
+    shiny (>= 0.13.0)
 License: MIT + file LICENSE
 LazyData: true
 URL: https://renkun.me/formattable, https://github.com/renkun-ken/formattable
