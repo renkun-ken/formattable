@@ -472,15 +472,19 @@ format_table <- function(x, formatters = list(),
         mat[, fn] <- format(fv)
       }
     } else if (inherits(f, "formula")) {
-      as.matrix(if (length(f) == 2L) x else {
+      value <- as.matrix(if (length(f) == 2L) {
+        row <- col <- TRUE
+        f <- eval(f[[2L]], environment(f))
+        x
+      } else {
         farea <- eval(f[[2L]], environment(f))
         row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
         col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
         f <- eval(f[[3L]], environment(f))
-        value <- x[row, col]
-        fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
-        mat[row, col] <- format(fv)
+        x[row, col]
       })
+      fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
+      mat[row, col] <- format(fv)
     }
   }
   kable(mat, format = format, align = align, escape = FALSE, ...)
