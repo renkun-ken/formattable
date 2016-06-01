@@ -59,32 +59,32 @@ as.htmlwidget <- function(x, ...)
 #'   )
 #' )
 #' }
-#' @importFrom markdown markdownToHTML
 #' @importFrom htmlwidgets createWidget
 #' @export
 as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   if (!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
-  md <- format(x, format = list(format = "markdown"))
-  html <- gsub(x = # change align to bootstrap class for align
-    markdown::markdownToHTML(
-      text = gsub(x = md,
-        pattern = "\n", replacement = "", fixed = TRUE), #remove line breaks
-        fragment.only = TRUE),
-    pattern = 'th align="', replacement = 'th class="text-', fixed = TRUE)
+  html <- gsub('th align="', 'th class="text-',
+    format(x, format = list(format = "html")), fixed = TRUE)
 
   # forward options using x
-  x <- list(html = html, md = md)
+  x <- list(html = html)
 
   # create widget
   htmlwidgets::createWidget("formattable_widget", x, width = width,
-    height = height, package = "formattable")
+    height = height, package = "formattable", ...)
 }
 
-#' @importFrom shiny bootstrapPage
-#' @importFrom htmltools tags
+#' @importFrom htmltools tags attachDependencies
+#' @importFrom rmarkdown html_dependency_jquery html_dependency_bootstrap
 formattable_widget_html <- function(name, package, id, style, class, width, height) {
-  shiny::bootstrapPage(htmltools::tags$div(id = id, class = class, style = style,
-    width = width, height = height))
+  attachDependencies(
+    htmltools::tags$div(id = id, class = class, style = style,
+      width = width, height = height),
+    list(
+      rmarkdown::html_dependency_jquery(),
+      rmarkdown::html_dependency_bootstrap("default")
+    )
+  )
 }
 
 #' Widget output function for use in Shiny

@@ -15,8 +15,8 @@
 #' the formula environment. If a column is formatted according to multiple
 #' other columns, \code{~expr} should be used and the column names can directly
 #' appear in \code{expr}.
-#' @importFrom htmltools tag
-#' @param .tag HTML tag name
+#' @importFrom htmltools tag doRenderTags
+#' @param .tag HTML tag name. Uses \code{span} by default.
 #' @param ... functions to create attributes of HTML element from data colums.
 #' The unnamed element will serve as the function to produce the inner text of the
 #' element. If no unnamed element is provided, \code{identity} function will be used
@@ -36,15 +36,13 @@
 #'   style = ~ ifelse(rank(-mpg) <= 20 & rank(-disp) <= 20, "color:red", NA))
 #' formattable(mtcars, list(cyl = f1))
 #' @export
-formatter <- function(.tag, ...) {
+formatter <- function(.tag = "span", ...) {
   fcall <- match.call(expand.dots = TRUE)
   args <- list(...)
-  # if function to specify element inner text is missing,
-  # then use identify to preserve the default text of
-  # the column value
+
   if (length(args) == 0L ||
       (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
-    args <- c(args, identity)
+    args <- c(args, format)
   }
 
   # create a closure for formattable to build output string
@@ -64,7 +62,14 @@ formatter <- function(.tag, ...) {
         tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
       }, values, NULL)
     }
-    vapply(tags, as.character, character(1L))
+    res <- vapply(tags, doRenderTags, character(1L))
+    if (is.matrix(x)) {
+      dim(res) <- dim(x)
+      dimnames(res) <- dimnames(x)
+    } else {
+      names(res) <- names(x)
+    }
+    res
   }, class = c("formatter", "function"))
 }
 
@@ -73,6 +78,23 @@ print.formatter <- function(x, ...) {
   env <- environment(x)
   print(env$fcall, ...)
   invisible(x)
+}
+
+#' Create an area to apply formatter
+#' @param row an expression of row range
+#' @param col an expression of column range
+#' @export
+#' @examples
+#' area(col = c("mpg", "cyl"))
+#' area(col = mpg:cyl)
+#' area(row = 1)
+#' area(row = 1:10, col = 5:10)
+area <- function(row, col) {
+  structure(list(
+    row = if (missing(row)) TRUE else substitute(row),
+    col = if (missing(col)) TRUE else substitute(col),
+    envir = parent.frame()),
+    class = "area")
 }
 
 #' Create a color-tile formatter
@@ -86,32 +108,31 @@ color_tile <- function(...) {
     style = function(x) style(
       display = "block",
       padding = "0 4px",
-      direction = "rtl",
       "border-radius" = "4px",
-      "background-color" = csscolor(gradient(x, ...))))
+      "background-color" = csscolor(gradient(as.numeric(x), ...))))
 }
 
 #' Create a color-bar formatter
 #'
 #' @param color the background color of the bars
 #' @param fun the transform function that maps the input vector to
-#' values from 0 to 1
+#' values from 0 to 1. Uses \code{proportion} by default.
 #' @param ... additional parameters passed to \code{fun}
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 #' @seealso
 #' \link{normalize_bar}, \link{proportion_bar}
-color_bar <- function(color, fun, ...) {
+color_bar <- function(color = "lightgray", fun = "proportion", ...) {
   fun <- match.fun(fun)
   formatter("span",
     style = function(x) style(
-      display = "block",
+      display = "inline-block",
       direction = "rtl",
       "border-radius" = "4px",
       "padding-right" = "2px",
       "background-color" = csscolor(color),
-      width = percent(fun(x, ...))
+      width = percent(fun(as.numeric(x), ...))
     ))
 }
 
@@ -150,5 +171,5 @@ proportion_bar <- function(color = "lightgray", ...) {
 color_text <- function(...) {
   formatter("span",
     style = function(x) style(
-      color = csscolor(gradient(x, ...))))
+      color = csscolor(gradient(as.numeric(x), ...))))
 }

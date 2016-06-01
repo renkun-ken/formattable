@@ -1,6 +1,6 @@
 Package: formattable
 Title: Formattable Data Structures
-Version: 0.1.7.1
+Version: 0.1.9.9002
 Authors@R: c(
     person("Kun", "Ren", role = c("aut", "cre"), email = "ken@renkun.me"),
     person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
@@ -11,14 +11,14 @@ Description: Provides functions to create formattable vectors and data frames.
     to improve the readability of data presented in tabular form rendered as
     web pages.
 Depends:
-    R (>= 2.14.1)
-Date: 2016-04-11
+    R (> 3.0.2)
+Date: 2016-05-31
 Imports:
     htmltools,
     htmlwidgets,
-    markdown,
     knitr,
-    shiny
+    rmarkdown,
+    shiny (>= 0.13.0)
 License: MIT + file LICENSE
 LazyData: true
 URL: https://renkun.me/formattable, https://github.com/renkun-ken/formattable

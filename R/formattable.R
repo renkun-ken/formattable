@@ -209,7 +209,7 @@ knit_print_formattable.default <- print_formattable.default
 knit_print_formattable.data.frame <- function(x, ...) {
   format <- attr(x, "formattable", exact = TRUE)$format
   caption <- if (isTRUE(format$format == "pandoc" && nzchar(format$caption))) "<!-- -->\n\n" else ""
-  knitr::asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
+  asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
 }
 
 #' @export
@@ -237,7 +237,14 @@ format.formattable <- function(x, ...,
     for (postproc in postproc_list) str <- call_or_default(postproc, str, value)
   }
   str <- as.character(str)
-  if (use.names && x_atomic && !is.null(x_names <- names(x))) names(str) <- x_names
+  if (use.names && x_atomic) {
+    if (is.matrix(x)) {
+      dim(str) <- dim(x)
+      dimnames(str) <- dimnames(x)
+    } else {
+      names(str) <- names(x)
+    }
+  }
   str
 }
 
@@ -374,14 +381,12 @@ cumsum.formattable <- function(x, ...) {
   fcreate_obj(cumsum, "formattable", x, ...)
 }
 
-#' @rdname stats median
 #' @importFrom stats median
 #' @export
 median.formattable <- function(x, ...) {
   fcreate_obj(median, "formattable", x, ...)
 }
 
-#' @rdname stats quantile
 #' @importFrom stats quantile
 #' @export
 quantile.formattable <- function(x, ...) {
@@ -413,10 +418,6 @@ quantile.formattable <- function(x, ...) {
 #' By default, all columns are right-aligned.
 #' @param ... additional parameters to be passed to \code{knitr::kable}.
 #' @param row.names row names to give to the data frame to knit
-#' @param check.rows if TRUE then the rows are checked for consistency
-#' of length and names.
-#' @param check.names \code{TRUE} to check names of data frame to make
-#' valid symbol names. This argument is \code{FALSE} by default.
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in
 #' specific \code{format}.
@@ -450,24 +451,43 @@ quantile.formattable <- function(x, ...) {
 #' format_table(mtcars, list(mpg = formatter("span",
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 format_table <- function(x, formatters = list(),
-  format = c("markdown", "pandoc"), align = "r", ...,
-  row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
+  format = c("html", "markdown", "pandoc"), align = "r", ...,
+  digits = getOption("digits"), row.names = rownames(x)) {
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
   format <- match.arg(format)
-  xdf <- data.frame(mapply(function(name, value) {
-    f <- formatters[[name]]
-    fvalue <- if (is.null(f)) value
-    else if (inherits(f, "formula")) eval_formula(f, value, x)
-    else if (inherits(f, "formatter")) f(value, x)
-    else match.fun(f)(value)
-    if (is.formattable(fvalue)) as.character.formattable(fvalue) else fvalue
-  }, names(x), x, SIMPLIFY = FALSE),
-    row.names = row.names,
-    check.rows = check.rows,
-    check.names = check.names,
-    stringsAsFactors = FALSE)
-  knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
+  cols <- colnames(x)
+  mat <- vapply(x, base_format, character(nrow(x)), digits = digits)
+  dim(mat) <- dim(x)
+  dimnames(mat) <- dimnames(x)
+  for (fi in seq_along(formatters)) {
+    fn <- names(formatters)[[fi]]
+    f <- formatters[[fi]]
+    if (!is.null(fn) && nzchar(fn)) {
+      if (fn %in% cols) {
+        value <- x[, fn]
+        fv <-  if (inherits(f, "formatter")) f(value, x)
+        else  if (inherits(f, "formula")) eval_formula(f, value, x)
+        else match.fun(f)(value)
+        mat[, fn] <- format(fv)
+      }
+    } else if (inherits(f, "formula")) {
+      value <- as.matrix(if (length(f) == 2L) {
+        row <- col <- TRUE
+        f <- eval(f[[2L]], environment(f))
+        x
+      } else {
+        farea <- eval(f[[2L]], environment(f))
+        row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
+        col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
+        f <- eval(f[[3L]], environment(f))
+        x[row, col]
+      })
+      fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
+      mat[row, col] <- format(fv)
+    }
+  }
+  kable(mat, format = format, align = align, escape = FALSE, ...)
 }
 
 #' Create a formattable data frame
@@ -524,9 +544,4 @@ formattable.data.frame <- function(x, ..., formatter = "format_table",
   create_obj(x, "formattable",
     list(formatter = formatter, format = list(...),
       preproc = preproc, postproc = postproc))
-}
-
-#' @export
-formattable.matrix <- function(x, ...) {
-  formattable.data.frame(data.frame(x, check.names = FALSE, stringsAsFactors = FALSE), ...)
 }

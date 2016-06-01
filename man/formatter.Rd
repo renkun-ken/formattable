@@ -4,10 +4,10 @@
 \alias{formatter}
 \title{Create a formatter function making HTML elements}
 \usage{
-formatter(.tag, ...)
+formatter(.tag = "span", ...)
 }
 \arguments{
-\item{.tag}{HTML tag name}
+\item{.tag}{HTML tag name. Uses \code{span} by default.}
 
 \item{...}{functions to create attributes of HTML element from data colums.
 The unnamed element will serve as the function to produce the inner text of the
