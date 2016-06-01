@@ -487,7 +487,14 @@ format_table <- function(x, formatters = list(),
       mat[row, col] <- format(fv)
     }
   }
-  kable(mat, format = format, align = align, escape = FALSE, ...)
+
+  # add class for bootstrap styling if html format
+  table_attr <- NULL
+  if (format=="html") {
+    table_attr = 'class="table table-condensed"'
+  }
+  kable(mat, format = format, align = align, escape = FALSE,
+        table.attr = table_attr, ...)
 }
 
 #' Create a formattable data frame
