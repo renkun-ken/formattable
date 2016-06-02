@@ -6,7 +6,7 @@
 \usage{
 format_table(x, formatters = list(), format = c("html", "markdown",
   "pandoc"), align = "r", ..., digits = getOption("digits"),
-  row.names = rownames(x))
+  row.names = rownames(x), table.attr = "class=\\"table table-condensed\\"")
 }
 \arguments{
 \item{x}{a \code{data.frame}.}

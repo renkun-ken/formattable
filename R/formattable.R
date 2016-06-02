@@ -452,7 +452,8 @@ quantile.formattable <- function(x, ...) {
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 format_table <- function(x, formatters = list(),
   format = c("html", "markdown", "pandoc"), align = "r", ...,
-  digits = getOption("digits"), row.names = rownames(x)) {
+  digits = getOption("digits"), row.names = rownames(x),
+  table.attr = 'class="table table-condensed"') {
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
   format <- match.arg(format)
@@ -488,13 +489,8 @@ format_table <- function(x, formatters = list(),
     }
   }
 
-  # add class for bootstrap styling if html format
-  table_attr <- NULL
-  if (format=="html") {
-    table_attr = 'class="table table-condensed"'
-  }
-  kable(mat, format = format, align = align, escape = FALSE,
-        table.attr = table_attr, ...)
+  kable(mat, format = format, align = align, escape = FALSE, ...,
+    table.attr = table.attr)
 }
 
 #' Create a formattable data frame
