@@ -76,7 +76,7 @@ get_digits <- function(x) {
     nchar(gsub("^.*\\.([0-9]*).*$", "\\1", x)), 0L)
 }
 
-seq_list <- function(x) {
+seq_list <- function(x = character()) {
   lst <- as.list(seq_along(x))
   names(lst) <- x
   lst

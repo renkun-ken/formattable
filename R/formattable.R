@@ -471,15 +471,16 @@ format_table <- function(x, formatters = list(),
         mat[, fn] <- format(fv)
       }
     } else if (inherits(f, "formula")) {
+      fenv <- environment(f)
       value <- as.matrix(if (length(f) == 2L) {
         row <- col <- TRUE
-        f <- eval(f[[2L]], environment(f))
+        f <- eval(f[[2L]], fenv)
         x
       } else {
-        farea <- eval(f[[2L]], environment(f))
+        farea <- eval(f[[2L]], fenv)
         row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
         col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
-        f <- eval(f[[3L]], environment(f))
+        f <- eval(f[[3L]], fenv)
         x[row, col]
       })
       fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
