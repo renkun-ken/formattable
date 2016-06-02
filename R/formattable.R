@@ -250,7 +250,7 @@ format.formattable <- function(x, ...,
 
 #' @export
 as.list.formattable <- function(x, ...) {
-  lapply(seq_along(x), function(i) x[i])
+  lapply(seq_along(x), function(i) x[[i]])
 }
 
 #' @export
@@ -417,6 +417,10 @@ quantile.formattable <- function(x, ...) {
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 #' By default, all columns are right-aligned.
 #' @param ... additional parameters to be passed to \code{knitr::kable}.
+#' @param digits The number of significant digits to be used for numeric
+#'     and complex values.
+#' @param table.attr The HTML class of \code{<table>} created when
+#'     \code{format = "html"}
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in
 #' specific \code{format}.

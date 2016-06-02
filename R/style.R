@@ -102,7 +102,7 @@ str2rgb <- function(x, alpha = NULL) {
     substr(rgbs, 6L, 7L),
     if (alpha) ifelse(nzchar(alphav <- substr(rgbs, 8L, 9L)), alphav, "FF") else NULL), 16L),
     nrow = rows, byrow = TRUE)
-  res[, !is_rgb] <- grDevices::col2rgb(x[!is_rgb], alpha = alpha)
+  res[, !is_rgb] <- col2rgb(x[!is_rgb], alpha = alpha)
   res
 }
 

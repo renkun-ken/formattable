@@ -70,7 +70,7 @@ as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   x <- list(html = html)
 
   # create widget
-  htmlwidgets::createWidget("formattable_widget", x, width = width,
+  createWidget("formattable_widget", x, width = width,
     height = height, package = "formattable", ...)
 }
 
@@ -78,11 +78,11 @@ as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
 #' @importFrom rmarkdown html_dependency_jquery html_dependency_bootstrap
 formattable_widget_html <- function(name, package, id, style, class, width, height) {
   attachDependencies(
-    htmltools::tags$div(id = id, class = class, style = style,
+    tags$div(id = id, class = class, style = style,
       width = width, height = height),
     list(
-      rmarkdown::html_dependency_jquery(),
-      rmarkdown::html_dependency_bootstrap("default")
+      html_dependency_jquery(),
+      html_dependency_bootstrap("default")
     )
   )
 }
@@ -94,7 +94,7 @@ formattable_widget_html <- function(name, package, id, style, class, width, heig
 #' @importFrom htmlwidgets shinyWidgetOutput
 #' @export
 formattableOutput <- function(outputId, width = "100%", height = "0") {
-  htmlwidgets::shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
+  shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
 }
 
 #' Widget render function for use in Shiny
@@ -106,5 +106,5 @@ formattableOutput <- function(outputId, width = "100%", height = "0") {
 #' @export
 renderFormattable <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(formattable::as.htmlwidget(expr)) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
+  shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
 }

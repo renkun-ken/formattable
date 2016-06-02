@@ -1,5 +1,5 @@
-base_ifelse <- base::ifelse
-base_format <- base::format
+base_ifelse <- getExportedValue("base", "ifelse")
+base_format <- getExportedValue("base", "format")
 
 as_numeric <- function(x) if (is.numeric(x)) x else as.numeric(x)
 

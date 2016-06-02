@@ -81,6 +81,7 @@ print.formatter <- function(x, ...) {
 }
 
 #' Create an area to apply formatter
+#'
 #' @param row an expression of row range
 #' @param col an expression of column range
 #' @export
