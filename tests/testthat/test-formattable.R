@@ -141,6 +141,7 @@ test_that("formattable methods", {
 test_that("formattable.data.frame", {
   obj <- formattable(mtcars)
   expect_is(obj, c("formattable", "data.frame"))
+  expect_is(format_table(mtcars), "knitr_kable")
   expect_is(format_table(obj), "knitr_kable")
   expect_is(formattable(mtcars, list(mpg = formatter("span",
         style = x ~ style(display = "block",
@@ -160,7 +161,6 @@ test_that("formattable.data.frame", {
     "knitr_kable")
   expect_is(format_table(mtcars, list(vs = ~"unknown")), "knitr_kable")
   expect_error(format_table(mtcars, list(vs = f(a,b) ~ "unknown")))
-  expect_true({capture.output(print(formattable(mtcars))); TRUE})
 
   df <- formattable(mtcars, list(mpg = color_tile("red", "green")))
   expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, ], "formattable", TRUE))
@@ -171,7 +171,7 @@ test_that("formattable.data.frame", {
   expect_true(is.character(knit_df))
 
   df <- data.frame(id = integer(), name = character(), value = numeric())
-  expect_true({capture.output(print(formattable(df, list(value = color_tile("red", "blue")))));TRUE})
+  expect_is(format_table(formattable(df, list(value = color_tile("red", "blue")))), "knitr_kable")
 })
 
 test_that("formattable.matrix", {
