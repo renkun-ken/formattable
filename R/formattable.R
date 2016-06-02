@@ -417,7 +417,6 @@ quantile.formattable <- function(x, ...) {
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 #' By default, all columns are right-aligned.
 #' @param ... additional parameters to be passed to \code{knitr::kable}.
-#' @param row.names row names to give to the data frame to knit
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in
 #' specific \code{format}.
@@ -452,8 +451,7 @@ quantile.formattable <- function(x, ...) {
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 format_table <- function(x, formatters = list(),
   format = c("html", "markdown", "pandoc"), align = "r", ...,
-  digits = getOption("digits"), row.names = rownames(x),
-  table.attr = 'class="table table-condensed"') {
+  digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
   format <- match.arg(format)

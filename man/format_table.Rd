@@ -6,7 +6,7 @@
 \usage{
 format_table(x, formatters = list(), format = c("html", "markdown",
   "pandoc"), align = "r", ..., digits = getOption("digits"),
-  row.names = rownames(x), table.attr = "class=\\"table table-condensed\\"")
+  table.attr = "class=\\"table table-condensed\\"")
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
@@ -30,8 +30,6 @@ of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 By default, all columns are right-aligned.}
 
 \item{...}{additional parameters to be passed to \code{knitr::kable}.}
-
-\item{row.names}{row names to give to the data frame to knit}
 }
 \value{
 a \code{knitr_kable} object whose \code{print} method generates a
