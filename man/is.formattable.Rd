@@ -14,7 +14,7 @@ is.formattable(x)
 \code{FALSE} otherwise.
 }
 \description{
-Test for objects of type 'formattable'
+Test for objects of 'formattable' class
 }
 \examples{
 is.formattable(10)

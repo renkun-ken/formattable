@@ -67,6 +67,14 @@ formattable.numeric <- function(x, ..., formatter = "formatC",
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
+#' @export
+formattable.table <- function(x, ..., formatter = "format",
+  preproc = NULL, postproc = NULL) {
+  create_obj(x, "formattable",
+    list(formatter = formatter,
+      format = list(...), preproc = preproc, postproc = postproc))
+}
+
 #' Create a formattable logical vector
 #' @inheritParams formattable.default
 #' @param x a logical vector.
