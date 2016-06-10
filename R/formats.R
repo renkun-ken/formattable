@@ -33,7 +33,8 @@ percent.character <- function(x, digits = NA, format = "f", ...) {
   valid <- grepl("^(.+)\\s*%$", x)
   pct <- gsub("^(.+)\\s*%$", "\\1", x)
   if (is.na(digits)) digits <- max(get_digits(x) - ifelse(valid, 0, 2))
-  percent.default(as.numeric(pct) / ifelse(valid, 100, 1), digits = digits, format = "f")
+  copy_dim(x, percent.default(as.numeric(pct) / ifelse(valid, 100, 1),
+    digits = digits, format = "f"))
 }
 
 #' Numeric vector showing pre-specific digits
@@ -73,8 +74,8 @@ comma.default <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 #' comma("123,345.123")
 comma.character <- function(x,
   digits = max(get_digits(x)), format = "f", big.mark = ",", ...) {
-  comma.default(as.numeric(gsub(big.mark, "", x, fixed = TRUE)),
-    digits = digits, format = format, big.mark = big.mark, ...)
+  copy_dim(x, comma.default(as.numeric(gsub(big.mark, "", x, fixed = TRUE)),
+    digits = digits, format = format, big.mark = big.mark, ...))
 }
 
 #' Numeric vector with currency format
@@ -118,8 +119,8 @@ currency.character <- function(x, symbol = get_currency_symbol(x),
   if (any(invalid <- !grepl("\\d", x)))
     warning("Invalid input in 'x': ", paste(x[invalid], collapse = ", "), call. = FALSE)
   num <- gsub("[^0-9\\.]", "", gsub(big.mark, "", x, fixed = TRUE))
-  currency.default(as.numeric(num), symbol = symbol, digits = digits,
-    format = format, big.mark = big.mark, ...)
+  copy_dim(x, currency.default(as.numeric(num), symbol = symbol, digits = digits,
+    format = format, big.mark = big.mark, ...))
 }
 
 #' Numeric vector with accounting format
@@ -147,8 +148,8 @@ accounting.character <- function(x, digits = max(get_digits(x)),
   format = "f", big.mark = ",", ...) {
   sgn <- ifelse(grepl("\\(.+\\)", x), -1, 1)
   num <- gsub("\\((.+)\\)", "\\1", gsub(big.mark, "", x, fixed = TRUE))
-  accounting.default(sgn * as.numeric(num), digits = digits,
-    format = format, big.mark = big.mark, ...)
+  copy_dim(x, accounting.default(sgn * as.numeric(num), digits = digits,
+    format = format, big.mark = big.mark, ...))
 }
 
 #' Numeric vector with scientific format

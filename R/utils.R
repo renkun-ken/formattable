@@ -81,3 +81,11 @@ seq_list <- function(x = character()) {
   names(lst) <- x
   lst
 }
+
+copy_dim <- function(src, target) {
+  if (is.array(src)) {
+    dim(target) <- dim(src)
+    dimnames(target) <- dimnames(src)
+  }
+  target
+}
