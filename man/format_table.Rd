@@ -76,5 +76,18 @@ format_table(mtcars, list(mpg = formatter("span",
 # mtcars (mpg in red if vs == 1 and am == 1)
 format_table(mtcars, list(mpg = formatter("span",
     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
+
+# area formatting
+format_table(mtcars, list(area(col = vs:carb) ~ formatter("span",
+  style = x ~ style(color = ifelse(x > 0, "red", NA)))))
+
+df <- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10))
+format_table(df, list(area() ~ color_tile("transparent", "lightgray")))
+format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
+format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
+  area(6:10) ~ color_tile("transparent", "lightpink")))
+}
+\seealso{
+\link{formattable}
 }
 
