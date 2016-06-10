@@ -154,7 +154,7 @@ formattable(df, list(
 
 ## `htmlwidget` conversion in interactive environments
 
-`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `format_table` that calls `knitr::kable` with formatters or call `as.character` with the `formattable data.frame` object.
+`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `html` table output, please use `format_table` that calls `knitr::kable` with formatters or call `format` with the `formattable data.frame` object.
 
 ## License
 
