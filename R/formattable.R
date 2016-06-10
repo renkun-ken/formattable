@@ -246,7 +246,7 @@ format.formattable <- function(x, ...,
   }
   str <- as.character(str)
   if (use.names && x_atomic) {
-    if (is.matrix(x)) {
+    if (is.array(x)) {
       dim(str) <- dim(x)
       dimnames(str) <- dimnames(x)
     } else {

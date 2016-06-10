@@ -63,7 +63,7 @@ formatter <- function(.tag = "span", ...) {
       }, values, NULL)
     }
     res <- vapply(tags, doRenderTags, character(1L))
-    if (is.matrix(x)) {
+    if (is.array(x)) {
       dim(res) <- dim(x)
       dimnames(res) <- dimnames(x)
     } else {
