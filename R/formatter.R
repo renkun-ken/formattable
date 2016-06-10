@@ -62,14 +62,7 @@ formatter <- function(.tag = "span", ...) {
         tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
       }, values, NULL)
     }
-    res <- vapply(tags, doRenderTags, character(1L))
-    if (is.array(x)) {
-      dim(res) <- dim(x)
-      dimnames(res) <- dimnames(x)
-    } else {
-      names(res) <- names(x)
-    }
-    res
+    copy_dim(x, vapply(tags, doRenderTags, character(1L)))
   }, class = c("formatter", "function"))
 }
 

@@ -245,13 +245,8 @@ format.formattable <- function(x, ...,
     for (postproc in postproc_list) str <- call_or_default(postproc, str, value)
   }
   str <- as.character(str)
-  if (use.names && x_atomic) {
-    if (is.array(x)) {
-      dim(str) <- dim(x)
-      dimnames(str) <- dimnames(x)
-    } else {
-      names(str) <- names(x)
-    }
+  if (x_atomic) {
+    str <- copy_dim(x, str, use.names)
   }
   str
 }
