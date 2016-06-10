@@ -1,18 +1,18 @@
 Package: formattable
 Title: Formattable Data Structures
-Version: 0.1.9.9003
+Version: 0.1.9.9010
 Authors@R: c(
     person("Kun", "Ren", role = c("aut", "cre"), email = "ken@renkun.me"),
     person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
     )
 Description: Provides functions to create formattable vectors and data frames.
     Formattable vectors are printed with text formatting, and formattable
-    data frames are printed with multiple types of formatting in markdown
-    to improve the readability of data presented in tabular form rendered as
+    data frames are printed with multiple types of formatting in HTML
+    to improve the readability of data presented in tabular form rendered in
     web pages.
 Depends:
     R (> 3.0.2)
-Date: 2016-06-02
+Date: 2016-06-10
 Imports:
     methods,
     htmltools,

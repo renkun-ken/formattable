@@ -9,9 +9,32 @@ This package is designed for applying formatting on vectors and data frames to m
 
 This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](https://github.com/hoxo-m), [@dichika](https://github.com/dichika) and [@teramonagi](https://github.com/teramonagi).
 
-## Breaking changes
+## What's New?
 
-In development version 0.1.7:
+### Version 0.2
+
+#### Breaking changes
+
+* `format_table` now renders input data frame to `html` by default instead of `markdown`.
+
+#### New features
+
+* `formattable` and formatter functions (e.g. `percent`) now work with matrix and array objects.
+* Area formatting is now supported (discussed in #36, #40) with `area(row, col) ~ formatter`. See examples via `?formattable.data.frame`.
+
+#### Enhancements
+
+* The rendered HTML table now supports customizable CSS styling via `table_attr` argument. (#57)
+* `color_bar` now uses `proportion` by default as the rescaling function.
+
+#### Bug fixes
+
+* Fixes the size and alignment issues in color bar. (#49)
+* `format.formattable` now preserves the names of input vector. (#56)
+
+### Version 0.1.7
+
+#### Breaking changes
 
 * `color_bar` is now broken into two versions using different transform functions:
   `normalize_bar` uses `normalize`, the same as `color_bar` in previous versions,
@@ -112,14 +135,14 @@ library(formattable)
 
 formattable(df, list(
   age = color_tile("white", "orange"),
-  grade = formatter("span",
-    style = x ~ ifelse(x == "A", style(color = "green", font.weight = "bold"), NA)),
+  grade = formatter("span", style = x ~ ifelse(x == "A", 
+    style(color = "green", font.weight = "bold"), NA)),
   test1_score = normalize_bar("pink", 0.2),
   test2_score = normalize_bar("pink", 0.2),
   final_score = formatter("span",
     style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),
     x ~ sprintf("%.2f (rank: %02d)", x, rank(-x))),
-  registered = formatter("span", 
+  registered = formatter("span",
     style = x ~ style(color = ifelse(x, "green", "red")),
     x ~ icontext(ifelse(x, "ok", "remove"), ifelse(x, "Yes", "No")))
 ))

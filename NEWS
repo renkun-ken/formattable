@@ -1,3 +1,24 @@
+# Version 0.2
+
+## Breaking changes
+
+* `format_table` now renders input data frame to `html` by default instead of `markdown`.
+
+## New features
+
+* `formattable` and formatter functions (e.g. `percent`) now work with matrix and array objects.
+* Area formatting is now supported (discussed in #36, #40) with `area(row, col) ~ formatter`.
+
+## Enhancements
+
+* The rendered HTML table now supports customizable CSS styling via `table_attr` argument. (#57)
+* `color_bar` now uses `proportion` by default as the rescaling function.
+
+## Bug fixes
+
+* Fixes the size and alignment issues in color bar. (#49)
+* `format.formattable` now preserves the names of input vector. (#56)
+
 # Version 0.1.7
 
 ## Breaking changes
