@@ -36,7 +36,7 @@
 #'   style = ~ ifelse(rank(-mpg) <= 20 & rank(-disp) <= 20, "color:red", NA))
 #' formattable(mtcars, list(cyl = f1))
 #' @export
-formatter <- function(.tag = "span", ...) {
+formatter <- function(.tag, ...) {
   fcall <- match.call(expand.dots = TRUE)
   args <- list(...)
 

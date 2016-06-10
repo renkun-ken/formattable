@@ -4,7 +4,7 @@
 \alias{formatter}
 \title{Create a formatter function making HTML elements}
 \usage{
-formatter(.tag = "span", ...)
+formatter(.tag, ...)
 }
 \arguments{
 \item{.tag}{HTML tag name. Uses \code{span} by default.}
