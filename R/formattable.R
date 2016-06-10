@@ -399,9 +399,9 @@ quantile.formattable <- function(x, ...) {
 #' Format a data frame with formatter functions
 #'
 #' This is an table generator that specializes in creating
-#' formatted table presented in a mix of markdown/reStructuredText and
-#' HTML elements. To generate a formatted table, each column of data
-#' frame can be transformed by formatter function.
+#' formatted table presented in HTML by default.
+#' To generate a formatted table, columns or areas of the
+#' input data frame can be transformed by formatter functions.
 #' @importFrom knitr kable
 #' @param x a \code{data.frame}.
 #' @param formatters a list of formatter functions or formulas.
@@ -415,6 +415,9 @@ quantile.formattable <- function(x, ...) {
 #' in \code{envir}, that, to maintain consistency, should be the calling
 #' environment in which the formula is created and all symbols are defined
 #' at runtime.
+#'
+#' Area formatter is specified in the form of
+#' \code{area(row, col) ~ formatter}.
 #' @param format The output format: markdown or pandoc?
 #' @param align The alignment of columns: a character vector consisting
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
@@ -466,7 +469,7 @@ quantile.formattable <- function(x, ...) {
 #' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 #' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
-#' @seealso \link{formattable}
+#' @seealso \link{formattable}, \link{area}
 format_table <- function(x, formatters = list(),
   format = c("html", "markdown", "pandoc"), align = "r", ...,
   digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
@@ -513,18 +516,19 @@ format_table <- function(x, formatters = list(),
 #' Create a formattable data frame
 #'
 #' This function creates a formattable data frame by attaching
-#' column formatters to the data frame. Each time the data frame
+#' column or area formatters to the data frame. Each time the data frame
 #' is printed or converted to string representation, the formatter
-#' function will use the column formatter functions to generate
-#' formatted columns.
+#' function will use the formatter functions to generate
+#' formatted cells.
 #'
 #' @details
 #' The formattable data frame is a data frame with lazy-bindings
-#' of prespecified column formatters. The formatters will not be
-#' applied until the data frame is printed to console or a
-#' dynamic document. If the formatter function has no side effect,
-#' the formattable data frame will not be changed even if the
-#' formatters are applied to produce the printed version.
+#' of prespecified column formatters or area formatters.
+#' The formatters will not be applied until the data frame is
+#' printed to console or in a dynamic document. If the formatter
+#' function has no side effect, the formattable data frame will
+#' not be changed even if the formatters are applied to produce
+#' the printed version.
 #'
 #' @inheritParams formattable.default
 #' @param x a \code{data.frame}
@@ -569,7 +573,7 @@ format_table <- function(x, formatters = list(),
 #' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 #' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
-#' @seealso \link{format_table}
+#' @seealso \link{format_table}, \link{area}
 formattable.data.frame <- function(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",

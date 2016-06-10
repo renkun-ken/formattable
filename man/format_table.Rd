@@ -21,7 +21,10 @@ a symbol and right-hand side being the expression using the symbol
 to represent the column values. The formula expression will be evaluated
 in \code{envir}, that, to maintain consistency, should be the calling
 environment in which the formula is created and all symbols are defined
-at runtime.}
+at runtime.
+
+Area formatter is specified in the form of
+\code{area(row, col) ~ formatter}.}
 
 \item{format}{The output format: markdown or pandoc?}
 
@@ -44,9 +47,9 @@ specific \code{format}.
 }
 \description{
 This is an table generator that specializes in creating
-formatted table presented in a mix of markdown/reStructuredText and
-HTML elements. To generate a formatted table, each column of data
-frame can be transformed by formatter function.
+formatted table presented in HTML by default.
+To generate a formatted table, columns or areas of the
+input data frame can be transformed by formatter functions.
 }
 \examples{
 # mtcars (mpg in red)
@@ -88,6 +91,6 @@ format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
   area(6:10) ~ color_tile("transparent", "lightpink")))
 }
 \seealso{
-\link{formattable}
+\link{formattable}, \link{area}
 }
 
