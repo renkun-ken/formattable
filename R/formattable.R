@@ -13,7 +13,7 @@
 formattable <- function(x, ...)
   UseMethod("formattable")
 
-#' Test for objects of type 'formattable'
+#' Test for objects of 'formattable' class
 #' @param x an object
 #' @return \code{TRUE} if \code{x} has class 'formattable';
 #' \code{FALSE} otherwise.

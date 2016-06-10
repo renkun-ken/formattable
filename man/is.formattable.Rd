@@ -2,7 +2,7 @@
 % Please edit documentation in R/formattable.R
 \name{is.formattable}
 \alias{is.formattable}
-\title{Test for objects of type 'formattable'}
+\title{Test for objects of 'formattable' class}
 \usage{
 is.formattable(x)
 }
