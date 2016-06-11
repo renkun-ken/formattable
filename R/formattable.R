@@ -412,13 +412,11 @@ quantile.formattable <- function(x, ...) {
 #' interpreted as a lambda expression with its left-hand side being
 #' a symbol and right-hand side being the expression using the symbol
 #' to represent the column values. The formula expression will be evaluated
-#' in \code{envir}, that, to maintain consistency, should be the calling
-#' environment in which the formula is created and all symbols are defined
-#' at runtime.
+#' in the environment of the formula.
 #'
 #' Area formatter is specified in the form of
-#' \code{area(row, col) ~ formatter}.
-#' @param format The output format: markdown or pandoc?
+#' \code{area(row, col) ~ formatter} without specifying the column name.
+#' @param format The output format: html, markdown or pandoc?
 #' @param align The alignment of columns: a character vector consisting
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 #' By default, all columns are right-aligned.

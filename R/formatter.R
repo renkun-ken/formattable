@@ -75,14 +75,37 @@ print.formatter <- function(x, ...) {
 
 #' Create an area to apply formatter
 #'
-#' @param row an expression of row range
-#' @param col an expression of column range
+#' Create an representation of two-dimenstional area
+#' to apply formatter function. The area can be one or
+#' more columns, one or more rows, or an area of rows
+#' and columns.
+#'
+#' @details
+#' The function creates an \code{area} object to store
+#' the representation of row and column selector expressions.
+#' When the function is called, the expressions and environment
+#' of \code{row} and \code{column} are captured for
+#' \code{format_table} to evaluate within the context of the
+#' input \code{data.frame}, that is, \code{rownames} and
+#' \code{colnames} are defined in the context to be the indices
+#' of rows and columns, respectively. Therefore, the row names
+#' and column names are avaiable symbols when \code{row}
+#' and \code{col} are evaluated, respectively, which makes it
+#' easier to specify range with names, for example,
+#' \code{area(row = row1:row10, col = col1:col5)}.
+#'
+#' @param row an expression of row range. If missing,
+#' \code{TRUE} is used instead.
+#' @param col an expression of column range. If missing,
+#' \code{TRUE} is used instead.
 #' @export
 #' @examples
 #' area(col = c("mpg", "cyl"))
 #' area(col = mpg:cyl)
 #' area(row = 1)
 #' area(row = 1:10, col = 5:10)
+#' area(1:10, col1:col5)
+#' @seealso \link{format_table}, \link{formattable.data.frame}
 area <- function(row, col) {
   structure(list(
     row = if (missing(row)) TRUE else substitute(row),
