@@ -16,10 +16,11 @@ This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](h
 #### Breaking changes
 
 * `format_table` now renders input data frame to `html` by default instead of `markdown`.
+* `formattable.matrix` is removed to support matrix/array formatting. Explicitly convert matrix to data frame if you want to create a formattable data frame.
 
 #### New features
 
-* `formattable` and formatter functions (e.g. `percent`) now work with matrix and array objects.
+* `formattable` and built-in formatter functions (e.g. `percent`) now work with matrix and array objects.
 * Area formatting is now supported (discussed in #36, #40) with `area(row, col) ~ formatter`. See examples via `?formattable.data.frame`.
 
 #### Enhancements
