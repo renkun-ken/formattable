@@ -30,6 +30,7 @@ This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](h
 
 #### Bug fixes
 
+* Fixes an encoding problem rendering formattable data frame. (#30)
 * Fixes the size and alignment issues in color bar. (#49)
 * `format.formattable` now preserves the names of input vector. (#56)
 
