@@ -200,6 +200,9 @@ test_that("formattable.data.frame", {
   expect_is(format_table(df, list(area(col = b:c) ~ percent)), "knitr_kable")
   expect_is(format_table(df, list(area(1:5) ~ percent)), "knitr_kable")
   expect_is(format_table(df, list(area(1:5, b:c) ~ percent)), "knitr_kable")
+
+  expect_error(format_table(df, list(x ~ percent)))
+  expect_error(format_table(df, list(get("df") ~ percent)))
 })
 
 test_that("formattable matrix", {

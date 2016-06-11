@@ -498,11 +498,19 @@ format_table <- function(x, formatters = list(),
         f <- eval(f[[2L]], fenv)
         x
       } else {
-        farea <- eval(f[[2L]], fenv)
-        row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
-        col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
-        f <- eval(f[[3L]], fenv)
-        x[row, col]
+        if (is.call(f[[2L]])) {
+          farea <- eval(f[[2L]], fenv)
+          if (inherits(farea, "area")) {
+            row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
+            col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
+            f <- eval(f[[3L]], fenv)
+            x[row, col]
+          } else {
+            stop("Invalid area formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+          }
+        } else {
+          stop("Invalid formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+        }
       })
       fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
       mat[row, col] <- format(fv)
