@@ -1,8 +1,7 @@
 context("htmlwidget")
 
 test_that("conversion", {
-  expect_is(as.htmlwidget(formattable(mtcars)), "formattable_widget")
-  expect_is(as.htmlwidget(formattable(mtcars)), "htmlwidget")
+  expect_is(as.htmlwidget(formattable(mtcars)), c("formattable_widget", "htmlwidget"))
 })
 
 test_that("shiny", {
