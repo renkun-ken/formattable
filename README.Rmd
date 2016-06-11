@@ -17,6 +17,7 @@ This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](h
 
 * `format_table` now renders input data frame to `html` by default instead of `markdown`.
 * `formattable.matrix` is removed to support matrix/array formatting. Explicitly convert matrix to data frame if you want to create a formattable data frame.
+* `format_table` and `formattable.data.frame` no longer accepts `check.rows` and `check.names` arguments. `row.names` accepts a logical value and is directly passed to `knitr::kable`.
 
 #### New features
 
