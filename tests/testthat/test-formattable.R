@@ -214,6 +214,11 @@ test_that("formattable matrix", {
   expect_true(is.character(fmt))
   expect_true(is.matrix(fmt))
   expect_equal(dim(fmt), dim(m))
+
+  m <- matrix(rnorm(4, 0.1), 2)
+  fm <- formattable(m)
+  fm[1, 1] <- m[1, 1] <- 0.1
+  expect_true(all(fm == m))
 })
 
 test_that("formattable array", {
@@ -227,6 +232,11 @@ test_that("formattable array", {
   expect_true(is.character(fmt))
   expect_true(is.array(fmt))
   expect_equal(dim(fmt), dim(m))
+
+  m <- array(rnorm(24, 0.1), c(2, 3, 4))
+  fm <- formattable(m)
+  fm[1, 1, 1] <- m[1, 1, 1] <- 0.1
+  expect_true(all(fm == m))
 })
 
 test_that("is.formattable", {
