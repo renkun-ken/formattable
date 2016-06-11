@@ -194,6 +194,10 @@ test_that("formattable.data.frame", {
   df <- data.frame(id = integer(), name = character(), value = numeric())
   expect_is(format_table(formattable(df, list(value = color_tile("red", "blue")))), "knitr_kable")
 
+  # formula
+  df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
+  format_table(df, list(~ percent))
+
   # area formatter
   df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
   expect_is(format_table(df, list(area(col = c("a", "b")) ~ percent)), "knitr_kable")

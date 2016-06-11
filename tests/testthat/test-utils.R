@@ -1,5 +1,10 @@
 context("utils")
 
+test_that("call_or_default", {
+  expect_identical(call_or_default(NULL, 0), 0)
+  expect_identical(call_or_default(sin, 1), sin(1))
+})
+
 test_that("get_digtis", {
   expect_equal(get_digits(c("0.1", "0.01", ".501", ".5001", "123.321", "123", "012", "5.")),
     c(1, 2, 3, 4, 3, 0, 0, 0))
