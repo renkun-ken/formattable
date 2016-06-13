@@ -1,5 +1,4 @@
 base_ifelse <- getExportedValue("base", "ifelse")
-base_format <- getExportedValue("base", "format")
 
 as_numeric <- function(x) if (is.numeric(x)) x else as.numeric(x)
 
@@ -86,8 +85,8 @@ copy_dim <- function(src, target, use.names = TRUE) {
   if (is.array(src)) {
     dim(target) <- dim(src)
     if (use.names) dimnames(target) <- dimnames(src)
-  } else if (use.names) {
-    names(target) <- names(src)
+  } else {
+    if (use.names) names(target) <- names(src)
   }
   target
 }

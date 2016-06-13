@@ -396,6 +396,61 @@ quantile.formattable <- function(x, ...) {
   fcreate_obj(quantile, "formattable", x, ...)
 }
 
+render_html_matrix <- function(x, ...)
+  UseMethod("render_html_matrix")
+
+render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOption("digits"), ...) {
+  stopifnot(is.data.frame(x))
+  if (nrow(x) == 0L) formatters <- list()
+  cols <- colnames(x)
+  mat <- vapply(x, format, character(nrow(x)), format = "f", digits = digits)
+  dim(mat) <- dim(x)
+  dimnames(mat) <- dimnames(x)
+  for (fi in seq_along(formatters)) {
+    fn <- names(formatters)[[fi]]
+    f <- formatters[[fi]]
+    if (!is.null(fn) && nzchar(fn)) {
+      if (fn %in% cols) {
+        value <- x[, fn]
+        fv <-  if (inherits(f, "formatter")) f(value, x)
+        else  if (inherits(f, "formula")) eval_formula(f, value, x)
+        else match.fun(f)(value)
+        mat[, fn] <- format(fv)
+      }
+    } else if (inherits(f, "formula")) {
+      fenv <- environment(f)
+      value <- as.matrix(if (length(f) == 2L) {
+        row <- col <- TRUE
+        f <- eval(f[[2L]], fenv)
+        x
+      } else {
+        if (is.call(f[[2L]])) {
+          farea <- eval(f[[2L]], fenv)
+          if (inherits(farea, "area")) {
+            row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
+            col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
+            f <- eval(f[[3L]], fenv)
+            x[row, col]
+          } else {
+            stop("Invalid area formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+          }
+        } else {
+          stop("Invalid formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+        }
+      })
+      fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
+      mat[row, col] <- format(fv)
+    }
+  }
+  mat
+}
+
+render_html_matrix.formattable <- function(x, ...) {
+  stopifnot(is.formattable(x), is.data.frame(x))
+  do.call(render_html_matrix.data.frame,
+    c(list(x = remove_class(x, "formattable")), attr(x, "formattable")$format))
+}
+
 #' Format a data frame with formatter functions
 #'
 #' This is an table generator that specializes in creating
@@ -471,50 +526,8 @@ quantile.formattable <- function(x, ...) {
 format_table <- function(x, formatters = list(),
   format = c("html", "markdown", "pandoc"), align = "r", ...,
   digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
-  stopifnot(is.data.frame(x))
-  if (nrow(x) == 0L) formatters <- list()
   format <- match.arg(format)
-  cols <- colnames(x)
-  mat <- vapply(x, base_format, character(nrow(x)), digits = digits)
-  dim(mat) <- dim(x)
-  dimnames(mat) <- dimnames(x)
-  for (fi in seq_along(formatters)) {
-    fn <- names(formatters)[[fi]]
-    f <- formatters[[fi]]
-    if (!is.null(fn) && nzchar(fn)) {
-      if (fn %in% cols) {
-        value <- x[, fn]
-        fv <-  if (inherits(f, "formatter")) f(value, x)
-        else  if (inherits(f, "formula")) eval_formula(f, value, x)
-        else match.fun(f)(value)
-        mat[, fn] <- format(fv)
-      }
-    } else if (inherits(f, "formula")) {
-      fenv <- environment(f)
-      value <- as.matrix(if (length(f) == 2L) {
-        row <- col <- TRUE
-        f <- eval(f[[2L]], fenv)
-        x
-      } else {
-        if (is.call(f[[2L]])) {
-          farea <- eval(f[[2L]], fenv)
-          if (inherits(farea, "area")) {
-            row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
-            col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
-            f <- eval(f[[3L]], fenv)
-            x[row, col]
-          } else {
-            stop("Invalid area formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
-          }
-        } else {
-          stop("Invalid formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
-        }
-      })
-      fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
-      mat[row, col] <- format(fv)
-    }
-  }
-
+  mat <- render_html_matrix(x, formatters, digits)
   kable(mat, format = format, align = align, escape = FALSE, ...,
     table.attr = table.attr)
 }
