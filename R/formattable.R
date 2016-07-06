@@ -411,7 +411,7 @@ render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOp
     f <- formatters[[fi]]
     if (!is.null(fn) && nzchar(fn)) {
       if (fn %in% cols) {
-        value <- x[, fn]
+        value <- x[[fn]]
         fv <-  if (inherits(f, "formatter")) f(value, x)
         else  if (inherits(f, "formula")) eval_formula(f, value, x)
         else match.fun(f)(value)
