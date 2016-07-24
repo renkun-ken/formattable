@@ -1,0 +1,91 @@
+---
+title: "Formattable data frame"
+author: "Kun Ren"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Formattable data frame}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Formattable data frames are data frames to be rendered as HTML table with formatter functions applied, which resembles conditional formatting in Microsoft Excel. 
+
+## Simple examples
+
+```{r}
+library(formattable)
+```
+
+```{r}
+scores <- data.frame(id = 1:5,
+  prev_score = c(10, 8, 6, 8, 8),
+  cur_score = c(8, 9, 7, 8, 9),
+  change = c(-2, 1, 1, 0, 1))
+```
+
+```{r}
+formattable(scores, list(change = formatter("span", 
+  style = x ~ style(color = ifelse(x > 0, "green", 
+    ifelse(x < 0, "red", "black"))))))
+```
+
+```{r}
+above_avg_bold <- formatter("span", 
+  style = x ~ style("font-weight" = ifelse(x > mean(x), "bold", NA)))
+sign_color <- formatter("span",
+  style = x ~ style("color" = ifelse(x > 0, "green",
+    ifelse(x < 0, "red", "black"))))
+formattable(scores, list(
+  prev_score = above_avg_bold,
+  cur_score = above_avg_bold,
+  change = sign_color))
+```
+
+## Using built-in formatters
+
+```{r}
+products <- data.frame(id = 1:5, 
+  price = c(10, 15, 12, 8, 9),
+  rating = c(5, 4, 4, 3, 4),
+  market_share = percent(c(0.1, 0.12, 0.05, 0.03, 0.14)),
+  revenue = accounting(c(55000, 36400, 12000, -25000, 98100)),
+  profit = accounting(c(25300, 11500, -8200, -46000, 65000)))
+formattable(products)
+```
+
+```{r}
+formattable(products, list(profit = sign_color))
+```
+
+```{r}
+formattable(products, list(
+  price = color_tile("transparent", "lightpink"),
+  rating = color_bar("lightgreen"),
+  market_share = color_bar("lightblue"),
+  revenue = sign_color,
+  profit = sign_color))
+```
+
+## Area formatting
+
+Area formatting with common benchmarks
+
+```{r}
+set.seed(123)
+df <- data.frame(id = 1:10, 
+  a = rnorm(10), b = rnorm(10), c = rnorm(10))
+formattable(df, list(area(col = a:c) ~ color_tile("transparent", "pink")))
+```
+
+# Dynamically generating formatters
+
+Row-wise formatting (each row is colored independently)
+
+```{r}
+df <- cbind(data.frame(id = 1:10), 
+  do.call(cbind, lapply(1:8, function(x) rnorm(10))))
+formattable(df, lapply(1:nrow(df), function(row) {
+  area(row, col = -1) ~ color_tile("lightpink", "lightblue")
+}))
+```
