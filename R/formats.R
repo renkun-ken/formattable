@@ -1,8 +1,9 @@
 percent_preproc <- function(x) x * 100
 percent_postproc <- function(str, x)
-  sprintf("%s%s", str, ifelse(is.finite(x), "%", ""))
+  paste0(str, ifelse(is.finite(x), "%", ""))
 accounting_postproc <- function(str, x)
-  sprintf(ifelse(is.na(x) | x >= 0, "%s", "(%s)"), gsub("-", "", str, fixed = TRUE))
+  sprintf(ifelse(is.na(x) | x >= 0, "%s", "(%s)"),
+    gsub("-", "", str, fixed = TRUE))
 
 #' Numeric vector with percentage representation
 #'
