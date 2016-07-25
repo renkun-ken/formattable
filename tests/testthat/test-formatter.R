@@ -8,6 +8,7 @@ test_that("formatter", {
     paste0("<span>", ifelse(c(1,0,0,1), "yes", "no"), "</span>"))
   expect_equal(formatter("span", x ~ ifelse(x, "yes", "no"))(c(1)),
     paste0("<span>", ifelse(c(1), "yes", "no"), "</span>"))
+  expect_match(capture.output(print(formatter("span"))), "formatter")
   expect_equal(local({
     yes_string <- "YES"
     no_string <- "NO"
@@ -26,6 +27,17 @@ test_that("formatter", {
     paste0("<span>", ifelse(df$x >= 0 & df$y >= 0, "yes", "no"), "</span>"))
 })
 
+test_that("area", {
+  expect_is(area(), "area")
+  expect_that(area(), is.list)
+  expect_identical(area()$row, TRUE)
+  expect_identical(area()$col, TRUE)
+
+  a1 <- area(1:10, 1:3)
+  expect_that(a1$row, is.language)
+  expect_that(a1$col, is.language)
+  expect_identical(a1$envir, environment())
+})
 
 test_that("formatters", {
   f <- color_tile("white", "pink")

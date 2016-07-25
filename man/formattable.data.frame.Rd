@@ -25,18 +25,19 @@ a \code{formattable data.frame}
 }
 \description{
 This function creates a formattable data frame by attaching
-column formatters to the data frame. Each time the data frame
+column or area formatters to the data frame. Each time the data frame
 is printed or converted to string representation, the formatter
-function will use the column formatter functions to generate
-formatted columns.
+function will use the formatter functions to generate
+formatted cells.
 }
 \details{
 The formattable data frame is a data frame with lazy-bindings
-of prespecified column formatters. The formatters will not be
-applied until the data frame is printed to console or a
-dynamic document. If the formatter function has no side effect,
-the formattable data frame will not be changed even if the
-formatters are applied to produce the printed version.
+of prespecified column formatters or area formatters.
+The formatters will not be applied until the data frame is
+printed to console or in a dynamic document. If the formatter
+function has no side effect, the formattable data frame will
+not be changed even if the formatters are applied to produce
+the printed version.
 }
 \examples{
 # mtcars (mpg in red)
@@ -66,5 +67,18 @@ formattable(mtcars, list(mpg = formatter("span",
 # mtcars (mpg in red if vs == 1 and am == 1)
 formattable(mtcars, list(mpg = formatter("span",
     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
+
+# area formatting
+formattable(mtcars, list(area(col = vs:carb) ~ formatter("span",
+  style = x ~ style(color = ifelse(x > 0, "red", NA)))))
+
+df <- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10))
+formattable(df, list(area() ~ color_tile("transparent", "lightgray")))
+formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
+formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
+  area(6:10) ~ color_tile("transparent", "lightpink")))
+}
+\seealso{
+\link{format_table}, \link{area}
 }
 

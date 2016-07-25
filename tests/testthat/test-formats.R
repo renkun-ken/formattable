@@ -13,6 +13,20 @@ test_that("percent", {
   expect_equal(percent(c("1.00%", "1%")), percent(c(0.01, 0.01)))
   expect_equal(percent(c("1.00%", "1.5")), percent(c(0.01, 1.5)))
   expect_is(percent(NA), "numeric")
+
+  # percent matrix
+  dim(data) <- c(2, 2)
+  obj <- percent(data)
+  expect_is(obj, c("formattable", "matrix"))
+  expect_equal(format(obj), matrix(c("-5.00%","15.00%","25.20%","30.03%"), 2))
+
+  # parse percent from matrix
+  x <- matrix(c("0.5%", "1.5%", "10.2%", "3.8%"), 2,
+    dimnames = list(c("a", "b"), c("c", "d")))
+  obj <- percent(x)
+  expect_is(obj, c("formattable", "matrix"))
+  expect_is(format(obj), "matrix")
+  expect_equal(as.numeric(gsub("%", "", x, fixed = TRUE)) / 100, as.numeric(obj))
 })
 
 test_that("digits", {
