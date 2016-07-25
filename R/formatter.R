@@ -42,7 +42,7 @@ formatter <- function(.tag, ...) {
 
   if (length(args) == 0L ||
       (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
-    args <- c(args, format)
+    args <- c(args, format_default)
   }
 
   # create a closure for formattable to build output string

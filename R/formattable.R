@@ -403,7 +403,7 @@ render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOp
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
   cols <- colnames(x)
-  mat <- vapply(x, format, character(nrow(x)), format = "f", digits = digits)
+  mat <- vapply(x, format, character(nrow(x)), format = "f", digits = digits, trim = TRUE)
   dim(mat) <- dim(x)
   dimnames(mat) <- dimnames(x)
   for (fi in seq_along(formatters)) {
