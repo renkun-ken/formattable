@@ -1,12 +1,12 @@
 Package: formattable
-Title: Formattable Data Structures
+Title: Create 'Formattable' Data Structures
 Version: 0.2
 Authors@R: c(
     person("Kun", "Ren", role = c("aut", "cre"), email = "ken@renkun.me"),
     person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
     )
 Description: Provides functions to create formattable vectors and data frames.
-    Formattable vectors are printed with text formatting, and formattable
+    'Formattable' vectors are printed with text formatting, and formattable
     data frames are printed with multiple types of formatting in HTML
     to improve the readability of data presented in tabular form rendered in
     web pages.
@@ -18,14 +18,13 @@ Imports:
     htmltools,
     htmlwidgets,
     knitr,
-    rmarkdown,
-    shiny (>= 0.13.0)
+    rmarkdown
 License: MIT + file LICENSE
 LazyData: true
 URL: https://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
-Suggests: testthat, DT
+Suggests: testthat, DT, shiny
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
