@@ -1,27 +1,41 @@
 ## ------------------------------------------------------------------------
-library(formattable)
-
-## ------------------------------------------------------------------------
 scores <- data.frame(id = 1:5,
   prev_score = c(10, 8, 6, 8, 8),
   cur_score = c(8, 9, 7, 8, 9),
   change = c(-2, 1, 1, 0, 1))
 
 ## ------------------------------------------------------------------------
-formattable(scores, list(change = formatter("span", 
+scores
+
+## ------------------------------------------------------------------------
+library(formattable)
+formattable(scores)
+
+## ------------------------------------------------------------------------
+plain_formatter <- formatter("span")
+plain_formatter(c(1, 2, 3))
+
+## ------------------------------------------------------------------------
+width_formatter <- formatter("span",
+  style = x ~ style(width = suffix(x, "px")))
+width_formatter(c(10, 11, 12))
+
+## ------------------------------------------------------------------------
+sign_formatter <- formatter("span", 
   style = x ~ style(color = ifelse(x > 0, "green", 
-    ifelse(x < 0, "red", "black"))))))
+    ifelse(x < 0, "red", "black"))))
+sign_formatter(c(-1, 0, 1))
+
+## ------------------------------------------------------------------------
+formattable(scores, list(change = sign_formatter))
 
 ## ------------------------------------------------------------------------
 above_avg_bold <- formatter("span", 
   style = x ~ style("font-weight" = ifelse(x > mean(x), "bold", NA)))
-sign_color <- formatter("span",
-  style = x ~ style("color" = ifelse(x > 0, "green",
-    ifelse(x < 0, "red", "black"))))
 formattable(scores, list(
   prev_score = above_avg_bold,
   cur_score = above_avg_bold,
-  change = sign_color))
+  change = sign_formatter))
 
 ## ------------------------------------------------------------------------
 products <- data.frame(id = 1:5, 
@@ -30,18 +44,21 @@ products <- data.frame(id = 1:5,
   market_share = percent(c(0.1, 0.12, 0.05, 0.03, 0.14)),
   revenue = accounting(c(55000, 36400, 12000, -25000, 98100)),
   profit = accounting(c(25300, 11500, -8200, -46000, 65000)))
+products
+
+## ------------------------------------------------------------------------
 formattable(products)
 
 ## ------------------------------------------------------------------------
-formattable(products, list(profit = sign_color))
+formattable(products, list(profit = sign_formatter))
 
 ## ------------------------------------------------------------------------
 formattable(products, list(
   price = color_tile("transparent", "lightpink"),
   rating = color_bar("lightgreen"),
   market_share = color_bar("lightblue"),
-  revenue = sign_color,
-  profit = sign_color))
+  revenue = sign_formatter,
+  profit = sign_formatter))
 
 ## ------------------------------------------------------------------------
 set.seed(123)
@@ -55,4 +72,13 @@ df <- cbind(data.frame(id = 1:10),
 formattable(df, lapply(1:nrow(df), function(row) {
   area(row, col = -1) ~ color_tile("lightpink", "lightblue")
 }))
+
+## ------------------------------------------------------------------------
+as.datatable(formattable(products))
+
+## ------------------------------------------------------------------------
+as.datatable(formattable(products, list(
+  price = color_tile("transparent", "lightpink"),
+  revenue = sign_formatter,
+  profit = sign_formatter)))
 
