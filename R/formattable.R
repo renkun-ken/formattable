@@ -472,6 +472,8 @@ render_html_matrix.formattable <- function(x, ...) {
 #' to represent the column values. The formula expression will be evaluated
 #' in the environment of the formula.
 #'
+#' If a formatter is \code{FALSE}, then the corresponding column will be hidden.
+#'
 #' Area formatter is specified in the form of
 #' \code{area(row, col) ~ formatter} without specifying the column name.
 #' @param format The output format: html, markdown or pandoc?

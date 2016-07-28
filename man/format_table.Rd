@@ -21,6 +21,8 @@ a symbol and right-hand side being the expression using the symbol
 to represent the column values. The formula expression will be evaluated
 in the environment of the formula.
 
+If a formatter is \code{FALSE}, then the corresponding column will be hidden.
+
 Area formatter is specified in the form of
 \code{area(row, col) ~ formatter} without specifying the column name.}
 
