@@ -24,6 +24,7 @@ This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](h
 * `formattable` and built-in formatter functions (e.g. `percent`) now work with matrix and array objects.
 * Area formatting is now supported (discussed in #36, #40) with `area(row, col) ~ formatter`. See examples via `?formattable.data.frame`.
 * Now a formattable data frame can be converted to `DT::datatable` via `formattable::as.datatable`.
+* `FALSE` formatters can be used to hide columns of a data frame.
 
 #### Enhancements
 

@@ -68,6 +68,9 @@ formattable(mtcars, list(mpg = formatter("span",
 formattable(mtcars, list(mpg = formatter("span",
     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 
+# hide columns
+formattable(mtcars, list(mpg = FALSE, cyl = FALSE))
+
 # area formatting
 formattable(mtcars, list(area(col = vs:carb) ~ formatter("span",
   style = x ~ style(color = ifelse(x > 0, "red", NA)))))

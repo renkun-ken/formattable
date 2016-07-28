@@ -409,7 +409,9 @@ render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOp
   for (fi in seq_along(formatters)) {
     fn <- names(formatters)[[fi]]
     f <- formatters[[fi]]
-    if (!is.null(fn) && nzchar(fn)) {
+    if (is_false(f)) {
+      next;
+    } else if (!is.null(fn) && nzchar(fn)) {
       if (fn %in% cols) {
         value <- x[[fn]]
         fv <-  if (inherits(f, "formatter")) f(value, x)
@@ -442,7 +444,8 @@ render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOp
       mat[row, col] <- format(fv)
     }
   }
-  mat
+  nulls <- get_false_entries(formatters)
+  mat[, setdiff(cols, nulls), drop = FALSE]
 }
 
 render_html_matrix.formattable <- function(x, ...) {
@@ -513,6 +516,9 @@ render_html_matrix.formattable <- function(x, ...) {
 #' format_table(mtcars, list(mpg = formatter("span",
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
 #'
+#' # hide columns
+#' format_table(mtcars, list(mpg = FALSE, cyl = FALSE))
+#'
 #' # area formatting
 #' format_table(mtcars, list(area(col = vs:carb) ~ formatter("span",
 #'   style = x ~ style(color = ifelse(x > 0, "red", NA)))))
@@ -582,6 +588,9 @@ format_table <- function(x, formatters = list(),
 #' # mtcars (mpg in red if vs == 1 and am == 1)
 #' formattable(mtcars, list(mpg = formatter("span",
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
+#'
+#' # hide columns
+#' formattable(mtcars, list(mpg = FALSE, cyl = FALSE))
 #'
 #' # area formatting
 #' formattable(mtcars, list(area(col = vs:carb) ~ formatter("span",

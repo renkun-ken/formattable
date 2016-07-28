@@ -12,7 +12,7 @@
 
 <meta name="author" content="Kun Ren" />
 
-<meta name="date" content="2016-07-25" />
+<meta name="date" content="2016-07-28" />
 
 <title>Formattable data frame</title>
 
@@ -76,7 +76,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Formattable data frame</h1>
 <h4 class="author"><em>Kun Ren</em></h4>
-<h4 class="date"><em>2016-07-25</em></h4>
+<h4 class="date"><em>2016-07-28</em></h4>
 
 
 
@@ -392,6 +392,180 @@ change
 </td>
 <td style="text-align:right;">
 <span style="color: green">1</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cross-formatting" class="section level2">
+<h2>Cross formatting</h2>
+<p>Sometimes, we need to format one column based on the values of another column. This can be easily done with one-sided formula in <code>formatter()</code>. When using <code>formatter(&quot;span&quot;, style = ~ expr)</code>, <code>expr</code> is evaluated in the data frame so that all columns are available for use.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">formattable</span>(scores, <span class="kw">list</span>(
+  <span class="dt">cur_score =</span> <span class="kw">formatter</span>(<span class="st">&quot;span&quot;</span>, 
+    <span class="dt">style =</span> ~<span class="st"> </span><span class="kw">style</span>(<span class="dt">color =</span> <span class="kw">ifelse</span>(change &gt;=<span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)))))</code></pre></div>
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+prev_score
+</th>
+<th style="text-align:right;">
+cur_score
+</th>
+<th style="text-align:right;">
+change
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span style="color: red">8</span>
+</td>
+<td style="text-align:right;">
+-2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+<span style="color: green">9</span>
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+<span style="color: green">7</span>
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+<span style="color: green">8</span>
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+<span style="color: green">9</span>
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="hiding-columns" class="section level2">
+<h2>Hiding columns</h2>
+<p>To hide columns, use <code>FALSE</code> formatter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">formattable</span>(scores, <span class="kw">list</span>(<span class="dt">prev_score =</span> <span class="ot">FALSE</span>))</code></pre></div>
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:right;">
+cur_score
+</th>
+<th style="text-align:right;">
+change
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+-2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
 </td>
 </tr>
 </tbody>
@@ -967,6 +1141,135 @@ c
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc8d2">1.25381492</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If a one-sided formula is supplied, the function will be applied to all cells.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">formattable</span>(df[, -<span class="dv">1</span>], <span class="kw">list</span>(~<span class="st"> </span>percent))</code></pre></div>
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+a
+</th>
+<th style="text-align:right;">
+b
+</th>
+<th style="text-align:right;">
+c
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+-56.05%
+</td>
+<td style="text-align:right;">
+122.41%
+</td>
+<td style="text-align:right;">
+-106.78%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-23.02%
+</td>
+<td style="text-align:right;">
+35.98%
+</td>
+<td style="text-align:right;">
+-21.80%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+155.87%
+</td>
+<td style="text-align:right;">
+40.08%
+</td>
+<td style="text-align:right;">
+-102.60%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.05%
+</td>
+<td style="text-align:right;">
+11.07%
+</td>
+<td style="text-align:right;">
+-72.89%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12.93%
+</td>
+<td style="text-align:right;">
+-55.58%
+</td>
+<td style="text-align:right;">
+-62.50%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+171.51%
+</td>
+<td style="text-align:right;">
+178.69%
+</td>
+<td style="text-align:right;">
+-168.67%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+46.09%
+</td>
+<td style="text-align:right;">
+49.79%
+</td>
+<td style="text-align:right;">
+83.78%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-126.51%
+</td>
+<td style="text-align:right;">
+-196.66%
+</td>
+<td style="text-align:right;">
+15.34%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-68.69%
+</td>
+<td style="text-align:right;">
+70.14%
+</td>
+<td style="text-align:right;">
+-113.81%
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-44.57%
+</td>
+<td style="text-align:right;">
+-47.28%
+</td>
+<td style="text-align:right;">
+125.38%
 </td>
 </tr>
 </tbody>

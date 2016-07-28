@@ -74,6 +74,24 @@ formattable(scores, list(
   change = sign_formatter))
 ```
 
+## Cross formatting
+
+Sometimes, we need to format one column based on the values of another column. This can be easily done with one-sided formula in `formatter()`. When using `formatter("span", style = ~ expr)`, `expr` is evaluated in the data frame so that all columns are available for use.
+
+```{r}
+formattable(scores, list(
+  cur_score = formatter("span", 
+    style = ~ style(color = ifelse(change >= 0, "green", "red")))))
+```
+
+## Hiding columns
+
+To hide columns, use `FALSE` formatter.
+
+```{r}
+formattable(scores, list(prev_score = FALSE))
+```
+
 ## Using built-in formatters
 
 To making formatting easier, formattable package provides a group of built-in formatter functions. Suppose we have the following data on a number of products. Some columns are already formattable vectors.
@@ -122,6 +140,12 @@ set.seed(123)
 df <- data.frame(id = 1:10, 
   a = rnorm(10), b = rnorm(10), c = rnorm(10))
 formattable(df, list(area(col = a:c) ~ color_tile("transparent", "pink")))
+```
+
+If a one-sided formula is supplied, the function will be applied to all cells.
+
+```{r}
+formattable(df[, -1], list(~ percent))
 ```
 
 # Dynamically generating formatters

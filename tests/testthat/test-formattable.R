@@ -198,6 +198,12 @@ test_that("formattable.data.frame", {
   df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
   format_table(df, list(~ percent))
 
+  # cross formatting
+  format_table(df, list(b = formatter("span", style = ~ style(color = ifelse(a >= mean(a), "red", "green")))))
+
+  # hiding columns
+  format_table(df, list(a = FALSE))
+
   # area formatter
   df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
   expect_is(format_table(df, list(area(col = c("a", "b")) ~ percent)), "knitr_kable")

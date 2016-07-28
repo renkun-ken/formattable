@@ -38,6 +38,14 @@ formattable(scores, list(
   change = sign_formatter))
 
 ## ------------------------------------------------------------------------
+formattable(scores, list(
+  cur_score = formatter("span", 
+    style = ~ style(color = ifelse(change >= 0, "green", "red")))))
+
+## ------------------------------------------------------------------------
+formattable(scores, list(prev_score = FALSE))
+
+## ------------------------------------------------------------------------
 products <- data.frame(id = 1:5, 
   price = c(10, 15, 12, 8, 9),
   rating = c(5, 4, 4, 3, 4),
@@ -65,6 +73,9 @@ set.seed(123)
 df <- data.frame(id = 1:10, 
   a = rnorm(10), b = rnorm(10), c = rnorm(10))
 formattable(df, list(area(col = a:c) ~ color_tile("transparent", "pink")))
+
+## ------------------------------------------------------------------------
+formattable(df[, -1], list(~ percent))
 
 ## ------------------------------------------------------------------------
 df <- cbind(data.frame(id = 1:10), 

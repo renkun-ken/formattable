@@ -74,6 +74,16 @@ eval_formula <- function(x, var, data, envir = environment(x)) {
   }
 }
 
+get_false_entries <- function(x) {
+  y <- vapply(x, is_false, logical(1L))
+  y <- names(x)[y]
+  y[nzchar(y)]
+}
+
+is_false <- function(x) {
+  is.logical(x) && length(x) == 1L && x == FALSE
+}
+
 get_digits <- function(x) {
   ifelse(grepl(".", x, fixed = TRUE),
     nchar(gsub("^.*\\.([0-9]*).*$", "\\1", x)), 0L)
