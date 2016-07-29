@@ -25,16 +25,66 @@
 <p><a href="https://travis-ci.org/renkun-ken/formattable"><img src="https://travis-ci.org/renkun-ken/formattable.png?branch=master" alt="Linux Build Status"></a> 
 <a href="https://ci.appveyor.com/project/renkun-ken/formattable"><img src="https://ci.appveyor.com/api/projects/status/github/renkun-ken/formattable?svg=true" alt="Windows Build status"></a>
 <a href="http://codecov.io/github/renkun-ken/formattable?branch=master"><img src="http://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master" alt="codecov.io"></a>
-<a href="http://cran.rstudio.com/web/packages/formattable"><img src="http://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a></p>
+<a href="https://cran.r-project.org/package=formattable"><img src="http://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a></p>
 
 <p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
 
 <p>This document is also translated into <a href="./README.ja.md">日本語</a> by <a href="https://github.com/hoxo-m">@hoxo_m</a>, <a href="https://github.com/dichika">@dichika</a> and <a href="https://github.com/teramonagi">@teramonagi</a>.</p>
 
 <h2>
-<a id="breaking-changes" class="anchor" href="#breaking-changes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Breaking changes</h2>
+<a id="whats-new" class="anchor" href="#whats-new" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's New?</h2>
 
-<p>In development version 0.1.7:</p>
+<h3>
+<a id="version-02" class="anchor" href="#version-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 0.2</h3>
+
+<h4>
+<a id="breaking-changes" class="anchor" href="#breaking-changes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Breaking changes</h4>
+
+<ul>
+<li>
+<code>format_table</code> now renders input data frame to <code>html</code> by default instead of <code>markdown</code>.</li>
+<li>
+<code>formattable.matrix</code> is removed to support matrix/array formatting. Explicitly convert matrix to data frame if you want to create a formattable data frame.</li>
+<li>
+<code>format_table</code> and <code>formattable.data.frame</code> no longer accepts <code>check.rows</code> and <code>check.names</code> arguments. <code>row.names</code> accepts a logical value and is directly passed to <code>knitr::kable</code>.</li>
+</ul>
+
+<h4>
+<a id="new-features" class="anchor" href="#new-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>New features</h4>
+
+<ul>
+<li>
+<code>formattable</code> and built-in formatter functions (e.g. <code>percent</code>) now work with matrix and array objects.</li>
+<li>Area formatting is now supported (discussed in #36, #40) with <code>area(row, col) ~ formatter</code>. See examples via <code>?formattable.data.frame</code>.</li>
+<li>Now a formattable data frame can be converted to <code>DT::datatable</code> via <code>formattable::as.datatable</code>.</li>
+<li>
+<code>FALSE</code> formatters can be used to hide columns of a data frame.</li>
+</ul>
+
+<h4>
+<a id="enhancements" class="anchor" href="#enhancements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Enhancements</h4>
+
+<ul>
+<li>The rendered HTML table now supports customizable CSS styling via <code>table_attr</code> argument. (#57)</li>
+<li>
+<code>color_bar</code> now uses <code>proportion</code> by default as the rescaling function.</li>
+</ul>
+
+<h4>
+<a id="bug-fixes" class="anchor" href="#bug-fixes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bug fixes</h4>
+
+<ul>
+<li>Fixes an encoding problem rendering formattable data frame. (#30)</li>
+<li>Fixes the size and alignment issues in color bar. (#49)</li>
+<li>
+<code>format.formattable</code> now preserves the names of input vector. (#56)</li>
+</ul>
+
+<h3>
+<a id="version-017" class="anchor" href="#version-017" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version 0.1.7</h3>
+
+<h4>
+<a id="breaking-changes-1" class="anchor" href="#breaking-changes-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Breaking changes</h4>
 
 <ul>
 <li>
@@ -269,14 +319,13 @@ printed. It works with arithmetic operations and common functions and preserves 
 
 formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
   <span class="pl-v">age</span> <span class="pl-k">=</span> color_tile(<span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>orange<span class="pl-pds">"</span></span>),
-  <span class="pl-v">grade</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
-    <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> ifelse(<span class="pl-smi">x</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, style(<span class="pl-v">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-v">font.weight</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>bold<span class="pl-pds">"</span></span>), <span class="pl-c1">NA</span>)),
-  <span class="pl-v">test1_score</span> <span class="pl-k">=</span> normalize_bar(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">0.2</span>),
-  <span class="pl-v">test2_score</span> <span class="pl-k">=</span> normalize_bar(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">0.2</span>),
+  <span class="pl-v">grade</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>, <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> ifelse(<span class="pl-smi">x</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>, 
+    style(<span class="pl-v">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-v">font.weight</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>bold<span class="pl-pds">"</span></span>), <span class="pl-c1">NA</span>)),
+  area(<span class="pl-v">col</span> <span class="pl-k">=</span> c(<span class="pl-smi">test1_score</span>, <span class="pl-smi">test2_score</span>)) <span class="pl-k">~</span> normalize_bar(<span class="pl-s"><span class="pl-pds">"</span>pink<span class="pl-pds">"</span></span>, <span class="pl-c1">0.2</span>),
   <span class="pl-v">final_score</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
     <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(<span class="pl-v">color</span> <span class="pl-k">=</span> ifelse(rank(<span class="pl-k">-</span><span class="pl-smi">x</span>) <span class="pl-k">&lt;</span><span class="pl-k">=</span> <span class="pl-c1">3</span>, <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>gray<span class="pl-pds">"</span></span>)),
     <span class="pl-smi">x</span> <span class="pl-k">~</span> sprintf(<span class="pl-s"><span class="pl-pds">"</span>%.2f (rank: %02d)<span class="pl-pds">"</span></span>, <span class="pl-smi">x</span>, rank(<span class="pl-k">-</span><span class="pl-smi">x</span>))),
-  <span class="pl-v">registered</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>, 
+  <span class="pl-v">registered</span> <span class="pl-k">=</span> formatter(<span class="pl-s"><span class="pl-pds">"</span>span<span class="pl-pds">"</span></span>,
     <span class="pl-v">style</span> <span class="pl-k">=</span> <span class="pl-smi">x</span> <span class="pl-k">~</span> style(<span class="pl-v">color</span> <span class="pl-k">=</span> ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>green<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>red<span class="pl-pds">"</span></span>)),
     <span class="pl-smi">x</span> <span class="pl-k">~</span> icontext(ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>ok<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>remove<span class="pl-pds">"</span></span>), ifelse(<span class="pl-smi">x</span>, <span class="pl-s"><span class="pl-pds">"</span>Yes<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>No<span class="pl-pds">"</span></span>)))
 ))</pre></div>
@@ -288,7 +337,7 @@ formattable(<span class="pl-smi">df</span>, <span class="pl-k">list</span>(
 <h2>
 <a id="htmlwidget-conversion-in-interactive-environments" class="anchor" href="#htmlwidget-conversion-in-interactive-environments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>htmlwidget</code> conversion in interactive environments</h2>
 
-<p><code>formattable</code> will automatically convert to an <code>htmlwidget</code> when in an <code>interactive()</code> context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the <code>markdown</code> table output, please use <code>format_table</code> that calls <code>knitr::kable</code> with formatters or call <code>as.character</code> with the <code>formattable data.frame</code> object.</p>
+<p><code>formattable</code> will automatically convert to an <code>htmlwidget</code> when in an <code>interactive()</code> context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the <code>html</code> table output, please use <code>format_table</code> that calls <code>knitr::kable</code> with formatters or call <code>format</code> with the <code>formattable data.frame</code> object.</p>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
