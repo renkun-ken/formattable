@@ -25,6 +25,6 @@ URL: https://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
-Suggests: testthat, DT, shiny
+Suggests: testthat, DT, shiny, covr
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
