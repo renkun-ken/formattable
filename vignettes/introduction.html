@@ -12,7 +12,7 @@
 
 <meta name="author" content="Kun Ren" />
 
-<meta name="date" content="2016-07-24" />
+<meta name="date" content="2016-08-05" />
 
 <title>Introduction to formattable package</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to formattable package</h1>
 <h4 class="author"><em>Kun Ren</em></h4>
-<h4 class="date"><em>2016-07-24</em></h4>
+<h4 class="date"><em>2016-08-05</em></h4>
 
 
 
@@ -133,41 +133,41 @@ lv</code></pre></div>
   <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;Z&quot;</span>)))
 pm</code></pre></div>
 <pre><code>##           X         Y         Z
-## a 0.9480707 0.8403381 0.7056728
-## b 0.7351166 0.8943573 0.6871067</code></pre>
+## a 0.7424653 0.6382117 0.8519407
+## b 0.8607964 0.7944438 0.8301153</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fpm &lt;-<span class="st"> </span><span class="kw">percent</span>(pm)
 fpm</code></pre></div>
 <pre><code>##   X      Y      Z     
-## a 94.81% 84.03% 70.57%
-## b 73.51% 89.44% 68.71%</code></pre>
+## a 74.25% 63.82% 85.19%
+## b 86.08% 79.44% 83.01%</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fpm[<span class="st">&quot;a&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;Z&quot;</span>)]</code></pre></div>
 <pre><code>##      Y      Z 
-## 84.03% 70.57%</code></pre>
+## 63.82% 85.19%</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pa &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="kw">rnorm</span>(<span class="dv">12</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>))
 pa</code></pre></div>
 <pre><code>## , , 1
 ## 
 ##           [,1]      [,2]      [,3]
-## [1,] 0.8148792 0.7030061 0.8742468
-## [2,] 0.7084800 0.8143039 0.9744679
+## [1,] 0.8105676 0.7150296 0.8117647
+## [2,] 0.7359294 0.6975871 0.7052525
 ## 
 ## , , 2
 ## 
 ##           [,1]      [,2]      [,3]
-## [1,] 0.6712830 0.8196796 0.8219280
-## [2,] 0.7070162 0.6623071 0.9386668</code></pre>
+## [1,] 0.7509443 0.9843862 0.8235387
+## [2,] 0.7743908 0.7348050 0.8077961</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">percent</span>(pa)</code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1]   [,2]   [,3]  
-## [1,] 81.49% 70.30% 87.42%
-## [2,] 70.85% 81.43% 97.45%
+## [1,] 81.06% 71.50% 81.18%
+## [2,] 73.59% 69.76% 70.53%
 ## 
 ## , , 2
 ## 
 ##      [,1]   [,2]   [,3]  
-## [1,] 67.13% 81.97% 82.19%
-## [2,] 70.70% 66.23% 93.87%</code></pre>
+## [1,] 75.09% 98.44% 82.35%
+## [2,] 77.44% 73.48% 80.78%</code></pre>
 <p>When the formattable vectors are used as columns of a data frame, the formatting of each column is well preserved. A typical data frame may look more friendly with <code>formattable</code> column vectors. For example,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), 

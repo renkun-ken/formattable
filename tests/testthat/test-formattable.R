@@ -159,6 +159,20 @@ test_that("formattable methods", {
     list(percent(0.1), percent(0.2)))
 })
 
+test_that("render_html_matrix", {
+  d <- data.frame(a = c(1, 2), b = c(1.23456, 2.5),
+    c = c("a", "b"), d = as.Date("2016-01-05") + 0:1)
+  fd <- render_html_matrix.data.frame(d)
+  expect_true(is.matrix(fd) && is.character(fd))
+  expect_equal(fd,
+    matrix(c("1", "2",
+      "1.23456", "2.50000",
+      "a", "b",
+      "2016-01-05",  "2016-01-06"),
+      nrow = 2L, ncol = 4L,
+      dimnames = list(c("1", "2"), c("a", "b", "c", "d"))))
+})
+
 test_that("formattable.data.frame", {
   obj <- formattable(mtcars)
   expect_is(obj, c("formattable", "data.frame"))
