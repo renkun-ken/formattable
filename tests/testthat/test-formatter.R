@@ -15,6 +15,20 @@ test_that("formatter", {
     formatter("span", x ~ ifelse(x, yes_string, no_string))(c(TRUE, FALSE))
   }), paste0("<span>", c("YES","NO"), "</span>"))
 
+  # render text
+  bold <- formatter("span", style = "font-weight: bold")
+  expect_equal(bold(c(0.1, 0.2)),
+    c("<span style=\"font-weight: bold\">0.1</span>",
+      "<span style=\"font-weight: bold\">0.2</span>"))
+  expect_equal(bold(percent(c(0.1, 0.2))),
+    c("<span style=\"font-weight: bold\">10.00%</span>",
+      "<span style=\"font-weight: bold\">20.00%</span>"))
+
+  bold_percent <- formatter("span", style = "font-weight: bold", percent)
+  expect_equal(bold_percent(c(0.1, 0.2)),
+    c("<span style=\"font-weight: bold\">10.00%</span>",
+      "<span style=\"font-weight: bold\">20.00%</span>"))
+
   # dynamic scoping of formula
   expect_equal(local({
     yes <- "yes"

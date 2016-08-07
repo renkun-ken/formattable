@@ -40,20 +40,18 @@ formatter <- function(.tag, ...) {
   fcall <- match.call(expand.dots = TRUE)
   args <- list(...)
 
-  if (length(args) == 0L ||
-      (!is.null(argnames <- names(args)) && all(nzchar(argnames)))) {
-    args <- c(args, format_default)
-  }
+  use_text <- length(args) == 0L ||
+    (!is.null(argnames <- names(args)) && all(nzchar(argnames)))
 
   # create a closure for formattable to build output string
-  structure(function(x, data = NULL) {
+  structure(function(x, data = NULL, text = format(x, trim = TRUE)) {
     if (length(x) == 0L && length(data) == 0L) return(character())
-    values <- lapply(args, function(arg) {
+    values <- c(lapply(args, function(arg) {
       value <- if (is.function(arg)) arg(x)
       else if (inherits(arg, "formula")) eval_formula(arg, x, data)
       else arg
       if (is.null(value)) NA else value
-    })
+    }), if (use_text) list(text))
     tags <- if (length(x) == 1L) {
       list(tag(.tag, values[!is.na(values) & nzchar(values)]))
     } else {

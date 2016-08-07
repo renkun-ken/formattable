@@ -409,12 +409,11 @@ render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOp
   for (fi in seq_along(formatters)) {
     fn <- names(formatters)[[fi]]
     f <- formatters[[fi]]
-    if (is_false(f)) {
-      next;
-    } else if (!is.null(fn) && nzchar(fn)) {
+    if (is_false(f)) next
+    else if (!is.null(fn) && nzchar(fn)) {
       if (fn %in% cols) {
         value <- x[[fn]]
-        fv <-  if (inherits(f, "formatter")) f(value, x)
+        fv <- if (inherits(f, "formatter")) f(value, x, mat[, fn])
         else  if (inherits(f, "formula")) eval_formula(f, value, x)
         else match.fun(f)(value)
         mat[, fn] <- format(fv)
@@ -440,7 +439,8 @@ render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOp
           stop("Invalid formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
         }
       })
-      fv <-  if (inherits(f, "formatter")) f(value, x) else match.fun(f)(value)
+      fv <-  if (inherits(f, "formatter"))
+        f(value, x, mat[row, col]) else match.fun(f)(value)
       mat[row, col] <- format(fv)
     }
   }
