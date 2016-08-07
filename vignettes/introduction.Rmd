@@ -9,6 +9,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, echo=FALSE, include=FALSE}
+set.seed(123)
+```
+
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
 Atomic vectors are fundamental data structures in R. Some data can be read more easily with formatting. A numeric vector, for example, stores percentage numbers but is printed as typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.
