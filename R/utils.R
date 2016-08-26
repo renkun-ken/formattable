@@ -24,7 +24,7 @@ ifelse <- function(test, yes, no, ...) {
 
 remove_class <- function(x, class) {
   cls <- class(x)
-  class(x) <- cls[!(cls %in% class)]
+  class(x) <- cls[cls != class]
   x
 }
 
