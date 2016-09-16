@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Kun Ren" />
+
+<meta name="date" content="2016-08-07" />
+
+<title>Introduction to formattable package</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to formattable package</h1>
+<h4 class="author"><em>Kun Ren</em></h4>
+<h4 class="date"><em>2016-08-07</em></h4>
+
+
+
+<p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
+<p>Atomic vectors are fundamental data structures in R. Some data can be read more easily with formatting. A numeric vector, for example, stores percentage numbers but is printed as typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.</p>
+<p>Several typical formattable numeric vectors are provided such as <code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code> and <code>scientific</code>. These functions basically create numeric vectors with pre-defined formatting rules and parameters. For example,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(formattable)
+p &lt;-<span class="st"> </span><span class="kw">percent</span>(<span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.02</span>, <span class="fl">0.03</span>, <span class="fl">0.12</span>))
+p</code></pre></div>
+<pre><code>## [1] 10.00% 2.00%  3.00%  12.00%</code></pre>
+<p>The percent vector is no different from a numeric vector but has a percentage representation when printed. It works with arithmetic operations and other common functions and preserves its formatting.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p +<span class="st"> </span><span class="fl">0.05</span></code></pre></div>
+<pre><code>## [1] 15.00% 7.00%  8.00%  17.00%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p +<span class="st"> </span><span class="kw">percent</span>(<span class="fl">0.02</span>)</code></pre></div>
+<pre><code>## [1] 12.00% 4.00%  5.00%  14.00%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p *<span class="st"> </span><span class="fl">1.1</span></code></pre></div>
+<pre><code>## [1] 11.00% 2.20%  3.30%  13.20%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(p)</code></pre></div>
+<pre><code>## [1] 12.00%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(p)</code></pre></div>
+<pre><code>## [1] 6.75%</code></pre>
+<p>It also works with subsetting and sub-assignment:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p[<span class="dv">1</span>:<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [1] 10.00% 2.00%  3.00%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p[[<span class="dv">2</span>]]</code></pre></div>
+<pre><code>## [1] 2.00%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="fl">0.05</span>
+p</code></pre></div>
+<pre><code>## [1] 10.00% 2.00%  5.00%  12.00%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">balance &lt;-<span class="st"> </span><span class="kw">accounting</span>(<span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">500</span>, <span class="dv">200</span>, -<span class="dv">150</span>, <span class="dv">0</span>, <span class="dv">1200</span>))
+balance</code></pre></div>
+<pre><code>## [1] 1,000.00 500.00   200.00   (150.00) 0.00     1,200.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">balance +<span class="st"> </span><span class="dv">1000</span></code></pre></div>
+<pre><code>## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00</code></pre>
+<p>These functions are specialized applications of what <code>formattable()</code> is designed to do. <code>formattable()</code> applies customizable formatting functions to objects of a wide range of classes like <code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code>, etc.</p>
+<p>When applied to <code>Date</code>, <code>formattable()</code> uses <code>format.Date()</code> as the default formatter function. The following code creates a <code>formattable Date</code> vector that is printed in the format of <code>%Y%m%d</code>. However, it is not a plain integer or character vector but of <code>Date</code> class and still allows date calculations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dates &lt;-<span class="st"> </span><span class="kw">formattable</span>(<span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;2016-05-01&quot;</span>, <span class="st">&quot;2016-05-10&quot;</span>)), <span class="dt">format =</span> <span class="st">&quot;%Y%m%d&quot;</span>)
+dates</code></pre></div>
+<pre><code>## [1] 20160501 20160510</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dates +<span class="st"> </span><span class="dv">30</span></code></pre></div>
+<pre><code>## [1] 20160531 20160609</code></pre>
+<p>When applied to a logical vector, we can customize how <code>TRUE</code> and <code>FALSE</code> values are printed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lv &lt;-<span class="st"> </span><span class="kw">formattable</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)
+lv</code></pre></div>
+<pre><code>## [1] yes no  no  yes</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">!lv</code></pre></div>
+<pre><code>## [1] no  yes yes no</code></pre>
+<p>Note that <code>isTRUE()</code> does not directly work with values of <code>lv</code> because <code>isTRUE()</code> uses <code>identical(x, TRUE)</code> and <code>lv[[1]]</code>, as a formattable logical value is not identical to a plain <code>TRUE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lv[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] yes</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">isTRUE</span>(lv[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>If <code>isTRUE()</code> has to be applied, <code>lv == TRUE</code> returns a plain logical vector and works with <code>isTRUE()</code>. Other vectorized logical functions directly work with formattable logical vector with the formatting preserved.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">all</span>(lv)</code></pre></div>
+<pre><code>## [1] no</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">any</span>(lv)</code></pre></div>
+<pre><code>## [1] yes</code></pre>
+<p>All formattable functions work with matrices and arrays.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pm &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">6</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span>), <span class="dv">2</span>, <span class="dv">3</span>, 
+  <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;Z&quot;</span>)))
+pm</code></pre></div>
+<pre><code>##           X         Y         Z
+## a 0.7439524 0.9558708 0.8129288
+## b 0.7769823 0.8070508 0.9715065</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fpm &lt;-<span class="st"> </span><span class="kw">percent</span>(pm)
+fpm</code></pre></div>
+<pre><code>##   X      Y      Z     
+## a 74.40% 95.59% 81.29%
+## b 77.70% 80.71% 97.15%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fpm[<span class="st">&quot;a&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;Z&quot;</span>)]</code></pre></div>
+<pre><code>##      Y      Z 
+## 95.59% 81.29%</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pa &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="kw">rnorm</span>(<span class="dv">12</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>))
+pa</code></pre></div>
+<pre><code>## , , 1
+## 
+##           [,1]      [,2]      [,3]
+## [1,] 0.8460916 0.7313147 0.9224082
+## [2,] 0.6734939 0.7554338 0.8359814
+## 
+## , , 2
+## 
+##           [,1]      [,2]      [,3]
+## [1,] 0.8400771 0.7444159 0.8497850
+## [2,] 0.8110683 0.9786913 0.6033383</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">percent</span>(pa)</code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1]   [,2]   [,3]  
+## [1,] 84.61% 73.13% 92.24%
+## [2,] 67.35% 75.54% 83.60%
+## 
+## , , 2
+## 
+##      [,1]   [,2]   [,3]  
+## [1,] 84.01% 74.44% 84.98%
+## [2,] 81.11% 97.87% 60.33%</code></pre>
+<p>When the formattable vectors are used as columns of a data frame, the formatting of each column is well preserved. A typical data frame may look more friendly with <code>formattable</code> column vectors. For example,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), 
+  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;B1&quot;</span>, <span class="st">&quot;B2&quot;</span>, <span class="st">&quot;C1&quot;</span>),
+  <span class="dt">balance =</span> <span class="kw">accounting</span>(<span class="kw">c</span>(<span class="dv">52500</span>, <span class="dv">36150</span>, <span class="dv">25000</span>, <span class="dv">18300</span>, <span class="dv">7600</span>), <span class="dt">format =</span> <span class="st">&quot;d&quot;</span>),
+  <span class="dt">growth =</span> <span class="kw">percent</span>(<span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>), <span class="dt">format =</span> <span class="st">&quot;d&quot;</span>),
+  <span class="dt">ready =</span> <span class="kw">formattable</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))
+p</code></pre></div>
+<pre><code>##   id name balance growth ready
+## 1  1   A1  52,500    30%   yes
+## 2  2   A2  36,150    30%   yes
+## 3  3   B1  25,000    10%    no
+## 4  4   B2  18,300    15%    no
+## 5  5   C1   7,600    15%   yes</code></pre>
+<p>The subset of a data frame also preserves the formatting of each column:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p[<span class="dv">1</span>:<span class="dv">3</span>, <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;balance&quot;</span>, <span class="st">&quot;growth&quot;</span>)]</code></pre></div>
+<pre><code>##   name balance growth
+## 1   A1  52,500    30%
+## 2   A2  36,150    30%
+## 3   B1  25,000    10%</code></pre>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

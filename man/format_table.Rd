@@ -4,9 +4,9 @@
 \alias{format_table}
 \title{Format a data frame with formatter functions}
 \usage{
-format_table(x, formatters = list(), format = c("markdown", "pandoc"),
-  align = "r", ..., row.names = rownames(x), check.rows = FALSE,
-  check.names = FALSE)
+format_table(x, formatters = list(), format = c("html", "markdown",
+  "pandoc"), align = "r", ..., digits = getOption("digits"),
+  table.attr = "class=\\"table table-condensed\\"")
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
@@ -19,11 +19,14 @@ If a formatter is specified by formula, then the formula will be
 interpreted as a lambda expression with its left-hand side being
 a symbol and right-hand side being the expression using the symbol
 to represent the column values. The formula expression will be evaluated
-in \code{envir}, that, to maintain consistency, should be the calling
-environment in which the formula is created and all symbols are defined
-at runtime.}
+in the environment of the formula.
 
-\item{format}{The output format: markdown or pandoc?}
+If a formatter is \code{FALSE}, then the corresponding column will be hidden.
+
+Area formatter is specified in the form of
+\code{area(row, col) ~ formatter} without specifying the column name.}
+
+\item{format}{The output format: html, markdown or pandoc?}
 
 \item{align}{The alignment of columns: a character vector consisting
 of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
@@ -31,13 +34,11 @@ By default, all columns are right-aligned.}
 
 \item{...}{additional parameters to be passed to \code{knitr::kable}.}
 
-\item{row.names}{row names to give to the data frame to knit}
+\item{digits}{The number of significant digits to be used for numeric
+and complex values.}
 
-\item{check.rows}{if TRUE then the rows are checked for consistency
-of length and names.}
-
-\item{check.names}{\code{TRUE} to check names of data frame to make
-valid symbol names. This argument is \code{FALSE} by default.}
+\item{table.attr}{The HTML class of \code{<table>} created when
+\code{format = "html"}}
 }
 \value{
 a \code{knitr_kable} object whose \code{print} method generates a
@@ -46,9 +47,9 @@ specific \code{format}.
 }
 \description{
 This is an table generator that specializes in creating
-formatted table presented in a mix of markdown/reStructuredText and
-HTML elements. To generate a formatted table, each column of data
-frame can be transformed by formatter function.
+formatted table presented in HTML by default.
+To generate a formatted table, columns or areas of the
+input data frame can be transformed by formatter functions.
 }
 \examples{
 # mtcars (mpg in red)
@@ -78,5 +79,21 @@ format_table(mtcars, list(mpg = formatter("span",
 # mtcars (mpg in red if vs == 1 and am == 1)
 format_table(mtcars, list(mpg = formatter("span",
     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
+
+# hide columns
+format_table(mtcars, list(mpg = FALSE, cyl = FALSE))
+
+# area formatting
+format_table(mtcars, list(area(col = vs:carb) ~ formatter("span",
+  style = x ~ style(color = ifelse(x > 0, "red", NA)))))
+
+df <- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10))
+format_table(df, list(area() ~ color_tile("transparent", "lightgray")))
+format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
+format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
+  area(6:10) ~ color_tile("transparent", "lightpink")))
+}
+\seealso{
+\link{formattable}, \link{area}
 }
 

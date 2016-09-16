@@ -3,15 +3,43 @@
 [![Linux Build Status](https://travis-ci.org/renkun-ken/formattable.png?branch=master)](https://travis-ci.org/renkun-ken/formattable) 
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/renkun-ken/formattable?svg=true)](https://ci.appveyor.com/project/renkun-ken/formattable)
 [![codecov.io](http://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master)](http://codecov.io/github/renkun-ken/formattable?branch=master)
-[![CRAN Version](http://www.r-pkg.org/badges/version/formattable)](http://cran.rstudio.com/web/packages/formattable)
+[![CRAN Version](http://www.r-pkg.org/badges/version/formattable)](https://cran.r-project.org/package=formattable)
 
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
 This document is also translated into [日本語](./README.ja.md) by [@hoxo_m](https://github.com/hoxo-m), [@dichika](https://github.com/dichika) and [@teramonagi](https://github.com/teramonagi).
 
-## Breaking changes
+## What's New?
 
-In development version 0.1.7:
+### Version 0.2
+
+#### Breaking changes
+
+* `format_table` now renders input data frame to `html` by default instead of `markdown`.
+* `formattable.matrix` is removed to support matrix/array formatting. Explicitly convert matrix to data frame if you want to create a formattable data frame.
+* `format_table` and `formattable.data.frame` no longer accepts `check.rows` and `check.names` arguments. `row.names` accepts a logical value and is directly passed to `knitr::kable`.
+
+#### New features
+
+* `formattable` and built-in formatter functions (e.g. `percent`) now work with matrix and array objects.
+* Area formatting is now supported (discussed in #36, #40) with `area(row, col) ~ formatter`. See examples via `?formattable.data.frame`.
+* Now a formattable data frame can be converted to `DT::datatable` via `formattable::as.datatable`.
+* `FALSE` formatters can be used to hide columns of a data frame.
+
+#### Enhancements
+
+* The rendered HTML table now supports customizable CSS styling via `table_attr` argument. (#57)
+* `color_bar` now uses `proportion` by default as the rescaling function.
+
+#### Bug fixes
+
+* Fixes an encoding problem rendering formattable data frame. (#30)
+* Fixes the size and alignment issues in color bar. (#49)
+* `format.formattable` now preserves the names of input vector. (#56)
+
+### Version 0.1.7
+
+#### Breaking changes
 
 * `color_bar` is now broken into two versions using different transform functions:
   `normalize_bar` uses `normalize`, the same as `color_bar` in previous versions,
@@ -163,14 +191,13 @@ library(formattable)
 
 formattable(df, list(
   age = color_tile("white", "orange"),
-  grade = formatter("span",
-    style = x ~ ifelse(x == "A", style(color = "green", font.weight = "bold"), NA)),
-  test1_score = normalize_bar("pink", 0.2),
-  test2_score = normalize_bar("pink", 0.2),
+  grade = formatter("span", style = x ~ ifelse(x == "A", 
+    style(color = "green", font.weight = "bold"), NA)),
+  area(col = c(test1_score, test2_score)) ~ normalize_bar("pink", 0.2),
   final_score = formatter("span",
     style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),
     x ~ sprintf("%.2f (rank: %02d)", x, rank(-x))),
-  registered = formatter("span", 
+  registered = formatter("span",
     style = x ~ style(color = ifelse(x, "green", "red")),
     x ~ icontext(ifelse(x, "ok", "remove"), ifelse(x, "Yes", "No")))
 ))
@@ -182,7 +209,7 @@ formattable(df, list(
 
 ## `htmlwidget` conversion in interactive environments
 
-`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `markdown` table output, please use `format_table` that calls `knitr::kable` with formatters or call `as.character` with the `formattable data.frame` object.
+`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `html` table output, please use `format_table` that calls `knitr::kable` with formatters or call `format` with the `formattable data.frame` object.
 
 ## License
 

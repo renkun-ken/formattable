@@ -1,3 +1,5 @@
+base_ifelse <- getExportedValue("base", "ifelse")
+
 as_numeric <- function(x) if (is.numeric(x)) x else as.numeric(x)
 
 set_class <- function(x, class) {
@@ -17,12 +19,12 @@ reset_class <- function(src, target, class) {
 }
 
 ifelse <- function(test, yes, no, ...) {
-  base::ifelse(test, yes, no)
+  base_ifelse(test, yes, no)
 }
 
 remove_class <- function(x, class) {
   cls <- class(x)
-  class(x) <- cls[!(cls %in% class)]
+  class(x) <- cls[cls != class]
   x
 }
 
@@ -68,7 +70,33 @@ eval_formula <- function(x, var, data, envir = environment(x)) {
   }
 }
 
+get_false_entries <- function(x) {
+  y <- vapply(x, is_false, logical(1L))
+  y <- names(x)[y]
+  y[nzchar(y)]
+}
+
+is_false <- function(x) {
+  is.logical(x) && length(x) == 1L && x == FALSE
+}
+
 get_digits <- function(x) {
   ifelse(grepl(".", x, fixed = TRUE),
     nchar(gsub("^.*\\.([0-9]*).*$", "\\1", x)), 0L)
+}
+
+seq_list <- function(x = character()) {
+  lst <- as.list(seq_along(x))
+  names(lst) <- x
+  lst
+}
+
+copy_dim <- function(src, target, use.names = TRUE) {
+  if (is.array(src)) {
+    dim(target) <- dim(src)
+    if (use.names) dimnames(target) <- dimnames(src)
+  } else {
+    if (use.names) names(target) <- names(src)
+  }
+  target
 }

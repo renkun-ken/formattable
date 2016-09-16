@@ -13,7 +13,7 @@
 formattable <- function(x, ...)
   UseMethod("formattable")
 
-#' Test for objects of type 'formattable'
+#' Test for objects of 'formattable' class
 #' @param x an object
 #' @return \code{TRUE} if \code{x} has class 'formattable';
 #' \code{FALSE} otherwise.
@@ -61,6 +61,14 @@ formattable.default <- function(x, ..., formatter,
 #'   postproc = function(str, x)
 #'     paste(str, ifelse(x <= 1, "unit", "units")))
 formattable.numeric <- function(x, ..., formatter = "formatC",
+  preproc = NULL, postproc = NULL) {
+  create_obj(x, "formattable",
+    list(formatter = formatter,
+      format = list(...), preproc = preproc, postproc = postproc))
+}
+
+#' @export
+formattable.table <- function(x, ..., formatter = "format",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
     list(formatter = formatter,
@@ -209,7 +217,7 @@ knit_print_formattable.default <- print_formattable.default
 knit_print_formattable.data.frame <- function(x, ...) {
   format <- attr(x, "formattable", exact = TRUE)$format
   caption <- if (isTRUE(format$format == "pandoc" && nzchar(format$caption))) "<!-- -->\n\n" else ""
-  knitr::asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
+  asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
 }
 
 #' @export
@@ -237,13 +245,15 @@ format.formattable <- function(x, ...,
     for (postproc in postproc_list) str <- call_or_default(postproc, str, value)
   }
   str <- as.character(str)
-  if (use.names && x_atomic && !is.null(x_names <- names(x))) names(str) <- x_names
+  if (x_atomic) {
+    str <- copy_dim(x, str, use.names)
+  }
   str
 }
 
 #' @export
 as.list.formattable <- function(x, ...) {
-  lapply(seq_along(x), function(i) x[i])
+  lapply(seq_along(x), function(i) x[[i]])
 }
 
 #' @export
@@ -374,26 +384,82 @@ cumsum.formattable <- function(x, ...) {
   fcreate_obj(cumsum, "formattable", x, ...)
 }
 
-#' @rdname stats median
 #' @importFrom stats median
 #' @export
 median.formattable <- function(x, ...) {
   fcreate_obj(median, "formattable", x, ...)
 }
 
-#' @rdname stats quantile
 #' @importFrom stats quantile
 #' @export
 quantile.formattable <- function(x, ...) {
   fcreate_obj(quantile, "formattable", x, ...)
 }
 
+render_html_matrix <- function(x, ...)
+  UseMethod("render_html_matrix")
+
+render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOption("digits"), ...) {
+  stopifnot(is.data.frame(x))
+  if (nrow(x) == 0L) formatters <- list()
+  cols <- colnames(x)
+  mat <- vapply(x, format, character(nrow(x)), digits = digits, trim = TRUE)
+  dim(mat) <- dim(x)
+  dimnames(mat) <- dimnames(x)
+  for (fi in seq_along(formatters)) {
+    fn <- names(formatters)[[fi]]
+    f <- formatters[[fi]]
+    if (is_false(f)) next
+    else if (!is.null(fn) && nzchar(fn)) {
+      if (fn %in% cols) {
+        value <- x[[fn]]
+        fv <- if (inherits(f, "formatter")) f(value, x, mat[, fn])
+        else  if (inherits(f, "formula")) eval_formula(f, value, x)
+        else match.fun(f)(value)
+        mat[, fn] <- format(fv)
+      }
+    } else if (inherits(f, "formula")) {
+      fenv <- environment(f)
+      value <- as.matrix(if (length(f) == 2L) {
+        row <- col <- TRUE
+        f <- eval(f[[2L]], fenv)
+        x
+      } else {
+        if (is.call(f[[2L]])) {
+          farea <- eval(f[[2L]], fenv)
+          if (inherits(farea, "area")) {
+            row <- eval(farea$row, seq_list(rownames(x)), farea$envir)
+            col <- eval(farea$col, seq_list(colnames(x)), farea$envir)
+            f <- eval(f[[3L]], fenv)
+            x[row, col]
+          } else {
+            stop("Invalid area formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+          }
+        } else {
+          stop("Invalid formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+        }
+      })
+      fv <-  if (inherits(f, "formatter"))
+        f(value, x, mat[row, col]) else match.fun(f)(value)
+      mat[row, col] <- format(fv)
+    }
+  }
+  nulls <- get_false_entries(formatters)
+  mat[, setdiff(cols, nulls), drop = FALSE]
+}
+
+render_html_matrix.formattable <- function(x, ...) {
+  stopifnot(is.formattable(x), is.data.frame(x))
+  do.call(render_html_matrix.data.frame,
+    c(list(x = remove_class(x, "formattable")), attr(x, "formattable")$format))
+}
+
 #' Format a data frame with formatter functions
 #'
 #' This is an table generator that specializes in creating
-#' formatted table presented in a mix of markdown/reStructuredText and
-#' HTML elements. To generate a formatted table, each column of data
-#' frame can be transformed by formatter function.
+#' formatted table presented in HTML by default.
+#' To generate a formatted table, columns or areas of the
+#' input data frame can be transformed by formatter functions.
 #' @importFrom knitr kable
 #' @param x a \code{data.frame}.
 #' @param formatters a list of formatter functions or formulas.
@@ -404,19 +470,21 @@ quantile.formattable <- function(x, ...) {
 #' interpreted as a lambda expression with its left-hand side being
 #' a symbol and right-hand side being the expression using the symbol
 #' to represent the column values. The formula expression will be evaluated
-#' in \code{envir}, that, to maintain consistency, should be the calling
-#' environment in which the formula is created and all symbols are defined
-#' at runtime.
-#' @param format The output format: markdown or pandoc?
+#' in the environment of the formula.
+#'
+#' If a formatter is \code{FALSE}, then the corresponding column will be hidden.
+#'
+#' Area formatter is specified in the form of
+#' \code{area(row, col) ~ formatter} without specifying the column name.
+#' @param format The output format: html, markdown or pandoc?
 #' @param align The alignment of columns: a character vector consisting
 #' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 #' By default, all columns are right-aligned.
 #' @param ... additional parameters to be passed to \code{knitr::kable}.
-#' @param row.names row names to give to the data frame to knit
-#' @param check.rows if TRUE then the rows are checked for consistency
-#' of length and names.
-#' @param check.names \code{TRUE} to check names of data frame to make
-#' valid symbol names. This argument is \code{FALSE} by default.
+#' @param digits The number of significant digits to be used for numeric
+#'     and complex values.
+#' @param table.attr The HTML class of \code{<table>} created when
+#'     \code{format = "html"}
 #' @return a \code{knitr_kable} object whose \code{print} method generates a
 #' string-representation of \code{data} formatted by \code{formatter} in
 #' specific \code{format}.
@@ -449,42 +517,45 @@ quantile.formattable <- function(x, ...) {
 #' # mtcars (mpg in red if vs == 1 and am == 1)
 #' format_table(mtcars, list(mpg = formatter("span",
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
+#'
+#' # hide columns
+#' format_table(mtcars, list(mpg = FALSE, cyl = FALSE))
+#'
+#' # area formatting
+#' format_table(mtcars, list(area(col = vs:carb) ~ formatter("span",
+#'   style = x ~ style(color = ifelse(x > 0, "red", NA)))))
+#'
+#' df <- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10))
+#' format_table(df, list(area() ~ color_tile("transparent", "lightgray")))
+#' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
+#' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
+#'   area(6:10) ~ color_tile("transparent", "lightpink")))
+#' @seealso \link{formattable}, \link{area}
 format_table <- function(x, formatters = list(),
-  format = c("markdown", "pandoc"), align = "r", ...,
-  row.names = rownames(x), check.rows = FALSE, check.names = FALSE) {
-  stopifnot(is.data.frame(x))
-  if (nrow(x) == 0L) formatters <- list()
+  format = c("html", "markdown", "pandoc"), align = "r", ...,
+  digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
   format <- match.arg(format)
-  xdf <- data.frame(mapply(function(name, value) {
-    f <- formatters[[name]]
-    fvalue <- if (is.null(f)) value
-    else if (inherits(f, "formula")) eval_formula(f, value, x)
-    else if (inherits(f, "formatter")) f(value, x)
-    else match.fun(f)(value)
-    if (is.formattable(fvalue)) as.character.formattable(fvalue) else fvalue
-  }, names(x), x, SIMPLIFY = FALSE),
-    row.names = row.names,
-    check.rows = check.rows,
-    check.names = check.names,
-    stringsAsFactors = FALSE)
-  knitr::kable(xdf, format = format, align = align, escape = FALSE, ...)
+  mat <- render_html_matrix(x, formatters, digits)
+  kable(mat, format = format, align = align, escape = FALSE, ...,
+    table.attr = table.attr)
 }
 
 #' Create a formattable data frame
 #'
 #' This function creates a formattable data frame by attaching
-#' column formatters to the data frame. Each time the data frame
+#' column or area formatters to the data frame. Each time the data frame
 #' is printed or converted to string representation, the formatter
-#' function will use the column formatter functions to generate
-#' formatted columns.
+#' function will use the formatter functions to generate
+#' formatted cells.
 #'
 #' @details
 #' The formattable data frame is a data frame with lazy-bindings
-#' of prespecified column formatters. The formatters will not be
-#' applied until the data frame is printed to console or a
-#' dynamic document. If the formatter function has no side effect,
-#' the formattable data frame will not be changed even if the
-#' formatters are applied to produce the printed version.
+#' of prespecified column formatters or area formatters.
+#' The formatters will not be applied until the data frame is
+#' printed to console or in a dynamic document. If the formatter
+#' function has no side effect, the formattable data frame will
+#' not be changed even if the formatters are applied to produce
+#' the printed version.
 #'
 #' @inheritParams formattable.default
 #' @param x a \code{data.frame}
@@ -519,14 +590,23 @@ format_table <- function(x, formatters = list(),
 #' # mtcars (mpg in red if vs == 1 and am == 1)
 #' formattable(mtcars, list(mpg = formatter("span",
 #'     style = ~ style(color = ifelse(vs == 1 & am == 1, "red", NA)))))
+#'
+#' # hide columns
+#' formattable(mtcars, list(mpg = FALSE, cyl = FALSE))
+#'
+#' # area formatting
+#' formattable(mtcars, list(area(col = vs:carb) ~ formatter("span",
+#'   style = x ~ style(color = ifelse(x > 0, "red", NA)))))
+#'
+#' df <- data.frame(a = rnorm(10), b = rnorm(10), c = rnorm(10))
+#' formattable(df, list(area() ~ color_tile("transparent", "lightgray")))
+#' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
+#' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
+#'   area(6:10) ~ color_tile("transparent", "lightpink")))
+#' @seealso \link{format_table}, \link{area}
 formattable.data.frame <- function(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",
     list(formatter = formatter, format = list(...),
       preproc = preproc, postproc = postproc))
-}
-
-#' @export
-formattable.matrix <- function(x, ...) {
-  formattable.data.frame(data.frame(x, check.names = FALSE, stringsAsFactors = FALSE), ...)
 }

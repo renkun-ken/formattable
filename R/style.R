@@ -60,6 +60,7 @@ style <- function(...) {
 #' represent \code{icon} values.
 #' @seealso \href{http://getbootstrap.com/components/#glyphicons}{Glyphicons in Bootstrap},
 #' \href{http://glyphicons.com/}{Glyphicons}
+#' @importFrom htmltools tagList tag
 #' @export
 #' @examples
 #' icontext("plus")
@@ -71,9 +72,9 @@ icontext <- function(icon, text = list(NULL), ..., simplify = TRUE,
   class_template = getOption("formattable.icon.class_template", "{provider} {provider}-{icon}")) {
   class_template <- gsub("{provider}", provider, class_template, fixed = TRUE)
   x <- .mapply(function(icon, text) {
-    htmltools::tagList(
+    tagList(
       lapply(icon, function(ico)
-        htmltools::tag("i",
+        tag("i",
           list(class = gsub("{icon}", ico, class_template, fixed = TRUE)))), text)
   }, list(icon, text), NULL)
   if (simplify && length(x) == 1L) x[[1L]] else x
@@ -102,7 +103,7 @@ str2rgb <- function(x, alpha = NULL) {
     substr(rgbs, 6L, 7L),
     if (alpha) ifelse(nzchar(alphav <- substr(rgbs, 8L, 9L)), alphav, "FF") else NULL), 16L),
     nrow = rows, byrow = TRUE)
-  res[, !is_rgb] <- grDevices::col2rgb(x[!is_rgb], alpha = alpha)
+  res[, !is_rgb] <- col2rgb(x[!is_rgb], alpha = alpha)
   res
 }
 

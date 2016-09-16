@@ -83,6 +83,27 @@ test_that("formattable.numeric", {
   expect_output(invisible(print(formattable(2, digits = 4, format = "f"))), "^\\[1\\] 2.0000$")
 })
 
+test_that("formattable.table", {
+  # 1d table
+  x <- rbinom(100, 8, 0.5)
+  tx <- table(x)
+  fx <- formattable(tx)
+  expect_is(fx, c("formattable", "table"))
+  expect_true(is.integer(fx))
+  expect_identical(names(format(fx)), names(tx))
+  expect_equal(format(fx), format(tx))
+
+  # 2d table
+  y <- rbinom(100, 3, 0.6)
+  tx <- table(x, y)
+  fx <- formattable(tx)
+  expect_is(fx, c("formattable", "table"))
+  expect_true(is.matrix(fx))
+  expect_true(is.integer(fx))
+  expect_identical(dimnames(fx), dimnames(tx))
+  expect_equal(format(fx), format(tx))
+})
+
 test_that("formattable.logical", {
   logi <- rnorm(10) >= 0
   obj <- formattable(logi, "yes", "no")
@@ -138,9 +159,24 @@ test_that("formattable methods", {
     list(percent(0.1), percent(0.2)))
 })
 
+test_that("render_html_matrix", {
+  d <- data.frame(a = c(1, 2), b = c(1.23456, 2.5),
+    c = c("a", "b"), d = as.Date("2016-01-05") + 0:1)
+  fd <- render_html_matrix.data.frame(d)
+  expect_true(is.matrix(fd) && is.character(fd))
+  expect_equal(fd,
+    matrix(c("1", "2",
+      "1.23456", "2.50000",
+      "a", "b",
+      "2016-01-05",  "2016-01-06"),
+      nrow = 2L, ncol = 4L,
+      dimnames = list(c("1", "2"), c("a", "b", "c", "d"))))
+})
+
 test_that("formattable.data.frame", {
   obj <- formattable(mtcars)
   expect_is(obj, c("formattable", "data.frame"))
+  expect_is(format_table(mtcars), "knitr_kable")
   expect_is(format_table(obj), "knitr_kable")
   expect_is(formattable(mtcars, list(mpg = formatter("span",
         style = x ~ style(display = "block",
@@ -160,7 +196,6 @@ test_that("formattable.data.frame", {
     "knitr_kable")
   expect_is(format_table(mtcars, list(vs = ~"unknown")), "knitr_kable")
   expect_error(format_table(mtcars, list(vs = f(a,b) ~ "unknown")))
-  expect_true({capture.output(print(formattable(mtcars))); TRUE})
 
   df <- formattable(mtcars, list(mpg = color_tile("red", "green")))
   expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, ], "formattable", TRUE))
@@ -171,14 +206,64 @@ test_that("formattable.data.frame", {
   expect_true(is.character(knit_df))
 
   df <- data.frame(id = integer(), name = character(), value = numeric())
-  expect_true({capture.output(print(formattable(df, list(value = color_tile("red", "blue")))));TRUE})
+  expect_is(format_table(formattable(df, list(value = color_tile("red", "blue")))), "knitr_kable")
+
+  # formula
+  df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
+  format_table(df, list(~ percent))
+
+  # cross formatting
+  format_table(df, list(b = formatter("span", style = ~ style(color = ifelse(a >= mean(a), "red", "green")))))
+
+  # hiding columns
+  format_table(df, list(a = FALSE))
+
+  # area formatter
+  df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
+  expect_is(format_table(df, list(area(col = c("a", "b")) ~ percent)), "knitr_kable")
+  expect_is(format_table(df, list(area(col = b:c) ~ percent)), "knitr_kable")
+  expect_is(format_table(df, list(area(1:5) ~ percent)), "knitr_kable")
+  expect_is(format_table(df, list(area(1:5, b:c) ~ percent)), "knitr_kable")
+
+  expect_error(format_table(df, list(x ~ percent)))
+  expect_error(format_table(df, list(get("df") ~ percent)))
 })
 
-test_that("formattable.matrix", {
+test_that("formattable matrix", {
   m <- rnorm(100)
   dim(m) <- c(50,2)
   colnames(m) <- c("a","b")
-  expect_is(formattable(m), "formattable")
+  fm <- formattable(m)
+  expect_is(fm, c("formattable", "matrix"))
+  expect_true(is.matrix(fm))
+  expect_equal(dim(fm), dim(m))
+  fmt <- format(fm)
+  expect_true(is.character(fmt))
+  expect_true(is.matrix(fmt))
+  expect_equal(dim(fmt), dim(m))
+
+  m <- matrix(rnorm(4, 0.1), 2)
+  fm <- formattable(m)
+  fm[1, 1] <- m[1, 1] <- 0.1
+  expect_true(all(fm == m))
+})
+
+test_that("formattable array", {
+  m <- array(rnorm(60), c(3, 4, 5),
+    list(letters[1:3], letters[1:4], letters[1:5]))
+  fm <- formattable(m)
+  expect_is(fm, c("formattable", "array"))
+  expect_true(is.array(fm))
+  expect_equal(dim(fm), dim(m))
+  fmt <- format(fm)
+  expect_true(is.character(fmt))
+  expect_true(is.array(fmt))
+  expect_equal(dim(fmt), dim(m))
+
+  m <- array(rnorm(24, 0.1), c(2, 3, 4))
+  fm <- formattable(m)
+  fm[1, 1, 1] <- m[1, 1, 1] <- 0.1
+  expect_true(all(fm == m))
 })
 
 test_that("is.formattable", {
