@@ -1,6 +1,8 @@
 context("formats")
 
 test_that("percent", {
+  expect_identical(format(percent(numeric())), character())
+
   data <- c(-0.05, 0.15,0.252,0.3003)
   obj <- percent(data)
   expect_is(obj, c("formattable", "numeric"))
@@ -30,6 +32,8 @@ test_that("percent", {
 })
 
 test_that("digits", {
+  expect_identical(format(digits(numeric(), 1)), character())
+
   data <- c(pi, 123, 12.3456)
   obj <- digits(data, 1)
   expect_is(obj, c("formattable", "numeric"))
@@ -39,6 +43,8 @@ test_that("digits", {
 })
 
 test_that("comma", {
+  expect_identical(format(comma(numeric())), character())
+
   data <- c(-5300,10500,20300,35010)
   obj <- comma(data)
   expect_is(obj, c("formattable", "numeric"))
@@ -53,6 +59,8 @@ test_that("comma", {
 })
 
 test_that("currency", {
+  expect_identical(format(currency(numeric())), character())
+
   data <- c(-5300,10500,20300,35010)
   obj <- currency(data)
   expect_is(obj, c("formattable", "numeric"))
@@ -74,6 +82,8 @@ test_that("currency", {
 })
 
 test_that("accounting", {
+  expect_identical(format(accounting(numeric())), character())
+
   data <- c(-5300,10500,20300,35010)
   obj <- accounting(data)
   expect_is(obj, c("formattable", "numeric"))
@@ -88,6 +98,8 @@ test_that("accounting", {
 })
 
 test_that("scientific", {
+  expect_identical(format(scientific(numeric())), character())
+
   data <- c(-5300,10500,20300,35010)
   obj <- scientific(data)
   expect_is(obj, c("formattable", "numeric"))
@@ -100,6 +112,8 @@ test_that("scientific", {
 })
 
 test_that("prefix", {
+  expect_identical(format(prefix(numeric())), character())
+
   data <- 1:10
   obj <- prefix(data)
   expect_is(obj, c("formattable", "integer"))
@@ -118,6 +132,8 @@ test_that("prefix", {
 })
 
 test_that("suffix", {
+  expect_identical(format(suffix(numeric())), character())
+
   data <- 1:10
   obj <- suffix(data)
   expect_is(obj, c("formattable", "integer"))

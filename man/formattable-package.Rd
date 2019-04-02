@@ -29,4 +29,3 @@ to produce its markdown representation. By default the resulted table is in a pl
 theme with no additional formatting. However, in some cases, additional formatting
 may help clarify the information and make contrast of the data.
 }
-

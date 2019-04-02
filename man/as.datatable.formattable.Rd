@@ -21,4 +21,3 @@ a \code{\link[DT]{datatable}} object
 \description{
 Convert \code{formattable} to a \code{\link[DT]{datatable}} htmlwidget
 }
-

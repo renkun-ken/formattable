@@ -20,4 +20,3 @@ formattable(mtcars, list(mpg = proportion_bar()))
 \seealso{
 \link{color_bar}, \link{proportion}
 }
-

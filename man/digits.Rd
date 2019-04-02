@@ -22,4 +22,3 @@ Numeric vector showing pre-specific digits
 digits(pi, 2)
 digits(123.45678, 3)
 }
-

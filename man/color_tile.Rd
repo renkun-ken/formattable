@@ -15,4 +15,3 @@ Create a color-tile formatter
 \examples{
 formattable(mtcars, list(mpg = color_tile("white", "pink")))
 }
-

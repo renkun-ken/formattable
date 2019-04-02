@@ -15,4 +15,3 @@ Create a color-text formatter
 \examples{
 formattable(mtcars, list(mpg = color_text("black", "red")))
 }
-

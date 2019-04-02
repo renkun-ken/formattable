@@ -20,4 +20,3 @@ Test for objects of 'formattable' class
 is.formattable(10)
 is.formattable(formattable(10))
 }
-

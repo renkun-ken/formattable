@@ -21,4 +21,3 @@ Normalize a vector to fit zero-to-one scale
 \examples{
 normalize(mtcars$mpg)
 }
-

@@ -50,4 +50,3 @@ f1 <- formatter("span",
   style = ~ ifelse(rank(-mpg) <= 20 & rank(-disp) <= 20, "color:red", NA))
 formattable(mtcars, list(cyl = f1))
 }
-

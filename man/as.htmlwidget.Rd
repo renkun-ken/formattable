@@ -18,4 +18,3 @@ a \code{htmlwidget} object
 This function is a generic function to create an \code{htmlwidget}
 to allow HTML/JS from R in multiple contexts.
 }
-

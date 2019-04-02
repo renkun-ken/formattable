@@ -28,4 +28,3 @@ prefix(c(1:10, NA), prefix = "A", na.text = "(missing)")
 prefix(rnorm(10, 10), "*", format = "d")
 prefix(percent(c(0.1,0.25)), ">")
 }
-

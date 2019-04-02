@@ -14,6 +14,10 @@ test_that("formattable.default", {
 })
 
 test_that("formattable.numeric", {
+  obj <- formattable(numeric(), format = "f", digits = 2L)
+  expect_is(obj, c("formattable", "numeric"))
+  expect_identical(format(obj), character())
+
   num <- rnorm(10)
   obj <- formattable(num, format = "f", digits = 2L)
   expect_is(obj, c("formattable", "numeric"))

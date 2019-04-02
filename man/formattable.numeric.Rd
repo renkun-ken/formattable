@@ -4,8 +4,8 @@
 \alias{formattable.numeric}
 \title{Create a formattable numeric vector}
 \usage{
-\method{formattable}{numeric}(x, ..., formatter = "formatC", preproc = NULL,
-  postproc = NULL)
+\method{formattable}{numeric}(x, ..., formatter = "formatC",
+  preproc = NULL, postproc = NULL)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -36,4 +36,3 @@ formattable(1:10,
   postproc = function(str, x)
     paste(str, ifelse(x <= 1, "unit", "units")))
 }
-

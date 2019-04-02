@@ -1,6 +1,6 @@
 Package: formattable
 Title: Create 'Formattable' Data Structures
-Version: 0.2.0.2
+Version: 0.2.1
 Authors@R: c(
     person("Kun", "Ren", role = c("aut", "cre"), email = "ken@renkun.me"),
     person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
@@ -12,7 +12,7 @@ Description: Provides functions to create formattable vectors and data frames.
     web pages.
 Depends:
     R (> 3.0.2)
-Date: 2016-08-07
+Date: 2019-04-02
 Imports:
     methods,
     htmltools,
@@ -26,5 +26,6 @@ BugReports: https://github.com/renkun-ken/formattable/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
 Suggests: testthat, DT, shiny, covr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+Encoding: UTF-8

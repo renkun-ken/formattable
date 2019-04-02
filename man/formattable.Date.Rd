@@ -32,4 +32,3 @@ fdates <- formattable(dates, format = "\%m/\%d/\%Y")
 fdates
 fdates + 30
 }
-

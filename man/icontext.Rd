@@ -39,4 +39,3 @@ icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
 \href{http://getbootstrap.com/components/#glyphicons}{Glyphicons in Bootstrap},
 \href{http://glyphicons.com/}{Glyphicons}
 }
-

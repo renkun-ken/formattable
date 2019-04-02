@@ -2,13 +2,14 @@
 % Please edit documentation in R/formats.R
 \name{comma}
 \alias{comma}
-\alias{comma.character}
 \alias{comma.default}
+\alias{comma.character}
 \title{Numeric vector with thousands separators}
 \usage{
 comma(x, digits, format = "f", big.mark = ",", ...)
 
-\method{comma}{default}(x, digits = 2L, format = "f", big.mark = ",", ...)
+\method{comma}{default}(x, digits = 2L, format = "f", big.mark = ",",
+  ...)
 
 \method{comma}{character}(x, digits = max(get_digits(x)), format = "f",
   big.mark = ",", ...)
@@ -33,4 +34,3 @@ comma(c(1250000, 225000))
 comma(c(1250000, 225000), format = "d")
 comma("123,345.123")
 }
-

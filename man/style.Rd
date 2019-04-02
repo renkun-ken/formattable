@@ -46,4 +46,3 @@ formattable(mtcars, list(
 \href{http://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
   \href{http://www.w3schools.com/cssref/}{CSS Reference}
 }
-

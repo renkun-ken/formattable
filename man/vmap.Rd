@@ -29,4 +29,3 @@ vmap(x, "type-A", "type-B")
 \seealso{
 \code{\link{switch}}
 }
-

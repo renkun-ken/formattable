@@ -96,4 +96,3 @@ format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
 \seealso{
 \link{formattable}, \link{area}
 }
-

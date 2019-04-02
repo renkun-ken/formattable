@@ -17,4 +17,3 @@ Rescale a vector relative to the maximal absolute value in the vector
 \examples{
 proportion(mtcars$mpg)
 }
-

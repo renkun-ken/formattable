@@ -230,7 +230,7 @@ format.formattable <- function(x, ...,
   format = NULL,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
   attrs <- attr(x, "formattable", exact = TRUE)
-  if (is.null(attrs)) return(NextMethod("format"))
+  if (length(x) == 0L || is.null(attrs)) return(NextMethod("format"))
   format_args <- attrs$format
   format_args[names(format)] <- format
   value <- remove_class(x, "formattable")

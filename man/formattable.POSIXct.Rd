@@ -32,4 +32,3 @@ ftimes <- formattable(times, format = "\%Y\%m\%dT\%H\%M\%S")
 ftimes
 ftimes + 30
 }
-

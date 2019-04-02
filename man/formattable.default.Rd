@@ -30,4 +30,3 @@ Create a formattable object
 \examples{
 formattable(rnorm(10), formatter = "formatC", digits = 1)
 }
-

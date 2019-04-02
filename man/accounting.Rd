@@ -2,17 +2,17 @@
 % Please edit documentation in R/formats.R
 \name{accounting}
 \alias{accounting}
-\alias{accounting.character}
 \alias{accounting.default}
+\alias{accounting.character}
 \title{Numeric vector with accounting format}
 \usage{
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 
-\method{accounting}{default}(x, digits = 2L, format = "f", big.mark = ",",
-  ...)
-
-\method{accounting}{character}(x, digits = max(get_digits(x)), format = "f",
+\method{accounting}{default}(x, digits = 2L, format = "f",
   big.mark = ",", ...)
+
+\method{accounting}{character}(x, digits = max(get_digits(x)),
+  format = "f", big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -34,4 +34,3 @@ accounting(-12500)
 accounting(c(1200, -3500, 2600), format = "d")
 accounting(c("123,23.50", "(123.243)"))
 }
-

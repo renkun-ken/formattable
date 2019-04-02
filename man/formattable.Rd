@@ -21,4 +21,3 @@ related attribute are attached. The object works as ordinary object
 yet has specially defined behavior as being printed or converted to
 a string representation.
 }
-

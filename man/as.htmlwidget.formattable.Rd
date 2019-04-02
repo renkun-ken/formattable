@@ -4,7 +4,8 @@
 \alias{as.htmlwidget.formattable}
 \title{Convert formattable to an htmlwidget}
 \usage{
-\method{as.htmlwidget}{formattable}(x, width = "100\%", height = NULL, ...)
+\method{as.htmlwidget}{formattable}(x, width = "100\%", height = NULL,
+  ...)
 }
 \arguments{
 \item{x}{a \code{formattable} object to convert}
@@ -60,4 +61,3 @@ browsable(
 )
 }
 }
-

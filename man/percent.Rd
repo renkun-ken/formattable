@@ -2,8 +2,8 @@
 % Please edit documentation in R/formats.R
 \name{percent}
 \alias{percent}
-\alias{percent.character}
 \alias{percent.default}
+\alias{percent.character}
 \title{Numeric vector with percentage representation}
 \usage{
 percent(x, digits, format = "f", ...)
@@ -30,4 +30,3 @@ percent(rnorm(10, 0, 0.1), digits = 0)
 percent("0.5\%")
 percent(c("15.5\%", "25.12\%", "73.5"))
 }
-

@@ -20,4 +20,3 @@ formattable(mtcars, list(mpg = normalize_bar()))
 \seealso{
 \link{color_bar}, \link{normalize}
 }
-

@@ -22,4 +22,3 @@ qrank(mtcars$mpg)
 \seealso{
 \code{\link{rank}}
 }
-

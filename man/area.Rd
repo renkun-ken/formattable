@@ -43,4 +43,3 @@ area(1:10, col1:col5)
 \seealso{
 \link{format_table}, \link{formattable.data.frame}
 }
-
