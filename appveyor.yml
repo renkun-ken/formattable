@@ -6,8 +6,12 @@ init:
         $ErrorActionPreference = "Stop"
         Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
         Import-Module '..\appveyor-tool.ps1'
+
 install:
   ps: Bootstrap
+
+cache:
+  - C:\RLibrary
 
 # Adapt as necessary starting from here
 
@@ -18,7 +22,8 @@ test_script:
   - travis-tool.sh run_tests
 
 on_failure:
-  - travis-tool.sh dump_logs
+  - 7z a failure.zip *.Rcheck\*
+  - appveyor PushArtifact failure.zip
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
