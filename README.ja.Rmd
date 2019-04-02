@@ -111,7 +111,7 @@ formattable(df, list(
 ))
 ```
 
-![formattable](./formattable.png?raw=true)
+![formattable](./formattable.png)
 
 **テーブルで使用されるアイコンセットは [GLYPHICONS.com](http://GLYPHICONS.com) によるものです。これは [Bootstrap](http://getbootstrap.com/components/#glyphicons) に含まれています。**
 
