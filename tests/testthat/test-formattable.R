@@ -1,7 +1,7 @@
 context("formattable")
 
 test_that("formattable.default", {
-  obj <- structure(list(x = 1,y = 2), class = c("test_object", "list"))
+  obj <- structure(list(x = 1, y = 2), class = c("test_object", "list"))
   fobj <- formattable(obj, formatter = function(obj) {
     digits <- attr(obj, "formattable", TRUE)$format$digits
     if (is.null(digits)) digits <- 2L
@@ -11,6 +11,11 @@ test_that("formattable.default", {
   expect_equal(fobj$x, obj$x)
   expect_equal(fobj$y, obj$y)
   expect_equal(format(fobj), "text_object { x: 1, y: 2 }")
+
+  x <- c(1, 2, 3)
+  obj <- structure(x, class = c("formattable"))
+  expect_identical(format(obj), format(x))
+  expect_identical(format(formattable(x)), format(formattable.numeric(obj)))
 })
 
 test_that("formattable.numeric", {

@@ -168,6 +168,7 @@ formattable.POSIXlt <- function(x, ..., formatter = "format.POSIXlt",
 #' @export
 formattable.formattable <- function(x, ..., formatter, preproc, postproc) {
   attrs <- attr(x, "formattable", exact = TRUE)
+  if (is.null(attrs)) return(NextMethod("formattable"))
   if (!missing(formatter)) attrs$formatter <- formatter
   if (!missing(...)) attrs$format <- list(...)
   if (!missing(preproc))
@@ -230,7 +231,8 @@ format.formattable <- function(x, ...,
   format = NULL,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
   attrs <- attr(x, "formattable", exact = TRUE)
-  if (length(x) == 0L || is.null(attrs)) return(NextMethod("format"))
+  if (length(x) == 0L || is.null(attrs) || is.null(attrs$formatter))
+    return(NextMethod("format"))
   format_args <- attrs$format
   format_args[names(format)] <- format
   value <- remove_class(x, "formattable")
