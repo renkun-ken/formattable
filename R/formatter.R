@@ -144,6 +144,7 @@ color_bar <- function(color = "lightgray", fun = "proportion", ...) {
     style = function(x) style(
       display = "inline-block",
       direction = "rtl",
+      "unicode-bidi" = "plaintext",
       "border-radius" = "4px",
       "padding-right" = "2px",
       "background-color" = csscolor(color),
