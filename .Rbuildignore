@@ -8,3 +8,5 @@
 ^README\.html$
 ^LICENSE\.md$
 ^.*\.o$
+^CRAN-RELEASE$
+^cran-comments\.md$
