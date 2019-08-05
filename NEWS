@@ -17,6 +17,8 @@
 
 * The rendered HTML table now supports customizable CSS styling via `table_attr` argument. (#57)
 * `color_bar` now uses `proportion` by default as the rescaling function.
+* `color_bar` now uses `unicode-bidi: plaintext` CSS style to avoid undesired
+  presenation of symbols produced by `direction: rtl`. (#118)
 
 ## Bug fixes
 
