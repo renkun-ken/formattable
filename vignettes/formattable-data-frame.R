@@ -87,10 +87,10 @@ formattable(df, lapply(1:nrow(df), function(row) {
   area(row, col = -1) ~ color_tile("lightpink", "lightblue")
 }))
 
-## ----screenshot.force = FALSE--------------------------------------------
+## ---- screenshot.force = FALSE-------------------------------------------
 as.datatable(formattable(products))
 
-## ----screenshot.force = FALSE--------------------------------------------
+## ---- screenshot.force = FALSE-------------------------------------------
 as.datatable(formattable(products, list(
   price = color_tile("transparent", "lightpink"),
   revenue = sign_formatter,

@@ -168,13 +168,13 @@ formattable(df, lapply(1:nrow(df), function(row) {
 
 `as.datatable()` is designed to convert a formattable data frame to `DT::datatables`.
 
-```{r screenshot.force = FALSE}
+```{r, screenshot.force = FALSE}
 as.datatable(formattable(products))
 ```
 
 Some formatters can be preserved well after the conversion.
 
-```{r screenshot.force = FALSE}
+```{r, screenshot.force = FALSE}
 as.datatable(formattable(products, list(
   price = color_tile("transparent", "lightpink"),
   revenue = sign_formatter,
