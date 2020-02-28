@@ -4,10 +4,15 @@
 \alias{icontext}
 \title{Create icon-text elements}
 \usage{
-icontext(icon, text = list(NULL), ..., simplify = TRUE,
+icontext(
+  icon,
+  text = list(NULL),
+  ...,
+  simplify = TRUE,
   provider = getOption("formattable.icon.provider", "glyphicon"),
   class_template = getOption("formattable.icon.class_template",
-  "{provider} {provider}-{icon}"))
+    "{provider} {provider}-{icon}")
+)
 }
 \arguments{
 \item{icon}{a character vector or list of character vectors

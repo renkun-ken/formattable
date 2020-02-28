@@ -8,11 +8,9 @@
 \usage{
 comma(x, digits, format = "f", big.mark = ",", ...)
 
-\method{comma}{default}(x, digits = 2L, format = "f", big.mark = ",",
-  ...)
+\method{comma}{default}(x, digits = 2L, format = "f", big.mark = ",", ...)
 
-\method{comma}{character}(x, digits = max(get_digits(x)), format = "f",
-  big.mark = ",", ...)
+\method{comma}{character}(x, digits = max(get_digits(x)), format = "f", big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}

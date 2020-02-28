@@ -8,11 +8,9 @@
 \usage{
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 
-\method{accounting}{default}(x, digits = 2L, format = "f",
-  big.mark = ",", ...)
+\method{accounting}{default}(x, digits = 2L, format = "f", big.mark = ",", ...)
 
-\method{accounting}{character}(x, digits = max(get_digits(x)),
-  format = "f", big.mark = ",", ...)
+\method{accounting}{character}(x, digits = max(get_digits(x)), format = "f", big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}

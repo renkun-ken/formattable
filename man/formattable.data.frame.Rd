@@ -4,8 +4,13 @@
 \alias{formattable.data.frame}
 \title{Create a formattable data frame}
 \usage{
-\method{formattable}{data.frame}(x, ..., formatter = "format_table",
-  preproc = NULL, postproc = NULL)
+\method{formattable}{data.frame}(
+  x,
+  ...,
+  formatter = "format_table",
+  preproc = NULL,
+  postproc = NULL
+)
 }
 \arguments{
 \item{x}{a \code{data.frame}}

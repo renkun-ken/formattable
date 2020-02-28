@@ -23,9 +23,8 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://renkun.me/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
-Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
 Suggests: testthat, DT, shiny, covr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr
 Encoding: UTF-8

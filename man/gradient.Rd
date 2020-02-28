@@ -4,8 +4,7 @@
 \alias{gradient}
 \title{Create a matrix from vector to represent colors in gradient}
 \usage{
-gradient(x, min.color, max.color, alpha = NULL, use.names = TRUE,
-  na.rm = TRUE)
+gradient(x, min.color, max.color, alpha = NULL, use.names = TRUE, na.rm = TRUE)
 }
 \arguments{
 \item{x}{a numeric vector.}

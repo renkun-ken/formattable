@@ -4,9 +4,15 @@
 \alias{format_table}
 \title{Format a data frame with formatter functions}
 \usage{
-format_table(x, formatters = list(), format = c("html", "markdown",
-  "pandoc"), align = "r", ..., digits = getOption("digits"),
-  table.attr = "class=\\"table table-condensed\\"")
+format_table(
+  x,
+  formatters = list(),
+  format = c("html", "markdown", "pandoc"),
+  align = "r",
+  ...,
+  digits = getOption("digits"),
+  table.attr = "class=\\"table table-condensed\\""
+)
 }
 \arguments{
 \item{x}{a \code{data.frame}.}
