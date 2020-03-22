@@ -54,40 +54,19 @@ test_that("area", {
 })
 
 test_that("formatters", {
+  x <- c(0.1, 0.2, 0.3)
+
   f <- color_tile("white", "pink")
-  f(0.1)
-  f(rnorm(10))
-  f(percent(rnorm(10)))
-  f(numeric())
-
-  f <- color_bar("pink", proportion)
-  f(0.1)
-  f(rnorm(10))
-  f(percent(rnorm(10)))
-  f(numeric())
-
-  f <- color_bar("yello", normalize)
-  f(0.1)
-  f(rnorm(10))
-  f(percent(rnorm(10)))
-  f(numeric())
-
-  f <- normalize_bar()
-  f(0.1)
-  f(rnorm(10))
-  f(percent(rnorm(10)))
-  f(numeric())
-
-  f <- proportion_bar()
-  f(0.1)
-  f(rnorm(10))
-  f(percent(rnorm(10)))
-  f(numeric())
-
-  f <- color_text("green", "red")
-  f(0.1)
-  f(rnorm(10))
-  f(percent(rnorm(10)))
-  f(numeric())
+  expect_equal(f(0.1),
+    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">0.1</span>")
+  expect_equal(f(x), c(
+    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">0.1</span>",
+    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe5\">0.2</span>",
+    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">0.3</span>"
+  ))
+  expect_equal(f(percent(x)), c(
+    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">10.00%</span>",
+    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe5\">20.00%</span>",
+    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">30.00%</span>"
+  ))
 })
-
