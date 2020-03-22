@@ -15,7 +15,7 @@ test_that("copy_dim", {
   y <- format(x)
   expect_true(!is.array(copy_dim(x, y)))
 
-  x <- c(1,2,3,4)
+  x <- c(1, 2, 3, 4)
   m <- matrix(x, 2, dimnames = list(c("a", "b")))
   y <- format(x)
   y2 <- copy_dim(m, y)

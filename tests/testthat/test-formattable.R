@@ -13,7 +13,7 @@ test_that("formattable.default", {
   expect_equal(format(fobj), "text_object { x: 1, y: 2 }")
 
   x <- c(1, 2, 3)
-  obj <- structure(x, class = c("formattable"))
+  obj <- structure(x, class = "formattable")
   expect_identical(format(obj), format(x))
   expect_identical(format(formattable(x)), format(formattable.numeric(obj)))
 })
@@ -27,7 +27,7 @@ test_that("formattable.numeric", {
   obj <- formattable(num, format = "f", digits = 2L)
   expect_is(obj, c("formattable", "numeric"))
   expect_equal(format(obj), formatC(num, format = "f", digits = 2L))
-  expect_equal(format(c(obj, 0.1)), formatC(c(num,0.1), format = "f", digits = 2L))
+  expect_equal(format(c(obj, 0.1)), formatC(c(num, 0.1), format = "f", digits = 2L))
 
   num <- 1:10
   obj <- formattable(num)
@@ -87,8 +87,8 @@ test_that("formattable.numeric", {
   expect_equivalent(format(median(obj)), formatC(median(num), format = "f", digits = 4L))
   expect_equivalent(format(quantile(obj)), formatC(quantile(num), format = "f", digits = 4L))
   expect_equivalent(format(sort(obj)), formatC(sort(num), format = "f", digits = 4L))
-  expect_equivalent(c(formattable(1), 2), formattable(c(1,2)))
-  expect_identical(cop_create_obj(`+`, "test", 1,2), structure(3, class = c("test", "numeric")))
+  expect_equivalent(c(formattable(1), 2), formattable(c(1, 2)))
+  expect_identical(cop_create_obj(`+`, "test", 1, 2), structure(3, class = c("test", "numeric")))
   expect_output(invisible(print(formattable(2, digits = 4, format = "f"))), "^\\[1\\] 2.0000$")
 })
 
@@ -126,7 +126,7 @@ test_that("formattable.logical", {
 })
 
 test_that("formattable.factor", {
-  values <- as.factor(c("a","b","b","c"))
+  values <- as.factor(c("a", "b", "b", "c"))
   obj <- formattable(values, a = "good", b = "fair", c = "bad")
   expect_is(obj, c("formattable", "factor"))
   expect_equal(format(obj), vmap(values, a = "good", b = "fair", c = "bad"))
@@ -177,9 +177,9 @@ test_that("render_html_matrix", {
     matrix(c("1", "2",
       "1.23456", "2.50000",
       "a", "b",
-      "2016-01-05",  "2016-01-06"),
-      nrow = 2L, ncol = 4L,
-      dimnames = list(c("1", "2"), c("a", "b", "c", "d"))))
+      "2016-01-05", "2016-01-06"),
+    nrow = 2L, ncol = 4L,
+    dimnames = list(c("1", "2"), c("a", "b", "c", "d"))))
 })
 
 test_that("formattable.data.frame", {
@@ -188,23 +188,23 @@ test_that("formattable.data.frame", {
   expect_is(format_table(mtcars), "knitr_kable")
   expect_is(format_table(obj), "knitr_kable")
   expect_is(formattable(mtcars, list(mpg = formatter("span",
-        style = x ~ style(display = "block",
-        "border-radius" = "4px",
-        "padding-right" = "4px",
-        color = "white",
-        "background-color" = rgb(x/max(x), 0, 0)))))
+    style = x ~ style(display = "block",
+      "border-radius" = "4px",
+      "padding-right" = "4px",
+      color = "white",
+      "background-color" = rgb(x / max(x), 0, 0)))))
   , "formattable")
   expect_is(formattable(mtcars, list(mpg = formatter("span",
     style = function(x) ifelse(x > median(x), "color:red", NA)))),
-    "formattable")
+  "formattable")
   expect_is(format_table(mtcars, list(mpg = formatter("span",
     style = function(x) ifelse(x > median(x), "color:red", NA)))),
-    "knitr_kable")
+  "knitr_kable")
   expect_is(format_table(mtcars,
     list(vs = x ~ formattable(as.logical(x), "yes", "no"))),
-    "knitr_kable")
+  "knitr_kable")
   expect_is(format_table(mtcars, list(vs = ~"unknown")), "knitr_kable")
-  expect_error(format_table(mtcars, list(vs = f(a,b) ~ "unknown")))
+  expect_error(format_table(mtcars, list(vs = f(a, b) ~ "unknown")))
 
   df <- formattable(mtcars, list(mpg = color_tile("red", "green")))
   expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, ], "formattable", TRUE))
@@ -219,7 +219,7 @@ test_that("formattable.data.frame", {
 
   # formula
   df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
-  format_table(df, list(~ percent))
+  format_table(df, list(~percent))
 
   # cross formatting
   format_table(df, list(b = formatter("span", style = ~ style(color = ifelse(a >= mean(a), "red", "green")))))
@@ -240,8 +240,8 @@ test_that("formattable.data.frame", {
 
 test_that("formattable matrix", {
   m <- rnorm(100)
-  dim(m) <- c(50,2)
-  colnames(m) <- c("a","b")
+  dim(m) <- c(50, 2)
+  colnames(m) <- c("a", "b")
   fm <- formattable(m)
   expect_is(fm, c("formattable", "matrix"))
   expect_true(is.matrix(fm))

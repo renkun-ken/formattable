@@ -1,10 +1,10 @@
 context("transform")
 
 test_that("vmap", {
-  expect_equal(vmap(c(1,1,2,2,3),"a","b","c"), c("a","a","b","b","c"))
-  expect_equal(vmap(c("a","b","a","c"), a=1,b=2,c=3), c(1,2,1,3))
-  expect_equal(vmap(c("a","b","a","c","d"), a=1,b=2,c=3,0), c(1,2,1,3,0))
-  expect_equal(vmap(c("a","b","a","c"), a=1,b=2,c=3, SIMPLIFY = FALSE), list(1,2,1,3))
+  expect_equal(vmap(c(1, 1, 2, 2, 3), "a", "b", "c"), c("a", "a", "b", "b", "c"))
+  expect_equal(vmap(c("a", "b", "a", "c"), a = 1, b = 2, c = 3), c(1, 2, 1, 3))
+  expect_equal(vmap(c("a", "b", "a", "c", "d"), a = 1, b = 2, c = 3, 0), c(1, 2, 1, 3, 0))
+  expect_equal(vmap(c("a", "b", "a", "c"), a = 1, b = 2, c = 3, SIMPLIFY = FALSE), list(1, 2, 1, 3))
 })
 
 test_that("qrank", {
@@ -35,7 +35,7 @@ test_that("normalize", {
   expect_equal(normalize(x, na.rm = TRUE),
     (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)))
 
-  expect_equal(normalize(c(NA,NA,NA), na.rm = TRUE), c(0,0,0))
+  expect_equal(normalize(c(NA, NA, NA), na.rm = TRUE), c(0, 0, 0))
 })
 
 test_that("proportion", {
