@@ -6,11 +6,11 @@
 \alias{percent.character}
 \title{Numeric vector with percentage representation}
 \usage{
-percent(x, digits, format = "f", ...)
+percent(x, digits, format = "f", as.output = TRUE, ...)
 
-\method{percent}{default}(x, digits = 2L, format = "f", ...)
+\method{percent}{default}(x, digits = 2L, format = "f", as.output = TRUE, ...)
 
-\method{percent}{character}(x, digits = NA, format = "f", ...)
+\method{percent}{character}(x, digits = NA, format = "f", as.output = TRUE, ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -18,6 +18,9 @@ percent(x, digits, format = "f", ...)
 \item{digits}{an integer to indicate the number of digits of the percentage string.}
 
 \item{format}{format type passed to \code{\link{formatC}}.}
+
+\item{as.output}{When true, a non-print left-to-right mark is prefixed
+to the output string to align the text.}
 
 \item{...}{additional parameters passed to \code{formattable}.}
 }

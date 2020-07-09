@@ -1,5 +1,7 @@
 percent_preproc <- function(x) x * 100
 percent_postproc <- function(str, x)
+  paste0("\u200e", str, ifelse(is.finite(x), "%", ""))
+percent_postproc_noprefix <- function(str, x)
   paste0(str, ifelse(is.finite(x), "%", ""))
 accounting_postproc <- function(str, x)
   sprintf(ifelse(is.na(x) | x >= 0, "%s", "(%s)"),
@@ -10,9 +12,11 @@ accounting_postproc <- function(str, x)
 #' @param x a numeric vector.
 #' @param digits an integer to indicate the number of digits of the percentage string.
 #' @param format format type passed to \code{\link{formatC}}.
+#' @param as.output When true, a non-print left-to-right mark is prefixed
+#'    to the output string to align the text.
 #' @param ... additional parameters passed to \code{formattable}.
 #' @export
-percent <- function(x, digits, format = "f", ...)
+percent <- function(x, digits, format = "f", as.output = TRUE, ...)
   UseMethod("percent")
 
 #' @rdname percent
@@ -20,9 +24,10 @@ percent <- function(x, digits, format = "f", ...)
 #' @examples
 #' percent(rnorm(10, 0, 0.1))
 #' percent(rnorm(10, 0, 0.1), digits = 0)
-percent.default <- function(x, digits = 2L, format = "f", ...) {
+percent.default <- function(x, digits = 2L, format = "f", as.output = TRUE, ...) {
   formattable(as_numeric(x), format = format, digits = digits, ...,
-    preproc = "percent_preproc", postproc = "percent_postproc")
+    preproc = "percent_preproc",
+    postproc = if (as.output) "percent_postproc" else "percent_postproc_noprefix")
 }
 
 #' @rdname percent
@@ -30,12 +35,12 @@ percent.default <- function(x, digits = 2L, format = "f", ...) {
 #' @examples
 #' percent("0.5%")
 #' percent(c("15.5%", "25.12%", "73.5"))
-percent.character <- function(x, digits = NA, format = "f", ...) {
+percent.character <- function(x, digits = NA, format = "f", as.output = TRUE, ...) {
   valid <- grepl("^(.+)\\s*%$", x)
   pct <- gsub("^(.+)\\s*%$", "\\1", x)
   if (is.na(digits)) digits <- max(get_digits(x) - ifelse(valid, 0, 2))
   copy_dim(x, percent.default(as.numeric(pct) / ifelse(valid, 100, 1),
-    digits = digits, format = "f"))
+    digits = digits, format = "f", as.output = as.output))
 }
 
 #' Numeric vector showing pre-specific digits
