@@ -157,8 +157,8 @@ test_that("formattable.POSIXlt", {
 test_that("foramttable operators", {
   expect_equal(format(formattable(1:10) + 0.5), formatC(1:10 + 0.5))
   expect_equal(format(0.5 + formattable(1:10)), formatC(0.5 + 1:10))
-  expect_equal(format(percent(0.5) * 2), "100.00%")
-  expect_equal(format(2 * percent(0.5)), "100.00%")
+  expect_equal(format(percent(0.5) * 2), "\u200e100.00%")
+  expect_equal(format(2 * percent(0.5)), "\u200e100.00%")
 })
 
 test_that("formattable methods", {

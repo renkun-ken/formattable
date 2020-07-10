@@ -144,11 +144,10 @@ color_bar <- function(color = "lightgray", fun = "proportion", ...) {
     style = function(x) style(
       display = "inline-block",
       direction = "rtl",
-      "unicode-bidi" = "plaintext",
       "border-radius" = "4px",
       "padding-right" = "2px",
       "background-color" = csscolor(color),
-      width = percent(fun(as.numeric(x), ...))
+      width = percent(fun(abs(as.numeric(x)), ...), as.output = FALSE)
     ))
 }
 

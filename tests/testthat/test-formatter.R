@@ -21,13 +21,13 @@ test_that("formatter", {
     c("<span style=\"font-weight: bold\">0.1</span>",
       "<span style=\"font-weight: bold\">0.2</span>"))
   expect_equal(bold(percent(c(0.1, 0.2))),
-    c("<span style=\"font-weight: bold\">10.00%</span>",
-      "<span style=\"font-weight: bold\">20.00%</span>"))
+    c("<span style=\"font-weight: bold\">\u200e10.00%</span>",
+      "<span style=\"font-weight: bold\">\u200e20.00%</span>"))
 
   bold_percent <- formatter("span", style = "font-weight: bold", percent)
   expect_equal(bold_percent(c(0.1, 0.2)),
-    c("<span style=\"font-weight: bold\">10.00%</span>",
-      "<span style=\"font-weight: bold\">20.00%</span>"))
+    c("<span style=\"font-weight: bold\">\u200e10.00%</span>",
+      "<span style=\"font-weight: bold\">\u200e20.00%</span>"))
 
   # dynamic scoping of formula
   expect_equal(local({
@@ -64,7 +64,7 @@ test_that("formatters", {
     "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe5\">0.2</span>",
     "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">0.3</span>"
   ))
-  expect_equal(f(percent(x)), c(
+  expect_equal(f(percent(x, as.output = FALSE)), c(
     "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">10.00%</span>",
     "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe5\">20.00%</span>",
     "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">30.00%</span>"
