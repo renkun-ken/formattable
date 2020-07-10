@@ -1,6 +1,6 @@
 Package: formattable
 Title: Create 'Formattable' Data Structures
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(
     person("Kun", "Ren", role = c("aut", "cre"), email = "ken@renkun.me"),
     person("Kenton", "Russell", role = "aut", email = "kent.russell@timelyportfolio.com")
