@@ -3,12 +3,14 @@ context("formats")
 test_that("percent", {
   expect_identical(format(percent(numeric())), character())
 
+add_lrm <- function(x) {paste0("\u200e", x)}
+
   data <- c(-0.05, 0.15, 0.252, 0.3003)
   obj <- percent(data)
   expect_is(obj, c("formattable", "numeric"))
-  expect_equal(format(obj), c("-5.00%", "15.00%", "25.20%", "30.03%"))
-  expect_equal(format(percent(data, digits = 0)), c("-5%", "15%", "25%", "30%"))
-  expect_equal(format(percent(obj, digits = 0)), c("-5%", "15%", "25%", "30%"))
+  expect_equal(format(obj), add_lrm(c("-5.00%", "15.00%", "25.20%", "30.03%")))
+  expect_equal(format(percent(data, digits = 0)), add_lrm(c("-5%", "15%", "25%", "30%")))
+  expect_equal(format(percent(obj, digits = 0)), add_lrm(c("-5%", "15%", "25%", "30%")))
   expect_warning(percent("a"), regexp = "NA")
   expect_equal(percent("1.00%"), percent(0.01))
   expect_equal(percent("1%"), percent(0.01, digits = 0L))
@@ -20,7 +22,7 @@ test_that("percent", {
   dim(data) <- c(2, 2)
   obj <- percent(data)
   expect_is(obj, c("formattable", "matrix"))
-  expect_equal(format(obj), matrix(c("-5.00%", "15.00%", "25.20%", "30.03%"), 2))
+  expect_equal(format(obj), matrix(add_lrm(c("-5.00%", "15.00%", "25.20%", "30.03%")), 2))
 
   # parse percent from matrix
   x <- matrix(c("0.5%", "1.5%", "10.2%", "3.8%"), 2,
