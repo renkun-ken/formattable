@@ -11,3 +11,6 @@
 ^CRAN-RELEASE$
 ^cran-comments\.md$
 ^\.vscode$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
