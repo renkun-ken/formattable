@@ -11,3 +11,4 @@
 ^CRAN-RELEASE$
 ^cran-comments\.md$
 ^\.vscode$
+^\.github$
