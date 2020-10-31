@@ -164,7 +164,7 @@ formattable(df, list(
 
 ![formattable](formattable.png)
 
-**テーブルで使用されるアイコンセットは [GLYPHICONS.com](http://GLYPHICONS.com) によるものです。これは [Bootstrap](http://getbootstrap.com/components/#glyphicons) に含まれています。**
+**テーブルで使用されるアイコンセットは [GLYPHICONS.com](http://GLYPHICONS.com) によるものです。これは [Bootstrap](http://getbootstrap.com/docs/3.4/components/#glyphicons) に含まれています。**
 
 ## インタラクティブな環境における `htmlwidget` への自動変換
 

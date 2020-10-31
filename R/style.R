@@ -58,7 +58,7 @@ style <- function(...) {
 #' @param class_template a character value to specifiy to template of the class
 #' with \code{"{provider}"} to represent \code{provider} value and \code{"{icon}"} to
 #' represent \code{icon} values.
-#' @seealso \href{http://getbootstrap.com/components/#glyphicons}{Glyphicons in Bootstrap},
+#' @seealso \href{http://getbootstrap.com/docs/3.4/components/#glyphicons}{Glyphicons in Bootstrap},
 #' \href{http://glyphicons.com/}{Glyphicons}
 #' @importFrom htmltools tagList tag
 #' @export
