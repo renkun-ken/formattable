@@ -146,8 +146,8 @@
 <div id="formatting-tables-in-dynamic-document" class="section level2">
 <h2 class="hasAnchor">
 <a href="#formatting-tables-in-dynamic-document" class="anchor"></a>Formatting tables in dynamic document</h2>
-<p>In a typical workflow of dynamic document production, <a href="https://github.com/yihui/knitr">knitr</a> and <a href="http://rmarkdown.rstudio.com/">rmarkdown</a> are powerful tools to render documents with R code to different types of portable documents.</p>
-<p>knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls <a href="http://johnmacfarlane.net/pandoc">pandoc</a> to render a markdown document to HTML web page. To put a table (<code>data.frame</code> in R) on the page, one may call <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.</p>
+<p>In a typical workflow of dynamic document production, <a href="https://yihui.org/knitr/">knitr</a> and <a href="https://rmarkdown.rstudio.com/">rmarkdown</a> are powerful tools to render documents with R code to different types of portable documents.</p>
+<p>knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls <a href="https://johnmacfarlane.net/pandoc">pandoc</a> to render a markdown document to HTML web page. To put a table (<code>data.frame</code> in R) on the page, one may call <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
@@ -302,7 +302,7 @@
     <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/icontext.html">icontext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"ok"</span>, <span class="st">"remove"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="formattable.png" alt="formattable"></p>
-<p><strong>The icon set used in the table is by <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> and included in <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a>.</strong></p>
+<p><strong>The icon set used in the table is by <a href="https://GLYPHICONS.com">GLYPHICONS.com</a> and included in <a href="https://getbootstrap.com/docs/3.4/components/#glyphicons">Bootstrap</a>.</strong></p>
 </div>
 <div id="htmlwidget-conversion-in-interactive-environments" class="section level2">
 <h2 class="hasAnchor">
@@ -312,7 +312,7 @@
 <div id="license" class="section level2">
 <h2 class="hasAnchor">
 <a href="#license" class="anchor"></a>License</h2>
-<p>This package is under <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
+<p>This package is under <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
 </div>
 </div>
   </div>

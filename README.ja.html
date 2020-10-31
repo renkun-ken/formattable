@@ -136,7 +136,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"renkun-ken/formattable"</span><span class="op">)</span></code></pre></div>
-<p><a href="http://cran.r-project.org/web/packages/formattable/index.html">CRAN</a> からインストールするには：</p>
+<p><a href="https://cran.r-project.org/package=formattable">CRAN</a> からインストールするには：</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"formattable"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -183,8 +183,8 @@
 <div id="動的ドキュメント中のテーブル表の書式" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%E5%8B%95%E7%9A%84%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E4%B8%AD%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E8%A1%A8%E3%81%AE%E6%9B%B8%E5%BC%8F" class="anchor"></a>動的ドキュメント中のテーブル(表)の書式</h2>
-<p>動的ドキュメント生成の典型的なワークフローの中で、<a href="https://github.com/yihui/knitr">knitr</a> と <a href="http://rmarkdown.rstudio.com/">rmarkdown</a> は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。</p>
-<p>knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、<a href="http://johnmacfarlane.net/pandoc">pandoc</a> を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の <code>data.frame</code> をテーブル(表)として置きたいときは、<code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> 関数を使って markdown 形式に変換することができます。 kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。</p>
+<p>動的ドキュメント生成の典型的なワークフローの中で、<a href="https://yihui.org/knitr/">knitr</a> と <a href="https://rmarkdown.rstudio.com/">rmarkdown</a> は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。</p>
+<p>knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、<a href="https://johnmacfarlane.net/pandoc">pandoc</a> を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の <code>data.frame</code> をテーブル(表)として置きたいときは、<code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> 関数を使って markdown 形式に変換することができます。 kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
@@ -340,7 +340,7 @@
     <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/icontext.html">icontext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"ok"</span>, <span class="st">"remove"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="formattable.png" alt="formattable"></p>
-<p><strong>テーブルで使用されるアイコンセットは <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> によるものです。これは <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a> に含まれています。</strong></p>
+<p><strong>テーブルで使用されるアイコンセットは <a href="https://GLYPHICONS.com">GLYPHICONS.com</a> によるものです。これは <a href="https://getbootstrap.com/docs/3.4/components/#glyphicons">Bootstrap</a> に含まれています。</strong></p>
 </div>
 <div id="インタラクティブな環境における-htmlwidget-への自動変換" class="section level2">
 <h2 class="hasAnchor">
@@ -350,7 +350,7 @@
 <div id="ライセンス" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9" class="anchor"></a>ライセンス</h2>
-<p>このパッケージは <a href="http://opensource.org/licenses/MIT">MIT License</a> の下で公開されています。</p>
+<p>このパッケージは <a href="https://opensource.org/licenses/MIT">MIT License</a> の下で公開されています。</p>
 </div>
 </div>
 
