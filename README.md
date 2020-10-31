@@ -168,7 +168,7 @@ formattable(df, list(
 
 ![formattable](formattable.png)
 
-**The icon set used in the table is by [GLYPHICONS.com](http://GLYPHICONS.com) and included in [Bootstrap](http://getbootstrap.com/docs/3.4/components/#glyphicons).**
+**The icon set used in the table is by [GLYPHICONS.com](https://GLYPHICONS.com) and included in [Bootstrap](https://getbootstrap.com/docs/3.4/components/#glyphicons).**
 
 ## `htmlwidget` conversion in interactive environments
 
