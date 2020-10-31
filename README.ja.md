@@ -16,7 +16,7 @@
 devtools::install_github("renkun-ken/formattable")
 ```
 
-[CRAN](http://cran.r-project.org/web/packages/formattable/index.html) からインストールするには：
+[CRAN](https://cran.r-project.org/package=formattable) からインストールするには：
 
 ```r
 install.packages("formattable")
