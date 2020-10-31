@@ -43,6 +43,6 @@ formattable(mtcars, list(
     style = x ~ style(color = ifelse(x > median(x), "red", NA)))))
 }
 \seealso{
-\href{http://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
-  \href{http://www.w3schools.com/cssref/}{CSS Reference}
+\href{https://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
+  \href{https://www.w3schools.com/cssref/}{CSS Reference}
 }

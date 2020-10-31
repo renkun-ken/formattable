@@ -29,8 +29,8 @@
 #' formattable(mtcars, list(
 #'   mpg = formatter("span",
 #'     style = x ~ style(color = ifelse(x > median(x), "red", NA)))))
-#' @seealso \href{http://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
-#'   \href{http://www.w3schools.com/cssref/}{CSS Reference}
+#' @seealso \href{https://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
+#'   \href{https://www.w3schools.com/cssref/}{CSS Reference}
 #' @export
 style <- function(...) {
   dots <- list(...)
@@ -58,8 +58,8 @@ style <- function(...) {
 #' @param class_template a character value to specifiy to template of the class
 #' with \code{"{provider}"} to represent \code{provider} value and \code{"{icon}"} to
 #' represent \code{icon} values.
-#' @seealso \href{http://getbootstrap.com/components/#glyphicons}{Glyphicons in Bootstrap},
-#' \href{http://glyphicons.com/}{Glyphicons}
+#' @seealso \href{https://getbootstrap.com/docs/3.4/components/#glyphicons}{Glyphicons in Bootstrap},
+#' \href{https://glyphicons.com/}{Glyphicons}
 #' @importFrom htmltools tagList tag
 #' @export
 #' @examples

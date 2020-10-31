@@ -41,6 +41,6 @@ icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)
 icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
 }
 \seealso{
-\href{http://getbootstrap.com/components/#glyphicons}{Glyphicons in Bootstrap},
-\href{http://glyphicons.com/}{Glyphicons}
+\href{https://getbootstrap.com/docs/3.4/components/#glyphicons}{Glyphicons in Bootstrap},
+\href{https://glyphicons.com/}{Glyphicons}
 }
