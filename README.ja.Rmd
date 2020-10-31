@@ -60,9 +60,9 @@ p
 
 ## 動的ドキュメント中のテーブル(表)の書式
 
-動的ドキュメント生成の典型的なワークフローの中で、[knitr](https://yihui.org/knitr/) と [rmarkdown](http://rmarkdown.rstudio.com/) は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。
+動的ドキュメント生成の典型的なワークフローの中で、[knitr](https://yihui.org/knitr/) と [rmarkdown](https://rmarkdown.rstudio.com/) は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。
 
-knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、[pandoc](http://johnmacfarlane.net/pandoc) を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の `data.frame` をテーブル(表)として置きたいときは、`knitr::kable` 関数を使って markdown 形式に変換することができます。
+knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、[pandoc](https://johnmacfarlane.net/pandoc) を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の `data.frame` をテーブル(表)として置きたいときは、`knitr::kable` 関数を使って markdown 形式に変換することができます。
 kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。
 
 ```{r}
