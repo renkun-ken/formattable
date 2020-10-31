@@ -45,6 +45,3 @@ reference:
   - renderFormattable
   - style
   - vmap
-
-development:
-  mode: auto
