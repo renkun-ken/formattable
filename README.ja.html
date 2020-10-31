@@ -133,46 +133,46 @@
 <h2 class="hasAnchor">
 <a href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB" class="anchor"></a>インストール</h2>
 <p>最新の開発バージョンを GitHub からインストールするには：</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"renkun-ken/formattable"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"renkun-ken/formattable"</span><span class="op">)</span></code></pre></div>
 <p><a href="http://cran.r-project.org/web/packages/formattable/index.html">CRAN</a> からインストールするには：</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"formattable"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"formattable"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="イントロダクション" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3" class="anchor"></a>イントロダクション</h2>
 <p>ベクトルはデータを保存するための基本的な単位です。データの中には、書式を適用することで、可読性が高まるものがあります。例えば、Rにおいて複数のパーセント値からなる数値ベクトルは通常の小数点形式で表示されます。このパッケージは、あらかじめ定義された書式のルールに従って、データ構造を作成するための関数を提供します。これにより、元のデータを保持したまま、表示の際には書式を適用することができます。</p>
 <p>このパッケージでは<code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code>, <code>scientific</code>など典型的な書式 を提供しています。これらのオブジェクトは、基本的には数値ベクトルですが、あらかじめ定義された書式ルールとパラメータを持っています。例えば、</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun.me/formattable">formattable</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun.me/formattable">formattable</a></span><span class="op">)</span>
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/percent.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.02</span>, <span class="fl">0.03</span>, <span class="fl">0.12</span><span class="op">)</span><span class="op">)</span>
-<span class="va">p</span></pre></div>
+<span class="va">p</span></code></pre></div>
 <pre><code>## [1] 10.00% 2.00%  3.00%  12.00%</code></pre>
 <p>このパーセントベクトルは、通常の数値ベクトルと違いはありません。ただし、コンソール上に表示したときに、パーセントで表示されます。四則演算や基本関数の適用を行っても、この書式は保持されます。</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">p</span> <span class="op">+</span> <span class="fl">0.05</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">+</span> <span class="fl">0.05</span></code></pre></div>
 <pre><code>## [1] 15.00% 7.00%  8.00%  17.00%</code></pre>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 12.00%</code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">balance</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/accounting.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">500</span>, <span class="fl">200</span>, <span class="op">-</span><span class="fl">150</span>, <span class="fl">0</span>, <span class="fl">1200</span><span class="op">)</span><span class="op">)</span>
-<span class="va">balance</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">balance</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/accounting.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">500</span>, <span class="fl">200</span>, <span class="op">-</span><span class="fl">150</span>, <span class="fl">0</span>, <span class="fl">1200</span><span class="op">)</span><span class="op">)</span>
+<span class="va">balance</span></code></pre></div>
 <pre><code>## [1] 1,000.00 500.00   200.00   (150.00) 0.00     1,200.00</code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">balance</span> <span class="op">+</span> <span class="fl">1000</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">balance</span> <span class="op">+</span> <span class="fl">1000</span></code></pre></div>
 <pre><code>## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00</code></pre>
 <p>上で見た関数は、<code><a href="reference/formattable.html">formattable()</a></code> 関数でできることの特別なケースです。<code><a href="reference/formattable.html">formattable()</a></code> を使えば、<code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code> などの幅広いクラスのオブジェクトに対して、高度にカスタマイズされた書式を適用することができます。典型的なデータフレームは、列単位で<code><a href="reference/formattable.html">formattable()</a></code> を適用することによって、より読みやすくなるでしょう。例えば、</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>, 
   name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"C1"</span><span class="op">)</span>,
   balance <span class="op">=</span> <span class="fu"><a href="reference/accounting.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">52500</span>, <span class="fl">36150</span>, <span class="fl">25000</span>, <span class="fl">18300</span>, <span class="fl">7600</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>,
   growth <span class="op">=</span> <span class="fu"><a href="reference/percent.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>,
   ready <span class="op">=</span> <span class="fu"><a href="reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">p</span></pre></div>
+<span class="va">p</span></code></pre></div>
 <pre><code>##   id name balance growth ready
 ## 1  1   A1  52,500    30%   yes
 ## 2  2   A2  36,150    30%   yes
@@ -185,8 +185,8 @@
 <a href="#%E5%8B%95%E7%9A%84%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E4%B8%AD%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E8%A1%A8%E3%81%AE%E6%9B%B8%E5%BC%8F" class="anchor"></a>動的ドキュメント中のテーブル(表)の書式</h2>
 <p>動的ドキュメント生成の典型的なワークフローの中で、<a href="https://github.com/yihui/knitr">knitr</a> と <a href="http://rmarkdown.rstudio.com/">rmarkdown</a> は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。</p>
 <p>knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、<a href="http://johnmacfarlane.net/pandoc">pandoc</a> を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の <code>data.frame</code> をテーブル(表)として置きたいときは、<code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> 関数を使って markdown 形式に変換することができます。 kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
   name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bob"</span>, <span class="st">"Ashley"</span>, <span class="st">"James"</span>, <span class="st">"David"</span>, <span class="st">"Jenny"</span>, 
     <span class="st">"Hans"</span>, <span class="st">"Leo"</span>, <span class="st">"John"</span>, <span class="st">"Emily"</span>, <span class="st">"Lee"</span><span class="op">)</span>, 
@@ -196,7 +196,7 @@
   test2_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9.1</span>, <span class="fl">9.1</span>, <span class="fl">9.2</span>, <span class="fl">9.1</span>, <span class="fl">8.9</span>, <span class="fl">8.5</span>, <span class="fl">9.2</span>, <span class="fl">9.3</span>, <span class="fl">9.1</span>, <span class="fl">8.8</span><span class="op">)</span>,
   final_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">9.3</span>, <span class="fl">9.4</span>, <span class="fl">9</span>, <span class="fl">9</span>, <span class="fl">8.9</span>, <span class="fl">9.25</span>, <span class="fl">9.6</span>, <span class="fl">8.8</span>, <span class="fl">8.7</span><span class="op">)</span>,
   registered <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
-  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></pre></div>
+  stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>何もしない場合、次のようなテーブルが表示されます：</p>
 <table>
 <thead><tr class="header">
@@ -323,8 +323,8 @@
 <li>
 <code>registered</code> はアイコン付きの Yes/No に変換する。</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun.me/formattable">formattable</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun.me/formattable">formattable</a></span><span class="op">)</span>
 
 <span class="fu"><a href="reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   age <span class="op">=</span> <span class="fu"><a href="reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"orange"</span><span class="op">)</span>,
@@ -338,7 +338,7 @@
   registered <span class="op">=</span> <span class="fu"><a href="reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, 
     style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"green"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>,
     <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/icontext.html">icontext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"ok"</span>, <span class="st">"remove"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="op">)</span><span class="op">)</span></pre></div>
+<span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="formattable.png" alt="formattable"></p>
 <p><strong>テーブルで使用されるアイコンセットは <a href="http://GLYPHICONS.com">GLYPHICONS.com</a> によるものです。これは <a href="http://getbootstrap.com/components/#glyphicons">Bootstrap</a> に含まれています。</strong></p>
 </div>
