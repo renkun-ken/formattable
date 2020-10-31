@@ -1,9 +1,10 @@
 # formattable
 
-[![Linux Build Status](https://travis-ci.org/renkun-ken/formattable.png?branch=master)](https://travis-ci.org/renkun-ken/formattable) 
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/renkun-ken/formattable?svg=true)](https://ci.appveyor.com/project/renkun-ken/formattable)
+<!-- badges: start -->
+[![R build status](https://github.com/renkun-ken/formattable/workflows/rcc/badge.svg)](https://github.com/renkun-ken/formattable/actions)
 [![codecov.io](https://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master)](https://codecov.io/github/renkun-ken/formattable?branch=master)
 [![CRAN Version](https://www.r-pkg.org/badges/version/formattable)](https://cran.r-project.org/package=formattable)
+<!-- badges: end -->
 
 This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.
 
