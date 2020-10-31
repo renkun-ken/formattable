@@ -1,0 +1,47 @@
+reference:
+- title: Number formats
+  contents:
+  - accounting
+  - comma
+  - currency
+  - digits
+  - percent
+  - prefix
+  - scientific
+  - suffix
+
+- title: Other functions
+  contents:
+  - area
+  - as.datatable
+  - as.datatable.formattable
+  - as.htmlwidget
+  - as.htmlwidget.formattable
+  - color_bar
+  - color_text
+  - color_tile
+  - csscolor
+  - format_table
+  - '`formattable-package`'
+  - formattable
+  - formattable.Date
+  - formattable.POSIXct
+  - formattable.POSIXlt
+  - formattable.data.frame
+  - formattable.default
+  - formattable.factor
+  - formattable.logical
+  - formattable.numeric
+  - formattableOutput
+  - formatter
+  - gradient
+  - icontext
+  - is.formattable
+  - normalize
+  - normalize_bar
+  - proportion
+  - proportion_bar
+  - qrank
+  - renderFormattable
+  - style
+  - vmap
