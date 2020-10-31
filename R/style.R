@@ -29,8 +29,8 @@
 #' formattable(mtcars, list(
 #'   mpg = formatter("span",
 #'     style = x ~ style(color = ifelse(x > median(x), "red", NA)))))
-#' @seealso \href{http://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
-#'   \href{http://www.w3schools.com/cssref/}{CSS Reference}
+#' @seealso \href{https://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
+#'   \href{https://www.w3schools.com/cssref/}{CSS Reference}
 #' @export
 style <- function(...) {
   dots <- list(...)

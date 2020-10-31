@@ -172,4 +172,4 @@ formattable(df, list(
 
 ## ライセンス
 
-このパッケージは [MIT License](http://opensource.org/licenses/MIT) の下で公開されています。
+このパッケージは [MIT License](https://opensource.org/licenses/MIT) の下で公開されています。
