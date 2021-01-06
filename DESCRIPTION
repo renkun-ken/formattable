@@ -21,7 +21,7 @@ Imports:
     rmarkdown
 License: MIT + file LICENSE
 LazyData: true
-URL: https://renkun.me/formattable, https://github.com/renkun-ken/formattable
+URL: https://renkun-ken.github.io/formattable, https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 ByteCompile: TRUE
 Suggests: testthat, DT, shiny, covr
