@@ -141,7 +141,7 @@
 <p>ベクトルはデータを保存するための基本的な単位です。データの中には、書式を適用することで、可読性が高まるものがあります。例えば、Rにおいて複数のパーセント値からなる数値ベクトルは通常の小数点形式で表示されます。このパッケージは、あらかじめ定義された書式のルールに従って、データ構造を作成するための関数を提供します。これにより、元のデータを保持したまま、表示の際には書式を適用することができます。</p>
 <p>このパッケージでは<code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code>, <code>scientific</code>など典型的な書式 を提供しています。これらのオブジェクトは、基本的には数値ベクトルですが、あらかじめ定義された書式ルールとパラメータを持っています。例えば、</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun.me/formattable">formattable</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable">formattable</a></span><span class="op">)</span>
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/percent.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.02</span>, <span class="fl">0.03</span>, <span class="fl">0.12</span><span class="op">)</span><span class="op">)</span>
 <span class="va">p</span></code></pre></div>
 <pre><code>## [1] 10.00% 2.00%  3.00%  12.00%</code></pre>
@@ -319,7 +319,7 @@
 <code>registered</code> はアイコン付きの Yes/No に変換する。</li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun.me/formattable">formattable</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable">formattable</a></span><span class="op">)</span>
 
 <span class="fu"><a href="reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   age <span class="op">=</span> <span class="fu"><a href="reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"orange"</span><span class="op">)</span>,
