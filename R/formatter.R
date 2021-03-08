@@ -15,7 +15,7 @@
 #' the formula environment. If a column is formatted according to multiple
 #' other columns, \code{~expr} should be used and the column names can directly
 #' appear in \code{expr}.
-#' @importFrom htmltools tag doRenderTags
+#' @importFrom htmltools tag
 #' @param .tag HTML tag name. Uses \code{span} by default.
 #' @param ... functions to create attributes of HTML element from data colums.
 #' The unnamed element will serve as the function to produce the inner text of the
@@ -60,7 +60,7 @@ formatter <- function(.tag, ...) {
         tag(.tag, attrs[!is.na(attrs) & nzchar(attrs)])
       }, values, NULL)
     }
-    copy_dim(x, vapply(tags, doRenderTags, character(1L)))
+    copy_dim(x, vapply(tags, htmltools::doRenderTags, character(1L)))
   }, class = c("formatter", "function"))
 }
 
