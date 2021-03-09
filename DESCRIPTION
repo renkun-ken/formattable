@@ -15,13 +15,13 @@ Depends:
 Date: 2021-01-05
 Imports:
     methods,
-    knitr,
-    rmarkdown
+    knitr
 Suggests: 
     covr,
     DT,
     htmltools,
     htmlwidgets,
+    rmarkdown,
     shiny,
     testthat
 License: MIT + file LICENSE
