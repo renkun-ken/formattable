@@ -214,11 +214,10 @@ knit_print_formattable <- function(x, ...)
 
 knit_print_formattable.default <- print_formattable.default
 
-#' @importFrom knitr asis_output
 knit_print_formattable.data.frame <- function(x, ...) {
   format <- attr(x, "formattable", exact = TRUE)$format
   caption <- if (isTRUE(format$format == "pandoc" && nzchar(format$caption))) "<!-- -->\n\n" else ""
-  asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
+  knitr::asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
 }
 
 #' @export
