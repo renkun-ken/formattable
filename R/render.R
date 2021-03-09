@@ -59,7 +59,6 @@ as.htmlwidget <- function(x, ...)
 #'   )
 #' )
 #' }
-#' @importFrom htmlwidgets createWidget
 #' @export
 as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   if (!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
@@ -70,7 +69,7 @@ as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   x <- list(html = html)
 
   # create widget
-  createWidget("formattable_widget", x, width = width,
+  htmlwidgets::createWidget("formattable_widget", x, width = width,
     height = height, package = "formattable", ...)
 }
 
