@@ -89,10 +89,9 @@ formattable_widget_html <- function(name, package, id, style, class, width, heig
 #' @param outputId output variable to read from
 #' @param width a valid \code{CSS} width or a number
 #' @param height valid \code{CSS} height or a number
-#' @importFrom htmlwidgets shinyWidgetOutput
 #' @export
 formattableOutput <- function(outputId, width = "100%", height = "0") {
-  shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
+  htmlwidgets::shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
 }
 
 #' Widget render function for use in Shiny
