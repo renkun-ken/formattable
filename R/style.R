@@ -60,7 +60,6 @@ style <- function(...) {
 #' represent \code{icon} values.
 #' @seealso \href{https://getbootstrap.com/docs/3.4/components/#glyphicons}{Glyphicons in Bootstrap},
 #' \href{https://glyphicons.com/}{Glyphicons}
-#' @importFrom htmltools tag
 #' @export
 #' @examples
 #' icontext("plus")
@@ -74,7 +73,7 @@ icontext <- function(icon, text = list(NULL), ..., simplify = TRUE,
   x <- .mapply(function(icon, text) {
     htmltools::tagList(
       lapply(icon, function(ico)
-        tag("i",
+        htmltools::tag("i",
           list(class = gsub("{icon}", ico, class_template, fixed = TRUE)))), text)
   }, list(icon, text), NULL)
   if (simplify && length(x) == 1L) x[[1L]] else x
