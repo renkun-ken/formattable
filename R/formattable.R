@@ -220,8 +220,7 @@ knit_print_formattable.data.frame <- function(x, ...) {
   knitr::asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
 }
 
-#' @export
-#' @importFrom knitr knit_print
+# Registered in .onLoad()
 knit_print.formattable <- function(x, ...)
   knit_print_formattable(x, ...)
 
