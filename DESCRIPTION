@@ -32,10 +32,11 @@ Suggests:
     covr,
     DT,
     shiny,
-    testthat
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 ByteCompile: TRUE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9001
+Config/testthat/edition: 3
