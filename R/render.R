@@ -100,9 +100,8 @@ formattableOutput <- function(outputId, width = "100%", height = "0") {
 #' @param env the environment in which to evaluate expr.
 #' @param quoted is expr a quoted expression (with quote())?
 #' This is useful if you want to save an expression in a variable.
-#' @importFrom htmlwidgets shinyRenderWidget
 #' @export
 renderFormattable <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(formattable::as.htmlwidget(expr)) } # force quoted
-  shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
 }
