@@ -25,6 +25,6 @@ URL: https://renkun-ken.github.io/formattable/, https://github.com/renkun-ken/fo
 BugReports: https://github.com/renkun-ken/formattable/issues
 ByteCompile: TRUE
 Suggests: testthat, DT, shiny, covr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.1.9001
 VignetteBuilder: knitr
 Encoding: UTF-8
