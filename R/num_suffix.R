@@ -15,7 +15,10 @@ suffix <- function(x, suffix = "", sep = "", ..., na.text = NULL) {
   formattable(x, ...,
     postproc = list(function(str, x) {
       xna <- is.na(x)
-      paste0(if (is.null(na.text)) str else ifelse(xna, na.text, str),
-        ifelse(xna, "", paste0(sep, suffix)))
-    }))
+      paste0(
+        if (is.null(na.text)) str else ifelse(xna, na.text, str),
+        ifelse(xna, "", paste0(sep, suffix))
+      )
+    })
+  )
 }
