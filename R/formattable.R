@@ -461,7 +461,6 @@ render_html_matrix.formattable <- function(x, ...) {
 #' formatted table presented in HTML by default.
 #' To generate a formatted table, columns or areas of the
 #' input data frame can be transformed by formatter functions.
-#' @importFrom knitr kable
 #' @param x a \code{data.frame}.
 #' @param formatters a list of formatter functions or formulas.
 #' The existing columns of \code{x} will be applied the formatter
@@ -537,7 +536,7 @@ format_table <- function(x, formatters = list(),
   digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
   format <- match.arg(format)
   mat <- render_html_matrix(x, formatters, digits)
-  kable(mat, format = format, align = align, escape = FALSE, ...,
+  knitr::kable(mat, format = format, align = align, escape = FALSE, ...,
     table.attr = table.attr)
 }
 
