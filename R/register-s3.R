@@ -41,7 +41,6 @@
 #'   `devtools::load_all()`, the function will keep inheriting from
 #'   the old namespace. This might cause crashes because of dangling
 #'   `.Call()` pointers.
-#' @export
 #' @examples
 #' # A typical use case is to dynamically register tibble/pillar methods
 #' # for your class. That way you avoid creating a hard dependency on packages
@@ -118,37 +117,6 @@ s3_register <- function(generic, class, method = NULL) {
   }
 
   invisible()
-}
-
-knitr_defer <- function(expr, env = caller_env()) {
-  roxy_caller <- detect(sys.frames(), env_inherits, ns_env("knitr"))
-  if (is_null(roxy_caller)) {
-    abort("Internal error: can't find knitr on the stack.")
-  }
-
-  blast(
-    withr::defer(!!substitute(expr), !!roxy_caller),
-    env
-  )
-}
-blast <- function(expr, env = caller_env()) {
-  eval_bare(enexpr(expr), env)
-}
-
-knitr_local_registration <- function(generic, class, env = caller_env()) {
-  stopifnot(is.character(generic), length(generic) == 1)
-  stopifnot(is.character(class), length(class) == 1)
-
-  pieces <- strsplit(generic, "::")[[1]]
-  stopifnot(length(pieces) == 2)
-  package <- pieces[[1]]
-  generic <- pieces[[2]]
-
-  name <- paste0(generic, ".", class)
-  method <- env_get(env, name)
-
-  old <- env_bind(global_env(), !!name := method)
-  knitr_defer(env_bind(global_env(), !!!old))
 }
 
 
