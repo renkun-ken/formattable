@@ -14,13 +14,13 @@ Depends:
     R (> 3.0.2)
 Date: 2021-01-05
 Imports:
-    methods,
-    knitr
+    methods
 Suggests: 
     covr,
     DT,
     htmltools,
     htmlwidgets,
+    knitr,
     rmarkdown,
     shiny,
     testthat
