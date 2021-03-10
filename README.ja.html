@@ -57,9 +57,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -124,7 +130,7 @@
 <div id="formattable" class="section level1">
 
 <!-- badges: start -->
-<p><a href="https://github.com/renkun-ken/formattable/actions"><img src="https://github.com/renkun-ken/formattable/workflows/rcc/badge.svg" alt="R build status"></a> <a href="https://codecov.io/github/renkun-ken/formattable?branch=master"><img src="https://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=formattable"><img src="https://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a> <!-- badges: end --></p>
+<p><a href="https://github.com/renkun-ken/formattable/actions" class="external-link"><img src="https://github.com/renkun-ken/formattable/workflows/rcc/badge.svg" alt="R build status"></a> <a href="https://codecov.io/github/renkun-ken/formattable?branch=master" class="external-link"><img src="https://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=formattable" class="external-link"><img src="https://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a> <!-- badges: end --></p>
 <p>このパッケージは、ベクトルおよびデータフレームに書式を適用するために開発されました。これにより、データを「より簡単に」「よりリッチに」「より柔軟に」「できるだけ多くの情報を伝えるように」提示することができます。</p>
 <div id="インストール" class="section level2">
 <h2 class="hasAnchor">
@@ -133,9 +139,9 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"renkun-ken/formattable"</span><span class="op">)</span></code></pre></div>
-<p><a href="https://cran.r-project.org/package=formattable">CRAN</a> からインストールするには：</p>
+<p><a href="https://cran.r-project.org/package=formattable" class="external-link">CRAN</a> からインストールするには：</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"formattable"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"formattable"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="イントロダクション" class="section level2">
 <h2 class="hasAnchor">
@@ -143,8 +149,8 @@
 <p>ベクトルはデータを保存するための基本的な単位です。データの中には、書式を適用することで、可読性が高まるものがあります。例えば、Rにおいて複数のパーセント値からなる数値ベクトルは通常の小数点形式で表示されます。このパッケージは、あらかじめ定義された書式のルールに従って、データ構造を作成するための関数を提供します。これにより、元のデータを保持したまま、表示の際には書式を適用することができます。</p>
 <p>このパッケージでは<code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code>, <code>scientific</code>など典型的な書式 を提供しています。これらのオブジェクトは、基本的には数値ベクトルですが、あらかじめ定義された書式ルールとパラメータを持っています。例えば、</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/">formattable</a></span><span class="op">)</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/percent.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.02</span>, <span class="fl">0.03</span>, <span class="fl">0.12</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/percent.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.02</span>, <span class="fl">0.03</span>, <span class="fl">0.12</span><span class="op">)</span><span class="op">)</span>
 <span class="va">p</span></code></pre></div>
 <pre><code>## [1] 10.00% 2.00%  3.00%  12.00%</code></pre>
 <p>このパーセントベクトルは、通常の数値ベクトルと違いはありません。ただし、コンソール上に表示したときに、パーセントで表示されます。四則演算や基本関数の適用を行っても、この書式は保持されます。</p>
@@ -152,10 +158,10 @@
 <code class="sourceCode R"><span class="va">p</span> <span class="op">+</span> <span class="fl">0.05</span></code></pre></div>
 <pre><code>## [1] 15.00% 7.00%  8.00%  17.00%</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 12.00%</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">balance</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/accounting.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">500</span>, <span class="fl">200</span>, <span class="op">-</span><span class="fl">150</span>, <span class="fl">0</span>, <span class="fl">1200</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">balance</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/accounting.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">500</span>, <span class="fl">200</span>, <span class="op">-</span><span class="fl">150</span>, <span class="fl">0</span>, <span class="fl">1200</span><span class="op">)</span><span class="op">)</span>
 <span class="va">balance</span></code></pre></div>
 <pre><code>## [1] 1,000.00 500.00   200.00   (150.00) 0.00     1,200.00</code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -163,12 +169,12 @@
 <pre><code>## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00</code></pre>
 <p>上で見た関数は、<code><a href="reference/formattable.html">formattable()</a></code> 関数でできることの特別なケースです。<code><a href="reference/formattable.html">formattable()</a></code> を使えば、<code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code> などの幅広いクラスのオブジェクトに対して、高度にカスタマイズされた書式を適用することができます。典型的なデータフレームは、列単位で<code><a href="reference/formattable.html">formattable()</a></code> を適用することによって、より読みやすくなるでしょう。例えば、</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>, 
-  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"C1"</span><span class="op">)</span>,
-  balance <span class="op">=</span> <span class="fu"><a href="reference/accounting.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">52500</span>, <span class="fl">36150</span>, <span class="fl">25000</span>, <span class="fl">18300</span>, <span class="fl">7600</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>,
-  growth <span class="op">=</span> <span class="fu"><a href="reference/percent.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>,
-  ready <span class="op">=</span> <span class="fu"><a href="reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>, 
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"C1"</span><span class="op">)</span>,
+  balance <span class="op">=</span> <span class="fu"><a href="reference/accounting.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">52500</span>, <span class="fl">36150</span>, <span class="fl">25000</span>, <span class="fl">18300</span>, <span class="fl">7600</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>,
+  growth <span class="op">=</span> <span class="fu"><a href="reference/percent.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>,
+  ready <span class="op">=</span> <span class="fu"><a href="reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">p</span></code></pre></div>
 <pre><code>##   id name balance growth ready
 ## 1  1   A1  52,500    30%   yes
@@ -180,19 +186,19 @@
 <div id="動的ドキュメント中のテーブル表の書式" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%E5%8B%95%E7%9A%84%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E4%B8%AD%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E8%A1%A8%E3%81%AE%E6%9B%B8%E5%BC%8F" class="anchor"></a>動的ドキュメント中のテーブル(表)の書式</h2>
-<p>動的ドキュメント生成の典型的なワークフローの中で、<a href="https://yihui.org/knitr/">knitr</a> と <a href="https://rmarkdown.rstudio.com/">rmarkdown</a> は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。</p>
-<p>knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、<a href="https://johnmacfarlane.net/pandoc">pandoc</a> を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の <code>data.frame</code> をテーブル(表)として置きたいときは、<code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> 関数を使って markdown 形式に変換することができます。 kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。</p>
+<p>動的ドキュメント生成の典型的なワークフローの中で、<a href="https://yihui.org/knitr/" class="external-link">knitr</a> と <a href="https://rmarkdown.rstudio.com/" class="external-link">rmarkdown</a> は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。</p>
+<p>knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、<a href="https://johnmacfarlane.net/pandoc" class="external-link">pandoc</a> を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の <code>data.frame</code> をテーブル(表)として置きたいときは、<code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable</a></code> 関数を使って markdown 形式に変換することができます。 kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
   id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
-  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bob"</span>, <span class="st">"Ashley"</span>, <span class="st">"James"</span>, <span class="st">"David"</span>, <span class="st">"Jenny"</span>, 
+  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bob"</span>, <span class="st">"Ashley"</span>, <span class="st">"James"</span>, <span class="st">"David"</span>, <span class="st">"Jenny"</span>, 
     <span class="st">"Hans"</span>, <span class="st">"Leo"</span>, <span class="st">"John"</span>, <span class="st">"Emily"</span>, <span class="st">"Lee"</span><span class="op">)</span>, 
-  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">27</span>, <span class="fl">30</span>, <span class="fl">28</span>, <span class="fl">29</span>, <span class="fl">29</span>, <span class="fl">27</span>, <span class="fl">27</span>, <span class="fl">31</span>, <span class="fl">30</span><span class="op">)</span>,
-  grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"C"</span><span class="op">)</span>,
-  test1_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8.9</span>, <span class="fl">9.5</span>, <span class="fl">9.6</span>, <span class="fl">8.9</span>, <span class="fl">9.1</span>, <span class="fl">9.3</span>, <span class="fl">9.3</span>, <span class="fl">9.9</span>, <span class="fl">8.5</span>, <span class="fl">8.6</span><span class="op">)</span>,
-  test2_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9.1</span>, <span class="fl">9.1</span>, <span class="fl">9.2</span>, <span class="fl">9.1</span>, <span class="fl">8.9</span>, <span class="fl">8.5</span>, <span class="fl">9.2</span>, <span class="fl">9.3</span>, <span class="fl">9.1</span>, <span class="fl">8.8</span><span class="op">)</span>,
-  final_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">9.3</span>, <span class="fl">9.4</span>, <span class="fl">9</span>, <span class="fl">9</span>, <span class="fl">8.9</span>, <span class="fl">9.25</span>, <span class="fl">9.6</span>, <span class="fl">8.8</span>, <span class="fl">8.7</span><span class="op">)</span>,
-  registered <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
+  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">27</span>, <span class="fl">30</span>, <span class="fl">28</span>, <span class="fl">29</span>, <span class="fl">29</span>, <span class="fl">27</span>, <span class="fl">27</span>, <span class="fl">31</span>, <span class="fl">30</span><span class="op">)</span>,
+  grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"C"</span><span class="op">)</span>,
+  test1_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.9</span>, <span class="fl">9.5</span>, <span class="fl">9.6</span>, <span class="fl">8.9</span>, <span class="fl">9.1</span>, <span class="fl">9.3</span>, <span class="fl">9.3</span>, <span class="fl">9.9</span>, <span class="fl">8.5</span>, <span class="fl">8.6</span><span class="op">)</span>,
+  test2_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9.1</span>, <span class="fl">9.1</span>, <span class="fl">9.2</span>, <span class="fl">9.1</span>, <span class="fl">8.9</span>, <span class="fl">8.5</span>, <span class="fl">9.2</span>, <span class="fl">9.3</span>, <span class="fl">9.1</span>, <span class="fl">8.8</span><span class="op">)</span>,
+  final_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">9.3</span>, <span class="fl">9.4</span>, <span class="fl">9</span>, <span class="fl">9</span>, <span class="fl">8.9</span>, <span class="fl">9.25</span>, <span class="fl">9.6</span>, <span class="fl">8.8</span>, <span class="fl">8.7</span><span class="op">)</span>,
+  registered <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
   stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>何もしない場合、次のようなテーブルが表示されます：</p>
 <table>
@@ -321,33 +327,35 @@
 <code>registered</code> はアイコン付きの Yes/No に変換する。</li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/">formattable</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span>
 
-<span class="fu"><a href="reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+<span class="fu"><a href="reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   age <span class="op">=</span> <span class="fu"><a href="reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"orange"</span><span class="op">)</span>,
   grade <span class="op">=</span> <span class="fu"><a href="reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,
-    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"A"</span>, <span class="fu"><a href="reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, font.weight <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span>,
+    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="st">"A"</span>, <span class="fu"><a href="reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span>, font.weight <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span>,
   test1_score <span class="op">=</span> <span class="fu"><a href="reference/normalize_bar.html">normalize_bar</a></span><span class="op">(</span><span class="st">"pink"</span>, <span class="fl">0.2</span><span class="op">)</span>,
   test2_score <span class="op">=</span> <span class="fu"><a href="reference/normalize_bar.html">normalize_bar</a></span><span class="op">(</span><span class="st">"pink"</span>, <span class="fl">0.2</span><span class="op">)</span>,
   final_score <span class="op">=</span> <span class="fu"><a href="reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,
-    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">3</span>, <span class="st">"green"</span>, <span class="st">"gray"</span><span class="op">)</span><span class="op">)</span>,
-    <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f (rank: %02d)"</span>, <span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">3</span>, <span class="st">"green"</span>, <span class="st">"gray"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%.2f (rank: %02d)"</span>, <span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
   registered <span class="op">=</span> <span class="fu"><a href="reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, 
-    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"green"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>,
-    <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/icontext.html">icontext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"ok"</span>, <span class="st">"remove"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"green"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="reference/icontext.html">icontext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"ok"</span>, <span class="st">"remove"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="formattable.png" alt="formattable"></p>
-<p><strong>テーブルで使用されるアイコンセットは <a href="https://GLYPHICONS.com">GLYPHICONS.com</a> によるものです。これは <a href="https://getbootstrap.com/docs/3.4/components/#glyphicons">Bootstrap</a> に含まれています。</strong></p>
+<div class="figure">
+<img src="formattable.png" alt=""><p class="caption">formattable</p>
+</div>
+<p><strong>テーブルで使用されるアイコンセットは <a href="https://GLYPHICONS.com" class="external-link">GLYPHICONS.com</a> によるものです。これは <a href="https://getbootstrap.com/docs/3.4/components/#glyphicons" class="external-link">Bootstrap</a> に含まれています。</strong></p>
 </div>
 <div id="インタラクティブな環境における-htmlwidget-への自動変換" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%81%AA%E7%92%B0%E5%A2%83%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-htmlwidget-%E3%81%B8%E3%81%AE%E8%87%AA%E5%8B%95%E5%A4%89%E6%8F%9B" class="anchor"></a>インタラクティブな環境における <code>htmlwidget</code> への自動変換</h2>
-<p><code>formattable</code> オブジェクト は、コンソールや RStudio IDE などの <code><a href="https://rdrr.io/r/base/interactive.html">interactive()</a></code> な状況では、自動的に <code>htmlwidget</code> オブジェクト へと変換されます。この変換を避けたい場合や、<code>markdown</code> 形式のテーブル出力を見たい場合は、<code>format_table</code> 関数を使って下さい。この関数は、<code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable</a></code> に書式を適用して整形した状態で呼び出すことができます。もしくは、<code>formattable data.frame</code> オブジェクトに対しては <code>as.character</code> を呼び出して下さい。</p>
+<p><code>formattable</code> オブジェクト は、コンソールや RStudio IDE などの <code><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive()</a></code> な状況では、自動的に <code>htmlwidget</code> オブジェクト へと変換されます。この変換を避けたい場合や、<code>markdown</code> 形式のテーブル出力を見たい場合は、<code>format_table</code> 関数を使って下さい。この関数は、<code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable</a></code> に書式を適用して整形した状態で呼び出すことができます。もしくは、<code>formattable data.frame</code> オブジェクトに対しては <code>as.character</code> を呼び出して下さい。</p>
 </div>
 <div id="ライセンス" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9" class="anchor"></a>ライセンス</h2>
-<p>このパッケージは <a href="https://opensource.org/licenses/MIT">MIT License</a> の下で公開されています。</p>
+<p>このパッケージは <a href="https://opensource.org/licenses/MIT" class="external-link">MIT License</a> の下で公開されています。</p>
 </div>
 </div>
 
@@ -365,11 +373,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kun Ren, Kenton Russell.</p>
+  <p><p>Developed by Kun Ren, Kenton Russell.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -377,6 +385,8 @@
 
   
 
+
+  
 
   </body>
 </html>
