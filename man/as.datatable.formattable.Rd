@@ -2,7 +2,7 @@
 % Please edit documentation in R/as.datatable.R
 \name{as.datatable.formattable}
 \alias{as.datatable.formattable}
-\title{Convert \code{formattable} to a \code{\link[DT]{datatable}} htmlwidget}
+\title{Convert \code{formattable} to a \code{\link[DT:datatable]{DT::datatable()}} htmlwidget}
 \usage{
 \method{as.datatable}{formattable}(x, escape = FALSE, ...)
 }
@@ -13,11 +13,11 @@
 \code{FALSE} since it is expected that \code{formatters} from
 \code{formattable} will produce \code{HTML} tags.}
 
-\item{...}{additional arguments passed to to \code{\link[DT]{datatable}}}
+\item{...}{additional arguments passed to to \code{\link[DT:datatable]{DT::datatable()}}}
 }
 \value{
-a \code{\link[DT]{datatable}} object
+a \code{\link[DT:datatable]{DT::datatable()}} object
 }
 \description{
-Convert \code{formattable} to a \code{\link[DT]{datatable}} htmlwidget
+Convert \code{formattable} to a \code{\link[DT:datatable]{DT::datatable()}} htmlwidget
 }

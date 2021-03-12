@@ -17,7 +17,7 @@ accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 
 \item{digits}{an integer to indicate the number of digits of the percentage string.}
 
-\item{format}{format type passed to \code{\link{formatC}}.}
+\item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
 \item{big.mark}{thousands separator}
 

@@ -16,8 +16,8 @@ a \code{formattable} object
 }
 \description{
 This function is a generic function to create \code{formattable}
-object, i.e. an object to which a formatting function and
-related attribute are attached. The object works as ordinary object
+objects, i.e. an object to which a formatting function and
+related attribute are attached. The object works as an ordinary vector
 yet has specially defined behavior as being printed or converted to
 a string representation.
 }

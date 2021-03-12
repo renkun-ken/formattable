@@ -43,7 +43,7 @@ By default, all columns are right-aligned.}
 \item{digits}{The number of significant digits to be used for numeric
 and complex values.}
 
-\item{table.attr}{The HTML class of \code{<table>} created when
+\item{table.attr}{The HTML class of \verb{<table>} created when
 \code{format = "html"}}
 }
 \value{

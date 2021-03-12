@@ -1,24 +1,24 @@
 #' Generic function to create an htmlwidget
 #'
-#' This function is a generic function to create an \code{htmlwidget}
+#' This function is a generic function to create an `htmlwidget`
 #' to allow HTML/JS from R in multiple contexts.
 #'
 #' @param x an object.
-#' @param ... arguments to be passed to \code{\link[DT]{datatable}}
+#' @param ... arguments to be passed to [DT::datatable()]
 #' @export
-#' @return a \code{\link[DT]{datatable}} object
+#' @return a [DT::datatable()] object
 as.datatable <- function(x, ...) {
   UseMethod("as.datatable")
 }
 
-#' Convert \code{formattable} to a \code{\link[DT]{datatable}} htmlwidget
+#' Convert `formattable` to a [DT::datatable()] htmlwidget
 #'
-#' @param x a \code{formattable} object to convert
-#' @param escape \code{logical} to escape \code{HTML}. The default is
-#'          \code{FALSE} since it is expected that \code{formatters} from
-#'          \code{formattable} will produce \code{HTML} tags.
-#' @param ... additional arguments passed to to \code{\link[DT]{datatable}}
-#' @return a \code{\link[DT]{datatable}} object
+#' @param x a `formattable` object to convert
+#' @param escape `logical` to escape `HTML`. The default is
+#'          `FALSE` since it is expected that `formatters` from
+#'          `formattable` will produce `HTML` tags.
+#' @param ... additional arguments passed to to [DT::datatable()]
+#' @return a [DT::datatable()] object
 #' @export
 as.datatable.formattable <- function(x, escape = FALSE, ...) {
   stopifnot(is.formattable(x), requireNamespace("DT"))
