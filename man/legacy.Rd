@@ -4,11 +4,14 @@
 \alias{legacy}
 \alias{accounting}
 \alias{comma}
+\alias{currency}
 \title{Legacy generics}
 \usage{
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 
 comma(x, digits, format = "f", big.mark = ",", ...)
+
+currency(x, symbol, digits, format = "f", big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -20,6 +23,8 @@ comma(x, digits, format = "f", big.mark = ",", ...)
 \item{big.mark}{thousands separator}
 
 \item{...}{additional parameters passed to \code{formattable}.}
+
+\item{symbol}{currency symbol}
 }
 \description{
 \ifelse{html}{\figure{lifecycle-deprecated.svg}{options: alt='Deprecated lifecycle'}}{\strong{Deprecated}}

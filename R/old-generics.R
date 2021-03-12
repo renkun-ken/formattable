@@ -28,3 +28,15 @@ comma <- function(x, digits, format = "f", big.mark = ",", ...) {
 comma.default <- num_comma
 #' @export
 comma.character <- parse_comma
+
+#' @rdname legacy
+#' @inheritParams num_currency
+#' @export
+currency <- function(x, symbol, digits,
+                     format = "f", big.mark = ",", ...) {
+  UseMethod("currency")
+}
+#' @export
+currency.default <- num_currency
+#' @export
+currency.character <- parse_currency
