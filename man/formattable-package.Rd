@@ -24,7 +24,7 @@ types of portable documents.
 \code{knitr} package is able to render a RMarkdown document (markdown document
 with R code chunks to be executed sequentially) to Markdown document.
 \code{rmarkdown} calls \code{pandoc} to render markdown document to HTML web page.
-To put a table from a \code{data.frame} on the page, one may call \code{knitr::kable}
+To put a table from a \code{data.frame} on the page, one may call \code{\link[knitr:kable]{knitr::kable()}}
 to produce its markdown representation. By default the resulted table is in a plain
 theme with no additional formatting. However, in some cases, additional formatting
 may help clarify the information and make contrast of the data.

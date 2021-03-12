@@ -14,7 +14,7 @@ value in \code{x} as being formatted.}
 
 \item{sep}{separator}
 
-\item{...}{additional parameter passed to \code{formattable}.}
+\item{...}{additional parameter passed to \code{\link[=formattable]{formattable()}}.}
 
 \item{na.text}{text for missing values in \code{x}.}
 }

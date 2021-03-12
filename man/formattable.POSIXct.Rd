@@ -17,7 +17,7 @@
 
 \item{...}{arguments to be passed to \code{formatter}.}
 
-\item{formatter}{formatting function, \code{format.POSIXct} in default.}
+\item{formatter}{formatting function, \code{\link[=format.POSIXct]{format.POSIXct()}} in default.}
 
 \item{preproc}{pre-processor function that prepares \code{x} for
 formatting function.}

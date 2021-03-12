@@ -21,7 +21,7 @@ comma(x, digits, format = "f", big.mark = ",", ...)
 
 \item{big.mark}{thousands separator}
 
-\item{...}{additional parameters passed to \code{formattable}.}
+\item{...}{additional parameters passed to \code{\link[=formattable]{formattable()}}.}
 }
 \description{
 Numeric vector with thousands separators

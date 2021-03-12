@@ -10,7 +10,7 @@ color_bar(color = "lightgray", fun = "proportion", ...)
 \item{color}{the background color of the bars}
 
 \item{fun}{the transform function that maps the input vector to
-values from 0 to 1. Uses \code{proportion} by default.}
+values from 0 to 1. Uses \code{\link[=proportion]{proportion()}} by default.}
 
 \item{...}{additional parameters passed to \code{fun}}
 }
@@ -21,5 +21,5 @@ Create a color-bar formatter
 formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 }
 \seealso{
-\link{normalize_bar}, \link{proportion_bar}
+\code{\link[=normalize_bar]{normalize_bar()}}, \code{\link[=proportion_bar]{proportion_bar()}}
 }

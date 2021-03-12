@@ -83,7 +83,7 @@ print.formatter <- function(x, ...) {
 #' the representation of row and column selector expressions.
 #' When the function is called, the expressions and environment
 #' of `row` and `column` are captured for
-#' `format_table` to evaluate within the context of the
+#' [format_table()] to evaluate within the context of the
 #' input `data.frame`, that is, `rownames` and
 #' `colnames` are defined in the context to be the indices
 #' of rows and columns, respectively. Therefore, the row names
@@ -114,7 +114,7 @@ area <- function(row, col) {
 
 #' Create a color-tile formatter
 #'
-#' @param ... parameters passed to `gradient`.
+#' @param ... parameters passed to [gradient()].
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_tile("white", "pink")))
@@ -131,13 +131,13 @@ color_tile <- function(...) {
 #'
 #' @param color the background color of the bars
 #' @param fun the transform function that maps the input vector to
-#' values from 0 to 1. Uses `proportion` by default.
+#' values from 0 to 1. Uses [proportion()] by default.
 #' @param ... additional parameters passed to `fun`
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 #' @seealso
-#' [normalize_bar], [proportion_bar]
+#' [normalize_bar()], [proportion_bar()]
 color_bar <- function(color = "lightgray", fun = "proportion", ...) {
   fun <- match.fun(fun)
   formatter("span",
@@ -155,12 +155,12 @@ color_bar <- function(color = "lightgray", fun = "proportion", ...) {
 #' Create a color-bar formatter using normalize
 #'
 #' @param color the background color of the bars
-#' @param ... additional parameters passed to `normalize`
+#' @param ... additional parameters passed to [normalize()]
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = normalize_bar()))
 #' @seealso
-#' [color_bar], [normalize]
+#' [color_bar()], [normalize()]
 normalize_bar <- function(color = "lightgray", ...) {
   color_bar(color = color, fun = normalize, ...)
 }
@@ -168,19 +168,19 @@ normalize_bar <- function(color = "lightgray", ...) {
 #' Create a color-bar formatter using proportion
 #'
 #' @param color the background color of the bars
-#' @param ... additional parameters passed to `proportion`
+#' @param ... additional parameters passed to [proportion()]
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = proportion_bar()))
 #' @seealso
-#' [color_bar], [proportion]
+#' [color_bar()], [proportion()]
 proportion_bar <- function(color = "lightgray", ...) {
   color_bar(color = color, fun = proportion, ...)
 }
 
 #' Create a color-text formatter
 #'
-#' @param ... parameters passed to `gradient`.
+#' @param ... parameters passed to [gradient()].
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_text("black", "red")))

@@ -8,7 +8,7 @@ percent_postproc <- function(str, x) {
 #' @param x a numeric vector.
 #' @param digits an integer to indicate the number of digits of the percentage string.
 #' @param format format type passed to [formatC()].
-#' @param ... additional parameters passed to `formattable`.
+#' @param ... additional parameters passed to [formattable()].
 #' @export
 percent <- function(x, digits, format = "f", ...) {
   UseMethod("percent")

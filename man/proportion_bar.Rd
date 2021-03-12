@@ -9,7 +9,7 @@ proportion_bar(color = "lightgray", ...)
 \arguments{
 \item{color}{the background color of the bars}
 
-\item{...}{additional parameters passed to \code{proportion}}
+\item{...}{additional parameters passed to \code{\link[=proportion]{proportion()}}}
 }
 \description{
 Create a color-bar formatter using proportion
@@ -18,5 +18,5 @@ Create a color-bar formatter using proportion
 formattable(mtcars, list(mpg = proportion_bar()))
 }
 \seealso{
-\link{color_bar}, \link{proportion}
+\code{\link[=color_bar]{color_bar()}}, \code{\link[=proportion]{proportion()}}
 }

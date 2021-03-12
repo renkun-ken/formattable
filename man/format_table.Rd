@@ -38,7 +38,7 @@ Area formatter is specified in the form of
 of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
 By default, all columns are right-aligned.}
 
-\item{...}{additional parameters to be passed to \code{knitr::kable}.}
+\item{...}{additional parameters to be passed to \code{\link[knitr:kable]{knitr::kable()}}.}
 
 \item{digits}{The number of significant digits to be used for numeric
 and complex values.}
@@ -47,7 +47,7 @@ and complex values.}
 \code{format = "html"}}
 }
 \value{
-a \code{knitr_kable} object whose \code{print} method generates a
+a \code{knitr_kable} object whose \code{\link[=print]{print()}} method generates a
 string-representation of \code{data} formatted by \code{formatter} in
 specific \code{format}.
 }
@@ -100,5 +100,5 @@ format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
   area(6:10) ~ color_tile("transparent", "lightpink")))
 }
 \seealso{
-\link{formattable}, \link{area}
+\code{\link[=formattable]{formattable()}}, \code{\link[=area]{area()}}
 }
