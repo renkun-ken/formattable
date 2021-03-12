@@ -1,3 +1,8 @@
+---
+output: downlit::readme_document
+---
+<!-- README.md is generated from README.Rmd on GitHub Actions: do not edit by hand -->
+
 # formattable
 
 <!-- badges: start -->
@@ -57,7 +62,7 @@ These functions are special cases of what `formattable()` can do. `formattable()
 
 ```{r}
 p <- data.frame(
-  id = c(1, 2, 3, 4, 5), 
+  id = c(1, 2, 3, 4, 5),
   name = c("A1", "A2", "B1", "B2", "C1"),
   balance = accounting(c(52500, 36150, 25000, 18300, 7600), format = "d"),
   growth = percent(c(0.3, 0.3, 0.1, 0.15, 0.15), format = "d"),
@@ -74,8 +79,8 @@ knitr is able to render an RMarkdown document (markdown document with R code chu
 ```{r}
 df <- data.frame(
   id = 1:10,
-  name = c("Bob", "Ashley", "James", "David", "Jenny", 
-    "Hans", "Leo", "John", "Emily", "Lee"), 
+  name = c("Bob", "Ashley", "James", "David", "Jenny",
+    "Hans", "Leo", "John", "Emily", "Lee"),
   age = c(28, 27, 30, 28, 29, 29, 27, 27, 31, 30),
   grade = c("C", "A", "A", "C", "B", "B", "B", "A", "C", "C"),
   test1_score = c(8.9, 9.5, 9.6, 8.9, 9.1, 9.3, 9.3, 9.9, 8.5, 8.6),
@@ -88,7 +93,7 @@ df <- data.frame(
 Plain table:
 
 ```{r,echo=FALSE,message=FALSE,results='asis'}
-knitr::kable(df)
+knitr::kable(df, format = "html")
 ```
 
 Formatted table with the following visualizations:
@@ -104,7 +109,7 @@ library(formattable)
 
 formattable(df, list(
   age = color_tile("white", "orange"),
-  grade = formatter("span", style = x ~ ifelse(x == "A", 
+  grade = formatter("span", style = x ~ ifelse(x == "A",
     style(color = "green", font.weight = "bold"), NA)),
   area(col = c(test1_score, test2_score)) ~ normalize_bar("pink", 0.2),
   final_score = formatter("span",
@@ -122,7 +127,7 @@ formattable(df, list(
 
 ## `htmlwidget` conversion in interactive environments
 
-`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `html` table output, please use `format_table` that calls `knitr::kable` with formatters or call `format` with the `formattable data.frame` object.
+`formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `html` table output, please use `format_table()` that calls `knitr::kable()` with formatters or call `format()` with the `formattable data.frame` object.
 
 ## License
 

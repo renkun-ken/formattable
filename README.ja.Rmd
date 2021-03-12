@@ -1,3 +1,8 @@
+---
+output: downlit::readme_document
+---
+<!-- README.md is generated from README.Rmd on GitHub Actions: do not edit by hand -->
+
 # formattable
 
 <!-- badges: start -->
@@ -51,7 +56,7 @@ balance + 1000
 上で見た関数は、`formattable()` 関数でできることの特別なケースです。`formattable()` を使えば、`numeric`, `logical`, `factor`, `Date`, `data.frame` などの幅広いクラスのオブジェクトに対して、高度にカスタマイズされた書式を適用することができます。典型的なデータフレームは、列単位で`formattable()` を適用することによって、より読みやすくなるでしょう。例えば、
 ```{r}
 p <- data.frame(
-  id = c(1, 2, 3, 4, 5), 
+  id = c(1, 2, 3, 4, 5),
   name = c("A1", "A2", "B1", "B2", "C1"),
   balance = accounting(c(52500, 36150, 25000, 18300, 7600), format = "d"),
   growth = percent(c(0.3, 0.3, 0.1, 0.15, 0.15), format = "d"),
@@ -69,8 +74,8 @@ kable関数で生成されたテーブルは、デフォルトでは書式が適
 ```{r}
 df <- data.frame(
   id = 1:10,
-  name = c("Bob", "Ashley", "James", "David", "Jenny", 
-    "Hans", "Leo", "John", "Emily", "Lee"), 
+  name = c("Bob", "Ashley", "James", "David", "Jenny",
+    "Hans", "Leo", "John", "Emily", "Lee"),
   age = c(28, 27, 30, 28, 29, 29, 27, 27, 31, 30),
   grade = c("C", "A", "A", "C", "B", "B", "B", "A", "C", "C"),
   test1_score = c(8.9, 9.5, 9.6, 8.9, 9.1, 9.3, 9.3, 9.9, 8.5, 8.6),
@@ -83,7 +88,7 @@ df <- data.frame(
 何もしない場合、次のようなテーブルが表示されます：
 
 ```{r,echo=FALSE,message=FALSE,results='asis'}
-knitr::kable(df)
+knitr::kable(df, format = "html")
 ```
 
 次のようにテーブルをフォーマットします：
@@ -106,7 +111,7 @@ formattable(df, list(
   final_score = formatter("span",
     style = x ~ style(color = ifelse(rank(-x) <= 3, "green", "gray")),
     x ~ sprintf("%.2f (rank: %02d)", x, rank(-x))),
-  registered = formatter("span", 
+  registered = formatter("span",
     style = x ~ style(color = ifelse(x, "green", "red")),
     x ~ icontext(ifelse(x, "ok", "remove"), ifelse(x, "Yes", "No")))
 ))
@@ -118,7 +123,7 @@ formattable(df, list(
 
 ## インタラクティブな環境における `htmlwidget` への自動変換
 
-`formattable` オブジェクト は、コンソールや RStudio IDE などの `interactive()` な状況では、自動的に `htmlwidget` オブジェクト へと変換されます。この変換を避けたい場合や、`markdown` 形式のテーブル出力を見たい場合は、`format_table` 関数を使って下さい。この関数は、`knitr::kable` に書式を適用して整形した状態で呼び出すことができます。もしくは、`formattable data.frame` オブジェクトに対しては `as.character` を呼び出して下さい。
+`formattable` オブジェクト は、コンソールや RStudio IDE などの `interactive()` な状況では、自動的に `htmlwidget` オブジェクト へと変換されます。この変換を避けたい場合や、`markdown` 形式のテーブル出力を見たい場合は、`format_table()` 関数を使って下さい。この関数は、`knitr::kable()` に書式を適用して整形した状態で呼び出すことができます。もしくは、`formattable data.frame` オブジェクトに対しては `as.character()` を呼び出して下さい。
 
 ## ライセンス
 
