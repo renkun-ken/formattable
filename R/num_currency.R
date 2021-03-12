@@ -1,22 +1,20 @@
 #' Numeric vector with currency format
-#' @inheritParams comma
+#'
+#' Formats numbers with a thousand separator
+#' and a currency indicator.
+#'
+#' @family numeric vectors
+#' @inheritParams num_comma
 #' @param symbol currency symbol
 #' @param sep separator between symbol and value
 #' @export
-currency <- function(x, symbol, digits,
-                     format = "f", big.mark = ",", ...) {
-  UseMethod("currency")
-}
-
-#' @rdname currency
-#' @export
 #' @examples
-#' currency(200000)
-#' currency(200000, "\U20AC")
-#' currency(1200000, "USD", sep = " ")
-#' currency(1200000, "USD", format = "d", sep = " ")
-currency.default <- function(x, symbol = "$",
-                             digits = 2L, format = "f", big.mark = ",", ..., sep = "") {
+#' num_currency(200000)
+#' num_currency(200000, "\U20AC")
+#' num_currency(1200000, "USD", sep = " ")
+#' num_currency(1200000, "USD", format = "d", sep = " ")
+num_currency <- function(x, symbol = "$",
+                         digits = 2L, format = "f", big.mark = ",", ..., sep = "") {
   x <- as_numeric(x)
   formattable(x,
     format = format, big.mark = big.mark, digits = digits, ...,
@@ -35,14 +33,14 @@ get_currency_symbol <- function(x) {
   sym[[1L]]
 }
 
-#' @rdname currency
+#' @rdname num_currency
 #' @export
 #' @examples
-#' currency("$ 120,250.50")
-#' currency("HK$ 120,250.50", symbol = "HK$")
-#' currency("HK$ 120, 250.50")
-currency.character <- function(x, symbol = get_currency_symbol(x),
-                               digits = max(get_digits(x)), format = "f", big.mark = ",", ...) {
+#' parse_currency("$ 120,250.50")
+#' parse_currency("HK$ 120,250.50", symbol = "HK$")
+#' parse_currency("HK$ 120, 250.50")
+parse_currency <- function(x, symbol = get_currency_symbol(x),
+                           digits = max(get_digits(x)), format = "f", big.mark = ",", ...) {
   if (any(invalid <- !grepl("\\d", x))) {
     warning("Invalid input in 'x': ", paste(x[invalid], collapse = ", "), call. = FALSE)
   }

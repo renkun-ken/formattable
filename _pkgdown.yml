@@ -1,13 +1,16 @@
 reference:
 - title: Number formats
   contents:
-  - accounting
-  - comma
-  - currency
-  - digits
-  - percent
+  - num_accounting
+  - num_comma
+  - num_currency
+  - num_digits
+  - num_percent
+  - num_scientific
+
+- title: Generic formats
+  contents:
   - prefix
-  - scientific
   - suffix
 
 - title: Other functions
