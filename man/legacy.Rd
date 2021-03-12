@@ -2,11 +2,14 @@
 % Please edit documentation in R/old-generics.R
 \name{legacy}
 \alias{legacy}
+\alias{digits}
 \alias{accounting}
 \alias{comma}
 \alias{currency}
 \title{Legacy generics}
 \usage{
+digits(x, digits, format = "f", ...)
+
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 
 comma(x, digits, format = "f", big.mark = ",", ...)
@@ -20,16 +23,16 @@ currency(x, symbol, digits, format = "f", big.mark = ",", ...)
 
 \item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
-\item{big.mark}{thousands separator}
-
 \item{...}{additional parameters passed to \code{formattable}.}
+
+\item{big.mark}{thousands separator}
 
 \item{symbol}{currency symbol}
 }
 \description{
 \ifelse{html}{\figure{lifecycle-deprecated.svg}{options: alt='Deprecated lifecycle'}}{\strong{Deprecated}}
 
-These generics are soft-deprecated.
+These generics and functions are soft-deprecated.
 New code should use the \code{num_...()} or \code{parse_...()} functions instead,
 such as \code{\link[=num_accounting]{num_accounting()}}.
 }

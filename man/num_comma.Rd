@@ -33,6 +33,7 @@ parse_comma("123,345.123")
 \seealso{
 Other numeric vectors: 
 \code{\link{num_accounting}()},
-\code{\link{num_currency}()}
+\code{\link{num_currency}()},
+\code{\link{num_digits}()}
 }
 \concept{numeric vectors}

@@ -3,14 +3,23 @@
 #' @description
 #' `r lifecycle::badge("deprecated")`
 #'
-#' These generics are soft-deprecated.
+#' These generics and functions are soft-deprecated.
 #' New code should use the `num_...()` or `parse_...()` functions instead,
 #' such as [num_accounting()].
-#' @inheritParams num_accounting
+#' @import lifecycle
 #' @name legacy
 #' @keywords internal
 #' @export
+digits <- function(x, digits, format = "f", ...) {
+  deprecate_soft("0.3.0", "formattable::digits()", "num_digits()")
+  formattable(as.numeric(x), format = format, digits = digits, ...)
+}
+
+#' @inheritParams num_accounting
+#' @rdname legacy
+#' @export
 accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
+  deprecate_soft("0.3.0", "formattable::accounting()", "num_accounting()")
   UseMethod("accounting")
 }
 #' @export
@@ -22,6 +31,7 @@ accounting.character <- parse_accounting
 #' @rdname legacy
 #' @export
 comma <- function(x, digits, format = "f", big.mark = ",", ...) {
+  deprecate_soft("0.3.0", "formattable::comma()", "num_comma()")
   UseMethod("comma")
 }
 #' @export
@@ -34,6 +44,7 @@ comma.character <- parse_comma
 #' @export
 currency <- function(x, symbol, digits,
                      format = "f", big.mark = ",", ...) {
+  deprecate_soft("0.3.0", "formattable::currency()", "num_currency()")
   UseMethod("currency")
 }
 #' @export

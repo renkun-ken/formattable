@@ -26,6 +26,7 @@ Imports:
     htmltools,
     htmlwidgets,
     knitr,
+    lifecycle,
     methods,
     rmarkdown
 Suggests: 
