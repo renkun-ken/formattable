@@ -4,7 +4,7 @@
 #' and a prespecified number of digits after the decimal point.
 #'
 #' @family numeric vectors
-#' @inheritParams percent
+#' @inheritParams num_percent
 #' @param big.mark thousands separator
 #' @export
 #' @examples
