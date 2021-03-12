@@ -17,7 +17,7 @@ percent(x, digits, format = "f", ...)
 
 \item{digits}{an integer to indicate the number of digits of the percentage string.}
 
-\item{format}{format type passed to \code{\link{formatC}}.}
+\item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
 \item{...}{additional parameters passed to \code{formattable}.}
 }

@@ -1,14 +1,14 @@
 #' Vectorized map from element to case by index or string value
 #'
-#' This function is a vectorized version of \code{switch}, that is, for
-#' each element of input vector, \code{switch} is evaluated and the results are
+#' This function is a vectorized version of `switch`, that is, for
+#' each element of input vector, `switch` is evaluated and the results are
 #' combined.
 #'
 #' @param EXPR an expression evaluated to be character or numeric vector/list.
-#' @param ... The list of alternatives for each \code{switch}.
-#' @param SIMPLIFY \code{TRUE} to simplify the resulted list to vector, matrix
+#' @param ... The list of alternatives for each `switch`.
+#' @param SIMPLIFY `TRUE` to simplify the resulted list to vector, matrix
 #' or array if possible.
-#' @seealso \code{\link{switch}}
+#' @seealso [switch()]
 #' @export
 #' @examples
 #' x <- c("normal","normal","error","unknown","unknown")
@@ -28,8 +28,8 @@ vmap <- function(EXPR, ..., SIMPLIFY = TRUE) {
 #' position of ranking resulted from rank divided by the length
 #' of vector.
 #' @param x a vector
-#' @param ... additional parameters passed to \code{rank}
-#' @seealso \code{\link{rank}}
+#' @param ... additional parameters passed to `rank`
+#' @seealso [rank()]
 #' @export
 #' @examples
 #' qrank(mtcars$mpg)
@@ -40,8 +40,8 @@ qrank <- function(x, ...) {
 #' Normalize a vector to fit zero-to-one scale
 #'
 #' @param x a numeric vector
-#' @param min numeric value. The lower bound of the interval to normalize \code{x}.
-#' @param max numeric value. The upper bound of the interval to normalize \code{x}.
+#' @param min numeric value. The lower bound of the interval to normalize `x`.
+#' @param max numeric value. The upper bound of the interval to normalize `x`.
 #' @param na.rm a logical indicating whether missing values should be removed
 #' @export
 #' @examples

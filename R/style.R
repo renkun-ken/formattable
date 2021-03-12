@@ -7,18 +7,18 @@
 #' @details
 #' The general usage of CSS styling is
 #'
-#' \code{<span style = "color: red; border: 1px">Text</span>}
+#' `<span style = "color: red; border: 1px">Text</span>`
 #'
 #' The text color can be specified by `color`, the border of
 #' element by `border`, and etc.
 #'
-#' Basic styles like \code{color}, \code{border}, \code{background}
+#' Basic styles like `color`, `border`, `background`
 #' work properly and mostly consistently in modern web browsers.
 #' However, some style properties may not work consistently in
 #' different browsers.
-#' @param ... style attributes in form of \code{name = value}. Many CSS properties
-#' contains \code{'-'} in the middle of their names. In this case, use
-#' \code{"the-name" = value} instead. \code{NA} will cancel the attribute.
+#' @param ... style attributes in form of `name = value`. Many CSS properties
+#' contains `'-'` in the middle of their names. In this case, use
+#' `"the-name" = value` instead. `NA` will cancel the attribute.
 #' @return a string-representation of css styles
 #' @examples
 #' style(color = "red")
@@ -29,8 +29,8 @@
 #' formattable(mtcars, list(
 #'   mpg = formatter("span",
 #'     style = x ~ style(color = ifelse(x > median(x), "red", NA)))))
-#' @seealso \href{https://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
-#'   \href{https://www.w3schools.com/cssref/}{CSS Reference}
+#' @seealso [List of CSS properties](https://www.w3.org/Style/CSS/all-properties),
+#'   [CSS Reference](https://www.w3schools.com/cssref/)
 #' @export
 style <- function(...) {
   dots <- list(...)
@@ -56,10 +56,10 @@ style <- function(...) {
 #' @param ... additional parameters (reserved)
 #' @param provider the provider of icon set.
 #' @param class_template a character value to specifiy to template of the class
-#' with \code{"{provider}"} to represent \code{provider} value and \code{"{icon}"} to
-#' represent \code{icon} values.
-#' @seealso \href{https://getbootstrap.com/docs/3.4/components/#glyphicons}{Glyphicons in Bootstrap},
-#' \href{https://glyphicons.com/}{Glyphicons}
+#' with \code{"{provider}"} to represent `provider` value and \code{"{icon}"} to
+#' represent `icon` values.
+#' @seealso [Glyphicons in Bootstrap](https://getbootstrap.com/docs/3.4/components/#glyphicons),
+#' [Glyphicons](https://glyphicons.com/)
 #' @export
 #' @examples
 #' icontext("plus")
@@ -110,15 +110,15 @@ str2rgb <- function(x, alpha = NULL) {
 #' @param x a numeric vector.
 #' @param min.color color of minimum value.
 #' @param max.color color of maximum value.
-#' @param alpha logical of whether to include alpha channel. \code{NULL}
+#' @param alpha logical of whether to include alpha channel. `NULL`
 #' to let the function decide by input.
 #' @param use.names logical of whether to preserve names of input vector.
-#' @param na.rm logical indicating whether to ignore missing values as \code{x}
-#' is normalized. (defult is \code{TRUE})
+#' @param na.rm logical indicating whether to ignore missing values as `x`
+#' is normalized. (defult is `TRUE`)
 #' @return a matrix with rgba columns in which each row corresponds to the rgba
-#' value (0-255) of each element in input vector \code{x}. Use \code{csscolor}
+#' value (0-255) of each element in input vector `x`. Use `csscolor`
 #' to convert the matrix to css color strings compatible with web browsers.
-#' @seealso \code{\link{csscolor}}
+#' @seealso [csscolor()]
 #' @export
 #' @examples
 #' gradient(c(1,2,3,4,5), "white", "red")

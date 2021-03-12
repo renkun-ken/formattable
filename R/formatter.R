@@ -1,24 +1,24 @@
 #' Create a formatter function making HTML elements
 #'
 #' @details
-#' This function creates a \code{formatter} object which is essentially a
+#' This function creates a `formatter` object which is essentially a
 #' closure taking a value and optionally the dataset behind.
 #'
 #' The formatter produces a character vector of HTML elements represented
-#' as strings. The tag name of the elements are specified by \code{.tag},
+#' as strings. The tag name of the elements are specified by `.tag`,
 #' and its attributes are calculated with the given functions or formulas
-#' specified in \code{...} given the input vector and/or dataset in behind.
+#' specified in `...` given the input vector and/or dataset in behind.
 #'
-#' Formula like \code{x ~ expr} will behave like \code{function(x) expr}.
-#' Formula like \code{~expr} will be evaluated in different manner: \code{expr}
+#' Formula like `x ~ expr` will behave like `function(x) expr`.
+#' Formula like `~expr` will be evaluated in different manner: `expr`
 #' will be evaluated in the data frame with the enclosing environment being
 #' the formula environment. If a column is formatted according to multiple
-#' other columns, \code{~expr} should be used and the column names can directly
-#' appear in \code{expr}.
-#' @param .tag HTML tag name. Uses \code{span} by default.
+#' other columns, `~expr` should be used and the column names can directly
+#' appear in `expr`.
+#' @param .tag HTML tag name. Uses `span` by default.
 #' @param ... functions to create attributes of HTML element from data colums.
 #' The unnamed element will serve as the function to produce the inner text of the
-#' element. If no unnamed element is provided, \code{identity} function will be used
+#' element. If no unnamed element is provided, `identity` function will be used
 #' to preserve the string representation of the colum values. Function and formula are
 #' accepted. See details for how different forms of formula will behave differently.
 #' @return a function that transforms a column of data (usually an atomic vector)
@@ -78,23 +78,23 @@ print.formatter <- function(x, ...) {
 #' and columns.
 #'
 #' @details
-#' The function creates an \code{area} object to store
+#' The function creates an `area` object to store
 #' the representation of row and column selector expressions.
 #' When the function is called, the expressions and environment
-#' of \code{row} and \code{column} are captured for
-#' \code{format_table} to evaluate within the context of the
-#' input \code{data.frame}, that is, \code{rownames} and
-#' \code{colnames} are defined in the context to be the indices
+#' of `row` and `column` are captured for
+#' `format_table` to evaluate within the context of the
+#' input `data.frame`, that is, `rownames` and
+#' `colnames` are defined in the context to be the indices
 #' of rows and columns, respectively. Therefore, the row names
-#' and column names are avaiable symbols when \code{row}
-#' and \code{col} are evaluated, respectively, which makes it
+#' and column names are avaiable symbols when `row`
+#' and `col` are evaluated, respectively, which makes it
 #' easier to specify range with names, for example,
-#' \code{area(row = row1:row10, col = col1:col5)}.
+#' `area(row = row1:row10, col = col1:col5)`.
 #'
 #' @param row an expression of row range. If missing,
-#' \code{TRUE} is used instead.
+#' `TRUE` is used instead.
 #' @param col an expression of column range. If missing,
-#' \code{TRUE} is used instead.
+#' `TRUE` is used instead.
 #' @export
 #' @examples
 #' area(col = c("mpg", "cyl"))
@@ -102,7 +102,7 @@ print.formatter <- function(x, ...) {
 #' area(row = 1)
 #' area(row = 1:10, col = 5:10)
 #' area(1:10, col1:col5)
-#' @seealso \link{format_table}, \link{formattable.data.frame}
+#' @seealso [format_table], [formattable.data.frame]
 area <- function(row, col) {
   structure(list(
     row = if (missing(row)) TRUE else substitute(row),
@@ -113,7 +113,7 @@ area <- function(row, col) {
 
 #' Create a color-tile formatter
 #'
-#' @param ... parameters passed to \code{gradient}.
+#' @param ... parameters passed to `gradient`.
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_tile("white", "pink")))
@@ -130,13 +130,13 @@ color_tile <- function(...) {
 #'
 #' @param color the background color of the bars
 #' @param fun the transform function that maps the input vector to
-#' values from 0 to 1. Uses \code{proportion} by default.
-#' @param ... additional parameters passed to \code{fun}
+#' values from 0 to 1. Uses `proportion` by default.
+#' @param ... additional parameters passed to `fun`
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 #' @seealso
-#' \link{normalize_bar}, \link{proportion_bar}
+#' [normalize_bar], [proportion_bar]
 color_bar <- function(color = "lightgray", fun = "proportion", ...) {
   fun <- match.fun(fun)
   formatter("span",
@@ -154,12 +154,12 @@ color_bar <- function(color = "lightgray", fun = "proportion", ...) {
 #' Create a color-bar formatter using normalize
 #'
 #' @param color the background color of the bars
-#' @param ... additional parameters passed to \code{normalize}
+#' @param ... additional parameters passed to `normalize`
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = normalize_bar()))
 #' @seealso
-#' \link{color_bar}, \link{normalize}
+#' [color_bar], [normalize]
 normalize_bar <- function(color = "lightgray", ...) {
   color_bar(color = color, fun = normalize, ...)
 }
@@ -167,19 +167,19 @@ normalize_bar <- function(color = "lightgray", ...) {
 #' Create a color-bar formatter using proportion
 #'
 #' @param color the background color of the bars
-#' @param ... additional parameters passed to \code{proportion}
+#' @param ... additional parameters passed to `proportion`
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = proportion_bar()))
 #' @seealso
-#' \link{color_bar}, \link{proportion}
+#' [color_bar], [proportion]
 proportion_bar <- function(color = "lightgray", ...) {
   color_bar(color = color, fun = proportion, ...)
 }
 
 #' Create a color-text formatter
 #'
-#' @param ... parameters passed to \code{gradient}.
+#' @param ... parameters passed to `gradient`.
 #' @export
 #' @examples
 #' formattable(mtcars, list(mpg = color_text("black", "red")))

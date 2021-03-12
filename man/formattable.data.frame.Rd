@@ -26,7 +26,7 @@ formatting function.}
 output for printing.}
 }
 \value{
-a \code{formattable data.frame}
+a \verb{formattable data.frame}
 }
 \description{
 This function creates a formattable data frame by attaching

@@ -1,22 +1,22 @@
 #' Generic function to create formattable object
 #'
-#' This function is a generic function to create \code{formattable}
-#' object, i.e. an object to which a formatting function and
-#' related attribute are attached. The object works as ordinary object
+#' This function is a generic function to create `formattable`
+#' objects, i.e. an object to which a formatting function and
+#' related attribute are attached. The object works as an ordinary vector
 #' yet has specially defined behavior as being printed or converted to
 #' a string representation.
 #'
 #' @param x an object.
 #' @param ... arguments to be passed to methods.
 #' @export
-#' @return a \code{formattable} object
+#' @return a `formattable` object
 formattable <- function(x, ...)
   UseMethod("formattable")
 
 #' Test for objects of 'formattable' class
 #' @param x an object
-#' @return \code{TRUE} if \code{x} has class 'formattable';
-#' \code{FALSE} otherwise.
+#' @return `TRUE` if `x` has class 'formattable';
+#' `FALSE` otherwise.
 #' @export
 #' @examples
 #' is.formattable(10)
@@ -27,14 +27,14 @@ is.formattable <- function(x) {
 
 #' Create a formattable object
 #' @inheritParams formattable
-#' @param ... arguments to be passed to \code{formatter}.
-#' @param formatter formatting function, \code{formatC} in default.
-#' @param preproc pre-processor function that prepares \code{x} for
+#' @param ... arguments to be passed to `formatter`.
+#' @param formatter formatting function, `formatC` in default.
+#' @param preproc pre-processor function that prepares `x` for
 #' formatting function.
 #' @param postproc post-processor function that transforms formatted
 #' output for printing.
 #' @export
-#' @return a \code{formattable} object that inherits from the original
+#' @return a `formattable` object that inherits from the original
 #' object.
 #' @examples
 #' formattable(rnorm(10), formatter = "formatC", digits = 1)
@@ -48,9 +48,9 @@ formattable.default <- function(x, ..., formatter,
 #' Create a formattable numeric vector
 #' @inheritParams formattable.default
 #' @param x a numeric vector.
-#' @param formatter formatting function, \link{formatC} in default.
+#' @param formatter formatting function, [formatC] in default.
 #' @export
-#' @return a \code{formattable} numeric vector.
+#' @return a `formattable` numeric vector.
 #' @examples
 #' formattable(rnorm(10), format = "f", digits = 1)
 #' formattable(rnorm(10), format = "f",
@@ -78,9 +78,9 @@ formattable.table <- function(x, ..., formatter = "format",
 #' Create a formattable logical vector
 #' @inheritParams formattable.default
 #' @param x a logical vector.
-#' @param formatter formatting function, \code{formattable::ifelse} in default.
+#' @param formatter formatting function, `formattable::ifelse` in default.
 #' @export
-#' @return a \code{formattable} logical vector.
+#' @return a `formattable` logical vector.
 #' @examples
 #' logi <- c(TRUE, TRUE, FALSE)
 #' flogi <- formattable(logi, "yes", "no")
@@ -98,9 +98,9 @@ formattable.logical <- function(x, ..., formatter = "ifelse",
 #' Create a formattable factor object
 #' @inheritParams formattable.default
 #' @param x a factor object.
-#' @param formatter formatting function, \code{vmap} in default.
+#' @param formatter formatting function, `vmap` in default.
 #' @export
-#' @return a \code{formattable} factor object.
+#' @return a `formattable` factor object.
 #' @examples
 #' formattable(as.factor(c("a", "b", "b", "c")),
 #'   a = "good", b = "fair", c = "bad")
@@ -113,10 +113,10 @@ formattable.factor <- function(x, ..., formatter = "vmap",
 
 #' Create a formattable Date vector
 #' @inheritParams formattable.default
-#' @param x a vector of class \code{Date}.
-#' @param formatter formatting function, \code{format.Date} in default.
+#' @param x a vector of class `Date`.
+#' @param formatter formatting function, `format.Date` in default.
 #' @export
-#' @return a \code{formattable} Date vector
+#' @return a `formattable` Date vector
 #' @examples
 #' dates <- as.Date("2015-04-10") + 1:5
 #' fdates <- formattable(dates, format = "%m/%d/%Y")
@@ -131,10 +131,10 @@ formattable.Date <- function(x, ..., formatter = "format.Date",
 
 #' Create a formattable POSIXct vector
 #' @inheritParams formattable.default
-#' @param x a vector of class \code{POSIXct}.
-#' @param formatter formatting function, \code{format.POSIXct} in default.
+#' @param x a vector of class `POSIXct`.
+#' @param formatter formatting function, `format.POSIXct` in default.
 #' @export
-#' @return a \code{formattable} POSIXct vector
+#' @return a `formattable` POSIXct vector
 #' @examples
 #' times <- as.POSIXct("2015-04-10 09:30:15") + 1:5
 #' ftimes <- formattable(times, format = "%Y%m%dT%H%M%S")
@@ -149,10 +149,10 @@ formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
 
 #' Create a formattable POSIXlt vector
 #' @inheritParams formattable.default
-#' @param x a vector of class \code{POSIXlt}.
-#' @param formatter formatting function, \code{format.POSIXlt} in default.
+#' @param x a vector of class `POSIXlt`.
+#' @param formatter formatting function, `format.POSIXlt` in default.
 #' @export
-#' @return a \code{formattable} POSIXlt vector
+#' @return a `formattable` POSIXlt vector
 #' @examples
 #' times <- as.POSIXlt("2015-04-10 09:30:15") + 1:5
 #' ftimes <- formattable(times, format = "%Y%m%dT%H%M%S")
@@ -460,10 +460,10 @@ render_html_matrix.formattable <- function(x, ...) {
 #' formatted table presented in HTML by default.
 #' To generate a formatted table, columns or areas of the
 #' input data frame can be transformed by formatter functions.
-#' @param x a \code{data.frame}.
+#' @param x a `data.frame`.
 #' @param formatters a list of formatter functions or formulas.
-#' The existing columns of \code{x} will be applied the formatter
-#' function in \code{formatters} if it exists.
+#' The existing columns of `x` will be applied the formatter
+#' function in `formatters` if it exists.
 #'
 #' If a formatter is specified by formula, then the formula will be
 #' interpreted as a lambda expression with its left-hand side being
@@ -471,22 +471,22 @@ render_html_matrix.formattable <- function(x, ...) {
 #' to represent the column values. The formula expression will be evaluated
 #' in the environment of the formula.
 #'
-#' If a formatter is \code{FALSE}, then the corresponding column will be hidden.
+#' If a formatter is `FALSE`, then the corresponding column will be hidden.
 #'
 #' Area formatter is specified in the form of
-#' \code{area(row, col) ~ formatter} without specifying the column name.
+#' `area(row, col) ~ formatter` without specifying the column name.
 #' @param format The output format: html, markdown or pandoc?
 #' @param align The alignment of columns: a character vector consisting
-#' of \code{'l'} (left), \code{'c'} (center), and/or \code{'r'} (right).
+#' of `'l'` (left), `'c'` (center), and/or `'r'` (right).
 #' By default, all columns are right-aligned.
-#' @param ... additional parameters to be passed to \code{knitr::kable}.
+#' @param ... additional parameters to be passed to `knitr::kable`.
 #' @param digits The number of significant digits to be used for numeric
 #'     and complex values.
-#' @param table.attr The HTML class of \code{<table>} created when
-#'     \code{format = "html"}
-#' @return a \code{knitr_kable} object whose \code{print} method generates a
-#' string-representation of \code{data} formatted by \code{formatter} in
-#' specific \code{format}.
+#' @param table.attr The HTML class of `<table>` created when
+#'     `format = "html"`
+#' @return a `knitr_kable` object whose `print` method generates a
+#' string-representation of `data` formatted by `formatter` in
+#' specific `format`.
 #' @export
 #' @examples
 #' # mtcars (mpg in red)
@@ -529,7 +529,7 @@ render_html_matrix.formattable <- function(x, ...) {
 #' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 #' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
-#' @seealso \link{formattable}, \link{area}
+#' @seealso [formattable], [area]
 format_table <- function(x, formatters = list(),
   format = c("html", "markdown", "pandoc"), align = "r", ...,
   digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
@@ -557,10 +557,10 @@ format_table <- function(x, formatters = list(),
 #' the printed version.
 #'
 #' @inheritParams formattable.default
-#' @param x a \code{data.frame}
-#' @param formatter formatting function, \code{format_table} in default.
+#' @param x a `data.frame`
+#' @param formatter formatting function, `format_table` in default.
 #' @export
-#' @return a \code{formattable data.frame}
+#' @return a `formattable data.frame`
 #' @examples
 #' # mtcars (mpg in red)
 #' formattable(mtcars,
@@ -602,7 +602,7 @@ format_table <- function(x, formatters = list(),
 #' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 #' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
-#' @seealso \link{format_table}, \link{area}
+#' @seealso [format_table], [area]
 formattable.data.frame <- function(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",

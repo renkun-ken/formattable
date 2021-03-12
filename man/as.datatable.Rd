@@ -9,10 +9,10 @@ as.datatable(x, ...)
 \arguments{
 \item{x}{an object.}
 
-\item{...}{arguments to be passed to \code{\link[DT]{datatable}}}
+\item{...}{arguments to be passed to \code{\link[DT:datatable]{DT::datatable()}}}
 }
 \value{
-a \code{\link[DT]{datatable}} object
+a \code{\link[DT:datatable]{DT::datatable()}} object
 }
 \description{
 This function is a generic function to create an \code{htmlwidget}

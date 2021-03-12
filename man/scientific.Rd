@@ -9,7 +9,7 @@ scientific(x, format = c("e", "E"), ...)
 \arguments{
 \item{x}{a numeric vector.}
 
-\item{format}{format type passed to \code{\link{formatC}}.}
+\item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
 \item{...}{additional parameter passed to \code{formattable}.}
 }
