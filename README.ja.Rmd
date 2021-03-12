@@ -1,5 +1,5 @@
 ---
-output: rmarkdown::github_document
+output: downlit::readme_document
 ---
 <!-- README.md is generated from README.Rmd on GitHub Actions: do not edit by hand -->
 
