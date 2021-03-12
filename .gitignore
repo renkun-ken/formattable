@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 /README.html
+/README.ja.html
 inst/doc
 .vscode/
 docs

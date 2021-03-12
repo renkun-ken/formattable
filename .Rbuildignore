@@ -6,6 +6,7 @@
 ^README.*\.Rmd$
 ^README\..*\.md$
 ^README\.html$
+^README\.ja\.html$
 ^LICENSE\.md$
 ^.*\.o$
 ^CRAN-RELEASE$
