@@ -163,7 +163,7 @@ and columns.</p>
 the representation of row and column selector expressions.
 When the function is called, the expressions and environment
 of <code>row</code> and <code>column</code> are captured for
-<code>format_table</code> to evaluate within the context of the
+<code><a href='format_table.html'>format_table()</a></code> to evaluate within the context of the
 input <code>data.frame</code>, that is, <code>rownames</code> and
 <code>colnames</code> are defined in the context to be the indices
 of rows and columns, respectively. Therefore, the row names
@@ -184,7 +184,7 @@ easier to specify range with names, for example,
 #&gt; c("mpg", "cyl")
 #&gt; 
 #&gt; $envir
-#&gt; &lt;environment: 0x55fb1da26390&gt;
+#&gt; &lt;environment: 0x5610d94334b0&gt;
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span>col <span class='op'>=</span> <span class='va'>mpg</span><span class='op'>:</span><span class='va'>cyl</span><span class='op'>)</span>
@@ -195,7 +195,7 @@ easier to specify range with names, for example,
 #&gt; mpg:cyl
 #&gt; 
 #&gt; $envir
-#&gt; &lt;environment: 0x55fb1da26390&gt;
+#&gt; &lt;environment: 0x5610d94334b0&gt;
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span>row <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
@@ -206,7 +206,7 @@ easier to specify range with names, for example,
 #&gt; [1] TRUE
 #&gt; 
 #&gt; $envir
-#&gt; &lt;environment: 0x55fb1da26390&gt;
+#&gt; &lt;environment: 0x5610d94334b0&gt;
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span>row <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, col <span class='op'>=</span> <span class='fl'>5</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
@@ -217,7 +217,7 @@ easier to specify range with names, for example,
 #&gt; 5:10
 #&gt; 
 #&gt; $envir
-#&gt; &lt;environment: 0x55fb1da26390&gt;
+#&gt; &lt;environment: 0x5610d94334b0&gt;
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='va'>col1</span><span class='op'>:</span><span class='va'>col5</span><span class='op'>)</span>
@@ -228,7 +228,7 @@ easier to specify range with names, for example,
 #&gt; col1:col5
 #&gt; 
 #&gt; $envir
-#&gt; &lt;environment: 0x55fb1da26390&gt;
+#&gt; &lt;environment: 0x5610d94334b0&gt;
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "area"</div></pre>
