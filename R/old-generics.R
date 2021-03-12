@@ -17,3 +17,14 @@ accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
 accounting.default <- num_accounting
 #' @export
 accounting.character <- parse_accounting
+
+#' @inheritParams num_comma
+#' @rdname legacy
+#' @export
+comma <- function(x, digits, format = "f", big.mark = ",", ...) {
+  UseMethod("comma")
+}
+#' @export
+comma.default <- num_comma
+#' @export
+comma.character <- parse_comma

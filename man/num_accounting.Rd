@@ -36,4 +36,8 @@ num_accounting(-12500)
 num_accounting(c(1200, -3500, 2600), format = "d")
 parse_accounting(c("123,23.50", "(123.243)"))
 }
+\seealso{
+Other numeric vectors: 
+\code{\link{num_comma}()}
+}
 \concept{numeric vectors}

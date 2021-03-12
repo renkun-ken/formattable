@@ -1,27 +1,26 @@
 #' Numeric vector with thousands separators
+#'
+#' Formats numbers with a thousand separator
+#' and a prespecified number of digits after the decimal point.
+#'
+#' @family numeric vectors
 #' @inheritParams percent
 #' @param big.mark thousands separator
 #' @export
-comma <- function(x, digits, format = "f", big.mark = ",", ...) {
-  UseMethod("comma")
-}
-
-#' @rdname comma
-#' @export
 #' @examples
-#' comma(1000000)
-#' comma(c(1250000, 225000))
-#' comma(c(1250000, 225000), format = "d")
-comma.default <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
+#' num_comma(1000000)
+#' num_comma(c(1250000, 225000))
+#' num_comma(c(1250000, 225000), format = "d")
+num_comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(as_numeric(x), format = format, big.mark = big.mark, digits = digits, ...)
 }
 
-#' @rdname comma
+#' @rdname num_comma
 #' @export
 #' @examples
-#' comma("123,345.123")
-comma.character <- function(x, digits = max(get_digits(x)),
-                            format = "f", big.mark = ",", ...) {
+#' parse_comma("123,345.123")
+parse_comma <- function(x, digits = max(get_digits(x)),
+                        format = "f", big.mark = ",", ...) {
   copy_dim(x, comma.default(as.numeric(gsub(big.mark, "", x, fixed = TRUE)),
     digits = digits, format = format, big.mark = big.mark, ...
   ))

@@ -3,9 +3,12 @@
 \name{legacy}
 \alias{legacy}
 \alias{accounting}
+\alias{comma}
 \title{Legacy generics}
 \usage{
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
+
+comma(x, digits, format = "f", big.mark = ",", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}
