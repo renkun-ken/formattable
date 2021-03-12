@@ -36,9 +36,9 @@ percent(x, digits, format = "f", ...)
 \item{symbol}{currency symbol}
 }
 \description{
-\ifelse{html}{\figure{lifecycle-deprecated.svg}{options: alt='Deprecated lifecycle'}}{\strong{Deprecated}}
+\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#superseded'><img src='figures/lifecycle-superseded.svg' alt='Superseded lifecycle'></a>}}{\strong{Superseded}}
 
-These generics and functions are soft-deprecated.
+These generics and functions are superseded.
 New code should use the \code{num_...()} or \code{parse_...()} functions instead,
 such as \code{\link[=num_accounting]{num_accounting()}}.
 }
