@@ -3,7 +3,7 @@
 #' @param x a numeric vector
 #' @param digits an integer to indicate the number of digits to show.
 #' @param format format type passed to [formatC()].
-#' @param ... additional parameters passed to `formattable`.
+#' @param ... additional parameters passed to [formattable()].
 #' @export
 #' @examples
 #' digits(pi, 2)

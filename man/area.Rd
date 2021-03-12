@@ -24,7 +24,7 @@ The function creates an \code{area} object to store
 the representation of row and column selector expressions.
 When the function is called, the expressions and environment
 of \code{row} and \code{column} are captured for
-\code{format_table} to evaluate within the context of the
+\code{\link[=format_table]{format_table()}} to evaluate within the context of the
 input \code{data.frame}, that is, \code{rownames} and
 \code{colnames} are defined in the context to be the indices
 of rows and columns, respectively. Therefore, the row names

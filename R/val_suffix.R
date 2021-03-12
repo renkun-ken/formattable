@@ -3,7 +3,7 @@
 #' @param suffix a character vector put behind each non-missing
 #' value in `x` as being formatted.
 #' @param sep separator
-#' @param ... additional parameter passed to `formattable`.
+#' @param ... additional parameter passed to [formattable()].
 #' @param na.text text for missing values in `x`.
 #' @export
 #' @examples

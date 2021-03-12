@@ -1,11 +1,11 @@
 #' Vectorized map from element to case by index or string value
 #'
-#' This function is a vectorized version of `switch`, that is, for
-#' each element of input vector, `switch` is evaluated and the results are
+#' This function is a vectorized version of [switch()], that is, for
+#' each element of input vector, [switch()] is evaluated and the results are
 #' combined.
 #'
 #' @param EXPR an expression evaluated to be character or numeric vector/list.
-#' @param ... The list of alternatives for each `switch`.
+#' @param ... The list of alternatives for each [switch()].
 #' @param SIMPLIFY `TRUE` to simplify the resulted list to vector, matrix
 #' or array if possible.
 #' @seealso [switch()]
@@ -28,7 +28,7 @@ vmap <- function(EXPR, ..., SIMPLIFY = TRUE) {
 #' position of ranking resulted from rank divided by the length
 #' of vector.
 #' @param x a vector
-#' @param ... additional parameters passed to `rank`
+#' @param ... additional parameters passed to [rank()]
 #' @seealso [rank()]
 #' @export
 #' @examples

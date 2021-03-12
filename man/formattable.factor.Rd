@@ -11,7 +11,7 @@
 
 \item{...}{arguments to be passed to \code{formatter}.}
 
-\item{formatter}{formatting function, \code{vmap} in default.}
+\item{formatter}{formatting function, \code{\link[=vmap]{vmap()}} in default.}
 
 \item{preproc}{pre-processor function that prepares \code{x} for
 formatting function.}

@@ -9,7 +9,7 @@ normalize_bar(color = "lightgray", ...)
 \arguments{
 \item{color}{the background color of the bars}
 
-\item{...}{additional parameters passed to \code{normalize}}
+\item{...}{additional parameters passed to \code{\link[=normalize]{normalize()}}}
 }
 \description{
 Create a color-bar formatter using normalize
@@ -18,5 +18,5 @@ Create a color-bar formatter using normalize
 formattable(mtcars, list(mpg = normalize_bar()))
 }
 \seealso{
-\link{color_bar}, \link{normalize}
+\code{\link[=color_bar]{color_bar()}}, \code{\link[=normalize]{normalize()}}
 }

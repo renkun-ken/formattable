@@ -11,7 +11,7 @@
 
 \item{...}{arguments to be passed to \code{formatter}.}
 
-\item{formatter}{formatting function, \code{format.Date} in default.}
+\item{formatter}{formatting function, \code{\link[=format.Date]{format.Date()}} in default.}
 
 \item{preproc}{pre-processor function that prepares \code{x} for
 formatting function.}
