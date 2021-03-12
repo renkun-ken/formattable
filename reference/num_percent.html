@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Formattable object with suffix — suffix • formattable</title>
+<title>Numeric vector with percentage representation — num_percent • formattable</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Formattable object with suffix — suffix" />
-<meta property="og:description" content="Formattable object with suffix" />
+<meta property="og:title" content="Numeric vector with percentage representation — num_percent" />
+<meta property="og:description" content="Formats numbers as percentages." />
 
 
 
@@ -125,52 +125,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Formattable object with suffix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/renkun-ken/formattable/blob/master/R/val_suffix.R'><code>R/val_suffix.R</code></a></small>
-    <div class="hidden name"><code>suffix.Rd</code></div>
+    <h1>Numeric vector with percentage representation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/renkun-ken/formattable/blob/master/R/num_percent.R'><code>R/num_percent.R</code></a></small>
+    <div class="hidden name"><code>num_percent.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Formattable object with suffix</p>
+    <p>Formats numbers as percentages.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>suffix</span><span class='op'>(</span><span class='va'>x</span>, suffix <span class='op'>=</span> <span class='st'>""</span>, sep <span class='op'>=</span> <span class='st'>""</span>, <span class='va'>...</span>, na.text <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>num_percent</span><span class='op'>(</span><span class='va'>x</span>, digits <span class='op'>=</span> <span class='fl'>2L</span>, format <span class='op'>=</span> <span class='st'>"f"</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>parse_percent</span><span class='op'>(</span><span class='va'>x</span>, digits <span class='op'>=</span> <span class='cn'>NA</span>, format <span class='op'>=</span> <span class='st'>"f"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>an object</p></td>
+      <td><p>a numeric vector.</p></td>
     </tr>
     <tr>
-      <th>suffix</th>
-      <td><p>a character vector put behind each non-missing
-value in <code>x</code> as being formatted.</p></td>
+      <th>digits</th>
+      <td><p>an integer to indicate the number of digits of the percentage string.</p></td>
     </tr>
     <tr>
-      <th>sep</th>
-      <td><p>separator</p></td>
+      <th>format</th>
+      <td><p>format type passed to <code><a href='https://rdrr.io/r/base/formatc.html'>formatC()</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional parameter passed to <code><a href='formattable.html'>formattable()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>na.text</th>
-      <td><p>text for missing values in <code>x</code>.</p></td>
+      <td><p>additional parameters passed to <code><a href='formattable.html'>formattable()</a></code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other numeric vectors: 
+<code><a href='num_accounting.html'>num_accounting</a>()</code>,
+<code><a href='num_comma.html'>num_comma</a>()</code>,
+<code><a href='num_currency.html'>num_currency</a>()</code>,
+<code><a href='num_digits.html'>num_digits</a>()</code>,
+<code><a href='num_scientific.html'>num_scientific</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>suffix</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='st'>"px"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 1px  2px  3px  4px  5px  6px  7px  8px  9px  10px</div><div class='input'><span class='fu'>suffix</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> <span class='op'>&gt;=</span> <span class='fl'>2</span>, <span class='st'>"units"</span>, <span class='st'>"unit"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 1 unit   2 units  3 units  4 units  5 units  6 units  7 units  8 units 
-#&gt;  [9] 9 units  10 units</div><div class='input'><span class='fu'>suffix</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='cn'>NA</span><span class='op'>)</span>, <span class='st'>"km/h"</span>, na.text <span class='op'>=</span> <span class='st'>"(missing)"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 1km/h     2km/h     3km/h     4km/h     5km/h     6km/h     7km/h    
-#&gt;  [8] 8km/h     9km/h     10km/h    (missing)</div><div class='input'><span class='fu'>suffix</span><span class='op'>(</span><span class='fu'><a href='legacy.html'>percent</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>0.25</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>"*"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 10.00%* 25.00%*</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>num_percent</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>0.1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 4.24%  10.63% 10.49% -0.38% 4.86%  16.73% -3.54% 9.46%  13.17% -2.97%</div><div class='input'><span class='fu'>num_percent</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>0.1</span><span class='op'>)</span>, digits <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] -4%  -8%  -11% -8%  -18% -7%  -6%  -5%  2%   10% </div><div class='input'><span class='fu'>parse_percent</span><span class='op'>(</span><span class='st'>"0.5%"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.5%</div><div class='input'><span class='fu'>parse_percent</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"15.5%"</span>, <span class='st'>"25.12%"</span>, <span class='st'>"73.5"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 15.50%   25.12%   7350.00%</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
