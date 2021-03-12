@@ -67,8 +67,11 @@ style <- function(...) {
 #' icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)
 #' icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
 icontext <- function(icon, text = list(NULL), ..., simplify = TRUE,
-  provider = getOption("formattable.icon.provider", "glyphicon"),
-  class_template = getOption("formattable.icon.class_template", "{provider} {provider}-{icon}")) {
+                     provider = getOption("formattable.icon.provider", "glyphicon"),
+                     class_template = getOption("formattable.icon.class_template", "{provider} {provider}-{icon}")) {
+
+  check_installed("htmltools")
+
   class_template <- gsub("{provider}", provider, class_template, fixed = TRUE)
   x <- .mapply(function(icon, text) {
     htmltools::tagList(

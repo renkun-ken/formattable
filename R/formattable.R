@@ -531,8 +531,10 @@ render_html_matrix.formattable <- function(x, ...) {
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
 #' @seealso [formattable], [area]
 format_table <- function(x, formatters = list(),
-  format = c("html", "markdown", "pandoc"), align = "r", ...,
-  digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
+                         format = c("html", "markdown", "pandoc"), align = "r", ...,
+                         digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
+  check_installed("knitr")
+
   format <- match.arg(format)
   mat <- render_html_matrix(x, formatters, digits)
   knitr::kable(mat, format = format, align = align, escape = FALSE, ...,

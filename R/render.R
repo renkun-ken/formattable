@@ -62,6 +62,9 @@ as.htmlwidget <- function(x, ...)
 #' @export
 as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
   if (!is.formattable(x)) stop("expect formattable to be a formattable", call. = FALSE)
+
+  check_installed("htmlwidgets", "rmarkdown", "htmltools")
+
   html <- gsub('th align="', 'th class="text-',
     format(x, format = list(format = "html")), fixed = TRUE)
 
@@ -73,6 +76,7 @@ as.htmlwidget.formattable <- function(x, width = "100%", height = NULL, ...) {
     height = height, package = "formattable", ...)
 }
 
+# Found by htmlwidgets, necessary even if not called or used otherwise
 formattable_widget_html <- function(name, package, id, style, class, width, height) {
   htmltools::attachDependencies(
     htmltools::tags$div(id = id, class = class, style = style,
@@ -90,6 +94,8 @@ formattable_widget_html <- function(name, package, id, style, class, width, heig
 #' @param height valid `CSS` height or a number
 #' @export
 formattableOutput <- function(outputId, width = "100%", height = "0") {
+  check_installed("htmlwidgets", "rmarkdown")
+
   htmlwidgets::shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
 }
 
@@ -100,6 +106,8 @@ formattableOutput <- function(outputId, width = "100%", height = "0") {
 #' This is useful if you want to save an expression in a variable.
 #' @export
 renderFormattable <- function(expr, env = parent.frame(), quoted = FALSE) {
+  check_installed("htmlwidgets", "rmarkdown")
+
   if (!quoted) { expr <- substitute(formattable::as.htmlwidget(expr)) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
 }

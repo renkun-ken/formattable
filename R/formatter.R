@@ -36,6 +36,8 @@
 #' formattable(mtcars, list(cyl = f1))
 #' @export
 formatter <- function(.tag, ...) {
+  check_installed("htmltools")
+
   fcall <- match.call(expand.dots = TRUE)
   args <- list(...)
 
