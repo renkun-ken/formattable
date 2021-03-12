@@ -7,7 +7,7 @@
 color_tile(...)
 }
 \arguments{
-\item{...}{parameters passed to \code{gradient}.}
+\item{...}{parameters passed to \code{\link[=gradient]{gradient()}}.}
 }
 \description{
 Create a color-tile formatter

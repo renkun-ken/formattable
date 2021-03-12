@@ -29,14 +29,14 @@ percent(x, digits, format = "f", ...)
 
 \item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
-\item{...}{additional parameters passed to \code{formattable}.}
+\item{...}{additional parameters passed to \code{\link[=formattable]{formattable()}}.}
 
 \item{big.mark}{thousands separator}
 
 \item{symbol}{currency symbol}
 }
 \description{
-\ifelse{html}{\out{<a href='https://www.tidyverse.org/lifecycle/#superseded'><img src='figures/lifecycle-superseded.svg' alt='Superseded lifecycle'></a>}}{\strong{Superseded}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
 
 These generics and functions are superseded.
 New code should use the \code{num_...()} or \code{parse_...()} functions instead,

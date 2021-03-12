@@ -16,7 +16,7 @@ parse_percent(x, digits = NA, format = "f", ...)
 
 \item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
-\item{...}{additional parameters passed to \code{formattable}.}
+\item{...}{additional parameters passed to \code{\link[=formattable]{formattable()}}.}
 }
 \description{
 Formats numbers as percentages.

@@ -9,7 +9,7 @@ qrank(x, ...)
 \arguments{
 \item{x}{a vector}
 
-\item{...}{additional parameters passed to \code{rank}}
+\item{...}{additional parameters passed to \code{\link[=rank]{rank()}}}
 }
 \description{
 The quantile rank of a number in a vector is the relative

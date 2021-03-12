@@ -5,7 +5,7 @@
 #' @family numeric vectors
 #' @param x a numeric vector.
 #' @param format format type passed to [formatC()].
-#' @param ... additional parameter passed to `formattable`.
+#' @param ... additional parameter passed to [formattable()].
 #' @export
 #' @examples
 #' num_scientific(1250000)

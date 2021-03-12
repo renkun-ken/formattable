@@ -18,7 +18,7 @@ parse_comma(x, digits = max(get_digits(x)), format = "f", big.mark = ",", ...)
 
 \item{big.mark}{thousands separator}
 
-\item{...}{additional parameters passed to \code{formattable}.}
+\item{...}{additional parameters passed to \code{\link[=formattable]{formattable()}}.}
 }
 \description{
 Formats numbers with a thousand separator

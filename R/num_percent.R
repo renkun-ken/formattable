@@ -6,7 +6,7 @@
 #' @param x a numeric vector.
 #' @param digits an integer to indicate the number of digits of the percentage string.
 #' @param format format type passed to [formatC()].
-#' @param ... additional parameters passed to `formattable`.
+#' @param ... additional parameters passed to [formattable()].
 #' @export
 #' @examples
 #' num_percent(rnorm(10, 0, 0.1))

@@ -11,7 +11,7 @@ num_scientific(x, format = c("e", "E"), ...)
 
 \item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
-\item{...}{additional parameter passed to \code{formattable}.}
+\item{...}{additional parameter passed to \code{\link[=formattable]{formattable()}}.}
 }
 \description{
 Formats numbers in scientific format.

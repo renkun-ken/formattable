@@ -24,7 +24,7 @@ parse_accounting(
 
 \item{big.mark}{thousands separator}
 
-\item{...}{additional parameters passed to \code{formattable}.}
+\item{...}{additional parameters passed to \code{\link[=formattable]{formattable()}}.}
 }
 \description{
 Formats numbers with a thousand separator

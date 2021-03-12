@@ -28,7 +28,7 @@ is.formattable <- function(x) {
 #' Create a formattable object
 #' @inheritParams formattable
 #' @param ... arguments to be passed to `formatter`.
-#' @param formatter formatting function, `formatC` in default.
+#' @param formatter formatting function, [formatC()] in default.
 #' @param preproc pre-processor function that prepares `x` for
 #' formatting function.
 #' @param postproc post-processor function that transforms formatted
@@ -78,7 +78,7 @@ formattable.table <- function(x, ..., formatter = "format",
 #' Create a formattable logical vector
 #' @inheritParams formattable.default
 #' @param x a logical vector.
-#' @param formatter formatting function, `formattable::ifelse` in default.
+#' @param formatter formatting function, [formattable::ifelse()] in default.
 #' @export
 #' @return a `formattable` logical vector.
 #' @examples
@@ -98,7 +98,7 @@ formattable.logical <- function(x, ..., formatter = "ifelse",
 #' Create a formattable factor object
 #' @inheritParams formattable.default
 #' @param x a factor object.
-#' @param formatter formatting function, `vmap` in default.
+#' @param formatter formatting function, [vmap()] in default.
 #' @export
 #' @return a `formattable` factor object.
 #' @examples
@@ -114,7 +114,7 @@ formattable.factor <- function(x, ..., formatter = "vmap",
 #' Create a formattable Date vector
 #' @inheritParams formattable.default
 #' @param x a vector of class `Date`.
-#' @param formatter formatting function, `format.Date` in default.
+#' @param formatter formatting function, [format.Date()] in default.
 #' @export
 #' @return a `formattable` Date vector
 #' @examples
@@ -132,7 +132,7 @@ formattable.Date <- function(x, ..., formatter = "format.Date",
 #' Create a formattable POSIXct vector
 #' @inheritParams formattable.default
 #' @param x a vector of class `POSIXct`.
-#' @param formatter formatting function, `format.POSIXct` in default.
+#' @param formatter formatting function, [format.POSIXct()] in default.
 #' @export
 #' @return a `formattable` POSIXct vector
 #' @examples
@@ -214,15 +214,13 @@ knit_print_formattable <- function(x, ...)
 
 knit_print_formattable.default <- print_formattable.default
 
-#' @importFrom knitr asis_output
 knit_print_formattable.data.frame <- function(x, ...) {
   format <- attr(x, "formattable", exact = TRUE)$format
   caption <- if (isTRUE(format$format == "pandoc" && nzchar(format$caption))) "<!-- -->\n\n" else ""
-  asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
+  knitr::asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
 }
 
-#' @export
-#' @importFrom knitr knit_print
+# Registered in .onLoad()
 knit_print.formattable <- function(x, ...)
   knit_print_formattable(x, ...)
 
@@ -462,7 +460,6 @@ render_html_matrix.formattable <- function(x, ...) {
 #' formatted table presented in HTML by default.
 #' To generate a formatted table, columns or areas of the
 #' input data frame can be transformed by formatter functions.
-#' @importFrom knitr kable
 #' @param x a `data.frame`.
 #' @param formatters a list of formatter functions or formulas.
 #' The existing columns of `x` will be applied the formatter
@@ -482,12 +479,12 @@ render_html_matrix.formattable <- function(x, ...) {
 #' @param align The alignment of columns: a character vector consisting
 #' of `'l'` (left), `'c'` (center), and/or `'r'` (right).
 #' By default, all columns are right-aligned.
-#' @param ... additional parameters to be passed to `knitr::kable`.
+#' @param ... additional parameters to be passed to [knitr::kable()].
 #' @param digits The number of significant digits to be used for numeric
 #'     and complex values.
 #' @param table.attr The HTML class of `<table>` created when
 #'     `format = "html"`
-#' @return a `knitr_kable` object whose `print` method generates a
+#' @return a `knitr_kable` object whose [print()] method generates a
 #' string-representation of `data` formatted by `formatter` in
 #' specific `format`.
 #' @export
@@ -532,13 +529,15 @@ render_html_matrix.formattable <- function(x, ...) {
 #' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 #' format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
-#' @seealso [formattable], [area]
+#' @seealso [formattable()], [area()]
 format_table <- function(x, formatters = list(),
-  format = c("html", "markdown", "pandoc"), align = "r", ...,
-  digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
+                         format = c("html", "markdown", "pandoc"), align = "r", ...,
+                         digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
+  check_installed("knitr")
+
   format <- match.arg(format)
   mat <- render_html_matrix(x, formatters, digits)
-  kable(mat, format = format, align = align, escape = FALSE, ...,
+  knitr::kable(mat, format = format, align = align, escape = FALSE, ...,
     table.attr = table.attr)
 }
 
@@ -561,7 +560,7 @@ format_table <- function(x, formatters = list(),
 #'
 #' @inheritParams formattable.default
 #' @param x a `data.frame`
-#' @param formatter formatting function, `format_table` in default.
+#' @param formatter formatting function, [format_table()] in default.
 #' @export
 #' @return a `formattable data.frame`
 #' @examples
@@ -605,7 +604,7 @@ format_table <- function(x, formatters = list(),
 #' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 #' formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
-#' @seealso [format_table], [area]
+#' @seealso [format_table()], [area()]
 formattable.data.frame <- function(x, ..., formatter = "format_table",
   preproc = NULL, postproc = NULL) {
   create_obj(x, "formattable",

@@ -9,14 +9,14 @@ vmap(EXPR, ..., SIMPLIFY = TRUE)
 \arguments{
 \item{EXPR}{an expression evaluated to be character or numeric vector/list.}
 
-\item{...}{The list of alternatives for each \code{switch}.}
+\item{...}{The list of alternatives for each \code{\link[=switch]{switch()}}.}
 
 \item{SIMPLIFY}{\code{TRUE} to simplify the resulted list to vector, matrix
 or array if possible.}
 }
 \description{
-This function is a vectorized version of \code{switch}, that is, for
-each element of input vector, \code{switch} is evaluated and the results are
+This function is a vectorized version of \code{\link[=switch]{switch()}}, that is, for
+each element of input vector, \code{\link[=switch]{switch()}} is evaluated and the results are
 combined.
 }
 \examples{

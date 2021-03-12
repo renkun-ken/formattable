@@ -17,7 +17,7 @@
 
 \item{...}{arguments to be passed to \code{formatter}.}
 
-\item{formatter}{formatting function, \code{format_table} in default.}
+\item{formatter}{formatting function, \code{\link[=format_table]{format_table()}} in default.}
 
 \item{preproc}{pre-processor function that prepares \code{x} for
 formatting function.}
@@ -87,5 +87,5 @@ formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
   area(6:10) ~ color_tile("transparent", "lightpink")))
 }
 \seealso{
-\link{format_table}, \link{area}
+\code{\link[=format_table]{format_table()}}, \code{\link[=area]{area()}}
 }

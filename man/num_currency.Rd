@@ -35,7 +35,7 @@ parse_currency(
 
 \item{big.mark}{thousands separator}
 
-\item{...}{additional parameters passed to \code{formattable}.}
+\item{...}{additional parameters passed to \code{\link[=formattable]{formattable()}}.}
 
 \item{sep}{separator between symbol and value}
 }
