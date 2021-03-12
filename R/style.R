@@ -60,7 +60,6 @@ style <- function(...) {
 #' represent `icon` values.
 #' @seealso [Glyphicons in Bootstrap](https://getbootstrap.com/docs/3.4/components/#glyphicons),
 #' [Glyphicons](https://glyphicons.com/)
-#' @importFrom htmltools tagList tag
 #' @export
 #' @examples
 #' icontext("plus")
@@ -68,13 +67,16 @@ style <- function(...) {
 #' icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)
 #' icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
 icontext <- function(icon, text = list(NULL), ..., simplify = TRUE,
-  provider = getOption("formattable.icon.provider", "glyphicon"),
-  class_template = getOption("formattable.icon.class_template", "{provider} {provider}-{icon}")) {
+                     provider = getOption("formattable.icon.provider", "glyphicon"),
+                     class_template = getOption("formattable.icon.class_template", "{provider} {provider}-{icon}")) {
+
+  check_installed("htmltools")
+
   class_template <- gsub("{provider}", provider, class_template, fixed = TRUE)
   x <- .mapply(function(icon, text) {
-    tagList(
+    htmltools::tagList(
       lapply(icon, function(ico)
-        tag("i",
+        htmltools::tag("i",
           list(class = gsub("{icon}", ico, class_template, fixed = TRUE)))), text)
   }, list(icon, text), NULL)
   if (simplify && length(x) == 1L) x[[1L]] else x

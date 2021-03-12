@@ -214,15 +214,13 @@ knit_print_formattable <- function(x, ...)
 
 knit_print_formattable.default <- print_formattable.default
 
-#' @importFrom knitr asis_output
 knit_print_formattable.data.frame <- function(x, ...) {
   format <- attr(x, "formattable", exact = TRUE)$format
   caption <- if (isTRUE(format$format == "pandoc" && nzchar(format$caption))) "<!-- -->\n\n" else ""
-  asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
+  knitr::asis_output(sprintf("\n%s%s\n", caption, paste0(as.character(x), collapse = "\n")))
 }
 
-#' @export
-#' @importFrom knitr knit_print
+# Registered in .onLoad()
 knit_print.formattable <- function(x, ...)
   knit_print_formattable(x, ...)
 
@@ -462,7 +460,6 @@ render_html_matrix.formattable <- function(x, ...) {
 #' formatted table presented in HTML by default.
 #' To generate a formatted table, columns or areas of the
 #' input data frame can be transformed by formatter functions.
-#' @importFrom knitr kable
 #' @param x a `data.frame`.
 #' @param formatters a list of formatter functions or formulas.
 #' The existing columns of `x` will be applied the formatter
@@ -534,11 +531,13 @@ render_html_matrix.formattable <- function(x, ...) {
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
 #' @seealso [formattable()], [area()]
 format_table <- function(x, formatters = list(),
-  format = c("html", "markdown", "pandoc"), align = "r", ...,
-  digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
+                         format = c("html", "markdown", "pandoc"), align = "r", ...,
+                         digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
+  check_installed("knitr")
+
   format <- match.arg(format)
   mat <- render_html_matrix(x, formatters, digits)
-  kable(mat, format = format, align = align, escape = FALSE, ...,
+  knitr::kable(mat, format = format, align = align, escape = FALSE, ...,
     table.attr = table.attr)
 }
 

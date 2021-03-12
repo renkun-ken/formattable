@@ -23,14 +23,14 @@ BugReports: https://github.com/renkun-ken/formattable/issues
 Depends:
     R (> 3.0.2)
 Imports:
-    htmltools,
-    htmlwidgets,
-    knitr,
-    methods,
-    rmarkdown
+    methods
 Suggests: 
     covr,
     DT,
+    htmltools,
+    htmlwidgets,
+    knitr,
+    rmarkdown,
     shiny,
     testthat (>= 3.0.0)
 VignetteBuilder: 
