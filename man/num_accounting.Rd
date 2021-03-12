@@ -16,9 +16,9 @@ parse_accounting(
 )
 }
 \arguments{
-\item{x}{a numeric vector}
+\item{x}{a numeric vector.}
 
-\item{digits}{an integer to indicate the number of digits to show.}
+\item{digits}{an integer to indicate the number of digits of the percentage string.}
 
 \item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 

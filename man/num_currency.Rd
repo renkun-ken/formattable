@@ -25,7 +25,17 @@ parse_currency(
 )
 }
 \arguments{
+\item{x}{a numeric vector.}
+
 \item{symbol}{currency symbol}
+
+\item{digits}{an integer to indicate the number of digits of the percentage string.}
+
+\item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
+
+\item{big.mark}{thousands separator}
+
+\item{...}{additional parameters passed to \code{formattable}.}
 
 \item{sep}{separator between symbol and value}
 }

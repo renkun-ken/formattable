@@ -4,7 +4,7 @@
 #' and a currency indicator.
 #'
 #' @family numeric vectors
-#' @inheritParams comma
+#' @inheritParams num_comma
 #' @param symbol currency symbol
 #' @param sep separator between symbol and value
 #' @export

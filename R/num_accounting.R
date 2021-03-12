@@ -4,7 +4,7 @@
 #' and two digits after the decimal point.
 #'
 #' @family numeric vectors
-#' @inheritParams comma
+#' @inheritParams num_comma
 #' @export
 #' @examples
 #' num_accounting(15320)
