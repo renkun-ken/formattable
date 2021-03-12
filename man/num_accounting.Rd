@@ -16,9 +16,9 @@ parse_accounting(
 )
 }
 \arguments{
-\item{x}{a numeric vector.}
+\item{x}{a numeric vector}
 
-\item{digits}{an integer to indicate the number of digits of the percentage string.}
+\item{digits}{an integer to indicate the number of digits to show.}
 
 \item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 
@@ -41,6 +41,7 @@ Other numeric vectors:
 \code{\link{num_comma}()},
 \code{\link{num_currency}()},
 \code{\link{num_digits}()},
-\code{\link{num_percent}()}
+\code{\link{num_percent}()},
+\code{\link{num_scientific}()}
 }
 \concept{numeric vectors}

@@ -9,10 +9,18 @@
 #' @import lifecycle
 #' @name legacy
 #' @keywords internal
+#' @inheritParams num_digits
 #' @export
 digits <- function(x, digits, format = "f", ...) {
   deprecate_soft("0.3.0", "formattable::digits()", "num_digits()")
   formattable(as.numeric(x), format = format, digits = digits, ...)
+}
+
+#' @inheritParams num_scientific
+#' @rdname legacy
+#' @export
+scientific <- function(x, format = c("e", "E"), ...) {
+  formattable(as_numeric(x), format = match.arg(format), ...)
 }
 
 #' @inheritParams num_accounting

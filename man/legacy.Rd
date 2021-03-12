@@ -3,6 +3,7 @@
 \name{legacy}
 \alias{legacy}
 \alias{digits}
+\alias{scientific}
 \alias{accounting}
 \alias{comma}
 \alias{currency}
@@ -10,6 +11,8 @@
 \title{Legacy generics}
 \usage{
 digits(x, digits, format = "f", ...)
+
+scientific(x, format = c("e", "E"), ...)
 
 accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 
@@ -20,9 +23,9 @@ currency(x, symbol, digits, format = "f", big.mark = ",", ...)
 percent(x, digits, format = "f", ...)
 }
 \arguments{
-\item{x}{a numeric vector.}
+\item{x}{a numeric vector}
 
-\item{digits}{an integer to indicate the number of digits of the percentage string.}
+\item{digits}{an integer to indicate the number of digits to show.}
 
 \item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
 

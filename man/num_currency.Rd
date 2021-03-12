@@ -47,6 +47,7 @@ Other numeric vectors:
 \code{\link{num_accounting}()},
 \code{\link{num_comma}()},
 \code{\link{num_digits}()},
-\code{\link{num_percent}()}
+\code{\link{num_percent}()},
+\code{\link{num_scientific}()}
 }
 \concept{numeric vectors}
