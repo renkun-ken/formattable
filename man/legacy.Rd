@@ -6,6 +6,7 @@
 \alias{accounting}
 \alias{comma}
 \alias{currency}
+\alias{percent}
 \title{Legacy generics}
 \usage{
 digits(x, digits, format = "f", ...)
@@ -15,6 +16,8 @@ accounting(x, digits = 2L, format = "f", big.mark = ",", ...)
 comma(x, digits, format = "f", big.mark = ",", ...)
 
 currency(x, symbol, digits, format = "f", big.mark = ",", ...)
+
+percent(x, digits, format = "f", ...)
 }
 \arguments{
 \item{x}{a numeric vector.}

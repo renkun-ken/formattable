@@ -40,6 +40,7 @@ parse_accounting(c("123,23.50", "(123.243)"))
 Other numeric vectors: 
 \code{\link{num_comma}()},
 \code{\link{num_currency}()},
-\code{\link{num_digits}()}
+\code{\link{num_digits}()},
+\code{\link{num_percent}()}
 }
 \concept{numeric vectors}

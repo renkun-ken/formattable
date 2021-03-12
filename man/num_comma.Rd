@@ -10,15 +10,7 @@ num_comma(x, digits = 2L, format = "f", big.mark = ",", ...)
 parse_comma(x, digits = max(get_digits(x)), format = "f", big.mark = ",", ...)
 }
 \arguments{
-\item{x}{a numeric vector.}
-
-\item{digits}{an integer to indicate the number of digits of the percentage string.}
-
-\item{format}{format type passed to \code{\link[=formatC]{formatC()}}.}
-
 \item{big.mark}{thousands separator}
-
-\item{...}{additional parameters passed to \code{formattable}.}
 }
 \description{
 Formats numbers with a thousand separator
@@ -34,6 +26,7 @@ parse_comma("123,345.123")
 Other numeric vectors: 
 \code{\link{num_accounting}()},
 \code{\link{num_currency}()},
-\code{\link{num_digits}()}
+\code{\link{num_digits}()},
+\code{\link{num_percent}()}
 }
 \concept{numeric vectors}

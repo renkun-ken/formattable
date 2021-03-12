@@ -51,3 +51,15 @@ currency <- function(x, symbol, digits,
 currency.default <- num_currency
 #' @export
 currency.character <- parse_currency
+
+#' @rdname legacy
+#' @inheritParams num_percent
+#' @export
+percent <- function(x, digits, format = "f", ...) {
+  deprecate_soft("0.3.0", "formattable::percent()", "num_percent()")
+  UseMethod("percent")
+}
+#' @export
+percent.default <- num_percent
+#' @export
+percent.character <- parse_percent
