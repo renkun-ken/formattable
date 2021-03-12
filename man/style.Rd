@@ -24,8 +24,8 @@ The general usage of CSS styling is
 
 \code{<span style = "color: red; border: 1px">Text</span>}
 
-The text color can be specified by `color`, the border of
-element by `border`, and etc.
+The text color can be specified by \code{color}, the border of
+element by \code{border}, and etc.
 
 Basic styles like \code{color}, \code{border}, \code{background}
 work properly and mostly consistently in modern web browsers.
@@ -44,5 +44,5 @@ formattable(mtcars, list(
 }
 \seealso{
 \href{https://www.w3.org/Style/CSS/all-properties}{List of CSS properties},
-  \href{https://www.w3schools.com/cssref/}{CSS Reference}
+\href{https://www.w3schools.com/cssref/}{CSS Reference}
 }
