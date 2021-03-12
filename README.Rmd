@@ -93,7 +93,7 @@ df <- data.frame(
 Plain table:
 
 ```{r,echo=FALSE,message=FALSE,results='asis'}
-knitr::kable(df)
+knitr::kable(df, format = "html")
 ```
 
 Formatted table with the following visualizations:

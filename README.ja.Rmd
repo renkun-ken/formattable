@@ -88,7 +88,7 @@ df <- data.frame(
 何もしない場合、次のようなテーブルが表示されます：
 
 ```{r,echo=FALSE,message=FALSE,results='asis'}
-knitr::kable(df)
+knitr::kable(df, format = "html")
 ```
 
 次のようにテーブルをフォーマットします：

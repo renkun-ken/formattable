@@ -127,18 +127,298 @@ df <- data.frame(
 
 何もしない場合、次のようなテーブルが表示されます：
 
-|  id | name   | age | grade | test1\_score | test2\_score | final\_score | registered |
-|----:|:-------|----:|:------|-------------:|-------------:|-------------:|:-----------|
-|   1 | Bob    |  28 | C     |          8.9 |          9.1 |         9.00 | TRUE       |
-|   2 | Ashley |  27 | A     |          9.5 |          9.1 |         9.30 | FALSE      |
-|   3 | James  |  30 | A     |          9.6 |          9.2 |         9.40 | TRUE       |
-|   4 | David  |  28 | C     |          8.9 |          9.1 |         9.00 | FALSE      |
-|   5 | Jenny  |  29 | B     |          9.1 |          8.9 |         9.00 | TRUE       |
-|   6 | Hans   |  29 | B     |          9.3 |          8.5 |         8.90 | TRUE       |
-|   7 | Leo    |  27 | B     |          9.3 |          9.2 |         9.25 | TRUE       |
-|   8 | John   |  27 | A     |          9.9 |          9.3 |         9.60 | FALSE      |
-|   9 | Emily  |  31 | C     |          8.5 |          9.1 |         8.80 | FALSE      |
-|  10 | Lee    |  30 | C     |          8.6 |          8.8 |         8.70 | FALSE      |
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+grade
+</th>
+<th style="text-align:right;">
+test1\_score
+</th>
+<th style="text-align:right;">
+test2\_score
+</th>
+<th style="text-align:right;">
+final\_score
+</th>
+<th style="text-align:left;">
+registered
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bob
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Ashley
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.30
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+James
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.6
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+9.40
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+David
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Jenny
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Hans
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+8.90
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Leo
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+9.25
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+John
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.9
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+9.60
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Emily
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+8.80
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Lee
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+8.8
+</td>
+<td style="text-align:right;">
+8.70
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
 
 次のようにテーブルをフォーマットします：
 
