@@ -1,10 +1,10 @@
 #' Formattable object with suffix
 #' @param x an object
 #' @param suffix a character vector put behind each non-missing
-#' value in \code{x} as being formatted.
+#' value in `x` as being formatted.
 #' @param sep separator
-#' @param ... additional parameter passed to \code{formattable}.
-#' @param na.text text for missing values in \code{x}.
+#' @param ... additional parameter passed to `formattable`.
+#' @param na.text text for missing values in `x`.
 #' @export
 #' @examples
 #' suffix(1:10, "px")

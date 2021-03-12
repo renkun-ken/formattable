@@ -22,7 +22,7 @@ conventional argument-passing in R.
 \details{
 The general usage of CSS styling is
 
-\code{<span style = "color: red; border: 1px">Text</span>}
+\verb{<span style = "color: red; border: 1px">Text</span>}
 
 The text color can be specified by \code{color}, the border of
 element by \code{border}, and etc.

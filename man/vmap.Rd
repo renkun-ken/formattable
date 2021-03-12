@@ -27,5 +27,5 @@ x <- c(1,1,2,1,2,2,1,1,2)
 vmap(x, "type-A", "type-B")
 }
 \seealso{
-\code{\link{switch}}
+\code{\link[=switch]{switch()}}
 }

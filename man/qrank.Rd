@@ -20,5 +20,5 @@ of vector.
 qrank(mtcars$mpg)
 }
 \seealso{
-\code{\link{rank}}
+\code{\link[=rank]{rank()}}
 }
