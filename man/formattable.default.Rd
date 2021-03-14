@@ -4,7 +4,7 @@
 \alias{formattable.default}
 \title{Create a formattable object}
 \usage{
-\method{formattable}{default}(x, ..., formatter, preproc = NULL, postproc = NULL)
+\method{formattable}{default}(x, ..., formatter, preproc = NULL, postproc = NULL, class = NULL)
 }
 \arguments{
 \item{x}{an object.}

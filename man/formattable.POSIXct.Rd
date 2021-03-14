@@ -9,7 +9,8 @@
   ...,
   formatter = "format.POSIXct",
   preproc = NULL,
-  postproc = NULL
+  postproc = NULL,
+  class = "formattable_datetime"
 )
 }
 \arguments{

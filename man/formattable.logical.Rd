@@ -4,7 +4,14 @@
 \alias{formattable.logical}
 \title{Create a formattable logical vector}
 \usage{
-\method{formattable}{logical}(x, ..., formatter = "ifelse", preproc = NULL, postproc = NULL)
+\method{formattable}{logical}(
+  x,
+  ...,
+  formatter = "ifelse",
+  preproc = NULL,
+  postproc = NULL,
+  class = "formattable_logical"
+)
 }
 \arguments{
 \item{x}{a logical vector.}

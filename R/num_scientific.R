@@ -12,5 +12,9 @@
 #' num_scientific(1253421, digits = 8)
 #' num_scientific(1253421, digits = 8, format = "E")
 num_scientific <- function(x, format = c("e", "E"), ...) {
-  formattable(as_numeric(x), format = match.arg(format), ...)
+  formattable(as_numeric(x),
+    format = match.arg(format),
+    class = "formattable_scientific",
+    ...
+  )
 }

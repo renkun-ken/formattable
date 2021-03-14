@@ -4,7 +4,14 @@
 \alias{formattable.factor}
 \title{Create a formattable factor object}
 \usage{
-\method{formattable}{factor}(x, ..., formatter = "vmap", preproc = NULL, postproc = NULL)
+\method{formattable}{factor}(
+  x,
+  ...,
+  formatter = "vmap",
+  preproc = NULL,
+  postproc = NULL,
+  class = "formattable_factor"
+)
 }
 \arguments{
 \item{x}{a factor object.}
