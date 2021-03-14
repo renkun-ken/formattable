@@ -39,8 +39,9 @@ is.formattable <- function(x) {
 #' @examples
 #' formattable(rnorm(10), formatter = "formatC", digits = 1)
 formattable.default <- function(x, ..., formatter,
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = NULL) {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -61,16 +62,18 @@ formattable.default <- function(x, ..., formatter,
 #'   postproc = function(str, x)
 #'     paste(str, ifelse(x <= 1, "unit", "units")))
 formattable.numeric <- function(x, ..., formatter = "formatC",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_numeric") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
 formattable.table <- function(x, ..., formatter = "format",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_table") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -89,8 +92,9 @@ formattable.table <- function(x, ..., formatter = "format",
 #' any(flogi)
 #' all(flogi)
 formattable.logical <- function(x, ..., formatter = "ifelse",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_logical") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -105,8 +109,9 @@ formattable.logical <- function(x, ..., formatter = "ifelse",
 #' formattable(as.factor(c("a", "b", "b", "c")),
 #'   a = "good", b = "fair", c = "bad")
 formattable.factor <- function(x, ..., formatter = "vmap",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_factor") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -123,8 +128,9 @@ formattable.factor <- function(x, ..., formatter = "vmap",
 #' fdates
 #' fdates + 30
 formattable.Date <- function(x, ..., formatter = "format.Date",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_date") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -141,8 +147,9 @@ formattable.Date <- function(x, ..., formatter = "format.Date",
 #' ftimes
 #' ftimes + 30
 formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_datetime") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -159,8 +166,9 @@ formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
 #' ftimes
 #' ftimes + 30
 formattable.POSIXlt <- function(x, ..., formatter = "format.POSIXlt",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_datetime") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -228,6 +236,7 @@ knit_print.formattable <- function(x, ...)
 format.formattable <- function(x, ...,
   format = NULL,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
+
   attrs <- attr(x, "formattable", exact = TRUE)
   if (length(x) == 0L || is.null(attrs) || is.null(attrs$formatter))
     return(NextMethod("format"))

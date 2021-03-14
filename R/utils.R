@@ -9,7 +9,8 @@ set_class <- function(x, class) {
 }
 
 create_obj <- function(x, class, attributes) {
-  if (!missing(attributes)) attr(x, class) <- attributes
+  base_class <- class[[length(class)]]
+  if (!missing(attributes)) attr(x, base_class) <- attributes
   set_class(x, class)
 }
 
