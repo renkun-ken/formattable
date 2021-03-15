@@ -96,6 +96,8 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE, type = .Platform$pkgType)
           remotes::install_github("r-lib/pkgdown")
+          # Begin custom: dep install
+          # End custom: dep install
         shell: Rscript {0}
 
       # Begin custom: install
