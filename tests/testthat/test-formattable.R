@@ -1,5 +1,3 @@
-context("formattable")
-
 test_that("formattable.default", {
   obj <- structure(list(x = 1, y = 2), class = c("test_object", "list"))
   fobj <- formattable(obj, formatter = function(obj) {

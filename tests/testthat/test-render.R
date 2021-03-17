@@ -1,5 +1,3 @@
-context("htmlwidget")
-
 test_that("conversion", {
   expect_is(as.htmlwidget(formattable(mtcars)), c("formattable_widget", "htmlwidget"))
 })

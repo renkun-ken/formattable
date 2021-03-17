@@ -1,5 +1,3 @@
-context("formatter")
-
 test_that("formatter", {
   expect_is(formatter("span", style = "color:red"), "function")
   expect_equal(formatter("span", style = "color: red")(c(1, 2, 3)),
