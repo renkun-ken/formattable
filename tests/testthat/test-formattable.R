@@ -28,8 +28,11 @@ test_that("formattable.numeric: formatting", {
   num <- rnorm(10)
   obj <- formattable(num, format = "f", digits = 2L)
   expect_s3_class(obj, c("formattable", "numeric"))
-  expect_equal(format(obj), formatC(num, format = "f", digits = 2L))
-  expect_equal(format(c(obj, 0.1)), formatC(c(num, 0.1), format = "f", digits = 2L))
+
+  expect_snapshot({
+    format(obj)
+    format(c(obj, 0.1))
+  })
 })
 
 test_that("formattable.numeric: [<- keeps attributes", {
