@@ -1,0 +1,12 @@
+linters: with_defaults(
+  line_length_linter(100),
+  commented_code_linter = NULL,
+  object_length_linter = object_length_linter(35),
+  object_name_linter = NULL,
+  object_usage_linter = NULL,
+  cyclocomp_linter = cyclocomp_linter(20),
+  spaces_left_parentheses_linter = NULL
+  )
+exclude: "# nolint all"
+exclude_start: "# nolint start"
+exclude_end: "# nolint end"
