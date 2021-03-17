@@ -3,7 +3,7 @@ test_that("suffix", {
 
   data <- 1:10
   obj <- suffix(data)
-  expect_is(obj, c("formattable", "integer"))
+  expect_s3_class(obj, c("formattable", "integer"))
   expect_equal(format(suffix(data, "px")), paste0(data, "px"))
   expect_equal(
     format(suffix(c(data, NA), "km/h", sep = " ", na.text = "missing")),

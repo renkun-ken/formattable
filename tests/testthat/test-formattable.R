@@ -1,5 +1,3 @@
-context("formattable")
-
 test_that("formattable.default", {
   obj <- structure(list(x = 1, y = 2), class = c("test_object", "list"))
   fobj <- formattable(obj, formatter = function(obj) {
@@ -7,7 +5,7 @@ test_that("formattable.default", {
     if (is.null(digits)) digits <- 2L
     sprintf("text_object { x: %s, y: %s }", round(obj$x, digits), round(obj$y, digits))
   })
-  expect_is(fobj, c("formattable", "test_object", "list"))
+  expect_s3_class(fobj, c("formattable", "test_object", "list"))
   expect_equal(fobj$x, obj$x)
   expect_equal(fobj$y, obj$y)
   expect_equal(format(fobj), "text_object { x: 1, y: 2 }")
@@ -20,52 +18,52 @@ test_that("formattable.default", {
 
 test_that("formattable.numeric", {
   obj <- formattable(numeric(), format = "f", digits = 2L)
-  expect_is(obj, c("formattable", "numeric"))
+  expect_s3_class(obj, c("formattable", "numeric"))
   expect_identical(format(obj), character())
 
   num <- rnorm(10)
   obj <- formattable(num, format = "f", digits = 2L)
-  expect_is(obj, c("formattable", "numeric"))
+  expect_s3_class(obj, c("formattable", "numeric"))
   expect_equal(format(obj), formatC(num, format = "f", digits = 2L))
   expect_equal(format(c(obj, 0.1)), formatC(c(num, 0.1), format = "f", digits = 2L))
 
   num <- 1:10
   obj <- formattable(num)
   obj_attr <- attr(obj, "formattable", TRUE)
-  expect_is(obj, c("formattable", "integer"))
+  expect_s3_class(obj, c("formattable", "integer"))
   obj[5] <- 0L
-  expect_is(obj, c("formattable", "integer"))
+  expect_s3_class(obj, c("formattable", "integer"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
   obj[5] <- 2.5
-  expect_is(obj, c("formattable", "numeric"))
+  expect_s3_class(obj, c("formattable", "numeric"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
   obj[6] <- "abc"
-  expect_is(obj, c("formattable", "character"))
+  expect_s3_class(obj, c("formattable", "character"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
   num <- 1:10
   obj <- formattable(num)
   obj_attr <- attr(obj, "formattable", TRUE)
-  expect_is(obj, c("formattable", "integer"))
+  expect_s3_class(obj, c("formattable", "integer"))
   obj[[5]] <- 0L
-  expect_is(obj, c("formattable", "integer"))
+  expect_s3_class(obj, c("formattable", "integer"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
   obj[[5]] <- 2.5
-  expect_is(obj, c("formattable", "numeric"))
+  expect_s3_class(obj, c("formattable", "numeric"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
   obj[[6]] <- "abc"
-  expect_is(obj, c("formattable", "character"))
+  expect_s3_class(obj, c("formattable", "character"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
 
   num <- rnorm(10)
   names(num) <- letters[seq_along(num)]
   obj <- formattable(num, format = "f", digits = 4L)
-  expect_is(obj, c("formattable", "numeric"))
-  expect_is(as.character(obj), "character")
+  expect_s3_class(obj, c("formattable", "numeric"))
+  expect_type(as.character(obj), "character")
   expect_equivalent(format(obj[1:4]), formatC(num[1:4], format = "f", digits = 4L))
   expect_equivalent(format(obj[[3]]), formatC(num[[3]], format = "f", digits = 4L))
   expect_equivalent(format(obj + 0.123456), formatC(num + 0.123456, format = "f", digits = 4L))
@@ -97,7 +95,7 @@ test_that("formattable.table", {
   x <- rbinom(100, 8, 0.5)
   tx <- table(x)
   fx <- formattable(tx)
-  expect_is(fx, c("formattable", "table"))
+  expect_s3_class(fx, c("formattable", "table"))
   expect_true(is.integer(fx))
   expect_identical(names(format(fx)), names(tx))
   expect_equal(format(fx), format(tx))
@@ -106,7 +104,7 @@ test_that("formattable.table", {
   y <- rbinom(100, 3, 0.6)
   tx <- table(x, y)
   fx <- formattable(tx)
-  expect_is(fx, c("formattable", "table"))
+  expect_s3_class(fx, c("formattable", "table"))
   expect_true(is.matrix(fx))
   expect_true(is.integer(fx))
   expect_identical(dimnames(fx), dimnames(tx))
@@ -116,7 +114,7 @@ test_that("formattable.table", {
 test_that("formattable.logical", {
   logi <- rnorm(10) >= 0
   obj <- formattable(logi, "yes", "no")
-  expect_is(obj, c("formattable", "logical"))
+  expect_s3_class(obj, c("formattable", "logical"))
   expect_equal(format(obj), ifelse(logi, "yes", "no"))
   expect_equal(format(!obj), ifelse(!logi, "yes", "no"))
   expect_equal(format(all(obj)), ifelse(all(logi), "yes", "no"))
@@ -128,29 +126,32 @@ test_that("formattable.logical", {
 test_that("formattable.factor", {
   values <- as.factor(c("a", "b", "b", "c"))
   obj <- formattable(values, a = "good", b = "fair", c = "bad")
-  expect_is(obj, c("formattable", "factor"))
+  expect_s3_class(obj, c("formattable", "factor"))
   expect_equal(format(obj), vmap(values, a = "good", b = "fair", c = "bad"))
-  expect_equal(format(c(obj, as.factor("c"))), vmap(c(values, as.factor("c")), a = "good", b = "fair", c = "bad"))
+  expect_equal(
+    format(c(obj, as.factor("c"))),
+    vmap(c(values, as.factor("c")), a = "good", b = "fair", c = "bad")
+  )
 })
 
 test_that("formattable.Date", {
   dt <- as.Date("2015-01-01") + 1:5
   obj <- formattable(dt, format = "%Y%m%d")
-  expect_is(obj, c("formattable", "Date"))
+  expect_s3_class(obj, c("formattable", "Date"))
   expect_equal(format(obj), format(dt, "%Y%m%d"))
 })
 
 test_that("formattable.POSIXct", {
   dt <- as.POSIXct("2015-01-01 09:15:20") + 1:5
   obj <- formattable(dt, format = "%Y%m%dT%H%M%S")
-  expect_is(obj, c("formattable", "POSIXct"))
+  expect_s3_class(obj, c("formattable", "POSIXct"))
   expect_equal(format(obj), format(dt, "%Y%m%dT%H%M%S"))
 })
 
 test_that("formattable.POSIXlt", {
   dt <- as.POSIXlt("2015-01-01")
   obj <- formattable(dt, format = "%Y%m%dT%H%M%S")
-  expect_is(obj, c("formattable", "POSIXlt"))
+  expect_s3_class(obj, c("formattable", "POSIXlt"))
   expect_equal(format(obj), format(dt, "%Y%m%dT%H%M%S"))
 })
 
@@ -183,59 +184,73 @@ test_that("render_html_matrix", {
 })
 
 test_that("formattable.data.frame", {
+  withr::local_seed(20210317)
+
   obj <- formattable(mtcars)
-  expect_is(obj, c("formattable", "data.frame"))
-  expect_is(format_table(mtcars), "knitr_kable")
-  expect_is(format_table(obj), "knitr_kable")
-  expect_is(formattable(mtcars, list(mpg = formatter("span",
+  expect_s3_class(obj, c("formattable", "data.frame"))
+  expect_s3_class(format_table(mtcars), "knitr_kable")
+  expect_s3_class(format_table(obj), "knitr_kable")
+  expect_s3_class(formattable(mtcars, list(mpg = formatter("span",
     style = x ~ style(display = "block",
       "border-radius" = "4px",
       "padding-right" = "4px",
       color = "white",
       "background-color" = rgb(x / max(x), 0, 0)))))
   , "formattable")
-  expect_is(formattable(mtcars, list(mpg = formatter("span",
+  expect_s3_class(formattable(mtcars, list(mpg = formatter("span",
     style = function(x) ifelse(x > median(x), "color:red", NA)))),
   "formattable")
-  expect_is(format_table(mtcars, list(mpg = formatter("span",
+  expect_s3_class(format_table(mtcars, list(mpg = formatter("span",
     style = function(x) ifelse(x > median(x), "color:red", NA)))),
   "knitr_kable")
-  expect_is(format_table(mtcars,
+  expect_s3_class(format_table(mtcars,
     list(vs = x ~ formattable(as.logical(x), "yes", "no"))),
   "knitr_kable")
-  expect_is(format_table(mtcars, list(vs = ~"unknown")), "knitr_kable")
+  expect_s3_class(format_table(mtcars, list(vs = ~"unknown")), "knitr_kable")
   expect_error(format_table(mtcars, list(vs = f(a, b) ~ "unknown")))
 
   df <- formattable(mtcars, list(mpg = color_tile("red", "green")))
   expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, ], "formattable", TRUE))
   expect_identical(attr(df, "formattable", TRUE), attr(df[, c("cyl", "mpg")], "formattable", TRUE))
-  expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, c("cyl", "mpg")], "formattable", TRUE))
+  expect_identical(
+    attr(df, "formattable", TRUE),
+    attr(df[1:10, c("cyl", "mpg")], "formattable", TRUE)
+  )
   knit_df <- knit_print.formattable(df)
-  expect_is(knit_df, "knit_asis")
+  expect_s3_class(knit_df, "knit_asis")
   expect_true(is.character(knit_df))
 
-  df <- data.frame(id = integer(), name = character(), value = numeric())
-  expect_is(format_table(formattable(df, list(value = color_tile("red", "blue")))), "knitr_kable")
+  expect_s3_class(format_table(data.frame()), "knitr_kable")
 
-  # formula
-  df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
-  format_table(df, list(~percent))
+  expect_error(format_table(data.frame(a = 1), list(x ~ percent)))
+  expect_error(format_table(data.frame(a = 1), list(get("df") ~ percent)))
 
-  # cross formatting
-  format_table(df, list(b = formatter("span", style = ~ style(color = ifelse(a >= mean(a), "red", "green")))))
+  expect_snapshot({
+    df <- data.frame(id = integer(), name = character(), value = numeric())
+    format_table(formattable(df, list(value = color_tile("red", "blue"))))
 
-  # hiding columns
-  format_table(df, list(a = FALSE))
+    # formula
+    df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
+    format_table(df, list(~percent))
 
-  # area formatter
-  df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
-  expect_is(format_table(df, list(area(col = c("a", "b")) ~ percent)), "knitr_kable")
-  expect_is(format_table(df, list(area(col = b:c) ~ percent)), "knitr_kable")
-  expect_is(format_table(df, list(area(1:5) ~ percent)), "knitr_kable")
-  expect_is(format_table(df, list(area(1:5, b:c) ~ percent)), "knitr_kable")
+    # cross formatting
+    format_table(df, list(
+      b = formatter(
+        "span",
+        style = ~ style(color = ifelse(a >= mean(a), "red", "green"))
+      )
+    ))
 
-  expect_error(format_table(df, list(x ~ percent)))
-  expect_error(format_table(df, list(get("df") ~ percent)))
+    # hiding columns
+    format_table(df, list(a = FALSE))
+
+    # area formatter
+    df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
+    format_table(df, list(area(col = c("a", "b")) ~ percent))
+    format_table(df, list(area(col = b:c) ~ percent))
+    format_table(df, list(area(1:5) ~ percent))
+    format_table(df, list(area(1:5, b:c) ~ percent))
+  })
 })
 
 test_that("formattable matrix", {
@@ -243,7 +258,7 @@ test_that("formattable matrix", {
   dim(m) <- c(50, 2)
   colnames(m) <- c("a", "b")
   fm <- formattable(m)
-  expect_is(fm, c("formattable", "matrix"))
+  expect_s3_class(fm, c("formattable", "matrix"))
   expect_true(is.matrix(fm))
   expect_equal(dim(fm), dim(m))
   fmt <- format(fm)
@@ -261,7 +276,7 @@ test_that("formattable array", {
   m <- array(rnorm(60), c(3, 4, 5),
     list(letters[1:3], letters[1:4], letters[1:5]))
   fm <- formattable(m)
-  expect_is(fm, c("formattable", "array"))
+  expect_s3_class(fm, c("formattable", "array"))
   expect_true(is.array(fm))
   expect_equal(dim(fm), dim(m))
   fmt <- format(fm)

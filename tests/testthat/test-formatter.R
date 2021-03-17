@@ -1,7 +1,5 @@
-context("formatter")
-
 test_that("formatter", {
-  expect_is(formatter("span", style = "color:red"), "function")
+  expect_s3_class(formatter("span", style = "color:red"), "function")
   expect_equal(formatter("span", style = "color: red")(c(1, 2, 3)),
     sprintf('<span style="color: red">%s</span>', c(1, 2, 3)))
   expect_equal(formatter("span", function(x) ifelse(x, "yes", "no"))(c(1, 0, 0, 1)),
@@ -42,31 +40,23 @@ test_that("formatter", {
 })
 
 test_that("area", {
-  expect_is(area(), "area")
-  expect_that(area(), is.list)
+  expect_s3_class(area(), "area")
+  expect_type(area(), "list")
   expect_identical(area()$row, TRUE)
   expect_identical(area()$col, TRUE)
 
   a1 <- area(1:10, 1:3)
-  expect_that(a1$row, is.language)
-  expect_that(a1$col, is.language)
+  expect_type(a1$row, "language")
+  expect_type(a1$col, "language")
   expect_identical(a1$envir, environment())
 })
 
 test_that("formatters", {
-  x <- c(0.1, 0.2, 0.3)
-
-  f <- color_tile("white", "pink")
-  expect_equal(f(0.1),
-    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">0.1</span>")
-  expect_equal(f(x), c(
-    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">0.1</span>",
-    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe5\">0.2</span>",
-    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">0.3</span>"
-  ))
-  expect_equal(f(percent(x)), c(
-    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">10.00%</span>",
-    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe5\">20.00%</span>",
-    "<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb\">30.00%</span>"
-  ))
+  expect_snapshot({
+    x <- c(0.1, 0.2, 0.3)
+    f <- color_tile("white", "pink")
+    writeLines(f(0.1))
+    writeLines(f(x))
+    writeLines(f(percent(x)))
+  })
 })

@@ -1,5 +1,3 @@
-context("style")
-
 test_that("style", {
   expect_equal(style(color = "red"), "color: red")
   expect_equal(style(color = "red", border = "1px"), "color: red; border: 1px")

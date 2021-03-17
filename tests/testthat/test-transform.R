@@ -1,5 +1,3 @@
-context("transform")
-
 test_that("vmap", {
   expect_equal(vmap(c(1, 1, 2, 2, 3), "a", "b", "c"), c("a", "a", "b", "b", "c"))
   expect_equal(vmap(c("a", "b", "a", "c"), a = 1, b = 2, c = 3), c(1, 2, 1, 3))

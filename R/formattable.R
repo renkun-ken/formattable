@@ -399,7 +399,8 @@ quantile.formattable <- function(x, ...) {
 render_html_matrix <- function(x, ...)
   UseMethod("render_html_matrix")
 
-render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOption("digits"), ...) {
+render_html_matrix.data.frame <- function(x, formatters = list(),
+                                          digits = getOption("digits"), ...) {
   stopifnot(is.data.frame(x))
   if (nrow(x) == 0L) formatters <- list()
   cols <- colnames(x)
@@ -433,10 +434,18 @@ render_html_matrix.data.frame <- function(x, formatters = list(), digits = getOp
             f <- eval(f[[3L]], fenv)
             x[row, col]
           } else {
-            stop("Invalid area formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+            stop(
+              "Invalid area formatter specification. ",
+              "Use area(row, col) ~ formatter instead.",
+              call. = FALSE
+            )
           }
         } else {
-          stop("Invalid formatter specification. Use area(row, col) ~ formatter instead.", call. = FALSE)
+          stop(
+            "Invalid formatter specification. ",
+            "Use area(row, col) ~ formatter instead.",
+            call. = FALSE
+          )
         }
       })
       fv <-  if (inherits(f, "formatter"))
@@ -531,8 +540,11 @@ render_html_matrix.formattable <- function(x, ...) {
 #'   area(6:10) ~ color_tile("transparent", "lightpink")))
 #' @seealso [formattable()], [area()]
 format_table <- function(x, formatters = list(),
-                         format = c("html", "markdown", "pandoc"), align = "r", ...,
-                         digits = getOption("digits"), table.attr = 'class="table table-condensed"') {
+                         format = c("html", "markdown", "pandoc"),
+                         align = "r",
+                         ...,
+                         digits = getOption("digits"),
+                         table.attr = 'class="table table-condensed"') {
   check_installed("knitr")
 
   format <- match.arg(format)

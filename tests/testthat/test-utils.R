@@ -1,5 +1,3 @@
-context("utils")
-
 test_that("call_or_default", {
   expect_identical(call_or_default(NULL, 0), 0)
   expect_identical(call_or_default(sin, 1), sin(1))
