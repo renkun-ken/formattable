@@ -154,7 +154,7 @@ test_that("formattable.POSIXlt", {
   expect_equal(format(obj), format(dt, "%Y%m%dT%H%M%S"))
 })
 
-test_that("foramttable operators", {
+test_that("formattable operators", {
   expect_equal(format(formattable(1:10) + 0.5), formatC(1:10 + 0.5))
   expect_equal(format(0.5 + formattable(1:10)), formatC(0.5 + 1:10))
   expect_equal(format(percent(0.5) * 2), "100.00%")
