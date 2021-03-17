@@ -2,11 +2,11 @@ test_that("currency", {
   expect_identical(format(currency(numeric())), character())
 
   expect_warning(currency("a"))
-  expect_is(currency(NA), "numeric")
+  expect_s3_class(currency(NA), "numeric")
 
   data <- c(-5300, 10500, 20300, 35010)
   obj <- currency(data)
-  expect_is(obj, c("formattable", "numeric"))
+  expect_s3_class(obj, c("formattable", "numeric"))
 
   expect_equal(
     format(currency("$ 123,234.50")),

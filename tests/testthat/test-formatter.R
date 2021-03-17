@@ -1,5 +1,5 @@
 test_that("formatter", {
-  expect_is(formatter("span", style = "color:red"), "function")
+  expect_s3_class(formatter("span", style = "color:red"), "function")
   expect_equal(formatter("span", style = "color: red")(c(1, 2, 3)),
     sprintf('<span style="color: red">%s</span>', c(1, 2, 3)))
   expect_equal(formatter("span", function(x) ifelse(x, "yes", "no"))(c(1, 0, 0, 1)),
@@ -40,14 +40,14 @@ test_that("formatter", {
 })
 
 test_that("area", {
-  expect_is(area(), "area")
-  expect_that(area(), is.list)
+  expect_s3_class(area(), "area")
+  expect_type(area(), "list")
   expect_identical(area()$row, TRUE)
   expect_identical(area()$col, TRUE)
 
   a1 <- area(1:10, 1:3)
-  expect_that(a1$row, is.language)
-  expect_that(a1$col, is.language)
+  expect_type(a1$row, "language")
+  expect_type(a1$col, "language")
   expect_identical(a1$envir, environment())
 })
 

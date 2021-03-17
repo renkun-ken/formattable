@@ -3,7 +3,7 @@ test_that("prefix", {
 
   data <- 1:10
   obj <- prefix(data)
-  expect_is(obj, c("formattable", "integer"))
+  expect_s3_class(obj, c("formattable", "integer"))
   expect_equal(
     format(prefix(data, "Item", sep = " ")),
     paste("Item", data)
