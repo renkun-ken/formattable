@@ -186,6 +186,8 @@ test_that("render_html_matrix", {
 })
 
 test_that("formattable.data.frame", {
+  withr::local_seed(20210317)
+
   obj <- formattable(mtcars)
   expect_is(obj, c("formattable", "data.frame"))
   expect_is(format_table(mtcars), "knitr_kable")
@@ -220,28 +222,37 @@ test_that("formattable.data.frame", {
   expect_is(knit_df, "knit_asis")
   expect_true(is.character(knit_df))
 
-  df <- data.frame(id = integer(), name = character(), value = numeric())
-  expect_is(format_table(formattable(df, list(value = color_tile("red", "blue")))), "knitr_kable")
+  expect_is(format_table(data.frame()), "knitr_kable")
 
-  # formula
-  df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
-  format_table(df, list(~percent))
+  expect_error(format_table(data.frame(a = 1), list(x ~ percent)))
+  expect_error(format_table(data.frame(a = 1), list(get("df") ~ percent)))
 
-  # cross formatting
-  format_table(df, list(b = formatter("span", style = ~ style(color = ifelse(a >= mean(a), "red", "green")))))
+  expect_snapshot({
+    df <- data.frame(id = integer(), name = character(), value = numeric())
+    format_table(formattable(df, list(value = color_tile("red", "blue"))))
 
-  # hiding columns
-  format_table(df, list(a = FALSE))
+    # formula
+    df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
+    format_table(df, list(~percent))
 
-  # area formatter
-  df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
-  expect_is(format_table(df, list(area(col = c("a", "b")) ~ percent)), "knitr_kable")
-  expect_is(format_table(df, list(area(col = b:c) ~ percent)), "knitr_kable")
-  expect_is(format_table(df, list(area(1:5) ~ percent)), "knitr_kable")
-  expect_is(format_table(df, list(area(1:5, b:c) ~ percent)), "knitr_kable")
+    # cross formatting
+    format_table(df, list(
+      b = formatter(
+        "span",
+        style = ~ style(color = ifelse(a >= mean(a), "red", "green"))
+      )
+    ))
 
-  expect_error(format_table(df, list(x ~ percent)))
-  expect_error(format_table(df, list(get("df") ~ percent)))
+    # hiding columns
+    format_table(df, list(a = FALSE))
+
+    # area formatter
+    df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
+    format_table(df, list(area(col = c("a", "b")) ~ percent))
+    format_table(df, list(area(col = b:c) ~ percent))
+    format_table(df, list(area(1:5) ~ percent))
+    format_table(df, list(area(1:5, b:c) ~ percent))
+  })
 })
 
 test_that("formattable matrix", {
