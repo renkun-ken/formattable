@@ -96,7 +96,10 @@ formattable_widget_html <- function(name, package, id, style, class, width, heig
 formattableOutput <- function(outputId, width = "100%", height = "0") {
   check_installed("htmlwidgets", "rmarkdown")
 
-  htmlwidgets::shinyWidgetOutput(outputId, "formattable_widget", width, height, package = "formattable")
+  htmlwidgets::shinyWidgetOutput(
+    outputId, "formattable_widget", width, height,
+    package = "formattable"
+  )
 }
 
 #' Widget render function for use in Shiny
@@ -108,6 +111,9 @@ formattableOutput <- function(outputId, width = "100%", height = "0") {
 renderFormattable <- function(expr, env = parent.frame(), quoted = FALSE) {
   check_installed("htmlwidgets", "rmarkdown")
 
-  if (!quoted) { expr <- substitute(formattable::as.htmlwidget(expr)) } # force quoted
+  # force quoted
+  if (!quoted) {
+    expr <- substitute(formattable::as.htmlwidget(expr))
+  }
   htmlwidgets::shinyRenderWidget(expr, formattableOutput, env, quoted = TRUE)
 }

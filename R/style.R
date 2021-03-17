@@ -179,14 +179,14 @@ csscolor.matrix <- function(x, format = c("auto", "hex", "rgb", "rgba"),
       hex[2L, , drop = FALSE],
       hex[3L, , drop = FALSE])
   }, rgb = sprintf("rgb(%d, %d, %d)",
-    x["red", , drop = FALSE],
-    x["green", ,drop = FALSE],
-    x["blue", ,drop = FALSE]),
+    x["red", ,  drop = FALSE],
+    x["green", , drop = FALSE],
+    x["blue", , drop = FALSE]),
     rgba = sprintf("rgba(%d, %d, %d, %g)",
-      x["red", ,drop = FALSE],
-      x["green", ,drop = FALSE],
-      x["blue", ,drop = FALSE],
-      if (alpha) round(x["alpha", ,drop = FALSE] / 255L, 2L) else 1))
+      x["red", , drop = FALSE],
+      x["green", , drop = FALSE],
+      x["blue", , drop = FALSE],
+      if (alpha) round(x["alpha", , drop = FALSE] / 255L, 2L) else 1))
   cols[na_cols] <- NA
   if (use.names) names(cols) <- colnames(x)
   cols

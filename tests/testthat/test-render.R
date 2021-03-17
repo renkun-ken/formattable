@@ -4,7 +4,10 @@ test_that("conversion", {
 
 test_that("shiny", {
   # some preliminary testing for shiny functionality
-  expect_s3_class(renderFormattable(formattable(head(mtcars))), c("shiny.render.function", "function"))
+  expect_s3_class(
+    renderFormattable(formattable(head(mtcars))),
+    c("shiny.render.function", "function")
+  )
   expect_s3_class(formattableOutput(0), c("shiny.tag.list", "list"))
 })
 
