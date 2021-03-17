@@ -33,7 +33,8 @@ Suggests:
     knitr,
     rmarkdown,
     shiny,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 VignetteBuilder: 
     knitr
 ByteCompile: TRUE
