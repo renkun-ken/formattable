@@ -130,7 +130,10 @@ test_that("formattable.factor", {
   obj <- formattable(values, a = "good", b = "fair", c = "bad")
   expect_is(obj, c("formattable", "factor"))
   expect_equal(format(obj), vmap(values, a = "good", b = "fair", c = "bad"))
-  expect_equal(format(c(obj, as.factor("c"))), vmap(c(values, as.factor("c")), a = "good", b = "fair", c = "bad"))
+  expect_equal(
+    format(c(obj, as.factor("c"))),
+    vmap(c(values, as.factor("c")), a = "good", b = "fair", c = "bad")
+  )
 })
 
 test_that("formattable.Date", {
@@ -209,7 +212,10 @@ test_that("formattable.data.frame", {
   df <- formattable(mtcars, list(mpg = color_tile("red", "green")))
   expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, ], "formattable", TRUE))
   expect_identical(attr(df, "formattable", TRUE), attr(df[, c("cyl", "mpg")], "formattable", TRUE))
-  expect_identical(attr(df, "formattable", TRUE), attr(df[1:10, c("cyl", "mpg")], "formattable", TRUE))
+  expect_identical(
+    attr(df, "formattable", TRUE),
+    attr(df[1:10, c("cyl", "mpg")], "formattable", TRUE)
+  )
   knit_df <- knit_print.formattable(df)
   expect_is(knit_df, "knit_asis")
   expect_true(is.character(knit_df))
