@@ -18,6 +18,8 @@ formatting function.}
 
 \item{postproc}{post-processor function that transforms formatted
 output for printing.}
+
+\item{class}{a subclass to use for the resulting object.}
 }
 \value{
 a \code{formattable} object that inherits from the original

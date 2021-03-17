@@ -33,6 +33,7 @@ is.formattable <- function(x) {
 #' formatting function.
 #' @param postproc post-processor function that transforms formatted
 #' output for printing.
+#' @param class a subclass to use for the resulting object.
 #' @export
 #' @return a `formattable` object that inherits from the original
 #' object.
