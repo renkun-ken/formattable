@@ -49,8 +49,8 @@ remove_attribute <- function(x, which) {
   x
 }
 
-copy_obj <- function(src, target, class) {
-  create_obj(target, class, get_class_attribute(src, class))
+copy_obj <- function(src, target, class, class_out = class) {
+  create_obj(target, class, get_class_attribute(src, class), class_out = class_out)
 }
 
 fcreate_obj <- function(f, class, x, ...) {

@@ -269,30 +269,38 @@ as.list.formattable <- function(x, ...) {
 
 #' @export
 `[.formattable` <- function(x, ...) {
+  class_out <- class(x)
   value <- NextMethod("[")
-  if (is.atomic(x) || is.data.frame(x))
-    copy_obj(x, value, "formattable")
-  else value
+  if (is.atomic(x) || is.data.frame(x)) {
+    copy_obj(x, value, "formattable", class_out)
+  } else {
+    value
+  }
 }
 
 #' @export
 `[<-.formattable` <- function(x, ..., value) {
+  class_out <- class(x)
   value <- NextMethod("[<-")
-  reset_class(x, value, "formattable")
+  reset_class(x, value, class_out)
 }
 
 #' @export
 `[[.formattable` <- function(x, ...) {
+  class_out <- class(x)
   value <- NextMethod("[[")
-  if (is.atomic(x))
-    copy_obj(x, value, "formattable")
-  else value
+  if (is.atomic(x)) {
+    copy_obj(x, value, "formattable", class_out)
+  } else {
+    value
+  }
 }
 
 #' @export
 `[[<-.formattable` <- function(x, ..., value) {
+  class_out <- class(x)
   value <- NextMethod("[[<-")
-  reset_class(x, value, "formattable")
+  reset_class(x, value, class_out)
 }
 
 #' @export
