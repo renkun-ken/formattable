@@ -1,3 +1,16 @@
+# formattable.numeric: formatting
+
+    Code
+      format(obj)
+    Output
+       [1] "-1.21" "1.69"  "0.59"  "0.96"  "-0.57" "1.55"  "-0.57" "-1.05" "1.05" 
+      [10] "1.73" 
+    Code
+      format(c(obj, 0.1))
+    Output
+       [1] "-1.21" "1.69"  "0.59"  "0.96"  "-0.57" "1.55"  "-0.57" "-1.05" "1.05" 
+      [10] "1.73"  "0.10" 
+
 # formattable.data.frame
 
     Code
