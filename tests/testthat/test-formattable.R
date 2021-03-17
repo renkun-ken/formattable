@@ -16,17 +16,23 @@ test_that("formattable.default", {
   expect_identical(format(formattable(x)), format(formattable.numeric(obj)))
 })
 
-test_that("formattable.numeric", {
+test_that("formattable.numeric: empty", {
   obj <- formattable(numeric(), format = "f", digits = 2L)
   expect_s3_class(obj, c("formattable", "numeric"))
   expect_identical(format(obj), character())
+})
+
+test_that("formattable.numeric: formatting", {
+  withr::local_seed(20210317)
 
   num <- rnorm(10)
   obj <- formattable(num, format = "f", digits = 2L)
   expect_s3_class(obj, c("formattable", "numeric"))
   expect_equal(format(obj), formatC(num, format = "f", digits = 2L))
   expect_equal(format(c(obj, 0.1)), formatC(c(num, 0.1), format = "f", digits = 2L))
+})
 
+test_that("formattable.numeric: [<- keeps attributes", {
   num <- 1:10
   obj <- formattable(num)
   obj_attr <- attr(obj, "formattable", TRUE)
@@ -34,15 +40,27 @@ test_that("formattable.numeric", {
   obj[5] <- 0L
   expect_s3_class(obj, c("formattable", "integer"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+})
 
+test_that("formattable.numeric: [<- keeps attributes when converting to numeric", {
+  num <- 1:10
+  obj <- formattable(num)
+  obj_attr <- attr(obj, "formattable", TRUE)
   obj[5] <- 2.5
   expect_s3_class(obj, c("formattable", "numeric"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+})
 
+test_that("formattable.numeric: [<- keeps attributes when changing type", {
+  num <- 1:10
+  obj <- formattable(num)
+  obj_attr <- attr(obj, "formattable", TRUE)
   obj[6] <- "abc"
   expect_s3_class(obj, c("formattable", "character"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+})
 
+test_that("formattable.numeric: [[<- keeps attributes", {
   num <- 1:10
   obj <- formattable(num)
   obj_attr <- attr(obj, "formattable", TRUE)
@@ -50,14 +68,28 @@ test_that("formattable.numeric", {
   obj[[5]] <- 0L
   expect_s3_class(obj, c("formattable", "integer"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+})
 
+test_that("formattable.numeric: [[<- keeps attributes when converting to numeric", {
+  num <- 1:10
+  obj <- formattable(num)
+  obj_attr <- attr(obj, "formattable", TRUE)
   obj[[5]] <- 2.5
   expect_s3_class(obj, c("formattable", "numeric"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+})
 
+test_that("formattable.numeric: [[<- keeps attributes when changing type", {
+  num <- 1:10
+  obj <- formattable(num)
+  obj_attr <- attr(obj, "formattable", TRUE)
   obj[[6]] <- "abc"
   expect_s3_class(obj, c("formattable", "character"))
   expect_identical(attr(obj, "formattable", TRUE), obj_attr)
+})
+
+test_that("formattable.numeric math and arith", {
+  withr::local_seed(20210317)
 
   num <- rnorm(10)
   names(num) <- letters[seq_along(num)]
