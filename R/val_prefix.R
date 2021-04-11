@@ -14,7 +14,7 @@
 #' prefix(percent(c(0.1, 0.25)), ">")
 prefix <- function(x, prefix = "", sep = "", ..., na.text = NULL) {
   formattable(x,
-    class = "formattable_prefix",
+    class = setdiff(class(x), "formattable"),
     postproc = list(function(str, x) {
       paste0(
         ifelse(xna <- is.na(x), "", paste0(prefix, sep)),

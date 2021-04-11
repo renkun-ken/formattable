@@ -13,7 +13,7 @@
 #' suffix(percent(c(0.1, 0.25)), "*")
 suffix <- function(x, suffix = "", sep = "", ..., na.text = NULL) {
   formattable(x,
-    class = "formattable_suffix",
+    class = setdiff(class(x), "formattable"),
     postproc = list(function(str, x) {
       xna <- is.na(x)
       paste0(
