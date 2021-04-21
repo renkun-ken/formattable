@@ -1,3 +1,19 @@
+# Version 0.2.1
+
+**Closed issues:**
+- Percent does not work on area() function (#75)
+- Inconsistent lengths of formatted string on zero-length vectors (#115)
+- Error: 'what' must be a function or character string (#116)
+- Retire Travis and AppVeyor (#140)
+
+**Merged pull requests:**
+- Add GHA badge (#142)
+- Change links to HTTPS (#141)
+- Set up GitHub Pages (#137)
+- Add .github to .Rbuildignore (#138)
+- Install GitHub Actions workflows (#135)
+- Avoid caching on AppVeyor (#134)
+
 # Version 0.2
 
 ## Breaking changes

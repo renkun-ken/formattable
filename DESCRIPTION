@@ -1,6 +1,6 @@
 Package: formattable
 Title: Create 'Formattable' Data Structures
-Version: 0.2.1
+Version: 0.2.1.9000
 Date: 2021-01-05
 Authors@R: 
     c(person(given = "Kun",
