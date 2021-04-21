@@ -1,0 +1,21 @@
+name: tagbot
+
+on:
+  schedule:
+    # every six hour
+    - cron: 0 */6 * * *
+
+jobs:
+  publish-github-release:
+    runs-on: ubuntu-latest
+    container: rtagbot/tagbot:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: fetch all tags and branches
+        run: git fetch --prune --unshallow --tags
+      - name: check and publish release
+        run: |
+          tagbot::publish_release()
+        shell: Rscript {0}
+        env:
+          GITHUB_PAT: ${{secrets.GITHUB_TOKEN}}
