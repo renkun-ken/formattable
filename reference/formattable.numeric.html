@@ -58,8 +58,6 @@
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -137,8 +135,8 @@
     <p>Create a formattable numeric vector</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for numeric</span>
-<span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, formatter <span class='op'>=</span> <span class='st'>"formatC"</span>, preproc <span class='op'>=</span> <span class='cn'>NULL</span>, postproc <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='co'># S3 method for numeric</span>
+<span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, formatter <span class='op'>=</span> <span class='st'>"formatC"</span>, preproc <span class='op'>=</span> <span class='cn'>NULL</span>, postproc <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,16 +170,20 @@ output for printing.</p></td>
     <p>a <code>formattable</code> numeric vector.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"f"</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] -1.5 0.3  1.3  0.2  1.3  0.5  0.6  -0.1 0.2  -0.1</div><div class='input'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"f"</span>,
-  flag<span class='op'>=</span><span class='st'>"+"</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] +1.9 +1.3 +0.7 +0.6 -0.5 +1.1 -2.6 -0.2 +0.4 -0.4</div><div class='input'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
-  postproc <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>str</span>, <span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>str</span>, <span class='st'>"px"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 1px  2px  3px  4px  5px  6px  7px  8px  9px  10px</div><div class='input'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
-  postproc <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>str</span>, <span class='va'>x</span><span class='op'>)</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>str</span>, <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;=</span> <span class='fl'>1</span>, <span class='st'>"unit"</span>, <span class='st'>"units"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 1 unit   2 units  3 units  4 units  5 units  6 units  7 units  8 units 
-#&gt;  [9] 9 units  10 units</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"f"</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] -1.5 0.3  1.3  0.2  1.3  0.5  0.6  -0.1 0.2  -0.1</span>
+<span class='r-in'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"f"</span>,</span>
+<span class='r-in'>  flag<span class='op'>=</span><span class='st'>"+"</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] +1.9 +1.3 +0.7 +0.6 -0.5 +1.1 -2.6 -0.2 +0.4 -0.4</span>
+<span class='r-in'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,</span>
+<span class='r-in'>  postproc <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>str</span>, <span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>str</span>, <span class='st'>"px"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] 1px  2px  3px  4px  5px  6px  7px  8px  9px  10px</span>
+<span class='r-in'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,</span>
+<span class='r-in'>  postproc <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>str</span>, <span class='va'>x</span><span class='op'>)</span></span>
+<span class='r-in'>    <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>str</span>, <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;=</span> <span class='fl'>1</span>, <span class='st'>"unit"</span>, <span class='st'>"units"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] 1 unit   2 units  3 units  4 units  5 units  6 units  7 units  8 units </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9] 9 units  10 units</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

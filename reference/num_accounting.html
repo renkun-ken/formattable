@@ -59,8 +59,6 @@ and two digits after the decimal point." />
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -139,7 +137,7 @@ and two digits after the decimal point." />
 and two digits after the decimal point.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>num_accounting</span><span class='op'>(</span><span class='va'>x</span>, digits <span class='op'>=</span> <span class='fl'>2L</span>, format <span class='op'>=</span> <span class='st'>"f"</span>, big.mark <span class='op'>=</span> <span class='st'>","</span>, <span class='va'>...</span><span class='op'>)</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>num_accounting</span><span class='op'>(</span><span class='va'>x</span>, digits <span class='op'>=</span> <span class='fl'>2L</span>, format <span class='op'>=</span> <span class='st'>"f"</span>, big.mark <span class='op'>=</span> <span class='st'>","</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='fu'>parse_accounting</span><span class='op'>(</span>
   <span class='va'>x</span>,
@@ -147,7 +145,7 @@ and two digits after the decimal point.</p>
   format <span class='op'>=</span> <span class='st'>"f"</span>,
   big.mark <span class='op'>=</span> <span class='st'>","</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,11 +182,15 @@ and two digits after the decimal point.</p>
 <code><a href='num_scientific.html'>num_scientific</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>num_accounting</span><span class='op'>(</span><span class='fl'>15320</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 15,320.00</div><div class='input'><span class='fu'>num_accounting</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>12500</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] (12,500.00)</div><div class='input'><span class='fu'>num_accounting</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1200</span>, <span class='op'>-</span><span class='fl'>3500</span>, <span class='fl'>2600</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"d"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1,200   (3,500) 2,600  </div><div class='input'><span class='fu'>parse_accounting</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"123,23.50"</span>, <span class='st'>"(123.243)"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 12,323.500 (123.243) </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>num_accounting</span><span class='op'>(</span><span class='fl'>15320</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 15,320.00</span>
+<span class='r-in'><span class='fu'>num_accounting</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>12500</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] (12,500.00)</span>
+<span class='r-in'><span class='fu'>num_accounting</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1200</span>, <span class='op'>-</span><span class='fl'>3500</span>, <span class='fl'>2600</span><span class='op'>)</span>, format <span class='op'>=</span> <span class='st'>"d"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 1,200   (3,500) 2,600  </span>
+<span class='r-in'><span class='fu'>parse_accounting</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"123,23.50"</span>, <span class='st'>"(123.243)"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 12,323.500 (123.243) </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

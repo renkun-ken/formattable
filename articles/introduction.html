@@ -81,7 +81,7 @@
       <h1 data-toc-skip>Introduction to formattable package</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2021-04-21</h4>
+            <h4 data-toc-skip class="date">2021-05-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -149,7 +149,7 @@
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">!</span><span class="va">lv</span></code></pre></div>
 <pre><code>## [1] no  yes yes no</code></pre>
-<p>Note that <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> does not directly work with values of <code>lv</code> because <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> uses <code><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical(x, TRUE)</a></code> and <code>lv[[1]]</code>, as a formattable logical value is not identical to a plain <code>TRUE</code>.</p>
+<p>Note that <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> does not directly work with values of <code>lv</code> because <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> uses <code>identical(x, TRUE)</code> and <code>lv[[1]]</code>, as a formattable logical value is not identical to a plain <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] yes</code></pre>

@@ -61,8 +61,6 @@ and columns." />
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -143,7 +141,7 @@ more columns, one or more rows, or an area of rows
 and columns.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>area</span><span class='op'>(</span><span class='va'>row</span>, <span class='va'>col</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>area</span><span class='op'>(</span><span class='va'>row</span>, <span class='va'>col</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,62 +177,67 @@ easier to specify range with names, for example,
     <div class='dont-index'><p><a href='format_table.html'>format_table</a>, <a href='formattable.data.frame.html'>formattable.data.frame</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>area</span><span class='op'>(</span>col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='st'>"cyl"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $row
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $col
-#&gt; c("mpg", "cyl")
-#&gt; 
-#&gt; $envir
-#&gt; &lt;environment: 0x55a7b47626a8&gt;
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span>col <span class='op'>=</span> <span class='va'>mpg</span><span class='op'>:</span><span class='va'>cyl</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $row
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $col
-#&gt; mpg:cyl
-#&gt; 
-#&gt; $envir
-#&gt; &lt;environment: 0x55a7b47626a8&gt;
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span>row <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $row
-#&gt; [1] 1
-#&gt; 
-#&gt; $col
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $envir
-#&gt; &lt;environment: 0x55a7b47626a8&gt;
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span>row <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, col <span class='op'>=</span> <span class='fl'>5</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $row
-#&gt; 1:10
-#&gt; 
-#&gt; $col
-#&gt; 5:10
-#&gt; 
-#&gt; $envir
-#&gt; &lt;environment: 0x55a7b47626a8&gt;
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "area"</div><div class='input'><span class='fu'>area</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='va'>col1</span><span class='op'>:</span><span class='va'>col5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $row
-#&gt; 1:10
-#&gt; 
-#&gt; $col
-#&gt; col1:col5
-#&gt; 
-#&gt; $envir
-#&gt; &lt;environment: 0x55a7b47626a8&gt;
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "area"</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>area</span><span class='op'>(</span>col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='st'>"cyl"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $row</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $col</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> c("mpg", "cyl")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $envir</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;environment: 0x55ed3f3c0db0&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "area"</span>
+<span class='r-in'><span class='fu'>area</span><span class='op'>(</span>col <span class='op'>=</span> <span class='va'>mpg</span><span class='op'>:</span><span class='va'>cyl</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $row</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $col</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> mpg:cyl</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $envir</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;environment: 0x55ed3f3c0db0&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "area"</span>
+<span class='r-in'><span class='fu'>area</span><span class='op'>(</span>row <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $row</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $col</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $envir</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;environment: 0x55ed3f3c0db0&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "area"</span>
+<span class='r-in'><span class='fu'>area</span><span class='op'>(</span>row <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, col <span class='op'>=</span> <span class='fl'>5</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $row</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1:10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $col</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5:10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $envir</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;environment: 0x55ed3f3c0db0&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "area"</span>
+<span class='r-in'><span class='fu'>area</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='va'>col1</span><span class='op'>:</span><span class='va'>col5</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $row</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1:10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $col</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> col1:col5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $envir</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;environment: 0x55ed3f3c0db0&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"class")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "area"</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

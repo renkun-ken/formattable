@@ -60,8 +60,6 @@ combined." />
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -141,7 +139,7 @@ each element of input vector, <code><a href='https://rdrr.io/r/base/switch.html'
 combined.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>vmap</span><span class='op'>(</span><span class='va'>EXPR</span>, <span class='va'>...</span>, SIMPLIFY <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>vmap</span><span class='op'>(</span><span class='va'>EXPR</span>, <span class='va'>...</span>, SIMPLIFY <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,13 +164,15 @@ or array if possible.</p></td>
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/switch.html'>switch()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normal"</span>,<span class='st'>"normal"</span>,<span class='st'>"error"</span>,<span class='st'>"unknown"</span>,<span class='st'>"unknown"</span><span class='op'>)</span>
-<span class='fu'>vmap</span><span class='op'>(</span><span class='va'>x</span>, normal <span class='op'>=</span> <span class='fl'>0</span>, error <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, unknown <span class='op'>=</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1]  0  0 -1 -2 -2</div><div class='input'>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>
-<span class='fu'>vmap</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"type-A"</span>, <span class='st'>"type-B"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "type-A" "type-A" "type-B" "type-A" "type-B" "type-B" "type-A" "type-A"
-#&gt; [9] "type-B"</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normal"</span>,<span class='st'>"normal"</span>,<span class='st'>"error"</span>,<span class='st'>"unknown"</span>,<span class='st'>"unknown"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>vmap</span><span class='op'>(</span><span class='va'>x</span>, normal <span class='op'>=</span> <span class='fl'>0</span>, error <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, unknown <span class='op'>=</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1]  0  0 -1 -2 -2</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>vmap</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"type-A"</span>, <span class='st'>"type-B"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "type-A" "type-A" "type-B" "type-A" "type-B" "type-B" "type-A" "type-A"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [9] "type-B"</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

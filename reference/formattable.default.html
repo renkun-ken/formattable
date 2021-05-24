@@ -58,8 +58,6 @@
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -137,8 +135,8 @@
     <p>Create a formattable object</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for default</span>
-<span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, <span class='va'>formatter</span>, preproc <span class='op'>=</span> <span class='cn'>NULL</span>, postproc <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='co'># S3 method for default</span>
+<span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, <span class='va'>formatter</span>, preproc <span class='op'>=</span> <span class='cn'>NULL</span>, postproc <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,8 +171,9 @@ output for printing.</p></td>
 object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, formatter <span class='op'>=</span> <span class='st'>"formatC"</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1]  1   -0.7  1   -0.2 -1   -1    1   0.1  0.5  -2  </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'><a href='formattable.html'>formattable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, formatter <span class='op'>=</span> <span class='st'>"formatC"</span>, digits <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1]  1   -0.7  1   -0.2 -1   -1    1   0.1  0.5  -2  </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -58,8 +58,6 @@
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -137,7 +135,7 @@
     <p>Create icon-text elements</p>
     </div>
 
-    <pre class="usage"><span class='fu'>icontext</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>icontext</span><span class='op'>(</span>
   <span class='va'>icon</span>,
   text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='cn'>NULL</span><span class='op'>)</span>,
   <span class='va'>...</span>,
@@ -145,7 +143,7 @@
   provider <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"formattable.icon.provider"</span>, <span class='st'>"glyphicon"</span><span class='op'>)</span>,
   class_template <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"formattable.icon.class_template"</span>,
     <span class='st'>"{provider} {provider}-{icon}"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,153 +184,157 @@ represent <code>icon</code> values.</p></td>
 <a href='https://glyphicons.com/'>Glyphicons</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>icontext</span><span class='op'>(</span><span class='st'>"plus"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</div><div class='input'><span class='fu'>icontext</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"star"</span>,<span class='st'>"star-empty"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt; &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;
-#&gt; 
-#&gt; [[2]]
-#&gt; &lt;i class="glyphicon glyphicon-star-empty"&gt;&lt;/i&gt;
-#&gt; </div><div class='input'><span class='fu'>icontext</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>mpg</span> <span class='op'>&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>mpg</span><span class='op'>)</span>, <span class='st'>"plus"</span>, <span class='st'>"minus"</span><span class='op'>)</span>, <span class='va'>mtcars</span><span class='op'>$</span><span class='va'>mpg</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 21
-#&gt; 
-#&gt; [[2]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 21
-#&gt; 
-#&gt; [[3]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 22.8
-#&gt; 
-#&gt; [[4]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 21.4
-#&gt; 
-#&gt; [[5]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 18.7
-#&gt; 
-#&gt; [[6]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 18.1
-#&gt; 
-#&gt; [[7]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 14.3
-#&gt; 
-#&gt; [[8]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 24.4
-#&gt; 
-#&gt; [[9]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 22.8
-#&gt; 
-#&gt; [[10]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 19.2
-#&gt; 
-#&gt; [[11]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 17.8
-#&gt; 
-#&gt; [[12]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 16.4
-#&gt; 
-#&gt; [[13]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 17.3
-#&gt; 
-#&gt; [[14]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 15.2
-#&gt; 
-#&gt; [[15]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 10.4
-#&gt; 
-#&gt; [[16]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 10.4
-#&gt; 
-#&gt; [[17]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 14.7
-#&gt; 
-#&gt; [[18]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 32.4
-#&gt; 
-#&gt; [[19]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 30.4
-#&gt; 
-#&gt; [[20]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 33.9
-#&gt; 
-#&gt; [[21]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 21.5
-#&gt; 
-#&gt; [[22]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 15.5
-#&gt; 
-#&gt; [[23]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 15.2
-#&gt; 
-#&gt; [[24]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 13.3
-#&gt; 
-#&gt; [[25]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 19.2
-#&gt; 
-#&gt; [[26]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 27.3
-#&gt; 
-#&gt; [[27]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 26
-#&gt; 
-#&gt; [[28]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 30.4
-#&gt; 
-#&gt; [[29]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 15.8
-#&gt; 
-#&gt; [[30]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 19.7
-#&gt; 
-#&gt; [[31]]
-#&gt; &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;
-#&gt; 15
-#&gt; 
-#&gt; [[32]]
-#&gt; &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;
-#&gt; 21.4
-#&gt; </div><div class='input'><span class='fu'>icontext</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"star"</span>,<span class='fl'>3</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"star"</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"item 1"</span>, <span class='st'>"item 2"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt; &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;
-#&gt; &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;
-#&gt; &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;
-#&gt; item 1
-#&gt; 
-#&gt; [[2]]
-#&gt; &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;
-#&gt; &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;
-#&gt; item 2
-#&gt; </div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>icontext</span><span class='op'>(</span><span class='st'>"plus"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-in'><span class='fu'>icontext</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"star"</span>,<span class='st'>"star-empty"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-star-empty"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'>icontext</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>mpg</span> <span class='op'>&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>$</span><span class='va'>mpg</span><span class='op'>)</span>, <span class='st'>"plus"</span>, <span class='st'>"minus"</span><span class='op'>)</span>, <span class='va'>mtcars</span><span class='op'>$</span><span class='va'>mpg</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[3]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[4]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[5]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[6]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[7]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[8]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[9]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[10]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[11]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[12]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[13]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[14]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[15]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[16]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[17]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[18]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[19]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[20]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[21]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[22]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[23]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[24]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[25]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[26]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[27]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[28]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[29]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[30]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[31]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-minus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[32]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-plus"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'><span class='fu'>icontext</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"star"</span>,<span class='fl'>3</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"star"</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"item 1"</span>, <span class='st'>"item 2"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> item 1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;i class="glyphicon glyphicon-star"&gt;&lt;/i&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> item 2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

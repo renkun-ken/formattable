@@ -58,8 +58,6 @@
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -137,7 +135,7 @@
     <p>Create a matrix from vector to represent colors in gradient</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gradient</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>min.color</span>, <span class='va'>max.color</span>, alpha <span class='op'>=</span> <span class='cn'>NULL</span>, use.names <span class='op'>=</span> <span class='cn'>TRUE</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>gradient</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>min.color</span>, <span class='va'>max.color</span>, alpha <span class='op'>=</span> <span class='cn'>NULL</span>, use.names <span class='op'>=</span> <span class='cn'>TRUE</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,24 +178,28 @@ to convert the matrix to css color strings compatible with web browsers.</p>
     <div class='dont-index'><p><code><a href='csscolor.html'>csscolor()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>5</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5]
-#&gt; red    255  255  255  255  255
-#&gt; green  255  191  127   63    0
-#&gt; blue   255  191  127   63    0</div><div class='input'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>,<span class='fl'>4</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5]
-#&gt; red    255  255  255  255  255
-#&gt; green    0   63  127  191  255
-#&gt; blue     0   63  127  191  255</div><div class='input'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>5</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5]
-#&gt; red    255  255  255  255  255
-#&gt; green  255  127  191   63    0
-#&gt; blue   255  127  191   63    0</div><div class='input'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0.5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>, alpha <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5]
-#&gt; red      0    0    0    0    0
-#&gt; green    0    0    0    0    0
-#&gt; blue     0    0    0    0    0
-#&gt; alpha  128  191  159  223  255</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>5</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> red    255  255  255  255  255</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> green  255  191  127   63    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blue   255  191  127   63    0</span>
+<span class='r-in'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>,<span class='fl'>4</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> red    255  255  255  255  255</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> green    0   63  127  191  255</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blue     0   63  127  191  255</span>
+<span class='r-in'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>5</span><span class='op'>)</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> red    255  255  255  255  255</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> green  255  127  191   63    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blue   255  127  191   63    0</span>
+<span class='r-in'><span class='fu'>gradient</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0.5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>, alpha <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> red      0    0    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> green    0    0    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> blue     0    0    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> alpha  128  191  159  223  255</span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

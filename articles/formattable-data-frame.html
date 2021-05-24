@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Formattable data frame</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2021-04-21</h4>
+            <h4 data-toc-skip class="date">2021-05-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/vignettes/formattable-data-frame.Rmd" class="external-link"><code>vignettes/formattable-data-frame.Rmd</code></a></small>
       <div class="hidden name"><code>formattable-data-frame.Rmd</code></div>
@@ -97,7 +97,7 @@
 <p>Formattable data frames are data frames to be rendered as HTML table with formatter functions applied, which resembles conditional formatting in Microsoft Excel.</p>
 <div id="simple-examples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#simple-examples" class="anchor"></a>Simple examples</h2>
+<a href="#simple-examples" class="anchor" aria-hidden="true"></a>Simple examples</h2>
 <p>Suppose we have the following data frame:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
@@ -416,8 +416,8 @@ change
 </div>
 <div id="cross-formatting" class="section level2">
 <h2 class="hasAnchor">
-<a href="#cross-formatting" class="anchor"></a>Cross formatting</h2>
-<p>Sometimes, we need to format one column based on the values of another column. This can be easily done with one-sided formula in <code><a href="../reference/formatter.html">formatter()</a></code>. When using <code><a href="../reference/formatter.html">formatter("span", style = ~ expr)</a></code>, <code>expr</code> is evaluated in the data frame so that all columns are available for use.</p>
+<a href="#cross-formatting" class="anchor" aria-hidden="true"></a>Cross formatting</h2>
+<p>Sometimes, we need to format one column based on the values of another column. This can be easily done with one-sided formula in <code><a href="../reference/formatter.html">formatter()</a></code>. When using <code>formatter("span", style = ~ expr)</code>, <code>expr</code> is evaluated in the data frame so that all columns are available for use.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   cur_score <span class="op">=</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, 
@@ -513,7 +513,7 @@ change
 </div>
 <div id="hiding-columns" class="section level2">
 <h2 class="hasAnchor">
-<a href="#hiding-columns" class="anchor"></a>Hiding columns</h2>
+<a href="#hiding-columns" class="anchor" aria-hidden="true"></a>Hiding columns</h2>
 <p>To hide columns, use <code>FALSE</code> formatter.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>prev_score <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -590,7 +590,7 @@ change
 </div>
 <div id="using-built-in-formatters" class="section level2">
 <h2 class="hasAnchor">
-<a href="#using-built-in-formatters" class="anchor"></a>Using built-in formatters</h2>
+<a href="#using-built-in-formatters" class="anchor" aria-hidden="true"></a>Using built-in formatters</h2>
 <p>To making formatting easier, formattable package provides a group of built-in formatter functions. Suppose we have the following data on a number of products. Some columns are already formattable vectors.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, 
@@ -995,7 +995,7 @@ profit
 </div>
 <div id="area-formatting" class="section level2">
 <h2 class="hasAnchor">
-<a href="#area-formatting" class="anchor"></a>Area formatting</h2>
+<a href="#area-formatting" class="anchor" aria-hidden="true"></a>Area formatting</h2>
 <p>Sometimes, it is useful to apply a formatter function to an area so that all cells in the area share one benchmark. Area formatting is supported through the syntax of <code>area(row, col) ~ formatter</code> in the formatter list.</p>
 <p>The following example renders the three columns altogether so that they share the same benchmark, not independently.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
@@ -1292,7 +1292,7 @@ c
 </div>
 <div id="dynamically-generating-formatters" class="section level1">
 <h1 class="hasAnchor">
-<a href="#dynamically-generating-formatters" class="anchor"></a>Dynamically generating formatters</h1>
+<a href="#dynamically-generating-formatters" class="anchor" aria-hidden="true"></a>Dynamically generating formatters</h1>
 <p>Since <code><a href="../reference/formattable.html">formattable()</a></code> accepts a list of formatter functions, the list can be dynamically generated. For example, the following code applies row-wise formatting, that is, each row is colored independently.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, 
@@ -1626,7 +1626,7 @@ id
 </div>
 <div id="converting-to-dtdatatables" class="section level1">
 <h1 class="hasAnchor">
-<a href="#converting-to-dtdatatables" class="anchor"></a>Converting to <code>DT::datatables</code>
+<a href="#converting-to-dtdatatables" class="anchor" aria-hidden="true"></a>Converting to <code>DT::datatables</code>
 </h1>
 <p><code><a href="../reference/as.datatable.html">as.datatable()</a></code> is designed to convert a formattable data frame to <code>DT::datatables</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
