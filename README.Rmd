@@ -129,6 +129,18 @@ formattable(df, list(
 
 `formattable` will automatically convert to an `htmlwidget` when in an `interactive()` context such as the console or RStudio IDE.  If you would like to avoid this conversion and see the `html` table output, please use `format_table()` that calls `knitr::kable()` with formatters or call `format()` with the `formattable data.frame` object.
 
+## Doing More
+
+Much of the power of formattable can be harnessed by writing custom functions that make your formatting the way you need it. 
+
+For example, 
+do you need to pass a formatting function with no arguments to use the `area`? Write a custom function with one argument
+ - see [issue 99 comment](https://github.com/renkun-ken/formattable/issues/99#issuecomment-943841474)
+do you need to make a custom tile that uses more than two colours and is colour aware? Write a custom function 
+ - see [issue 113 comments](https://github.com/renkun-ken/formattable/issues/113#issuecomment-575678017)
+
+
+
 ## License
 
 This package is under [MIT License](https://opensource.org/licenses/MIT).
