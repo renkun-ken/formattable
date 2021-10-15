@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">formattable</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1.9000</span>
       </span>
     </div>
 
@@ -82,16 +82,16 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div id="formattable" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#formattable" class="anchor" aria-hidden="true"></a>formattable</h1></div>
+<div class="page-header"><h1>formattable<a class="anchor" aria-label="anchor" href="#formattable"></a>
+</h1></div>
 <!-- badges: start -->
 
 <!-- badges: end -->
 <p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
 <p>This document is also translated into <a href="https://github.com/renkun-ken/formattable/blob/master/README.ja.md" class="external-link">日本語</a> by [@hoxo_m](<a href="https://github.com/hoxo-m" class="external-link uri">https://github.com/hoxo-m</a>), [@dichika](<a href="https://github.com/dichika" class="external-link uri">https://github.com/dichika</a>) and [@teramonagi](<a href="https://github.com/teramonagi" class="external-link uri">https://github.com/teramonagi</a>).</p>
 <div id="install" class="section level2">
-<h2 class="hasAnchor">
-<a href="#install" class="anchor" aria-hidden="true"></a>Install</h2>
+<h2>Install<a class="anchor" aria-label="anchor" href="#install"></a>
+</h2>
 <p>The package is available on both GitHub and CRAN.</p>
 <p>Install from GitHub:</p>
 <pre class="chroma">
@@ -102,8 +102,8 @@
 <span class="nf"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="o">(</span><span class="s">"formattable"</span><span class="o">)</span></pre>
 </div>
 <div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor" aria-hidden="true"></a>Introduction</h2>
+<h2>Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>Atomic vectors are basic units to store data. Some data can be read more easily with formatting. A numeric vector, for example, stores a group of percentage numbers yet still shows in the form of typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.</p>
 <p>The package provides several typical formattable objects such as <code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code> and <code>scientific</code>. These objects are essentially numeric vectors with pre-defined formatting rules and parameters. For example,</p>
 <pre class="chroma">
@@ -148,8 +148,8 @@
 <span class="c">## 5  5   C1   7,600    15%   yes</span></pre>
 </div>
 <div id="formatting-tables-in-dynamic-document" class="section level2">
-<h2 class="hasAnchor">
-<a href="#formatting-tables-in-dynamic-document" class="anchor" aria-hidden="true"></a>Formatting tables in dynamic document</h2>
+<h2>Formatting tables in dynamic document<a class="anchor" aria-label="anchor" href="#formatting-tables-in-dynamic-document"></a>
+</h2>
 <p>In a typical workflow of dynamic document production, <a href="https://yihui.org/knitr/" class="external-link">knitr</a> and <a href="https://rmarkdown.rstudio.com/" class="external-link">rmarkdown</a> are powerful tools to render documents with R code to different types of portable documents.</p>
 <p>knitr is able to render an RMarkdown document (markdown document with R code chunks) to Markdown document. rmarkdown calls <a href="https://johnmacfarlane.net/pandoc" class="external-link">pandoc</a> to render a markdown document to HTML web page. To put a table (<code>data.frame</code> in R) on the page, one may call <a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link"><code>knitr::kable</code></a> to produce its markdown representation. By default the resulted table is in a plain theme with no additional formatting. However, in some cases, additional formatting may help clarify the information and make contrast of the data. This package provides functions to produce formatted tables in dynamic documents.</p>
 <pre class="chroma">
@@ -487,13 +487,14 @@ FALSE
 <p><strong>The icon set used in the table is by <a href="https://GLYPHICONS.com" class="external-link">GLYPHICONS.com</a> and included in <a href="https://getbootstrap.com/docs/3.4/components/#glyphicons" class="external-link">Bootstrap</a>.</strong></p>
 </div>
 <div id="htmlwidget-conversion-in-interactive-environments" class="section level2">
-<h2 class="hasAnchor">
-<a href="#htmlwidget-conversion-in-interactive-environments" class="anchor" aria-hidden="true"></a><code>htmlwidget</code> conversion in interactive environments</h2>
+<h2>
+<code>htmlwidget</code> conversion in interactive environments<a class="anchor" aria-label="anchor" href="#htmlwidget-conversion-in-interactive-environments"></a>
+</h2>
 <p><code>formattable</code> will automatically convert to an <code>htmlwidget</code> when in an <a href="https://rdrr.io/r/base/interactive.html" class="external-link"><code>interactive()</code></a> context such as the console or RStudio IDE. If you would like to avoid this conversion and see the <code>html</code> table output, please use <a href="https://renkun-ken.github.io/formattable/reference/format_table.html" class="external-link"><code>format_table()</code></a> that calls <a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link"><code>knitr::kable()</code></a> with formatters or call <a href="https://rdrr.io/r/base/format.html" class="external-link"><code>format()</code></a> with the <code>formattable data.frame</code> object.</p>
 </div>
 <div id="license" class="section level2">
-<h2 class="hasAnchor">
-<a href="#license" class="anchor" aria-hidden="true"></a>License</h2>
+<h2>License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
 <p>This package is under <a href="https://opensource.org/licenses/MIT" class="external-link">MIT License</a>.</p>
 </div>
 </div>
@@ -549,7 +550,7 @@ FALSE
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>

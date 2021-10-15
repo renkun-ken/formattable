@@ -469,10 +469,10 @@ HTMLWidgets.widget({
             'background-color': '#fff',
             'border': '1px #ddd solid',
             'border-radius': '4px',
-            'padding': '20px 20px 10px 20px'
+            'padding': data.vertical ? '35px 20px': '20px 20px 10px 20px'
           });
           var $spans = $x0.children('span').css({
-            'margin-top': '10px',
+            'margin-top': data.vertical ? '0' : '10px',
             'white-space': 'nowrap'
           });
           var $span1 = $spans.first(), $span2 = $spans.last();
@@ -499,9 +499,9 @@ HTMLWidgets.widget({
               // first, make sure the slider div leaves at least 20px between
               // the two (slider value) span's
               $x0.width(Math.max(160, $span1.outerWidth() + $span2.outerWidth() + 20));
-              // then, if the input is really wide, make the slider the same
-              // width as the input
-              if ($x0.outerWidth() < $input.outerWidth()) {
+              // then, if the input is really wide or slider is vertical,
+              // make the slider the same width as the input
+              if ($x0.outerWidth() < $input.outerWidth() || data.vertical) {
                 $x0.outerWidth($input.outerWidth());
               }
               // make sure the slider div does not reach beyond the right margin
@@ -566,6 +566,10 @@ HTMLWidgets.widget({
           };
           var opts = type === 'date' ? { step: 60 * 60 * 1000 } :
                      type === 'integer' ? { step: 1 } : {};
+
+          opts.orientation = data.vertical ? 'vertical': 'horizontal';
+          opts.direction = data.vertical ? 'rtl': 'ltr';
+
           filter = $x.noUiSlider($.extend({
             start: [r1, r2],
             range: {min: r1, max: r2},
@@ -749,39 +753,44 @@ HTMLWidgets.widget({
           throw 'The editable parameter must be "cell", "row", "column", or "all"';
       }
       var disableCols = data.editable.disable ? data.editable.disable.columns : null;
+      var numericCols = data.editable.numeric;
+      var areaCols = data.editable.area;
       for (var i = 0; i < target.length; i++) {
         (function(cell, current) {
           var $cell = $(cell), html = $cell.html();
-          var _cell = table.cell(cell), value = _cell.data();
-          var $input = $('<input type="text">'), changed = false;
+          var _cell = table.cell(cell), value = _cell.data(), index = _cell.index().column;
+          var $input;
+          if (inArray(index, numericCols)) {
+            $input = $('<input type="number">');
+          } else if (inArray(index, areaCols)) {
+            $input = $('<textarea></textarea>');
+          } else {
+            $input = $('<input type="text">');
+          }
           if (!immediate) {
             $cell.data('input', $input).data('html', html);
             $input.attr('title', 'Hit Ctrl+Enter to finish editing, or Esc to cancel');
           }
           $input.val(value);
-          if (inArray(_cell.index().column, disableCols)) {
+          if (inArray(index, disableCols)) {
             $input.attr('readonly', '').css('filter', 'invert(25%)');
           }
           $cell.empty().append($input);
           if (cell === current) $input.focus();
           $input.css('width', '100%');
 
-          if (immediate) $input.on('change', function() {
-            changed = true;
+          if (immediate) $input.on('blur', function(e) {
             var valueNew = $input.val();
             if (valueNew != value) {
               _cell.data(valueNew);
               if (HTMLWidgets.shinyMode) {
-                changeInput('cell_edit', [cellInfo(cell)], 'DT.cellInfo', null, {priority: "event"});
+                changeInput('cell_edit', [cellInfo(cell)], 'DT.cellInfo', null, {priority: 'event'});
               }
               // for server-side processing, users have to call replaceData() to update the table
               if (!server) table.draw(false);
             } else {
               $cell.html(html);
             }
-            $input.remove();
-          }).on('blur', function() {
-            if (!changed) $input.trigger('change');
           }).on('keyup', function(e) {
             // hit Escape to cancel editing
             if (e.keyCode === 27) $input.trigger('blur');

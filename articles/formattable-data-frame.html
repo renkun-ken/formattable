@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">formattable</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1.9000</span>
       </span>
     </div>
 
@@ -75,8 +75,8 @@
 
       
 
-      </header><script src="formattable-data-frame_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="formattable-data-frame_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="formattable-data-frame_files/jquery-3.5.1/jquery.min.js"></script><link href="formattable-data-frame_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="formattable-data-frame_files/datatables-binding-0.18/datatables.js"></script><link href="formattable-data-frame_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+      </header><script src="formattable-data-frame_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="formattable-data-frame_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="formattable-data-frame_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="formattable-data-frame_files/datatables-binding-0.19/datatables.js"></script><script src="formattable-data-frame_files/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="formattable-data-frame_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="formattable-data-frame_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="formattable-data-frame_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="formattable-data-frame_files/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
 <script src="formattable-data-frame_files/crosstalk-1.1.1/js/crosstalk.min.js"></script><div class="row">
@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Formattable data frame</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2021-07-29</h4>
+            <h4 data-toc-skip class="date">2021-10-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/vignettes/formattable-data-frame.Rmd" class="external-link"><code>vignettes/formattable-data-frame.Rmd</code></a></small>
       <div class="hidden name"><code>formattable-data-frame.Rmd</code></div>
@@ -96,8 +96,8 @@
     
 <p>Formattable data frames are data frames to be rendered as HTML table with formatter functions applied, which resembles conditional formatting in Microsoft Excel.</p>
 <div id="simple-examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#simple-examples" class="anchor" aria-hidden="true"></a>Simple examples</h2>
+<h2>Simple examples<a class="anchor" aria-label="anchor" href="#simple-examples"></a>
+</h2>
 <p>Suppose we have the following data frame:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
@@ -415,8 +415,8 @@ change
 </table>
 </div>
 <div id="cross-formatting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cross-formatting" class="anchor" aria-hidden="true"></a>Cross formatting</h2>
+<h2>Cross formatting<a class="anchor" aria-label="anchor" href="#cross-formatting"></a>
+</h2>
 <p>Sometimes, we need to format one column based on the values of another column. This can be easily done with one-sided formula in <code><a href="../reference/formatter.html">formatter()</a></code>. When using <code>formatter("span", style = ~ expr)</code>, <code>expr</code> is evaluated in the data frame so that all columns are available for use.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
@@ -512,8 +512,8 @@ change
 </table>
 </div>
 <div id="hiding-columns" class="section level2">
-<h2 class="hasAnchor">
-<a href="#hiding-columns" class="anchor" aria-hidden="true"></a>Hiding columns</h2>
+<h2>Hiding columns<a class="anchor" aria-label="anchor" href="#hiding-columns"></a>
+</h2>
 <p>To hide columns, use <code>FALSE</code> formatter.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>prev_score <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -589,8 +589,8 @@ change
 </table>
 </div>
 <div id="using-built-in-formatters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-built-in-formatters" class="anchor" aria-hidden="true"></a>Using built-in formatters</h2>
+<h2>Using built-in formatters<a class="anchor" aria-label="anchor" href="#using-built-in-formatters"></a>
+</h2>
 <p>To making formatting easier, formattable package provides a group of built-in formatter functions. Suppose we have the following data on a number of products. Some columns are already formattable vectors.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, 
@@ -994,8 +994,8 @@ profit
 </table>
 </div>
 <div id="area-formatting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#area-formatting" class="anchor" aria-hidden="true"></a>Area formatting</h2>
+<h2>Area formatting<a class="anchor" aria-label="anchor" href="#area-formatting"></a>
+</h2>
 <p>Sometimes, it is useful to apply a formatter function to an area so that all cells in the area share one benchmark. Area formatting is supported through the syntax of <code>area(row, col) ~ formatter</code> in the formatter list.</p>
 <p>The following example renders the three columns altogether so that they share the same benchmark, not independently.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
@@ -1291,8 +1291,8 @@ c
 </table>
 </div>
 <div id="dynamically-generating-formatters" class="section level1">
-<h1 class="hasAnchor">
-<a href="#dynamically-generating-formatters" class="anchor" aria-hidden="true"></a>Dynamically generating formatters</h1>
+<h1>Dynamically generating formatters<a class="anchor" aria-label="anchor" href="#dynamically-generating-formatters"></a>
+</h1>
 <p>Since <code><a href="../reference/formattable.html">formattable()</a></code> accepts a list of formatter functions, the list can be dynamically generated. For example, the following code applies row-wise formatting, that is, each row is colored independently.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, 
@@ -1625,22 +1625,21 @@ id
 </table>
 </div>
 <div id="converting-to-dtdatatables" class="section level1">
-<h1 class="hasAnchor">
-<a href="#converting-to-dtdatatables" class="anchor" aria-hidden="true"></a>Converting to <code>DT::datatables</code>
+<h1>Converting to <code>DT::datatables</code><a class="anchor" aria-label="anchor" href="#converting-to-dtdatatables"></a>
 </h1>
 <p><code><a href="../reference/as.datatable.html">as.datatable()</a></code> is designed to convert a formattable data frame to <code>DT::datatables</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Loading required namespace: DT</code></pre>
 <div id="htmlwidget-530a78b6872d546cc16a" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-530a78b6872d546cc16a">{"x":{"filter":"none","data":[["1","2","3","4","5"],["1","2","3","4","5"],["10","15","12","8","9"],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["55,000.00","36,400.00","12,000.00","(25,000.00)","98,100.00"],["25,300.00","11,500.00","(8,200.00)","(46,000.00)","65,000.00"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><p>Some formatters can be preserved well after the conversion.</p>
+<script type="application/json" data-for="htmlwidget-530a78b6872d546cc16a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["10","15","12","8","9"],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["55,000.00","36,400.00","12,000.00","(25,000.00)","98,100.00"],["25,300.00","11,500.00","(8,200.00)","(46,000.00)","65,000.00"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script><p>Some formatters can be preserved well after the conversion.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   price <span class="op">=</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span>,
   revenue <span class="op">=</span> <span class="va">sign_formatter</span>,
   profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div id="htmlwidget-4cadc5f8c7ab9ff923ac" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4cadc5f8c7ab9ff923ac">{"x":{"filter":"none","data":[["1","2","3","4","5"],["1","2","3","4","5"],["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffeaed\">10<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1\">15<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd5db\">12<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">8<\/span> ","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fff4f6\">9<\/span> "],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["<span style=\"color: green\">55,000.00<\/span>","<span style=\"color: green\">36,400.00<\/span>","<span style=\"color: green\">12,000.00<\/span>","<span style=\"color: red\">(25,000.00)<\/span>","<span style=\"color: green\">98,100.00<\/span>"],["<span style=\"color: green\">25,300.00<\/span>","<span style=\"color: green\">11,500.00<\/span>","<span style=\"color: red\">(8,200.00)<\/span> ","<span style=\"color: red\">(46,000.00)<\/span>","<span style=\"color: green\">65,000.00<\/span>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-4cadc5f8c7ab9ff923ac">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffeaed\">10<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1\">15<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd5db\">12<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">8<\/span> ","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fff4f6\">9<\/span> "],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["<span style=\"color: green\">55,000.00<\/span>","<span style=\"color: green\">36,400.00<\/span>","<span style=\"color: green\">12,000.00<\/span>","<span style=\"color: red\">(25,000.00)<\/span>","<span style=\"color: green\">98,100.00<\/span>"],["<span style=\"color: green\">25,300.00<\/span>","<span style=\"color: green\">11,500.00<\/span>","<span style=\"color: red\">(8,200.00)<\/span> ","<span style=\"color: red\">(46,000.00)<\/span>","<span style=\"color: green\">65,000.00<\/span>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
@@ -1661,7 +1660,7 @@ id
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>
