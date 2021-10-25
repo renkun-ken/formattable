@@ -39,7 +39,7 @@
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/renkun-ken/formattable/">
+  <a href="https://github.com/renkun-ken/formattable/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -54,7 +54,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Formattable object with prefix</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/val_prefix.R"><code>R/val_prefix.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/val_prefix.R" class="external-link"><code>R/val_prefix.R</code></a></small>
     <div class="hidden name"><code>prefix.Rd</code></div>
     </div>
 
@@ -64,35 +64,33 @@
 
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">prefix</span><span class="op">(</span><span class="va">x</span>, prefix <span class="op">=</span> <span class="st">""</span>, sep <span class="op">=</span> <span class="st">""</span>, <span class="va">...</span>, na.text <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
 
+    <div id="ref-sections">
     <div id="arguments">
-    <h2>Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
-      <td><p>an object</p></td>
-    </tr><tr><th>prefix</th>
-      <td><p>a character vector put in front of each non-missing
-value in <code>x</code> as being formatted.</p></td>
-    </tr><tr><th>sep</th>
-      <td><p>separator</p></td>
-    </tr><tr><th>...</th>
-      <td><p>additional parameter passed to <code><a href="formattable.html">formattable()</a></code>.</p></td>
-    </tr><tr><th>na.text</th>
-      <td><p>text for missing values in <code>x</code>.</p></td>
-    </tr></table></div>
+    <h2>Arguments</h2>
+    
 
+<dl><dt>x</dt><dd><p>an object</p></dd>
+</dl><dl><dt>prefix</dt><dd><p>a character vector put in front of each non-missing
+value in <code>x</code> as being formatted.</p></dd>
+</dl><dl><dt>sep</dt><dd><p>separator</p></dd>
+</dl><dl><dt>...</dt><dd><p>additional parameter passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
+</dl><dl><dt>na.text</dt><dd><p>text for missing values in <code>x</code>.</p></dd>
+</dl></div>
+    </div>
 
     <div id="examples">
-    <h2>Examples<a class="anchor" aria-label="anchor" href="#examples"></a></h2>
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"A"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] A1  A2  A3  A4  A5  A6  A7  A8  A9  A10</span>
 <span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"Choice"</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] Choice 1  Choice 2  Choice 3  Choice 4  Choice 5  Choice 6  Choice 7 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] Choice 8  Choice 9  Choice 10</span>
-<span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="cn">NA</span><span class="op">)</span>, prefix <span class="op">=</span> <span class="st">"A"</span>, na.text <span class="op">=</span> <span class="st">"(missing)"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="cn">NA</span><span class="op">)</span>, prefix <span class="op">=</span> <span class="st">"A"</span>, na.text <span class="op">=</span> <span class="st">"(missing)"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] A1        A2        A3        A4        A5        A6        A7       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] A8        A9        A10       (missing)</span>
-<span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, <span class="st">"*"</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] *10 *9  *9  *8  *12 *9  *11 *10 *11 *7 </span>
-<span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fu"><a href="legacy.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>, <span class="st">"&gt;"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span>, <span class="st">"*"</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] *10 *11 *9  *11 *10 *10 *10 *7  *9  *9 </span>
+<span class="r-in"><span class="fu">prefix</span><span class="op">(</span><span class="fu"><a href="legacy.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>, <span class="st">"&gt;"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] &gt;10.00% &gt;25.00%</span>
 </code></pre></div>
     </div>

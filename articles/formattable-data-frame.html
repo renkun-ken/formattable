@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Formattable data frame</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2021-10-17</h4>
+            <h4 data-toc-skip class="date">2021-10-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/vignettes/formattable-data-frame.Rmd" class="external-link"><code>vignettes/formattable-data-frame.Rmd</code></a></small>
       <div class="hidden name"><code>formattable-data-frame.Rmd</code></div>
@@ -95,8 +95,8 @@
     
     
 <p>Formattable data frames are data frames to be rendered as HTML table with formatter functions applied, which resembles conditional formatting in Microsoft Excel.</p>
-<div id="simple-examples" class="section level2">
-<h2>Simple examples<a class="anchor" aria-label="anchor" href="#simple-examples"></a>
+<div class="section level2">
+<h2 id="simple-examples">Simple examples<a class="anchor" aria-label="anchor" href="#simple-examples"></a>
 </h2>
 <p>Suppose we have the following data frame:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -414,8 +414,8 @@ change
 </tbody>
 </table>
 </div>
-<div id="cross-formatting" class="section level2">
-<h2>Cross formatting<a class="anchor" aria-label="anchor" href="#cross-formatting"></a>
+<div class="section level2">
+<h2 id="cross-formatting">Cross formatting<a class="anchor" aria-label="anchor" href="#cross-formatting"></a>
 </h2>
 <p>Sometimes, we need to format one column based on the values of another column. This can be easily done with one-sided formula in <code><a href="../reference/formatter.html">formatter()</a></code>. When using <code>formatter("span", style = ~ expr)</code>, <code>expr</code> is evaluated in the data frame so that all columns are available for use.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -511,8 +511,8 @@ change
 </tbody>
 </table>
 </div>
-<div id="hiding-columns" class="section level2">
-<h2>Hiding columns<a class="anchor" aria-label="anchor" href="#hiding-columns"></a>
+<div class="section level2">
+<h2 id="hiding-columns">Hiding columns<a class="anchor" aria-label="anchor" href="#hiding-columns"></a>
 </h2>
 <p>To hide columns, use <code>FALSE</code> formatter.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -588,8 +588,8 @@ change
 </tbody>
 </table>
 </div>
-<div id="using-built-in-formatters" class="section level2">
-<h2>Using built-in formatters<a class="anchor" aria-label="anchor" href="#using-built-in-formatters"></a>
+<div class="section level2">
+<h2 id="using-built-in-formatters">Using built-in formatters<a class="anchor" aria-label="anchor" href="#using-built-in-formatters"></a>
 </h2>
 <p>To making formatting easier, formattable package provides a group of built-in formatter functions. Suppose we have the following data on a number of products. Some columns are already formattable vectors.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -993,8 +993,8 @@ profit
 </tbody>
 </table>
 </div>
-<div id="area-formatting" class="section level2">
-<h2>Area formatting<a class="anchor" aria-label="anchor" href="#area-formatting"></a>
+<div class="section level2">
+<h2 id="area-formatting">Area formatting<a class="anchor" aria-label="anchor" href="#area-formatting"></a>
 </h2>
 <p>Sometimes, it is useful to apply a formatter function to an area so that all cells in the area share one benchmark. Area formatting is supported through the syntax of <code>area(row, col) ~ formatter</code> in the formatter list.</p>
 <p>The following example renders the three columns altogether so that they share the same benchmark, not independently.</p>
@@ -1290,8 +1290,8 @@ c
 </tbody>
 </table>
 </div>
-<div id="dynamically-generating-formatters" class="section level1">
-<h1>Dynamically generating formatters<a class="anchor" aria-label="anchor" href="#dynamically-generating-formatters"></a>
+<div class="section level1">
+<h1 id="dynamically-generating-formatters">Dynamically generating formatters<a class="anchor" aria-label="anchor" href="#dynamically-generating-formatters"></a>
 </h1>
 <p>Since <code><a href="../reference/formattable.html">formattable()</a></code> accepts a list of formatter functions, the list can be dynamically generated. For example, the following code applies row-wise formatting, that is, each row is colored independently.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -1624,8 +1624,8 @@ id
 </tbody>
 </table>
 </div>
-<div id="converting-to-dtdatatables" class="section level1">
-<h1>Converting to <code>DT::datatables</code><a class="anchor" aria-label="anchor" href="#converting-to-dtdatatables"></a>
+<div class="section level1">
+<h1 id="converting-to-dtdatatables">Converting to <code>DT::datatables</code><a class="anchor" aria-label="anchor" href="#converting-to-dtdatatables"></a>
 </h1>
 <p><code><a href="../reference/as.datatable.html">as.datatable()</a></code> is designed to convert a formattable data frame to <code>DT::datatables</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
@@ -1660,7 +1660,7 @@ id
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>

@@ -39,7 +39,7 @@
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/renkun-ken/formattable/">
+  <a href="https://github.com/renkun-ken/formattable/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -56,15 +56,14 @@
       <h1>formattable</h1>
     </div>
 
-<div id="formattable" class="section level1">
+<div class="section level1">
 
 <!-- badges: start -->
 <p><a href="https://github.com/renkun-ken/formattable/actions" class="external-link"><img src="https://github.com/renkun-ken/formattable/workflows/rcc/badge.svg" alt="R build status"></a> <a href="https://codecov.io/github/renkun-ken/formattable?branch=master" class="external-link"><img src="https://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=formattable" class="external-link"><img src="https://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a></p>
 <!-- badges: end -->
 <p>このパッケージは、ベクトルおよびデータフレームに書式を適用するために開発されました。これにより、データを「より簡単に」「よりリッチに」「より柔軟に」「できるだけ多くの情報を伝えるように」提示することができます。</p>
-<div id="インストール" class="section level2">
-<h2>インストール<a class="anchor" aria-label="anchor" href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"></a>
-</h2>
+<div class="section level2">
+<h2 id="ライセンス">インストール<a class="anchor" aria-label="anchor" href="#formattable"></a></h2>
 <p>最新の開発バージョンを GitHub からインストールするには：</p>
 <pre class="chroma">
 <span class="c"># install.packages("devtools")</span>
@@ -73,9 +72,8 @@
 <pre class="chroma">
 <span class="nf"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="o">(</span><span class="s">"formattable"</span><span class="o">)</span></pre>
 </div>
-<div id="イントロダクション" class="section level2">
-<h2>イントロダクション<a class="anchor" aria-label="anchor" href="#%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"></a>
-</h2>
+<div class="section level2">
+<h2 id="インストール">イントロダクション<a class="anchor" aria-label="anchor" href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"></a></h2>
 <p>ベクトルはデータを保存するための基本的な単位です。データの中には、書式を適用することで、可読性が高まるものがあります。例えば、Rにおいて複数のパーセント値からなる数値ベクトルは通常の小数点形式で表示されます。このパッケージは、あらかじめ定義された書式のルールに従って、データ構造を作成するための関数を提供します。これにより、元のデータを保持したまま、表示の際には書式を適用することができます。</p>
 <p>このパッケージでは<code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code>, <code>scientific</code>など典型的な書式 を提供しています。これらのオブジェクトは、基本的には数値ベクトルですが、あらかじめ定義された書式ルールとパラメータを持っています。例えば、</p>
 <pre class="chroma">
@@ -119,9 +117,8 @@
 <span class="c">## 4  4   B2  18,300    15%    no</span>
 <span class="c">## 5  5   C1   7,600    15%   yes</span></pre>
 </div>
-<div id="動的ドキュメント中のテーブル表の書式" class="section level2">
-<h2>動的ドキュメント中のテーブル(表)の書式<a class="anchor" aria-label="anchor" href="#%E5%8B%95%E7%9A%84%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E4%B8%AD%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E8%A1%A8%E3%81%AE%E6%9B%B8%E5%BC%8F"></a>
-</h2>
+<div class="section level2">
+<h2 id="イントロダクション">動的ドキュメント中のテーブル(表)の書式<a class="anchor" aria-label="anchor" href="#%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD%E3%83%80%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"></a></h2>
 <p>動的ドキュメント生成の典型的なワークフローの中で、<a href="https://yihui.org/knitr/" class="external-link">knitr</a> と <a href="https://rmarkdown.rstudio.com/" class="external-link">rmarkdown</a> は、R コードを含むドキュメントを異なるタイプのドキュメントに変換するための強力なツールです。</p>
 <p>knitr は、RMarkdown ドキュメントを Markdown ドキュメントに変換することができます。rmarkdown は、<a href="https://johnmacfarlane.net/pandoc" class="external-link">pandoc</a> を使って、markdowon ドキュメントを HTML ウェブページに変換します。これらのドキュメント中に、R の <code>data.frame</code> をテーブル(表)として置きたいときは、<a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link"><code>knitr::kable</code></a> 関数を使って markdown 形式に変換することができます。 kable関数で生成されたテーブルは、デフォルトでは書式が適用されていません。ですが、書式を追加することにより、情報が明確化され、データが対比しやすくなる場合があるでしょう。本パッケージは、動的ドキュメントにおいて書式を適用したテーブルを生成するための関数を提供します。</p>
 <pre class="chroma">
@@ -137,7 +134,7 @@
   registered <span class="o">=</span> <span class="nf"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="o">(</span><span class="kc">TRUE</span>, <span class="kc">FALSE</span>, <span class="kc">TRUE</span>, <span class="kc">FALSE</span>, <span class="kc">TRUE</span>, <span class="kc">TRUE</span>, <span class="kc">TRUE</span>, <span class="kc">FALSE</span>, <span class="kc">FALSE</span>, <span class="kc">FALSE</span><span class="o">)</span>,
   stringsAsFactors <span class="o">=</span> <span class="kc">FALSE</span><span class="o">)</span></pre>
 <p>何もしない場合、次のようなテーブルが表示されます：</p>
-<table><thead><tr><th style="text-align:right;">
+<table class="table"><thead><tr><th style="text-align:right;">
 id
 </th>
 <th style="text-align:left;">
@@ -431,14 +428,12 @@ FALSE
 </div>
 <p><strong>テーブルで使用されるアイコンセットは <a href="https://GLYPHICONS.com" class="external-link">GLYPHICONS.com</a> によるものです。これは <a href="https://getbootstrap.com/docs/3.4/components/#glyphicons" class="external-link">Bootstrap</a> に含まれています。</strong></p>
 </div>
-<div id="インタラクティブな環境における-htmlwidget-への自動変換" class="section level2">
-<h2>インタラクティブな環境における <code>htmlwidget</code> への自動変換<a class="anchor" aria-label="anchor" href="#%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%81%AA%E7%92%B0%E5%A2%83%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-htmlwidget-%E3%81%B8%E3%81%AE%E8%87%AA%E5%8B%95%E5%A4%89%E6%8F%9B"></a>
-</h2>
+<div class="section level2">
+<h2 id="動的ドキュメント中のテーブル表の書式">インタラクティブな環境における <code>htmlwidget</code> への自動変換<a class="anchor" aria-label="anchor" href="#%E5%8B%95%E7%9A%84%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E4%B8%AD%E3%81%AE%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E8%A1%A8%E3%81%AE%E6%9B%B8%E5%BC%8F"></a></h2>
 <p><code>formattable</code> オブジェクト は、コンソールや RStudio IDE などの <a href="https://rdrr.io/r/base/interactive.html" class="external-link"><code>interactive()</code></a> な状況では、自動的に <code>htmlwidget</code> オブジェクト へと変換されます。この変換を避けたい場合や、<code>markdown</code> 形式のテーブル出力を見たい場合は、<a href="https://renkun-ken.github.io/formattable/reference/format_table.html" class="external-link"><code>format_table()</code></a> 関数を使って下さい。この関数は、<a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link"><code>knitr::kable()</code></a> に書式を適用して整形した状態で呼び出すことができます。もしくは、<code>formattable data.frame</code> オブジェクトに対しては <a href="https://rdrr.io/r/base/character.html" class="external-link"><code>as.character()</code></a> を呼び出して下さい。</p>
 </div>
-<div id="ライセンス" class="section level2">
-<h2>ライセンス<a class="anchor" aria-label="anchor" href="#%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9"></a>
-</h2>
+<div class="section level2">
+<h2 id="インタラクティブな環境における-htmlwidget-への自動変換">ライセンス<a class="anchor" aria-label="anchor" href="#%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%A9%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%81%AA%E7%92%B0%E5%A2%83%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-htmlwidget-%E3%81%B8%E3%81%AE%E8%87%AA%E5%8B%95%E5%A4%89%E6%8F%9B"></a></h2>
 <p>このパッケージは <a href="https://opensource.org/licenses/MIT" class="external-link">MIT License</a> の下で公開されています。</p>
 </div>
 </div>

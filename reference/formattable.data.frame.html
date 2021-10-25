@@ -43,7 +43,7 @@ formatted cells."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/renkun-ken/formattable/">
+  <a href="https://github.com/renkun-ken/formattable/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -58,7 +58,7 @@ formatted cells."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a formattable data frame</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/formattable.R"><code>R/formattable.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/formattable.R" class="external-link"><code>R/formattable.R</code></a></small>
     <div class="hidden name"><code>formattable.data.frame.Rd</code></div>
     </div>
 
@@ -79,28 +79,25 @@ formatted cells.</p>
   postproc <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
 
+    <div id="ref-sections">
     <div id="arguments">
-    <h2>Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
-      <td><p>a <code>data.frame</code></p></td>
-    </tr><tr><th>...</th>
-      <td><p>arguments to be passed to <code>formatter</code>.</p></td>
-    </tr><tr><th>formatter</th>
-      <td><p>formatting function, <code><a href="format_table.html">format_table()</a></code> in default.</p></td>
-    </tr><tr><th>preproc</th>
-      <td><p>pre-processor function that prepares <code>x</code> for
-formatting function.</p></td>
-    </tr><tr><th>postproc</th>
-      <td><p>post-processor function that transforms formatted
-output for printing.</p></td>
-    </tr></table></div>
+    <h2>Arguments</h2>
+    
 
+<dl><dt>x</dt><dd><p>a <code>data.frame</code></p></dd>
+</dl><dl><dt>...</dt><dd><p>arguments to be passed to <code>formatter</code>.</p></dd>
+</dl><dl><dt>formatter</dt><dd><p>formatting function, <code><a href="format_table.html">format_table()</a></code> in default.</p></dd>
+</dl><dl><dt>preproc</dt><dd><p>pre-processor function that prepares <code>x</code> for
+formatting function.</p></dd>
+</dl><dl><dt>postproc</dt><dd><p>post-processor function that transforms formatted
+output for printing.</p></dd>
+</dl></div>
     <div id="value">
-    <h2>Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <h2>Value</h2>
     <p>a <code>formattable data.frame</code></p>
     </div>
     <div id="details">
-    <h2>Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <h2>Details</h2>
     <p>The formattable data frame is a data frame with lazy-bindings
 of prespecified column formatters or area formatters.
 The formatters will not be applied until the data frame is
@@ -110,51 +107,52 @@ not be changed even if the formatters are applied to produce
 the printed version.</p>
     </div>
     <div id="see-also">
-    <h2>See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <h2>See also</h2>
     <div class="dont-index"><p><code><a href="format_table.html">format_table()</a></code>, <code><a href="area.html">area()</a></code></p></div>
+    </div>
     </div>
 
     <div id="examples">
-    <h2>Examples<a class="anchor" aria-label="anchor" href="#examples"></a></h2>
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># mtcars (mpg in red)</span></span>
 <span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>,</span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, style <span class="op">=</span> <span class="st">"color:red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, style <span class="op">=</span> <span class="st">"color:red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in red if greater than median)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">   style <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">   style <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in red if greater than median, using formula)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in gradient: the higher, the redder)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg background in gradient: the higher, the redder)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
 <span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>display <span class="op">=</span> <span class="st">"block"</span>,</span>
 <span class="r-in">   <span class="st">"border-radius"</span> <span class="op">=</span> <span class="st">"4px"</span>,</span>
 <span class="r-in">   <span class="st">"padding-right"</span> <span class="op">=</span> <span class="st">"4px"</span>,</span>
 <span class="r-in">   color <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span class="r-in">   <span class="st">"background-color"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">   <span class="st">"background-color"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in red if vs == 1 and am == 1)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">    style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">am</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">    style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">am</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># hide columns</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="cn">FALSE</span>, cyl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="cn">FALSE</span>, cyl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># area formatting</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">vs</span><span class="op">:</span><span class="va">carb</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">vs</span><span class="op">:</span><span class="va">carb</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span>,</span>
+<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span>,</span>
 <span class="r-in">  <span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 </code></pre></div>
     </div>

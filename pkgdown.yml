@@ -1,8 +1,8 @@
 pandoc: 2.7.3
 pkgdown: 1.9000.9000.9000
-pkgdown_sha: e21d2ff187124501919249e3d21fe9cf44d41391
+pkgdown_sha: 31d9ee9cfc5bc95fe9ef742e8141643385be940c
 articles:
   formattable-data-frame: formattable-data-frame.html
   introduction: introduction.html
-last_built: 2021-10-17T06:07Z
+last_built: 2021-10-25T02:40Z
 

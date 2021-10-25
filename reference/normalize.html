@@ -39,7 +39,7 @@
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/renkun-ken/formattable/">
+  <a href="https://github.com/renkun-ken/formattable/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -54,7 +54,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Normalize a vector to fit zero-to-one scale</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/transform.R"><code>R/transform.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/transform.R" class="external-link"><code>R/transform.R</code></a></small>
     <div class="hidden name"><code>normalize.Rd</code></div>
     </div>
 
@@ -64,21 +64,20 @@
 
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">normalize</span><span class="op">(</span><span class="va">x</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 
+    <div id="ref-sections">
     <div id="arguments">
-    <h2>Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
-      <td><p>a numeric vector</p></td>
-    </tr><tr><th>min</th>
-      <td><p>numeric value. The lower bound of the interval to normalize <code>x</code>.</p></td>
-    </tr><tr><th>max</th>
-      <td><p>numeric value. The upper bound of the interval to normalize <code>x</code>.</p></td>
-    </tr><tr><th>na.rm</th>
-      <td><p>a logical indicating whether missing values should be removed</p></td>
-    </tr></table></div>
+    <h2>Arguments</h2>
+    
 
+<dl><dt>x</dt><dd><p>a numeric vector</p></dd>
+</dl><dl><dt>min</dt><dd><p>numeric value. The lower bound of the interval to normalize <code>x</code>.</p></dd>
+</dl><dl><dt>max</dt><dd><p>numeric value. The upper bound of the interval to normalize <code>x</code>.</p></dd>
+</dl><dl><dt>na.rm</dt><dd><p>a logical indicating whether missing values should be removed</p></dd>
+</dl></div>
+    </div>
 
     <div id="examples">
-    <h2>Examples<a class="anchor" aria-label="anchor" href="#examples"></a></h2>
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">normalize</span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.4510638 0.4510638 0.5276596 0.4680851 0.3531915 0.3276596 0.1659574</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.5957447 0.5276596 0.3744681 0.3148936 0.2553191 0.2936170 0.2042553</span>

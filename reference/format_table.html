@@ -42,7 +42,7 @@ input data frame can be transformed by formatter functions."><!-- mathjax --><sc
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/renkun-ken/formattable/">
+  <a href="https://github.com/renkun-ken/formattable/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -57,7 +57,7 @@ input data frame can be transformed by formatter functions."><!-- mathjax --><sc
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Format a data frame with formatter functions</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/formattable.R"><code>R/formattable.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/formattable.R" class="external-link"><code>R/formattable.R</code></a></small>
     <div class="hidden name"><code>format_table.Rd</code></div>
     </div>
 
@@ -70,62 +70,55 @@ input data frame can be transformed by formatter functions.</p>
 
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">format_table</span><span class="op">(</span>
   <span class="va">x</span>,
-  formatters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,
-  format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"html"</span>, <span class="st">"markdown"</span>, <span class="st">"pandoc"</span><span class="op">)</span>,
+  formatters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
+  format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"html"</span>, <span class="st">"markdown"</span>, <span class="st">"pandoc"</span><span class="op">)</span>,
   align <span class="op">=</span> <span class="st">"r"</span>,
   <span class="va">...</span>,
-  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span>,
+  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span>,
   table.attr <span class="op">=</span> <span class="st">"class=\"table table-condensed\""</span>
 <span class="op">)</span></code></pre></div>
 
+    <div id="ref-sections">
     <div id="arguments">
-    <h2>Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
-      <td><p>a <code>data.frame</code>.</p></td>
-    </tr><tr><th>formatters</th>
-      <td><p>a list of formatter functions or formulas.
+    <h2>Arguments</h2>
+    
+
+<dl><dt>x</dt><dd><p>a <code>data.frame</code>.</p></dd>
+</dl><dl><dt>formatters</dt><dd><p>a list of formatter functions or formulas.
 The existing columns of <code>x</code> will be applied the formatter
-function in <code>formatters</code> if it exists.</p>
-<p>If a formatter is specified by formula, then the formula will be
+function in <code>formatters</code> if it exists.If a formatter is specified by formula, then the formula will be
 interpreted as a lambda expression with its left-hand side being
 a symbol and right-hand side being the expression using the symbol
 to represent the column values. The formula expression will be evaluated
-in the environment of the formula.</p>
-<p>If a formatter is <code>FALSE</code>, then the corresponding column will be hidden.</p>
-<p>Area formatter is specified in the form of
-<code>area(row, col) ~ formatter</code> without specifying the column name.</p></td>
-    </tr><tr><th>format</th>
-      <td><p>The output format: html, markdown or pandoc?</p></td>
-    </tr><tr><th>align</th>
-      <td><p>The alignment of columns: a character vector consisting
+in the environment of the formula.If a formatter is <code>FALSE</code>, then the corresponding column will be hidden.Area formatter is specified in the form of
+<code>area(row, col) ~ formatter</code> without specifying the column name.</p></dd>
+</dl><dl><dt>format</dt><dd><p>The output format: html, markdown or pandoc?</p></dd>
+</dl><dl><dt>align</dt><dd><p>The alignment of columns: a character vector consisting
 of <code>'l'</code> (left), <code>'c'</code> (center), and/or <code>'r'</code> (right).
-By default, all columns are right-aligned.</p></td>
-    </tr><tr><th>...</th>
-      <td><p>additional parameters to be passed to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code>.</p></td>
-    </tr><tr><th>digits</th>
-      <td><p>The number of significant digits to be used for numeric
-and complex values.</p></td>
-    </tr><tr><th>table.attr</th>
-      <td><p>The HTML class of <code>&lt;table&gt;</code> created when
-<code>format = "html"</code></p></td>
-    </tr></table></div>
-
+By default, all columns are right-aligned.</p></dd>
+</dl><dl><dt>...</dt><dd><p>additional parameters to be passed to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code>.</p></dd>
+</dl><dl><dt>digits</dt><dd><p>The number of significant digits to be used for numeric
+and complex values.</p></dd>
+</dl><dl><dt>table.attr</dt><dd><p>The HTML class of <code>&lt;table&gt;</code> created when
+<code>format = "html"</code></p></dd>
+</dl></div>
     <div id="value">
-    <h2>Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a <code>knitr_kable</code> object whose <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> method generates a
+    <h2>Value</h2>
+    <p>a <code>knitr_kable</code> object whose <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method generates a
 string-representation of <code>data</code> formatted by <code>formatter</code> in
 specific <code>format</code>.</p>
     </div>
     <div id="see-also">
-    <h2>See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <h2>See also</h2>
     <div class="dont-index"><p><code><a href="formattable.html">formattable()</a></code>, <code><a href="area.html">area()</a></code></p></div>
+    </div>
     </div>
 
     <div id="examples">
-    <h2>Examples<a class="anchor" aria-label="anchor" href="#examples"></a></h2>
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># mtcars (mpg in red)</span></span>
 <span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>,</span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, style <span class="op">=</span> <span class="st">"color:red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, style <span class="op">=</span> <span class="st">"color:red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -596,8 +589,8 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in red if greater than median)</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">   style <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">   style <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -1068,8 +1061,8 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in red if greater than median, using formula)</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -1540,8 +1533,8 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in gradient: the higher, the redder)</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -2012,12 +2005,12 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg background in gradient: the higher, the redder)</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
 <span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>display <span class="op">=</span> <span class="st">"block"</span>,</span>
 <span class="r-in">   <span class="st">"border-radius"</span> <span class="op">=</span> <span class="st">"4px"</span>,</span>
 <span class="r-in">   <span class="st">"padding-right"</span> <span class="op">=</span> <span class="st">"4px"</span>,</span>
 <span class="r-in">   color <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span class="r-in">   <span class="st">"background-color"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">   <span class="st">"background-color"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -2488,8 +2481,8 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># mtcars (mpg in red if vs == 1 and am == 1)</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">    style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">am</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">    style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">am</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -2960,7 +2953,7 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># hide columns</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="cn">FALSE</span>, cyl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="cn">FALSE</span>, cyl <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -3365,8 +3358,8 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># area formatting</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">vs</span><span class="op">:</span><span class="va">carb</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">vs</span><span class="op">:</span><span class="va">carb</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -3836,8 +3829,8 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/tbody&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -3848,58 +3841,58 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;/thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;tbody&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e1e1e1"&gt;0.61456902&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dedede"&gt;0.8456498&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5d5d5"&gt;1.4424290&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f9f9f9"&gt;-0.87756624&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f2f2f2"&gt;-0.2000712&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e1e1e1"&gt;1.45175760&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #efefef"&gt;-0.35303317&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ededed"&gt;-0.2151933&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ededed"&gt;-0.1937332&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e7e7e7"&gt;0.88418184&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ededed"&gt;0.2855082&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fcfcfc"&gt;-1.17219883&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eaeaea"&gt;-0.01061514&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5d5d5"&gt;1.4258407&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;-0.3993033&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #efefef"&gt;0.06037404&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e5e5e5"&gt;1.0611540&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eaeaea"&gt;0.56049321&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e9e9e9"&gt;0.03911141&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e1e1e1"&gt;0.5889492&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fefefe"&gt;-1.3927174&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e1e1e1"&gt;1.41054551&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f5f5f5"&gt;-0.5119993&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #efefef"&gt;0.06871830&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;1.62598581&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dddddd"&gt;0.9270420&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f8f8f8"&gt;-0.9541885&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.43168460&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f3f3f3"&gt;-0.3246327&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ececec"&gt;0.38758168&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eaeaea"&gt;0.00900702&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d4d4d4"&gt;1.5488061&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dddddd"&gt;0.8824899&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dfdfdf"&gt;1.67796773&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f2f2f2"&gt;-0.1739766&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;0.01217367&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f6f6f6"&gt;-0.85218774&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.4236138&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fcfcfc"&gt;-1.2756579&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e3e3e3"&gt;1.27634271&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ececec"&gt;0.3581854&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fcfcfc"&gt;-1.17871648&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e5e5e5"&gt;0.36962383&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ececec"&gt;-0.1217322&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;-0.4016708&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e1e1e1"&gt;1.46297125&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ececec"&gt;0.3404776&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;0.02621193&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e8e8e8"&gt;0.12478207&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e3e3e3"&gt;0.4567564&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fafafa"&gt;-1.0900317&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;2.85688043&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e4e4e4"&gt;1.1467457&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f9f9f9"&gt;-0.85587071&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f3f3f3"&gt;-0.59278163&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e3e3e3"&gt;0.4985682&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f7f7f7"&gt;-0.8692757&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e6e6e6"&gt;0.92458652&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f7f7f7"&gt;-0.7216784&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f2f2f2"&gt;-0.21940983&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/tbody&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
@@ -3910,58 +3903,58 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;/thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;tbody&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e1e1e1"&gt;0.61456902&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dedede"&gt;0.8456498&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5d5d5"&gt;1.4424290&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f6f6f6"&gt;-0.87756624&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ececec"&gt;-0.2000712&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;1.45175760&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #efefef"&gt;-0.35303317&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ededed"&gt;-0.2151933&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ededed"&gt;-0.1937332&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbdbdb"&gt;0.88418184&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e4e4e4"&gt;0.2855082&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fbfbfb"&gt;-1.17219883&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eaeaea"&gt;-0.01061514&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5d5d5"&gt;1.4258407&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;-0.3993033&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e8e8e8"&gt;0.06037404&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8d8d8"&gt;1.0611540&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e0e0e0"&gt;0.56049321&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eaeaea"&gt;0.03911141&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e2e2e2"&gt;0.5889492&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.3927174&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;1.41054551&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;-0.5119993&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e8e8e8"&gt;0.06871830&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;1.62598581&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dddddd"&gt;0.9270420&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f8f8f8"&gt;-0.9541885&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.43168460&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eeeeee"&gt;-0.3246327&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e3e3e3"&gt;0.38758168&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.00900702 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 1.5488061 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.8824899 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 1.67796773 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.1739766 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.01217367 &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.85218774 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -1.4236138 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -1.2756579 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 1.27634271 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.3581854 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -1.17871648 &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.36962383 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.1217322 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.4016708 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 1.46297125 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.3404776 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.02621193 &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.12478207 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.4567564 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -1.0900317 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 2.85688043 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 1.1467457 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.85587071 &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.59278163 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.4985682 &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.8692757 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; 0.92458652 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.7216784 &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; -0.21940983 &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/tbody&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>
-<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span>,</span>
+<span class="r-in"><span class="fu">format_table</span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightgray"</span><span class="op">)</span>,</span>
 <span class="r-in">  <span class="fu"><a href="area.html">area</a></span><span class="op">(</span><span class="fl">6</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;table class="table table-condensed"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;thead&gt;</span>
@@ -3973,54 +3966,54 @@ specific <code>format</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  &lt;/thead&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;tbody&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e1e1e1"&gt;0.61456902&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dedede"&gt;0.8456498&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5d5d5"&gt;1.4424290&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f6f6f6"&gt;-0.87756624&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ececec"&gt;-0.2000712&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;1.45175760&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #efefef"&gt;-0.35303317&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ededed"&gt;-0.2151933&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ededed"&gt;-0.1937332&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbdbdb"&gt;0.88418184&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e4e4e4"&gt;0.2855082&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fbfbfb"&gt;-1.17219883&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eaeaea"&gt;-0.01061514&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5d5d5"&gt;1.4258407&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;-0.3993033&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e8e8e8"&gt;0.06037404&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8d8d8"&gt;1.0611540&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e0e0e0"&gt;0.56049321&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eaeaea"&gt;0.03911141&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e2e2e2"&gt;0.5889492&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.3927174&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;1.41054551&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f0f0f0"&gt;-0.5119993&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e8e8e8"&gt;0.06871830&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3d3d3"&gt;1.62598581&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dddddd"&gt;0.9270420&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f8f8f8"&gt;-0.9541885&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.43168460&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #eeeeee"&gt;-0.3246327&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #e3e3e3"&gt;0.38758168&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdbe1"&gt;0.00900702&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1"&gt;1.5488061&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc6ce"&gt;0.8824899&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffcbd3"&gt;1.67796773&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffecef"&gt;-0.1739766&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffe9ec"&gt;0.01217367&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fff0f3"&gt;-0.85218774&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.4236138&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fffbfb"&gt;-1.2756579&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd2d9"&gt;1.27634271&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffe3e7"&gt;0.3581854&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff"&gt;-1.17871648&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd2d9"&gt;0.36962383&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe3"&gt;-0.1217322&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffe5e9"&gt;-0.4016708&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffcfd6"&gt;1.46297125&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffe3e7"&gt;0.3404776&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffe9ec"&gt;0.02621193&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd8de"&gt;0.12478207&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd0d7"&gt;0.4567564&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fff6f8"&gt;-1.0900317&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1"&gt;2.85688043&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd4db"&gt;1.1467457&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fff9fa"&gt;-0.85587071&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffeaed"&gt;-0.59278163&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffcfd6"&gt;0.4985682&lt;/span&gt; &lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fff1f3"&gt;-0.8692757&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd8de"&gt;0.92458652&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #fff6f7"&gt;-0.7216784&lt;/span&gt; &lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffedf0"&gt;-0.21940983&lt;/span&gt; &lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/tr&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/tbody&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/table&gt;</span>

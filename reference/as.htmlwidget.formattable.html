@@ -41,7 +41,7 @@ such as console, RStudio Viewer, and Shiny."><!-- mathjax --><script src="https:
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/renkun-ken/formattable/">
+  <a href="https://github.com/renkun-ken/formattable/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -56,7 +56,7 @@ such as console, RStudio Viewer, and Shiny."><!-- mathjax --><script src="https:
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Convert formattable to an htmlwidget</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/render.R"><code>R/render.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/render.R" class="external-link"><code>R/render.R</code></a></small>
     <div class="hidden name"><code>as.htmlwidget.formattable.Rd</code></div>
     </div>
 
@@ -69,43 +69,42 @@ such as console, RStudio Viewer, and Shiny.</p>
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for formattable</span>
 <span class="fu"><a href="as.htmlwidget.html">as.htmlwidget</a></span><span class="op">(</span><span class="va">x</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
 
+    <div id="ref-sections">
     <div id="arguments">
-    <h2>Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <table class="ref-arguments"><colgroup><col class="name"><col class="desc"></colgroup><tr><th>x</th>
-      <td><p>a <code>formattable</code> object to convert</p></td>
-    </tr><tr><th>width</th>
-      <td><p>a valid <code>CSS</code> width</p></td>
-    </tr><tr><th>height</th>
-      <td><p>a valid <code>CSS</code> height</p></td>
-    </tr><tr><th>...</th>
-      <td><p>reserved for more parameters</p></td>
-    </tr></table></div>
+    <h2>Arguments</h2>
+    
 
+<dl><dt>x</dt><dd><p>a <code>formattable</code> object to convert</p></dd>
+</dl><dl><dt>width</dt><dd><p>a valid <code>CSS</code> width</p></dd>
+</dl><dl><dt>height</dt><dd><p>a valid <code>CSS</code> height</p></dd>
+</dl><dl><dt>...</dt><dd><p>reserved for more parameters</p></dd>
+</dl></div>
     <div id="value">
-    <h2>Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <h2>Value</h2>
     <p>a <code>htmlwidget</code> object</p>
+    </div>
     </div>
 
     <div id="examples">
-    <h2>Examples<a class="anchor" aria-label="anchor" href="#examples"></a></h2>
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/">formattable</a></span><span class="op">)</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># mtcars (mpg background in gradient: the higher, the redder)</span></span>
 <span class="r-in"><span class="fu"><a href="as.htmlwidget.html">as.htmlwidget</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span class="r-in">  <span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
 <span class="r-in">   style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="style.html">style</a></span><span class="op">(</span>display <span class="op">=</span> <span class="st">"block"</span>,</span>
 <span class="r-in">   <span class="st">"border-radius"</span> <span class="op">=</span> <span class="st">"4px"</span>,</span>
 <span class="r-in">   <span class="st">"padding-right"</span> <span class="op">=</span> <span class="st">"4px"</span>,</span>
 <span class="r-in">   color <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span class="r-in">   <span class="st">"background-color"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in">   <span class="st">"background-color"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in">  <span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># since an htmlwidget, composes well with other tags</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools">htmltools</a></span><span class="op">)</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools" class="external-link">htmltools</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/browsable.html">browsable</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html">tagList</a></span><span class="op">(</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/browsable.html" class="external-link">browsable</a></span><span class="op">(</span></span>
+<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span>
 <span class="r-in">    <span class="va">tags</span><span class="op">$</span><span class="fu">div</span><span class="op">(</span> class<span class="op">=</span><span class="st">"jumbotron"</span></span>
 <span class="r-in">              ,<span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span> class <span class="op">=</span> <span class="st">"text-center"</span></span>
 <span class="r-in">                        ,<span class="va">tags</span><span class="op">$</span><span class="fu">span</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"glyphicon glyphicon-fire"</span><span class="op">)</span></span>
