@@ -4,7 +4,7 @@
 \alias{color_bar}
 \title{Create a color-bar formatter}
 \usage{
-color_bar(color = "lightgray", fun = "proportion", ...)
+color_bar(color = "lightgray", fun = proportion, ...)
 }
 \arguments{
 \item{color}{the background color of the bars}

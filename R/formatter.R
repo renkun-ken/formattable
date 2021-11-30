@@ -139,7 +139,7 @@ color_tile <- function(...) {
 #' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 #' @seealso
 #' [normalize_bar()], [proportion_bar()]
-color_bar <- function(color = "lightgray", fun = "proportion", ...) {
+color_bar <- function(color = "lightgray", fun = proportion, ...) {
   fun <- match.fun(fun)
   formatter("span",
     style = function(x) style(
