@@ -57,7 +57,7 @@ and columns."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/lib
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create an area to apply formatter</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/formatter.R" class="external-link"><code>R/formatter.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/R/formatter.R" class="external-link"><code>R/formatter.R</code></a></small>
     <div class="hidden name"><code>area.Rd</code></div>
     </div>
 
@@ -68,16 +68,17 @@ more columns, one or more rows, or an area of rows
 and columns.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">area</span><span class="op">(</span><span class="va">row</span>, <span class="va">col</span><span class="op">)</span></code></pre></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">area</span><span class="op">(</span><span class="va">row</span>, <span class="va">col</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>row</dt><dd><p>an expression of row range. If missing,
+    <dl><dt>row</dt>
+<dd><p>an expression of row range. If missing,
 <code>TRUE</code> is used instead.</p></dd>
-</dl><dl><dt>col</dt><dd><p>an expression of column range. If missing,
+<dt>col</dt>
+<dd><p>an expression of column range. If missing,
 <code>TRUE</code> is used instead.</p></dd>
 </dl></div>
     <div id="details">
@@ -99,11 +100,10 @@ easier to specify range with names, for example,
     <h2>See also</h2>
     <div class="dont-index"><p><a href="format_table.html">format_table</a>, <a href="formattable.data.frame.html">formattable.data.frame</a></p></div>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">area</span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"cyl"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">area</span><span class="op">(</span>col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"cyl"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $row</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -111,7 +111,7 @@ easier to specify range with names, for example,
 <span class="r-out co"><span class="r-pr">#&gt;</span> c("mpg", "cyl")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $envir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5638c1b803a0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55a866fbead0&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "area"</span>
@@ -123,7 +123,7 @@ easier to specify range with names, for example,
 <span class="r-out co"><span class="r-pr">#&gt;</span> mpg:cyl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $envir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5638c1b803a0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55a866fbead0&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "area"</span>
@@ -135,7 +135,7 @@ easier to specify range with names, for example,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $envir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5638c1b803a0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55a866fbead0&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "area"</span>
@@ -147,7 +147,7 @@ easier to specify range with names, for example,
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5:10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $envir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5638c1b803a0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55a866fbead0&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "area"</span>
@@ -159,7 +159,7 @@ easier to specify range with names, for example,
 <span class="r-out co"><span class="r-pr">#&gt;</span> col1:col5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $envir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x5638c1b803a0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55a866fbead0&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "area"</span>
@@ -177,7 +177,7 @@ easier to specify range with names, for example,
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>

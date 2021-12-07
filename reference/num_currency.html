@@ -55,7 +55,7 @@ and a currency indicator."><!-- mathjax --><script src="https://cdnjs.cloudflare
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Numeric vector with currency format</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/num_currency.R" class="external-link"><code>R/num_currency.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/R/num_currency.R" class="external-link"><code>R/num_currency.R</code></a></small>
     <div class="hidden name"><code>num_currency.Rd</code></div>
     </div>
 
@@ -64,7 +64,8 @@ and a currency indicator."><!-- mathjax --><script src="https://cdnjs.cloudflare
 and a currency indicator.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">num_currency</span><span class="op">(</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">num_currency</span><span class="op">(</span>
   <span class="va">x</span>,
   symbol <span class="op">=</span> <span class="st">"$"</span>,
   digits <span class="op">=</span> <span class="fl">2L</span>,
@@ -82,19 +83,24 @@ and a currency indicator.</p>
   big.mark <span class="op">=</span> <span class="st">","</span>,
   <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>x</dt><dd><p>a numeric vector.</p></dd>
-</dl><dl><dt>symbol</dt><dd><p>currency symbol</p></dd>
-</dl><dl><dt>digits</dt><dd><p>an integer to indicate the number of digits of the percentage string.</p></dd>
-</dl><dl><dt>format</dt><dd><p>format type passed to <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code>.</p></dd>
-</dl><dl><dt>big.mark</dt><dd><p>thousands separator</p></dd>
-</dl><dl><dt>...</dt><dd><p>additional parameters passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
-</dl><dl><dt>sep</dt><dd><p>separator between symbol and value</p></dd>
+    <dl><dt>x</dt>
+<dd><p>a numeric vector.</p></dd>
+<dt>symbol</dt>
+<dd><p>currency symbol</p></dd>
+<dt>digits</dt>
+<dd><p>an integer to indicate the number of digits of the percentage string.</p></dd>
+<dt>format</dt>
+<dd><p>format type passed to <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code>.</p></dd>
+<dt>big.mark</dt>
+<dd><p>thousands separator</p></dd>
+<dt>...</dt>
+<dd><p>additional parameters passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
+<dt>sep</dt>
+<dd><p>separator between symbol and value</p></dd>
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -105,11 +111,10 @@ and a currency indicator.</p>
 <code><a href="num_percent.html">num_percent</a>()</code>,
 <code><a href="num_scientific.html">num_scientific</a>()</code></p></div>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">num_currency</span><span class="op">(</span><span class="fl">200000</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">num_currency</span><span class="op">(</span><span class="fl">200000</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] $200,000.00</span>
 <span class="r-in"><span class="fu">num_currency</span><span class="op">(</span><span class="fl">200000</span>, <span class="st">"\U20AC"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] €200,000.00</span>
@@ -137,7 +142,7 @@ and a currency indicator.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>

@@ -57,7 +57,7 @@ such as num_accounting()."><!-- mathjax --><script src="https://cdnjs.cloudflare
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Legacy generics</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/old-generics.R" class="external-link"><code>R/old-generics.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/R/old-generics.R" class="external-link"><code>R/old-generics.R</code></a></small>
     <div class="hidden name"><code>legacy.Rd</code></div>
     </div>
 
@@ -68,7 +68,8 @@ New code should use the <code>num_...()</code> or <code>parse_...()</code> funct
 such as <code><a href="num_accounting.html">num_accounting()</a></code>.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">digits</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, format <span class="op">=</span> <span class="st">"f"</span>, <span class="va">...</span><span class="op">)</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">digits</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, format <span class="op">=</span> <span class="st">"f"</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="fu">scientific</span><span class="op">(</span><span class="va">x</span>, format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"e"</span>, <span class="st">"E"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span>
 
@@ -79,20 +80,23 @@ such as <code><a href="num_accounting.html">num_accounting()</a></code>.</p>
 <span class="fu">currency</span><span class="op">(</span><span class="va">x</span>, <span class="va">symbol</span>, <span class="va">digits</span>, format <span class="op">=</span> <span class="st">"f"</span>, big.mark <span class="op">=</span> <span class="st">","</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="fu">percent</span><span class="op">(</span><span class="va">x</span>, <span class="va">digits</span>, format <span class="op">=</span> <span class="st">"f"</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>x</dt><dd><p>a numeric vector</p></dd>
-</dl><dl><dt>digits</dt><dd><p>an integer to indicate the number of digits to show.</p></dd>
-</dl><dl><dt>format</dt><dd><p>format type passed to <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code>.</p></dd>
-</dl><dl><dt>...</dt><dd><p>additional parameters passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
-</dl><dl><dt>big.mark</dt><dd><p>thousands separator</p></dd>
-</dl><dl><dt>symbol</dt><dd><p>currency symbol</p></dd>
+    <dl><dt>x</dt>
+<dd><p>a numeric vector</p></dd>
+<dt>digits</dt>
+<dd><p>an integer to indicate the number of digits to show.</p></dd>
+<dt>format</dt>
+<dd><p>format type passed to <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code>.</p></dd>
+<dt>...</dt>
+<dd><p>additional parameters passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
+<dt>big.mark</dt>
+<dd><p>thousands separator</p></dd>
+<dt>symbol</dt>
+<dd><p>currency symbol</p></dd>
 </dl></div>
-    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -106,7 +110,7 @@ such as <code><a href="num_accounting.html">num_accounting()</a></code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>

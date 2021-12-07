@@ -81,9 +81,9 @@
       <h1 data-toc-skip>Introduction to formattable package</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2021-10-25</h4>
+            <h4 data-toc-skip class="date">2021-12-07</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
 
     </div>
@@ -97,117 +97,117 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span>
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.02</span>, <span class="fl">0.03</span>, <span class="fl">0.12</span><span class="op">)</span><span class="op">)</span>
 <span class="va">p</span></code></pre></div>
-<pre><code>## [1] 10.00% 2.00%  3.00%  12.00%</code></pre>
+<pre><code><span class="co">## [1] 10.00% 2.00%  3.00%  12.00%</span></code></pre>
 <p>The percent vector is no different from a numeric vector but has a percentage representation when printed. It works with arithmetic operations and other common functions and preserves its formatting.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">+</span> <span class="fl">0.05</span></code></pre></div>
-<pre><code>## [1] 15.00% 7.00%  8.00%  17.00%</code></pre>
+<pre><code><span class="co">## [1] 15.00% 7.00%  8.00%  17.00%</span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="fl">0.02</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 12.00% 4.00%  5.00%  14.00%</code></pre>
+<pre><code><span class="co">## [1] 12.00% 4.00%  5.00%  14.00%</span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">*</span> <span class="fl">1.1</span></code></pre></div>
-<pre><code>## [1] 11.00% 2.20%  3.30%  13.20%</code></pre>
+<pre><code><span class="co">## [1] 11.00% 2.20%  3.30%  13.20%</span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 12.00%</code></pre>
+<pre><code><span class="co">## [1] 12.00%</span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 6.75%</code></pre>
+<pre><code><span class="co">## [1] 6.75%</span></code></pre>
 <p>It also works with subsetting and sub-assignment:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] 10.00% 2.00%  3.00%</code></pre>
+<pre><code><span class="co">## [1] 10.00% 2.00%  3.00%</span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] 2.00%</code></pre>
+<pre><code><span class="co">## [1] 2.00%</span></code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.05</span>
 <span class="va">p</span></code></pre></div>
-<pre><code>## [1] 10.00% 2.00%  5.00%  12.00%</code></pre>
+<pre><code><span class="co">## [1] 10.00% 2.00%  5.00%  12.00%</span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">balance</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/legacy.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">500</span>, <span class="fl">200</span>, <span class="op">-</span><span class="fl">150</span>, <span class="fl">0</span>, <span class="fl">1200</span><span class="op">)</span><span class="op">)</span>
 <span class="va">balance</span></code></pre></div>
-<pre><code>## [1] 1,000.00 500.00   200.00   (150.00) 0.00     1,200.00</code></pre>
+<pre><code><span class="co">## [1] 1,000.00 500.00   200.00   (150.00) 0.00     1,200.00</span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">balance</span> <span class="op">+</span> <span class="fl">1000</span></code></pre></div>
-<pre><code>## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00</code></pre>
+<pre><code><span class="co">## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00</span></code></pre>
 <p>These functions are specialized applications of what <code><a href="../reference/formattable.html">formattable()</a></code> is designed to do. <code><a href="../reference/formattable.html">formattable()</a></code> applies customizable formatting functions to objects of a wide range of classes like <code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code>, etc.</p>
 <p>When applied to <code>Date</code>, <code><a href="../reference/formattable.html">formattable()</a></code> uses <code><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">format.Date()</a></code> as the default formatter function. The following code creates a <code>formattable Date</code> vector that is printed in the format of <code>%Y%m%d</code>. However, it is not a plain integer or character vector but of <code>Date</code> class and still allows date calculations.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2016-05-01"</span>, <span class="st">"2016-05-10"</span><span class="op">)</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"%Y%m%d"</span><span class="op">)</span>
 <span class="va">dates</span></code></pre></div>
-<pre><code>## [1] 20160501 20160510</code></pre>
+<pre><code><span class="co">## [1] 20160501 20160510</span></code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dates</span> <span class="op">+</span> <span class="fl">30</span></code></pre></div>
-<pre><code>## [1] 20160531 20160609</code></pre>
+<pre><code><span class="co">## [1] 20160531 20160609</span></code></pre>
 <p>When applied to a logical vector, we can customize how <code>TRUE</code> and <code>FALSE</code> values are printed.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span>
 <span class="va">lv</span></code></pre></div>
-<pre><code>## [1] yes no  no  yes</code></pre>
+<pre><code><span class="co">## [1] yes no  no  yes</span></code></pre>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">!</span><span class="va">lv</span></code></pre></div>
-<pre><code>## [1] no  yes yes no</code></pre>
+<pre><code><span class="co">## [1] no  yes yes no</span></code></pre>
 <p>Note that <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> does not directly work with values of <code>lv</code> because <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> uses <code>identical(x, TRUE)</code> and <code>lv[[1]]</code>, as a formattable logical value is not identical to a plain <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] yes</code></pre>
+<pre><code><span class="co">## [1] yes</span></code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE</a></span><span class="op">(</span><span class="va">lv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<pre><code><span class="co">## [1] TRUE</span></code></pre>
 <p>If <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> has to be applied, <code>lv == TRUE</code> returns a plain logical vector and works with <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code>. Other vectorized logical functions directly work with formattable logical vector with the formatting preserved.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">lv</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] no</code></pre>
+<pre><code><span class="co">## [1] no</span></code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">lv</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] yes</code></pre>
+<pre><code><span class="co">## [1] yes</span></code></pre>
 <p>All formattable functions work with matrices and arrays.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">3</span>, 
   dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="st">"Y"</span>, <span class="st">"Z"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">pm</span></code></pre></div>
-<pre><code>##           X         Y         Z
-## a 0.7439524 0.9558708 0.8129288
-## b 0.7769823 0.8070508 0.9715065</code></pre>
+<pre><code><span class="co">##           X         Y         Z</span>
+<span class="co">## a 0.7439524 0.9558708 0.8129288</span>
+<span class="co">## b 0.7769823 0.8070508 0.9715065</span></code></pre>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fpm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="va">pm</span><span class="op">)</span>
 <span class="va">fpm</span></code></pre></div>
-<pre><code>##   X      Y      Z     
-## a 74.40% 95.59% 81.29%
-## b 77.70% 80.71% 97.15%</code></pre>
+<pre><code><span class="co">##   X      Y      Z     </span>
+<span class="co">## a 74.40% 95.59% 81.29%</span>
+<span class="co">## b 77.70% 80.71% 97.15%</span></code></pre>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fpm</span><span class="op">[</span><span class="st">"a"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Y"</span>, <span class="st">"Z"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##      Y      Z 
-## 95.59% 81.29%</code></pre>
+<pre><code><span class="co">##      Y      Z </span>
+<span class="co">## 95.59% 81.29%</span></code></pre>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">pa</span></code></pre></div>
-<pre><code>## , , 1
-## 
-##           [,1]      [,2]      [,3]
-## [1,] 0.8460916 0.7313147 0.9224082
-## [2,] 0.6734939 0.7554338 0.8359814
-## 
-## , , 2
-## 
-##           [,1]      [,2]      [,3]
-## [1,] 0.8400771 0.7444159 0.8497850
-## [2,] 0.8110683 0.9786913 0.6033383</code></pre>
+<pre><code><span class="co">## , , 1</span>
+<span class="co">## </span>
+<span class="co">##           [,1]      [,2]      [,3]</span>
+<span class="co">## [1,] 0.8460916 0.7313147 0.9224082</span>
+<span class="co">## [2,] 0.6734939 0.7554338 0.8359814</span>
+<span class="co">## </span>
+<span class="co">## , , 2</span>
+<span class="co">## </span>
+<span class="co">##           [,1]      [,2]      [,3]</span>
+<span class="co">## [1,] 0.8400771 0.7444159 0.8497850</span>
+<span class="co">## [2,] 0.8110683 0.9786913 0.6033383</span></code></pre>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="va">pa</span><span class="op">)</span></code></pre></div>
-<pre><code>## , , 1
-## 
-##      [,1]   [,2]   [,3]  
-## [1,] 84.61% 73.13% 92.24%
-## [2,] 67.35% 75.54% 83.60%
-## 
-## , , 2
-## 
-##      [,1]   [,2]   [,3]  
-## [1,] 84.01% 74.44% 84.98%
-## [2,] 81.11% 97.87% 60.33%</code></pre>
+<pre><code><span class="co">## , , 1</span>
+<span class="co">## </span>
+<span class="co">##      [,1]   [,2]   [,3]  </span>
+<span class="co">## [1,] 84.61% 73.13% 92.24%</span>
+<span class="co">## [2,] 67.35% 75.54% 83.60%</span>
+<span class="co">## </span>
+<span class="co">## , , 2</span>
+<span class="co">## </span>
+<span class="co">##      [,1]   [,2]   [,3]  </span>
+<span class="co">## [1,] 84.01% 74.44% 84.98%</span>
+<span class="co">## [2,] 81.11% 97.87% 60.33%</span></code></pre>
 <p>When the formattable vectors are used as columns of a data frame, the formatting of each column is well preserved. A typical data frame may look more friendly with <code>formattable</code> column vectors. For example,</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
@@ -217,19 +217,19 @@
   growth <span class="op">=</span> <span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span>,
   ready <span class="op">=</span> <span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">p</span></code></pre></div>
-<pre><code>##   id name balance growth ready
-## 1  1   A1  52,500    30%   yes
-## 2  2   A2  36,150    30%   yes
-## 3  3   B1  25,000    10%    no
-## 4  4   B2  18,300    15%    no
-## 5  5   C1   7,600    15%   yes</code></pre>
+<pre><code><span class="co">##   id name balance growth ready</span>
+<span class="co">## 1  1   A1  52,500    30%   yes</span>
+<span class="co">## 2  2   A2  36,150    30%   yes</span>
+<span class="co">## 3  3   B1  25,000    10%    no</span>
+<span class="co">## 4  4   B2  18,300    15%    no</span>
+<span class="co">## 5  5   C1   7,600    15%   yes</span></code></pre>
 <p>The subset of a data frame also preserves the formatting of each column:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"balance"</span>, <span class="st">"growth"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##   name balance growth
-## 1   A1  52,500    30%
-## 2   A2  36,150    30%
-## 3   B1  25,000    10%</code></pre>
+<pre><code><span class="co">##   name balance growth</span>
+<span class="co">## 1   A1  52,500    30%</span>
+<span class="co">## 2   A2  36,150    30%</span>
+<span class="co">## 3   B1  25,000    10%</span></code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -247,7 +247,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer>

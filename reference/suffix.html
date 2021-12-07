@@ -54,7 +54,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Formattable object with suffix</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/val_suffix.R" class="external-link"><code>R/val_suffix.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/R/val_suffix.R" class="external-link"><code>R/val_suffix.R</code></a></small>
     <div class="hidden name"><code>suffix.Rd</code></div>
     </div>
 
@@ -62,25 +62,28 @@
     <p>Formattable object with suffix</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">suffix</span><span class="op">(</span><span class="va">x</span>, suffix <span class="op">=</span> <span class="st">""</span>, sep <span class="op">=</span> <span class="st">""</span>, <span class="va">...</span>, na.text <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
-
-    <div id="ref-sections">
-    <div id="arguments">
-    <h2>Arguments</h2>
-    
-
-<dl><dt>x</dt><dd><p>an object</p></dd>
-</dl><dl><dt>suffix</dt><dd><p>a character vector put behind each non-missing
-value in <code>x</code> as being formatted.</p></dd>
-</dl><dl><dt>sep</dt><dd><p>separator</p></dd>
-</dl><dl><dt>...</dt><dd><p>additional parameter passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
-</dl><dl><dt>na.text</dt><dd><p>text for missing values in <code>x</code>.</p></dd>
-</dl></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">suffix</span><span class="op">(</span><span class="va">x</span>, suffix <span class="op">=</span> <span class="st">""</span>, sep <span class="op">=</span> <span class="st">""</span>, <span class="va">...</span>, na.text <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
-    <div id="examples">
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>x</dt>
+<dd><p>an object</p></dd>
+<dt>suffix</dt>
+<dd><p>a character vector put behind each non-missing
+value in <code>x</code> as being formatted.</p></dd>
+<dt>sep</dt>
+<dd><p>separator</p></dd>
+<dt>...</dt>
+<dd><p>additional parameter passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
+<dt>na.text</dt>
+<dd><p>text for missing values in <code>x</code>.</p></dd>
+</dl></div>
+
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">suffix</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"px"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">suffix</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"px"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1px  2px  3px  4px  5px  6px  7px  8px  9px  10px</span>
 <span class="r-in"><span class="fu">suffix</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="op">&gt;=</span> <span class="fl">2</span>, <span class="st">"units"</span>, <span class="st">"unit"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 unit   2 units  3 units  4 units  5 units  6 units  7 units  8 units </span>
@@ -104,7 +107,7 @@ value in <code>x</code> as being formatted.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>

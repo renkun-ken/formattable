@@ -54,7 +54,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a formattable factor object</h1>
-    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/R/formattable.R" class="external-link"><code>R/formattable.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/R/formattable.R" class="external-link"><code>R/formattable.R</code></a></small>
     <div class="hidden name"><code>formattable.factor.Rd</code></div>
     </div>
 
@@ -62,31 +62,34 @@
     <p>Create a formattable factor object</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for factor</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for factor</span>
 <span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, formatter <span class="op">=</span> <span class="st">"vmap"</span>, preproc <span class="op">=</span> <span class="cn">NULL</span>, postproc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
-    
-
-<dl><dt>x</dt><dd><p>a factor object.</p></dd>
-</dl><dl><dt>...</dt><dd><p>arguments to be passed to <code>formatter</code>.</p></dd>
-</dl><dl><dt>formatter</dt><dd><p>formatting function, <code><a href="vmap.html">vmap()</a></code> in default.</p></dd>
-</dl><dl><dt>preproc</dt><dd><p>pre-processor function that prepares <code>x</code> for
+    <dl><dt>x</dt>
+<dd><p>a factor object.</p></dd>
+<dt>...</dt>
+<dd><p>arguments to be passed to <code>formatter</code>.</p></dd>
+<dt>formatter</dt>
+<dd><p>formatting function, <code><a href="vmap.html">vmap()</a></code> in default.</p></dd>
+<dt>preproc</dt>
+<dd><p>pre-processor function that prepares <code>x</code> for
 formatting function.</p></dd>
-</dl><dl><dt>postproc</dt><dd><p>post-processor function that transforms formatted
+<dt>postproc</dt>
+<dd><p>post-processor function that transforms formatted
 output for printing.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>a <code>formattable</code> factor object.</p>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span>,</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span class="r-in">  a <span class="op">=</span> <span class="st">"good"</span>, b <span class="op">=</span> <span class="st">"fair"</span>, c <span class="op">=</span> <span class="st">"bad"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] good fair fair bad </span>
 </code></pre></div>
@@ -103,7 +106,7 @@ output for printing.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>
