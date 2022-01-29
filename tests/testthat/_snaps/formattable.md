@@ -97,7 +97,7 @@
       </tbody>
       </table>
     Code
-      format_table(df, list(b = formatter("span", style = ~style(color = ifelse(a >=
+      format_table(df, list(b = formatter("span", style = ~ style(color = ifelse(a >=
         mean(a), "red", "green")))))
     Output
       <table class="table table-condensed">
