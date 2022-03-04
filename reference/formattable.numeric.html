@@ -90,10 +90,10 @@ output for printing.</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1.0  0.5  -0.6 0.1  -1.2 -2.2 0.5  -0.5 0.5  -1.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1.0 -0.0 -1.4 -2.2 -0.9 -0.3 0.1  0.8  0.9  -0.4</span>
 <span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>,</span>
 <span class="r-in">  flag<span class="op">=</span><span class="st">"+"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] +2.2 -0.8 -0.1 +1.7 -2.0 +0.0 +0.1 -0.4 +0.4 +0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -2.6 +0.6 +2.0 -2.1 +0.5 -0.6 +0.3 +0.8 -0.2 -0.9</span>
 <span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
 <span class="r-in">  postproc <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">str</span>, <span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">str</span>, <span class="st">"px"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1px  2px  3px  4px  5px  6px  7px  8px  9px  10px</span>
