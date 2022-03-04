@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -92,10 +92,10 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">num_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -12.46% -11.51% 2.13%   9.83%   16.11%  5.57%   -7.57%  9.93%   9.17%  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] 2.10%  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 7.70%   -16.00% 8.94%   12.74%  0.81%   -0.16%  2.91%   10.38%  10.92% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] -5.07% </span>
 <span class="r-in"><span class="fu">num_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -7%  -9%  -7%  12%  -9%  18%  -11% 9%   12%  -5% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1%  -13% 17%  -22% 5%   4%   -18% 1%   6%   10% </span>
 <span class="r-in"><span class="fu">parse_percent</span><span class="op">(</span><span class="st">"0.5%"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5%</span>
 <span class="r-in"><span class="fu">parse_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"15.5%"</span>, <span class="st">"25.12%"</span>, <span class="st">"73.5"</span><span class="op">)</span><span class="op">)</span></span>
