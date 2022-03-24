@@ -3,6 +3,7 @@ test_that("conversion", {
 })
 
 test_that("shiny", {
+  skip_if_not_installed("shiny")
   # some preliminary testing for shiny functionality
   expect_s3_class(
     renderFormattable(formattable(head(mtcars))),
@@ -12,6 +13,7 @@ test_that("shiny", {
 })
 
 test_that("as.datatable", {
+  skip_if_not_installed("DT")
   f <- formattable(mtcars, list(
     mpg = color_tile("transparent", "lightgray"),
     cyl = color_bar("gray"),
