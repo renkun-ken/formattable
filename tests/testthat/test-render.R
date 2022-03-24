@@ -3,6 +3,7 @@ test_that("conversion", {
 })
 
 test_that("shiny", {
+  skip_if_not_installed("shiny")
   # some preliminary testing for shiny functionality
   expect_s3_class(
     renderFormattable(formattable(head(mtcars))),
