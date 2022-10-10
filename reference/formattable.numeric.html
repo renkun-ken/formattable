@@ -63,43 +63,54 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for numeric</span>
-<span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, formatter <span class="op">=</span> <span class="st">"formatC"</span>, preproc <span class="op">=</span> <span class="cn">NULL</span>, postproc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for numeric</span></span>
+<span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, formatter <span class="op">=</span> <span class="st">"formatC"</span>, preproc <span class="op">=</span> <span class="cn">NULL</span>, postproc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a numeric vector.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>arguments to be passed to <code>formatter</code>.</p></dd>
+
+
 <dt>formatter</dt>
 <dd><p>formatting function, <a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC</a> in default.</p></dd>
+
+
 <dt>preproc</dt>
 <dd><p>pre-processor function that prepares <code>x</code> for
 formatting function.</p></dd>
+
+
 <dt>postproc</dt>
 <dd><p>post-processor function that transforms formatted
 output for printing.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a <code>formattable</code> numeric vector.</p>
+    
+
+<p>a <code>formattable</code> numeric vector.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.5  -0.8 -1.3 0.3  -0.9 0.3  -2.6 -1.1 0.9  2.1 </span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>,</span>
-<span class="r-in">  flag<span class="op">=</span><span class="st">"+"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1.5 +0.1 +0.6 +0.8 -1.0 -0.1 +0.8 -1.9 -1.7 +0.0</span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
-<span class="r-in">  postproc <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">str</span>, <span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">str</span>, <span class="st">"px"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.8 -0.4 -0.7 -0.8 -0.7 0.6  0.2  0.3  0.1  0.2 </span>
+<span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>,</span></span>
+<span class="r-in"><span>  flag<span class="op">=</span><span class="st">"+"</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.0 -0.6 -0.6 -1.5 +0.7 +1.1 +0.9 +0.1 +0.2 -0.0</span>
+<span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  postproc <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">str</span>, <span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">str</span>, <span class="st">"px"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1px  2px  3px  4px  5px  6px  7px  8px  9px  10px</span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
-<span class="r-in">  postproc <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">str</span>, <span class="va">x</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">str</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">1</span>, <span class="st">"unit"</span>, <span class="st">"units"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span></span>
+<span class="r-in"><span>  postproc <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">str</span>, <span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">str</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">1</span>, <span class="st">"unit"</span>, <span class="st">"units"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1 unit   2 units  3 units  4 units  5 units  6 units  7 units  8 units </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 9 units  10 units</span>
 </code></pre></div>
@@ -116,7 +127,7 @@ output for printing.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

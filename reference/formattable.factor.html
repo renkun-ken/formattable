@@ -63,34 +63,45 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for factor</span>
-<span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, formatter <span class="op">=</span> <span class="st">"vmap"</span>, preproc <span class="op">=</span> <span class="cn">NULL</span>, postproc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for factor</span></span>
+<span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, formatter <span class="op">=</span> <span class="st">"vmap"</span>, preproc <span class="op">=</span> <span class="cn">NULL</span>, postproc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a factor object.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>arguments to be passed to <code>formatter</code>.</p></dd>
+
+
 <dt>formatter</dt>
 <dd><p>formatting function, <code><a href="vmap.html">vmap()</a></code> in default.</p></dd>
+
+
 <dt>preproc</dt>
 <dd><p>pre-processor function that prepares <code>x</code> for
 formatting function.</p></dd>
+
+
 <dt>postproc</dt>
 <dd><p>post-processor function that transforms formatted
 output for printing.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a <code>formattable</code> factor object.</p>
+    
+
+<p>a <code>formattable</code> factor object.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">  a <span class="op">=</span> <span class="st">"good"</span>, b <span class="op">=</span> <span class="st">"fair"</span>, c <span class="op">=</span> <span class="st">"bad"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  a <span class="op">=</span> <span class="st">"good"</span>, b <span class="op">=</span> <span class="st">"fair"</span>, c <span class="op">=</span> <span class="st">"bad"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] good fair fair bad </span>
 </code></pre></div>
     </div>
@@ -106,7 +117,7 @@ output for printing.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

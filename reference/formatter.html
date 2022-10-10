@@ -63,23 +63,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">formatter</span><span class="op">(</span><span class="va">.tag</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">formatter</span><span class="op">(</span><span class="va">.tag</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.tag</dt>
 <dd><p>HTML tag name. Uses <code>span</code> by default.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>functions to create attributes of HTML element from data colums.
 The unnamed element will serve as the function to produce the inner text of the
 element. If no unnamed element is provided, <code>identity</code> function will be used
 to preserve the string representation of the colum values. Function and formula are
 accepted. See details for how different forms of formula will behave differently.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a function that transforms a column of data (usually an atomic vector)
+    
+
+<p>a function that transforms a column of data (usually an atomic vector)
 to formatted data represented in HTML and CSS.</p>
     </div>
     <div id="details">
@@ -100,16 +105,16 @@ appear in <code>expr</code>.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">top10red</span> <span class="op">&lt;-</span> <span class="fu">formatter</span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">10</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">yesno</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="va">top10red</span>, qsec <span class="op">=</span> <span class="va">top10red</span>, am <span class="op">=</span> <span class="va">yesno</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># format one column by other two columns</span></span>
-<span class="r-in"><span class="co"># make cyl red for records with both mpg and disp rank &lt;= 20</span></span>
-<span class="r-in"><span class="va">f1</span> <span class="op">&lt;-</span> <span class="fu">formatter</span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">  style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">mpg</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">20</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">disp</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">20</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="va">f1</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">top10red</span> <span class="op">&lt;-</span> <span class="fu">formatter</span><span class="op">(</span><span class="st">"span"</span>,</span></span>
+<span class="r-in"><span>  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">10</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">yesno</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mpg <span class="op">=</span> <span class="va">top10red</span>, qsec <span class="op">=</span> <span class="va">top10red</span>, am <span class="op">=</span> <span class="va">yesno</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># format one column by other two columns</span></span></span>
+<span class="r-in"><span><span class="co"># make cyl red for records with both mpg and disp rank &lt;= 20</span></span></span>
+<span class="r-in"><span><span class="va">f1</span> <span class="op">&lt;-</span> <span class="fu">formatter</span><span class="op">(</span><span class="st">"span"</span>,</span></span>
+<span class="r-in"><span>  style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">mpg</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">20</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/rank.html" class="external-link">rank</a></span><span class="op">(</span><span class="op">-</span><span class="va">disp</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="fl">20</span>, <span class="st">"color:red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cyl <span class="op">=</span> <span class="va">f1</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -124,7 +129,7 @@ appear in <code>expr</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

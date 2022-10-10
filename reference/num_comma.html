@@ -65,23 +65,32 @@ and a prespecified number of digits after the decimal point.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">num_comma</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2L</span>, format <span class="op">=</span> <span class="st">"f"</span>, big.mark <span class="op">=</span> <span class="st">","</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">parse_comma</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu">get_digits</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>, big.mark <span class="op">=</span> <span class="st">","</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">num_comma</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2L</span>, format <span class="op">=</span> <span class="st">"f"</span>, big.mark <span class="op">=</span> <span class="st">","</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">parse_comma</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu">get_digits</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"f"</span>, big.mark <span class="op">=</span> <span class="st">","</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a numeric vector.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>an integer to indicate the number of digits of the percentage string.</p></dd>
+
+
 <dt>format</dt>
 <dd><p>format type passed to <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code>.</p></dd>
+
+
 <dt>big.mark</dt>
 <dd><p>thousands separator</p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional parameters passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -95,13 +104,13 @@ and a prespecified number of digits after the decimal point.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">num_comma</span><span class="op">(</span><span class="fl">1000000</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">num_comma</span><span class="op">(</span><span class="fl">1000000</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1,000,000.00</span>
-<span class="r-in"><span class="fu">num_comma</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1250000</span>, <span class="fl">225000</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">num_comma</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1250000</span>, <span class="fl">225000</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1,250,000.00 225,000.00  </span>
-<span class="r-in"><span class="fu">num_comma</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1250000</span>, <span class="fl">225000</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">num_comma</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1250000</span>, <span class="fl">225000</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1,250,000 225,000  </span>
-<span class="r-in"><span class="fu">parse_comma</span><span class="op">(</span><span class="st">"123,345.123"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">parse_comma</span><span class="op">(</span><span class="st">"123,345.123"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 123,345.123</span>
 </code></pre></div>
     </div>
@@ -117,7 +126,7 @@ and a prespecified number of digits after the decimal point.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

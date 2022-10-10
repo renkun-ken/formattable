@@ -163,6 +163,13 @@ HTMLWidgets.widget({
   type: "output",
   renderOnNullValue: true,
   initialize: function(el, width, height) {
+    // in order that the type=number inputs return a number
+    $.valHooks.number = {
+      get: function(el) {
+        var value = parseFloat(el.value);
+        return isNaN(value) ? "" : value;
+      }
+    };
     $(el).html('&nbsp;');
     return {
       data: null,

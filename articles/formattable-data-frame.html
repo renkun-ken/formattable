@@ -76,7 +76,7 @@
       
 
       </header><script src="formattable-data-frame_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="formattable-data-frame_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="formattable-data-frame_files/datatables-binding-0.22/datatables.js"></script><link href="formattable-data-frame_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="formattable-data-frame_files/datatables-binding-0.25/datatables.js"></script><link href="formattable-data-frame_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="formattable-data-frame_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="formattable-data-frame_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="formattable-data-frame_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="formattable-data-frame_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Formattable data frame</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2022-04-29</h4>
+            <h4 data-toc-skip class="date">2022-10-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/vignettes/formattable-data-frame.Rmd" class="external-link"><code>vignettes/formattable-data-frame.Rmd</code></a></small>
       <div class="hidden name"><code>formattable-data-frame.Rmd</code></div>
@@ -100,23 +100,23 @@
 </h3>
 <p>Suppose we have the following data frame:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
-  prev_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">8</span><span class="op">)</span>,
-  cur_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span>,
-  change <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>  prev_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">8</span><span class="op">)</span>,</span>
+<span>  cur_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span>,</span>
+<span>  change <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>In the console, it is printed as plain texts:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scores</span></code></pre></div>
-<pre><code><span class="co">##   id prev_score cur_score change</span>
-<span class="co">## 1  1         10         8     -2</span>
-<span class="co">## 2  2          8         9      1</span>
-<span class="co">## 3  3          6         7      1</span>
-<span class="co">## 4  4          8         8      0</span>
-<span class="co">## 5  5          8         9      1</span></code></pre>
+<code class="sourceCode R"><span><span class="va">scores</span></span></code></pre></div>
+<pre><code><span><span class="co">##   id prev_score cur_score change</span></span>
+<span><span class="co">## 1  1         10         8     -2</span></span>
+<span><span class="co">## 2  2          8         9      1</span></span>
+<span><span class="co">## 3  3          6         7      1</span></span>
+<span><span class="co">## 4  4          8         8      0</span></span>
+<span><span class="co">## 5  5          8         9      1</span></span></code></pre>
 <p>Using <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code> or <code><a href="../reference/formattable.html">formattable()</a></code>, the data frame can be rendered as HTML table which looks more friendly.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span>
-<span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -207,28 +207,28 @@ change
 </table>
 <p>In fact, <code><a href="../reference/formattable.html">formattable()</a></code> calls <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code> internally to translate data frame to HTML code. In addition, <code><a href="../reference/formattable.html">formattable()</a></code> supports formatter functions to customize the transformation between values in the data frame to HTML code to generate.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plain_formatter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span><span class="op">)</span>
-<span class="fu">plain_formatter</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "&lt;span&gt;1&lt;/span&gt;" "&lt;span&gt;2&lt;/span&gt;" "&lt;span&gt;3&lt;/span&gt;"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">plain_formatter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span><span class="op">)</span></span>
+<span><span class="fu">plain_formatter</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "&lt;span&gt;1&lt;/span&gt;" "&lt;span&gt;2&lt;/span&gt;" "&lt;span&gt;3&lt;/span&gt;"</span></span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">width_formatter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,
-  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fu"><a href="../reference/suffix.html">suffix</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"px"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">width_formatter</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "&lt;span style=\"width: 10px\"&gt;10&lt;/span&gt;"</span>
-<span class="co">## [2] "&lt;span style=\"width: 11px\"&gt;11&lt;/span&gt;"</span>
-<span class="co">## [3] "&lt;span style=\"width: 12px\"&gt;12&lt;/span&gt;"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">width_formatter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
+<span>  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fu"><a href="../reference/suffix.html">suffix</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"px"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">width_formatter</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "&lt;span style=\"width: 10px\"&gt;10&lt;/span&gt;"</span></span>
+<span><span class="co">## [2] "&lt;span style=\"width: 11px\"&gt;11&lt;/span&gt;"</span></span>
+<span><span class="co">## [3] "&lt;span style=\"width: 12px\"&gt;12&lt;/span&gt;"</span></span></code></pre>
 <p>The values of <code>change</code> can be positive, negative or zero. We can make positives green, negatives red, and zeros black by creating a formatter function that performs conditional transformation from value to HTML code.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sign_formatter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, 
-  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"green"</span>, 
-    <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">sign_formatter</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "&lt;span style=\"color: red\"&gt;-1&lt;/span&gt;" </span>
-<span class="co">## [2] "&lt;span style=\"color: black\"&gt;0&lt;/span&gt;"</span>
-<span class="co">## [3] "&lt;span style=\"color: green\"&gt;1&lt;/span&gt;"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">sign_formatter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, </span>
+<span>  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="st">"green"</span>, </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">sign_formatter</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "&lt;span style=\"color: red\"&gt;-1&lt;/span&gt;" </span></span>
+<span><span class="co">## [2] "&lt;span style=\"color: black\"&gt;0&lt;/span&gt;"</span></span>
+<span><span class="co">## [3] "&lt;span style=\"color: green\"&gt;1&lt;/span&gt;"</span></span></code></pre>
 <p>Note that we don’t have to write HTML but use helper functions like <code><a href="../reference/style.html">style()</a></code> and <code><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse()</a></code> to make it easier to specify conditions. Then we call <code><a href="../reference/formattable.html">formattable()</a></code> on the data frame with a list of formatter functions so as to apply conditional formatting.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>change <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>change <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -319,12 +319,12 @@ change
 </table>
 <p>We can also create another formatter function that makes above-average values bold while leaving others unchanged.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">above_avg_bold</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, 
-  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span><span class="st">"font-weight"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"bold"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-  prev_score <span class="op">=</span> <span class="va">above_avg_bold</span>,
-  cur_score <span class="op">=</span> <span class="va">above_avg_bold</span>,
-  change <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">above_avg_bold</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, </span>
+<span>  style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span><span class="st">"font-weight"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"bold"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  prev_score <span class="op">=</span> <span class="va">above_avg_bold</span>,</span>
+<span>  cur_score <span class="op">=</span> <span class="va">above_avg_bold</span>,</span>
+<span>  change <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -419,9 +419,9 @@ change
 </h3>
 <p>Sometimes, we need to format one column based on the values of another column. This can be easily done with one-sided formula in <code><a href="../reference/formatter.html">formatter()</a></code>. When using <code>formatter("span", style = ~ expr)</code>, <code>expr</code> is evaluated in the data frame so that all columns are available for use.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-  cur_score <span class="op">=</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, 
-    style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">change</span> <span class="op">&gt;=</span> <span class="fl">0</span>, <span class="st">"green"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  cur_score <span class="op">=</span> <span class="fu"><a href="../reference/formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>, </span>
+<span>    style <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="../reference/style.html">style</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">change</span> <span class="op">&gt;=</span> <span class="fl">0</span>, <span class="st">"green"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -516,7 +516,7 @@ change
 </h3>
 <p>To hide columns, use <code>FALSE</code> formatter.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>prev_score <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">scores</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>prev_score <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -593,22 +593,22 @@ change
 </h3>
 <p>To making formatting easier, formattable package provides a group of built-in formatter functions. Suppose we have the following data on a number of products. Some columns are already formattable vectors.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, 
-  price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">12</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span>,
-  rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,
-  market_share <span class="op">=</span> <span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.12</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.14</span><span class="op">)</span><span class="op">)</span>,
-  revenue <span class="op">=</span> <span class="fu"><a href="../reference/legacy.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55000</span>, <span class="fl">36400</span>, <span class="fl">12000</span>, <span class="op">-</span><span class="fl">25000</span>, <span class="fl">98100</span><span class="op">)</span><span class="op">)</span>,
-  profit <span class="op">=</span> <span class="fu"><a href="../reference/legacy.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25300</span>, <span class="fl">11500</span>, <span class="op">-</span><span class="fl">8200</span>, <span class="op">-</span><span class="fl">46000</span>, <span class="fl">65000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">products</span></code></pre></div>
-<pre><code><span class="co">##   id price rating market_share     revenue      profit</span>
-<span class="co">## 1  1    10      5       10.00%   55,000.00   25,300.00</span>
-<span class="co">## 2  2    15      4       12.00%   36,400.00   11,500.00</span>
-<span class="co">## 3  3    12      4        5.00%   12,000.00  (8,200.00)</span>
-<span class="co">## 4  4     8      3        3.00% (25,000.00) (46,000.00)</span>
-<span class="co">## 5  5     9      4       14.00%   98,100.00   65,000.00</span></code></pre>
+<code class="sourceCode R"><span><span class="va">products</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, </span>
+<span>  price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">12</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span>,</span>
+<span>  rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>  market_share <span class="op">=</span> <span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.12</span>, <span class="fl">0.05</span>, <span class="fl">0.03</span>, <span class="fl">0.14</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  revenue <span class="op">=</span> <span class="fu"><a href="../reference/legacy.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">55000</span>, <span class="fl">36400</span>, <span class="fl">12000</span>, <span class="op">-</span><span class="fl">25000</span>, <span class="fl">98100</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  profit <span class="op">=</span> <span class="fu"><a href="../reference/legacy.html">accounting</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25300</span>, <span class="fl">11500</span>, <span class="op">-</span><span class="fl">8200</span>, <span class="op">-</span><span class="fl">46000</span>, <span class="fl">65000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">products</span></span></code></pre></div>
+<pre><code><span><span class="co">##   id price rating market_share     revenue      profit</span></span>
+<span><span class="co">## 1  1    10      5       10.00%   55,000.00   25,300.00</span></span>
+<span><span class="co">## 2  2    15      4       12.00%   36,400.00   11,500.00</span></span>
+<span><span class="co">## 3  3    12      4        5.00%   12,000.00  (8,200.00)</span></span>
+<span><span class="co">## 4  4     8      3        3.00% (25,000.00) (46,000.00)</span></span>
+<span><span class="co">## 5  5     9      4       14.00%   98,100.00   65,000.00</span></span></code></pre>
 <p>Without any formatter functions applied, the formattable data frame is directly rendered as an HTML table.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -735,7 +735,7 @@ profit
 </table>
 <p>We can supply a list of formatter functions to make it look more colorful. For example, we apply <code>sign_formatter</code> to <code>profit</code> column so that values of different signs are displayed in different colors.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -862,12 +862,12 @@ profit
 </table>
 <p>Using built-in functions like <code><a href="../reference/color_tile.html">color_tile()</a></code> and <code><a href="../reference/color_bar.html">color_bar()</a></code> makes it easier to compare the magnitute of values of specified columns.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-  price <span class="op">=</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span>,
-  rating <span class="op">=</span> <span class="fu"><a href="../reference/color_bar.html">color_bar</a></span><span class="op">(</span><span class="st">"lightgreen"</span><span class="op">)</span>,
-  market_share <span class="op">=</span> <span class="fu"><a href="../reference/color_bar.html">color_bar</a></span><span class="op">(</span><span class="st">"lightblue"</span><span class="op">)</span>,
-  revenue <span class="op">=</span> <span class="va">sign_formatter</span>,
-  profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  price <span class="op">=</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span>,</span>
+<span>  rating <span class="op">=</span> <span class="fu"><a href="../reference/color_bar.html">color_bar</a></span><span class="op">(</span><span class="st">"lightgreen"</span><span class="op">)</span>,</span>
+<span>  market_share <span class="op">=</span> <span class="fu"><a href="../reference/color_bar.html">color_bar</a></span><span class="op">(</span><span class="st">"lightblue"</span><span class="op">)</span>,</span>
+<span>  revenue <span class="op">=</span> <span class="va">sign_formatter</span>,</span>
+<span>  profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -999,10 +999,10 @@ profit
 <p>Sometimes, it is useful to apply a formatter function to an area so that all cells in the area share one benchmark. Area formatting is supported through the syntax of <code>area(row, col) ~ formatter</code> in the formatter list.</p>
 <p>The following example renders the three columns altogether so that they share the same benchmark, not independently.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, 
-  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="../reference/area.html">area</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">a</span><span class="op">:</span><span class="va">c</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"pink"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, </span>
+<span>  a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="../reference/area.html">area</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">a</span><span class="op">:</span><span class="va">c</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"pink"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -1163,7 +1163,7 @@ c
 </table>
 <p>If a one-sided formula is supplied, the function will be applied to all cells.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">~</span> <span class="va">percent</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">~</span> <span class="va">percent</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -1295,11 +1295,11 @@ c
 </h2>
 <p>Since <code><a href="../reference/formattable.html">formattable()</a></code> accepts a list of formatter functions, the list can be dynamically generated. For example, the following code applies row-wise formatting, that is, each row is colored independently.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, 
-  <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">cbind</span>, <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">row</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="../reference/area.html">area</a></span><span class="op">(</span><span class="va">row</span>, col <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"lightpink"</span>, <span class="st">"lightblue"</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>, </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">cbind</span>, <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">row</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/area.html">area</a></span><span class="op">(</span><span class="va">row</span>, col <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"lightpink"</span>, <span class="st">"lightblue"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:right;">
@@ -1629,15 +1629,15 @@ id
 </h2>
 <p><code><a href="../reference/as.datatable.html">as.datatable()</a></code> is designed to convert a formattable data frame to <code>DT::datatables</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Loading required namespace: DT</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Loading required namespace: DT</span></span></code></pre>
 <div id="htmlwidget-530a78b6872d546cc16a" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-530a78b6872d546cc16a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["10","15","12","8","9"],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["55,000.00","36,400.00","12,000.00","(25,000.00)","98,100.00"],["25,300.00","11,500.00","(8,200.00)","(46,000.00)","65,000.00"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Some formatters can be preserved well after the conversion.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-  price <span class="op">=</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span>,
-  revenue <span class="op">=</span> <span class="va">sign_formatter</span>,
-  profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  price <span class="op">=</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span>,</span>
+<span>  revenue <span class="op">=</span> <span class="va">sign_formatter</span>,</span>
+<span>  profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="htmlwidget-4cadc5f8c7ab9ff923ac" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-4cadc5f8c7ab9ff923ac">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffeaed\">10<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1\">15<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd5db\">12<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">8<\/span> ","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fff4f6\">9<\/span> "],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["<span style=\"color: green\">55,000.00<\/span>","<span style=\"color: green\">36,400.00<\/span>","<span style=\"color: green\">12,000.00<\/span>","<span style=\"color: red\">(25,000.00)<\/span>","<span style=\"color: green\">98,100.00<\/span>"],["<span style=\"color: green\">25,300.00<\/span>","<span style=\"color: green\">11,500.00<\/span>","<span style=\"color: red\">(8,200.00)<\/span> ","<span style=\"color: red\">(46,000.00)<\/span>","<span style=\"color: green\">65,000.00<\/span>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
@@ -1660,7 +1660,7 @@ id
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer>

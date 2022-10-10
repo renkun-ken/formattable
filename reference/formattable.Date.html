@@ -63,37 +63,48 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for Date</span>
-<span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, formatter <span class="op">=</span> <span class="st">"format.Date"</span>, preproc <span class="op">=</span> <span class="cn">NULL</span>, postproc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for Date</span></span>
+<span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, formatter <span class="op">=</span> <span class="st">"format.Date"</span>, preproc <span class="op">=</span> <span class="cn">NULL</span>, postproc <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a vector of class <code>Date</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>arguments to be passed to <code>formatter</code>.</p></dd>
+
+
 <dt>formatter</dt>
 <dd><p>formatting function, <code><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">format.Date()</a></code> in default.</p></dd>
+
+
 <dt>preproc</dt>
 <dd><p>pre-processor function that prepares <code>x</code> for
 formatting function.</p></dd>
+
+
 <dt>postproc</dt>
 <dd><p>post-processor function that transforms formatted
 output for printing.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a <code>formattable</code> Date vector</p>
+    
+
+<p>a <code>formattable</code> Date vector</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2015-04-10"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
-<span class="r-in"><span class="va">fdates</span> <span class="op">&lt;-</span> <span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">dates</span>, format <span class="op">=</span> <span class="st">"%m/%d/%Y"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">fdates</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2015-04-10"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="va">fdates</span> <span class="op">&lt;-</span> <span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">dates</span>, format <span class="op">=</span> <span class="st">"%m/%d/%Y"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fdates</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 04/11/2015 04/12/2015 04/13/2015 04/14/2015 04/15/2015</span>
-<span class="r-in"><span class="va">fdates</span> <span class="op">+</span> <span class="fl">30</span></span>
+<span class="r-in"><span><span class="va">fdates</span> <span class="op">+</span> <span class="fl">30</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 05/11/2015 05/12/2015 05/13/2015 05/14/2015 05/15/2015</span>
 </code></pre></div>
     </div>
@@ -109,7 +120,7 @@ output for printing.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

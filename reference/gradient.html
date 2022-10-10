@@ -63,30 +63,46 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gradient</span><span class="op">(</span><span class="va">x</span>, <span class="va">min.color</span>, <span class="va">max.color</span>, alpha <span class="op">=</span> <span class="cn">NULL</span>, use.names <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gradient</span><span class="op">(</span><span class="va">x</span>, <span class="va">min.color</span>, <span class="va">max.color</span>, alpha <span class="op">=</span> <span class="cn">NULL</span>, use.names <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a numeric vector.</p></dd>
+
+
 <dt>min.color</dt>
 <dd><p>color of minimum value.</p></dd>
+
+
 <dt>max.color</dt>
 <dd><p>color of maximum value.</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>logical of whether to include alpha channel. <code>NULL</code>
 to let the function decide by input.</p></dd>
+
+
 <dt>use.names</dt>
 <dd><p>logical of whether to preserve names of input vector.</p></dd>
+
+
 <dt>na.rm</dt>
 <dd><p>logical indicating whether to ignore missing values as <code>x</code>
 is normalized. (defult is <code>TRUE</code>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a matrix with rgba columns in which each row corresponds to the rgba
-value (0-255) of each element in input vector <code>x</code>. Use <code>csscolor</code>to convert the matrix to css color strings compatible with web browsers.</p>
+    
+
+<p>a matrix with rgba columns in which each row corresponds to the rgba
+value (0-255) of each element in input vector <code>x</code>. Use <code>csscolor</code></p>
+
+
+<p>to convert the matrix to css color strings compatible with web browsers.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -95,22 +111,22 @@ value (0-255) of each element in input vector <code>x</code>. Use <code>csscolor
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> red    255  255  255  255  255</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> green  255  191  127   63    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> blue   255  191  127   63    0</span>
-<span class="r-in"><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> red    255  255  255  255  255</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> green    0   63  127  191  255</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> blue     0   63  127  191  255</span>
-<span class="r-in"><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>, <span class="st">"white"</span>, <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> red    255  255  255  255  255</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> green  255  127  191   63    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> blue   255  127  191   63    0</span>
-<span class="r-in"><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0.5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">gradient</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0.5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       [,1] [,2] [,3] [,4] [,5]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> red      0    0    0    0    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> green    0    0    0    0    0</span>
@@ -130,7 +146,7 @@ value (0-255) of each element in input vector <code>x</code>. Use <code>csscolor
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

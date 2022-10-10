@@ -67,7 +67,7 @@ conventional argument-passing in R.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">style</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">style</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -76,10 +76,13 @@ conventional argument-passing in R.</p>
 <dd><p>style attributes in form of <code>name = value</code>. Many CSS properties
 contains <code>'-'</code> in the middle of their names. In this case, use
 <code>"the-name" = value</code> instead. <code>NA</code> will cancel the attribute.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a string-representation of css styles</p>
+    
+
+<p>a string-representation of css styles</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -100,18 +103,18 @@ different browsers.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">style</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">style</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "color: red"</span>
-<span class="r-in"><span class="fu">style</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, <span class="st">"font-weight"</span> <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">style</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, <span class="st">"font-weight"</span> <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "color: red; font-weight: bold"</span>
-<span class="r-in"><span class="fu">style</span><span class="op">(</span><span class="st">"background-color"</span> <span class="op">=</span> <span class="st">"gray"</span>, <span class="st">"border-radius"</span> <span class="op">=</span> <span class="st">"4px"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">style</span><span class="op">(</span><span class="st">"background-color"</span> <span class="op">=</span> <span class="st">"gray"</span>, <span class="st">"border-radius"</span> <span class="op">=</span> <span class="st">"4px"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "background-color: gray; border-radius: 4px"</span>
-<span class="r-in"><span class="fu">style</span><span class="op">(</span><span class="st">"padding-right"</span> <span class="op">=</span> <span class="st">"2px"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">style</span><span class="op">(</span><span class="st">"padding-right"</span> <span class="op">=</span> <span class="st">"2px"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "padding-right: 2px"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span class="r-in">  mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span>
-<span class="r-in">    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu">style</span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="formattable.html">formattable</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  mpg <span class="op">=</span> <span class="fu"><a href="formatter.html">formatter</a></span><span class="op">(</span><span class="st">"span"</span>,</span></span>
+<span class="r-in"><span>    style <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="fu">style</span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="st">"red"</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -126,7 +129,7 @@ different browsers.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

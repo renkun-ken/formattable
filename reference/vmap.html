@@ -67,18 +67,23 @@ combined.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">vmap</span><span class="op">(</span><span class="va">EXPR</span>, <span class="va">...</span>, SIMPLIFY <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vmap</span><span class="op">(</span><span class="va">EXPR</span>, <span class="va">...</span>, SIMPLIFY <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>EXPR</dt>
 <dd><p>an expression evaluated to be character or numeric vector/list.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>The list of alternatives for each <code><a href="https://rdrr.io/r/base/switch.html" class="external-link">switch()</a></code>.</p></dd>
+
+
 <dt>SIMPLIFY</dt>
 <dd><p><code>TRUE</code> to simplify the resulted list to vector, matrix
 or array if possible.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -87,12 +92,12 @@ or array if possible.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"normal"</span>,<span class="st">"normal"</span>,<span class="st">"error"</span>,<span class="st">"unknown"</span>,<span class="st">"unknown"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">vmap</span><span class="op">(</span><span class="va">x</span>, normal <span class="op">=</span> <span class="fl">0</span>, error <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, unknown <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"normal"</span>,<span class="st">"normal"</span>,<span class="st">"error"</span>,<span class="st">"unknown"</span>,<span class="st">"unknown"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">vmap</span><span class="op">(</span><span class="va">x</span>, normal <span class="op">=</span> <span class="fl">0</span>, error <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, unknown <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  0  0 -1 -2 -2</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">vmap</span><span class="op">(</span><span class="va">x</span>, <span class="st">"type-A"</span>, <span class="st">"type-B"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">vmap</span><span class="op">(</span><span class="va">x</span>, <span class="st">"type-A"</span>, <span class="st">"type-B"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "type-A" "type-A" "type-B" "type-A" "type-B" "type-B" "type-A" "type-A"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [9] "type-B"</span>
 </code></pre></div>
@@ -109,7 +114,7 @@ or array if possible.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

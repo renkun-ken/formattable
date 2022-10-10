@@ -63,21 +63,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">num_percent</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2L</span>, format <span class="op">=</span> <span class="st">"f"</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">parse_percent</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="cn">NA</span>, format <span class="op">=</span> <span class="st">"f"</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">num_percent</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2L</span>, format <span class="op">=</span> <span class="st">"f"</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">parse_percent</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="cn">NA</span>, format <span class="op">=</span> <span class="st">"f"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>a numeric vector.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>an integer to indicate the number of digits of the percentage string.</p></dd>
+
+
 <dt>format</dt>
 <dd><p>format type passed to <code><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC()</a></code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional parameters passed to <code><a href="formattable.html">formattable()</a></code>.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -91,14 +98,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">num_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 10.77%  9.18%   3.44%   18.65%  -0.76%  -19.02% 0.34%   -3.01%  -1.03% </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] -9.58% </span>
-<span class="r-in"><span class="fu">num_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -8%  -11% 3%   11%  8%   1%   -8%  7%   1%   8%  </span>
-<span class="r-in"><span class="fu">parse_percent</span><span class="op">(</span><span class="st">"0.5%"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">num_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -16.52% 13.57%  -2.63%  9.15%   -12.27% -24.15% 5.08%   8.63%   -9.40% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] 9.51%  </span>
+<span class="r-in"><span><span class="fu">num_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">0.1</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -21% 16%  -11% -16% 11%  17%  3%   16%  -5%  -23%</span>
+<span class="r-in"><span><span class="fu">parse_percent</span><span class="op">(</span><span class="st">"0.5%"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5%</span>
-<span class="r-in"><span class="fu">parse_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"15.5%"</span>, <span class="st">"25.12%"</span>, <span class="st">"73.5"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">parse_percent</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"15.5%"</span>, <span class="st">"25.12%"</span>, <span class="st">"73.5"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15.50%   25.12%   7350.00%</span>
 </code></pre></div>
     </div>
@@ -114,7 +121,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>
