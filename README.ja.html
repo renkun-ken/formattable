@@ -57,8 +57,11 @@
     </div>
 
 <div id="formattable" class="section level1">
-<!-- badges: start --><p><a href="https://github.com/renkun-ken/formattable/actions" class="external-link"><img src="https://github.com/renkun-ken/formattable/workflows/rcc/badge.svg" alt="R build status"></a> <a href="https://codecov.io/github/renkun-ken/formattable?branch=master" class="external-link"><img src="https://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=formattable" class="external-link"><img src="https://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a></p>
-<!-- badges: end --><p>このパッケージは、ベクトルおよびデータフレームに書式を適用するために開発されました。これにより、データを「より簡単に」「よりリッチに」「より柔軟に」「できるだけ多くの情報を伝えるように」提示することができます。</p>
+
+<!-- badges: start -->
+<p><a href="https://github.com/renkun-ken/formattable/actions" class="external-link"><img src="https://github.com/renkun-ken/formattable/workflows/rcc/badge.svg" alt="R build status"></a> <a href="https://codecov.io/github/renkun-ken/formattable?branch=master" class="external-link"><img src="https://codecov.io/github/renkun-ken/formattable/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=formattable" class="external-link"><img src="https://www.r-pkg.org/badges/version/formattable" alt="CRAN Version"></a></p>
+<!-- badges: end -->
+<p>このパッケージは、ベクトルおよびデータフレームに書式を適用するために開発されました。これにより、データを「より簡単に」「よりリッチに」「より柔軟に」「できるだけ多くの情報を伝えるように」提示することができます。</p>
 <div class="section level2">
 <h2 id="インストール">インストール<a class="anchor" aria-label="anchor" href="#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"></a></h2>
 <p>最新の開発バージョンを GitHub からインストールするには：</p>
@@ -131,94 +134,270 @@
   registered <span class="o">=</span> <span class="nf"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="o">(</span><span class="kc">TRUE</span>, <span class="kc">FALSE</span>, <span class="kc">TRUE</span>, <span class="kc">FALSE</span>, <span class="kc">TRUE</span>, <span class="kc">TRUE</span>, <span class="kc">TRUE</span>, <span class="kc">FALSE</span>, <span class="kc">FALSE</span>, <span class="kc">FALSE</span><span class="o">)</span>,
   stringsAsFactors <span class="o">=</span> <span class="kc">FALSE</span><span class="o">)</span></pre>
 <p>何もしない場合、次のようなテーブルが表示されます：</p>
-<table class="table"><thead><tr><th style="text-align:right;">id</th>
-<th style="text-align:left;">name</th>
-<th style="text-align:right;">age</th>
-<th style="text-align:left;">grade</th>
-<th style="text-align:right;">test1_score</th>
-<th style="text-align:right;">test2_score</th>
-<th style="text-align:right;">final_score</th>
-<th style="text-align:left;">registered</th>
-</tr></thead><tbody><tr><td style="text-align:right;">1</td>
-<td style="text-align:left;">Bob</td>
-<td style="text-align:right;">28</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.9</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">9.00</td>
-<td style="text-align:left;">TRUE</td>
-</tr><tr><td style="text-align:right;">2</td>
-<td style="text-align:left;">Ashley</td>
-<td style="text-align:right;">27</td>
-<td style="text-align:left;">A</td>
-<td style="text-align:right;">9.5</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">9.30</td>
-<td style="text-align:left;">FALSE</td>
-</tr><tr><td style="text-align:right;">3</td>
-<td style="text-align:left;">James</td>
-<td style="text-align:right;">30</td>
-<td style="text-align:left;">A</td>
-<td style="text-align:right;">9.6</td>
-<td style="text-align:right;">9.2</td>
-<td style="text-align:right;">9.40</td>
-<td style="text-align:left;">TRUE</td>
-</tr><tr><td style="text-align:right;">4</td>
-<td style="text-align:left;">David</td>
-<td style="text-align:right;">28</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.9</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">9.00</td>
-<td style="text-align:left;">FALSE</td>
-</tr><tr><td style="text-align:right;">5</td>
-<td style="text-align:left;">Jenny</td>
-<td style="text-align:right;">29</td>
-<td style="text-align:left;">B</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">8.9</td>
-<td style="text-align:right;">9.00</td>
-<td style="text-align:left;">TRUE</td>
-</tr><tr><td style="text-align:right;">6</td>
-<td style="text-align:left;">Hans</td>
-<td style="text-align:right;">29</td>
-<td style="text-align:left;">B</td>
-<td style="text-align:right;">9.3</td>
-<td style="text-align:right;">8.5</td>
-<td style="text-align:right;">8.90</td>
-<td style="text-align:left;">TRUE</td>
-</tr><tr><td style="text-align:right;">7</td>
-<td style="text-align:left;">Leo</td>
-<td style="text-align:right;">27</td>
-<td style="text-align:left;">B</td>
-<td style="text-align:right;">9.3</td>
-<td style="text-align:right;">9.2</td>
-<td style="text-align:right;">9.25</td>
-<td style="text-align:left;">TRUE</td>
-</tr><tr><td style="text-align:right;">8</td>
-<td style="text-align:left;">John</td>
-<td style="text-align:right;">27</td>
-<td style="text-align:left;">A</td>
-<td style="text-align:right;">9.9</td>
-<td style="text-align:right;">9.3</td>
-<td style="text-align:right;">9.60</td>
-<td style="text-align:left;">FALSE</td>
-</tr><tr><td style="text-align:right;">9</td>
-<td style="text-align:left;">Emily</td>
-<td style="text-align:right;">31</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.5</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">8.80</td>
-<td style="text-align:left;">FALSE</td>
-</tr><tr><td style="text-align:right;">10</td>
-<td style="text-align:left;">Lee</td>
-<td style="text-align:right;">30</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.6</td>
-<td style="text-align:right;">8.8</td>
-<td style="text-align:right;">8.70</td>
-<td style="text-align:left;">FALSE</td>
+<table class="table"><thead><tr><th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+grade
+</th>
+<th style="text-align:right;">
+test1_score
+</th>
+<th style="text-align:right;">
+test2_score
+</th>
+<th style="text-align:right;">
+final_score
+</th>
+<th style="text-align:left;">
+registered
+</th>
+</tr></thead><tbody><tr><td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bob
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr><tr><td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Ashley
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.30
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr><tr><td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+James
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.6
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+9.40
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr><tr><td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+David
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr><tr><td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Jenny
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr><tr><td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Hans
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+8.90
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr><tr><td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Leo
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+9.25
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr><tr><td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+John
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.9
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+9.60
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr><tr><td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Emily
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+8.80
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr><tr><td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Lee
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+8.8
+</td>
+<td style="text-align:right;">
+8.70
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr></tbody></table><p>次のようにテーブルをフォーマットします：</p>
 <ul><li>年齢(age)はグラデーションで表示する。</li>
 <li>A評価(grade)は緑の太字で表示する。</li>

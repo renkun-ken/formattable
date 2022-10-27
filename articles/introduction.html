@@ -81,7 +81,7 @@
       <h1 data-toc-skip>Introduction to formattable package</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2022-10-23</h4>
+            <h4 data-toc-skip class="date">2022-10-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/vignettes/introduction.Rmd" class="external-link"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -90,15 +90,28 @@
 
     
     
-<p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
-<p>Atomic vectors are fundamental data structures in R. Some data can be read more easily with formatting. A numeric vector, for example, stores percentage numbers but is printed as typical floating numbers. This package provides functions to create data structures with predefined formatting rules so that these objects store the original data but are printed with formatting.</p>
-<p>Several typical formattable numeric vectors are provided such as <code>percent</code>, <code>comma</code>, <code>currency</code>, <code>accounting</code> and <code>scientific</code>. These functions basically create numeric vectors with pre-defined formatting rules and parameters. For example,</p>
+<p>This package is designed for applying formatting on vectors and data
+frames to make data presentation easier, richer, more flexible and
+hopefully convey more information.</p>
+<p>Atomic vectors are fundamental data structures in R. Some data can be
+read more easily with formatting. A numeric vector, for example, stores
+percentage numbers but is printed as typical floating numbers. This
+package provides functions to create data structures with predefined
+formatting rules so that these objects store the original data but are
+printed with formatting.</p>
+<p>Several typical formattable numeric vectors are provided such as
+<code>percent</code>, <code>comma</code>, <code>currency</code>,
+<code>accounting</code> and <code>scientific</code>. These functions
+basically create numeric vectors with pre-defined formatting rules and
+parameters. For example,</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/legacy.html">percent</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.02</span>, <span class="fl">0.03</span>, <span class="fl">0.12</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 10.00% 2.00%  3.00%  12.00%</span></span></code></pre>
-<p>The percent vector is no different from a numeric vector but has a percentage representation when printed. It works with arithmetic operations and other common functions and preserves its formatting.</p>
+<p>The percent vector is no different from a numeric vector but has a
+percentage representation when printed. It works with arithmetic
+operations and other common functions and preserves its formatting.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fl">0.05</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 15.00% 7.00%  8.00%  17.00%</span></span></code></pre>
@@ -132,8 +145,18 @@
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">balance</span> <span class="op">+</span> <span class="fl">1000</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 2,000.00 1,500.00 1,200.00 850.00   1,000.00 2,200.00</span></span></code></pre>
-<p>These functions are specialized applications of what <code><a href="../reference/formattable.html">formattable()</a></code> is designed to do. <code><a href="../reference/formattable.html">formattable()</a></code> applies customizable formatting functions to objects of a wide range of classes like <code>numeric</code>, <code>logical</code>, <code>factor</code>, <code>Date</code>, <code>data.frame</code>, etc.</p>
-<p>When applied to <code>Date</code>, <code><a href="../reference/formattable.html">formattable()</a></code> uses <code><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">format.Date()</a></code> as the default formatter function. The following code creates a <code>formattable Date</code> vector that is printed in the format of <code>%Y%m%d</code>. However, it is not a plain integer or character vector but of <code>Date</code> class and still allows date calculations.</p>
+<p>These functions are specialized applications of what
+<code><a href="../reference/formattable.html">formattable()</a></code> is designed to do. <code><a href="../reference/formattable.html">formattable()</a></code>
+applies customizable formatting functions to objects of a wide range of
+classes like <code>numeric</code>, <code>logical</code>,
+<code>factor</code>, <code>Date</code>, <code>data.frame</code>,
+etc.</p>
+<p>When applied to <code>Date</code>, <code><a href="../reference/formattable.html">formattable()</a></code> uses
+<code><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">format.Date()</a></code> as the default formatter function. The
+following code creates a <code>formattable Date</code> vector that is
+printed in the format of <code>%Y%m%d</code>. However, it is not a plain
+integer or character vector but of <code>Date</code> class and still
+allows date calculations.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2016-05-01"</span>, <span class="st">"2016-05-10"</span><span class="op">)</span><span class="op">)</span>, format <span class="op">=</span> <span class="st">"%Y%m%d"</span><span class="op">)</span></span>
 <span><span class="va">dates</span></span></code></pre></div>
@@ -141,7 +164,8 @@
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dates</span> <span class="op">+</span> <span class="fl">30</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 20160531 20160609</span></span></code></pre>
-<p>When applied to a logical vector, we can customize how <code>TRUE</code> and <code>FALSE</code> values are printed.</p>
+<p>When applied to a logical vector, we can customize how
+<code>TRUE</code> and <code>FALSE</code> values are printed.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>, <span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span></span>
 <span><span class="va">lv</span></span></code></pre></div>
@@ -149,14 +173,21 @@
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">!</span><span class="va">lv</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] no  yes yes no</span></span></code></pre>
-<p>Note that <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> does not directly work with values of <code>lv</code> because <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> uses <code>identical(x, TRUE)</code> and <code>lv[[1]]</code>, as a formattable logical value is not identical to a plain <code>TRUE</code>.</p>
+<p>Note that <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> does not directly work with values of
+<code>lv</code> because <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> uses
+<code>identical(x, TRUE)</code> and <code>lv[[1]]</code>, as a
+formattable logical value is not identical to a plain
+<code>TRUE</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] yes</span></span></code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE</a></span><span class="op">(</span><span class="va">lv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
-<p>If <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> has to be applied, <code>lv == TRUE</code> returns a plain logical vector and works with <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code>. Other vectorized logical functions directly work with formattable logical vector with the formatting preserved.</p>
+<p>If <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code> has to be applied, <code>lv == TRUE</code>
+returns a plain logical vector and works with <code><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE()</a></code>.
+Other vectorized logical functions directly work with formattable
+logical vector with the formatting preserved.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">lv</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] no</span></span></code></pre>
@@ -208,7 +239,10 @@
 <span><span class="co">##      [,1]   [,2]   [,3]  </span></span>
 <span><span class="co">## [1,] 84.01% 74.44% 84.98%</span></span>
 <span><span class="co">## [2,] 81.11% 97.87% 60.33%</span></span></code></pre>
-<p>When the formattable vectors are used as columns of a data frame, the formatting of each column is well preserved. A typical data frame may look more friendly with <code>formattable</code> column vectors. For example,</p>
+<p>When the formattable vectors are used as columns of a data frame, the
+formatting of each column is well preserved. A typical data frame may
+look more friendly with <code>formattable</code> column vectors. For
+example,</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span>, </span>
@@ -223,7 +257,8 @@
 <span><span class="co">## 3  3   B1  25,000    10%    no</span></span>
 <span><span class="co">## 4  4   B2  18,300    15%    no</span></span>
 <span><span class="co">## 5  5   C1   7,600    15%   yes</span></span></code></pre>
-<p>The subset of a data frame also preserves the formatting of each column:</p>
+<p>The subset of a data frame also preserves the formatting of each
+column:</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"balance"</span>, <span class="st">"growth"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##   name balance growth</span></span>

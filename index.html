@@ -85,7 +85,9 @@
 <div class="page-header"><h1 id="formattable">formattable<a class="anchor" aria-label="anchor" href="#formattable"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- badges: end --><p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
+
+<!-- badges: end -->
+<p>This package is designed for applying formatting on vectors and data frames to make data presentation easier, richer, more flexible and hopefully convey more information.</p>
 <p>This document is also translated into <a href="https://github.com/renkun-ken/formattable/blob/master/README.ja.md" class="external-link">日本語</a> by [@hoxo_m](<a href="https://github.com/hoxo-m" class="external-link uri">https://github.com/hoxo-m</a>), [@dichika](<a href="https://github.com/dichika" class="external-link uri">https://github.com/dichika</a>) and [@teramonagi](<a href="https://github.com/teramonagi" class="external-link uri">https://github.com/teramonagi</a>).</p>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
@@ -165,115 +167,291 @@
 <p>Plain table:</p>
 <table class="table">
 <thead><tr>
-<th style="text-align:right;">id</th>
-<th style="text-align:left;">name</th>
-<th style="text-align:right;">age</th>
-<th style="text-align:left;">grade</th>
-<th style="text-align:right;">test1_score</th>
-<th style="text-align:right;">test2_score</th>
-<th style="text-align:right;">final_score</th>
-<th style="text-align:left;">registered</th>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+grade
+</th>
+<th style="text-align:right;">
+test1_score
+</th>
+<th style="text-align:right;">
+test2_score
+</th>
+<th style="text-align:right;">
+final_score
+</th>
+<th style="text-align:left;">
+registered
+</th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:right;">1</td>
-<td style="text-align:left;">Bob</td>
-<td style="text-align:right;">28</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.9</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">9.00</td>
-<td style="text-align:left;">TRUE</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bob
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">2</td>
-<td style="text-align:left;">Ashley</td>
-<td style="text-align:right;">27</td>
-<td style="text-align:left;">A</td>
-<td style="text-align:right;">9.5</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">9.30</td>
-<td style="text-align:left;">FALSE</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Ashley
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.30
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">3</td>
-<td style="text-align:left;">James</td>
-<td style="text-align:right;">30</td>
-<td style="text-align:left;">A</td>
-<td style="text-align:right;">9.6</td>
-<td style="text-align:right;">9.2</td>
-<td style="text-align:right;">9.40</td>
-<td style="text-align:left;">TRUE</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+James
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.6
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+9.40
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">4</td>
-<td style="text-align:left;">David</td>
-<td style="text-align:right;">28</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.9</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">9.00</td>
-<td style="text-align:left;">FALSE</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+David
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">5</td>
-<td style="text-align:left;">Jenny</td>
-<td style="text-align:right;">29</td>
-<td style="text-align:left;">B</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">8.9</td>
-<td style="text-align:right;">9.00</td>
-<td style="text-align:left;">TRUE</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Jenny
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+9.00
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">6</td>
-<td style="text-align:left;">Hans</td>
-<td style="text-align:right;">29</td>
-<td style="text-align:left;">B</td>
-<td style="text-align:right;">9.3</td>
-<td style="text-align:right;">8.5</td>
-<td style="text-align:right;">8.90</td>
-<td style="text-align:left;">TRUE</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Hans
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+8.90
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">7</td>
-<td style="text-align:left;">Leo</td>
-<td style="text-align:right;">27</td>
-<td style="text-align:left;">B</td>
-<td style="text-align:right;">9.3</td>
-<td style="text-align:right;">9.2</td>
-<td style="text-align:right;">9.25</td>
-<td style="text-align:left;">TRUE</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Leo
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+9.25
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">8</td>
-<td style="text-align:left;">John</td>
-<td style="text-align:right;">27</td>
-<td style="text-align:left;">A</td>
-<td style="text-align:right;">9.9</td>
-<td style="text-align:right;">9.3</td>
-<td style="text-align:right;">9.60</td>
-<td style="text-align:left;">FALSE</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+John
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+9.9
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+9.60
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">9</td>
-<td style="text-align:left;">Emily</td>
-<td style="text-align:right;">31</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.5</td>
-<td style="text-align:right;">9.1</td>
-<td style="text-align:right;">8.80</td>
-<td style="text-align:left;">FALSE</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Emily
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+8.80
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
 <tr>
-<td style="text-align:right;">10</td>
-<td style="text-align:left;">Lee</td>
-<td style="text-align:right;">30</td>
-<td style="text-align:left;">C</td>
-<td style="text-align:right;">8.6</td>
-<td style="text-align:right;">8.8</td>
-<td style="text-align:right;">8.70</td>
-<td style="text-align:left;">FALSE</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Lee
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+8.8
+</td>
+<td style="text-align:right;">
+8.70
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
 </tbody>
 </table>
