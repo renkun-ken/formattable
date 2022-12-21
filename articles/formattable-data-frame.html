@@ -75,7 +75,7 @@
 
       
 
-      </header><script src="formattable-data-frame_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="formattable-data-frame_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+      </header><script src="formattable-data-frame_files/htmlwidgets-1.6.0/htmlwidgets.js"></script><link href="formattable-data-frame_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="formattable-data-frame_files/datatables-binding-0.26/datatables.js"></script><link href="formattable-data-frame_files/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="formattable-data-frame_files/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="formattable-data-frame_files/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="formattable-data-frame_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Formattable data frame</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2022-11-08</h4>
+            <h4 data-toc-skip class="date">2022-12-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/vignettes/formattable-data-frame.Rmd" class="external-link"><code>vignettes/formattable-data-frame.Rmd</code></a></small>
       <div class="hidden name"><code>formattable-data-frame.Rmd</code></div>
@@ -1668,14 +1668,14 @@ frame to <code>DT::datatables</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required namespace: DT</span></span></code></pre>
-<div id="htmlwidget-530a78b6872d546cc16a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-530a78b6872d546cc16a" style="width:100%;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-530a78b6872d546cc16a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["10","15","12","8","9"],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["55,000.00","36,400.00","12,000.00","(25,000.00)","98,100.00"],["25,300.00","11,500.00","(8,200.00)","(46,000.00)","65,000.00"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Some formatters can be preserved well after the conversion.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  price <span class="op">=</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span>,</span>
 <span>  revenue <span class="op">=</span> <span class="va">sign_formatter</span>,</span>
 <span>  profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div id="htmlwidget-4cadc5f8c7ab9ff923ac" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4cadc5f8c7ab9ff923ac" style="width:100%;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-4cadc5f8c7ab9ff923ac">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffeaed\">10<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1\">15<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd5db\">12<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">8<\/span> ","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fff4f6\">9<\/span> "],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["<span style=\"color: green\">55,000.00<\/span>","<span style=\"color: green\">36,400.00<\/span>","<span style=\"color: green\">12,000.00<\/span>","<span style=\"color: red\">(25,000.00)<\/span>","<span style=\"color: green\">98,100.00<\/span>"],["<span style=\"color: green\">25,300.00<\/span>","<span style=\"color: green\">11,500.00<\/span>","<span style=\"color: red\">(8,200.00)<\/span> ","<span style=\"color: red\">(46,000.00)<\/span>","<span style=\"color: green\">65,000.00<\/span>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
@@ -1697,7 +1697,7 @@ frame to <code>DT::datatables</code>.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
 </div>
 
       </footer>
