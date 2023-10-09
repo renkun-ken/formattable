@@ -33,6 +33,7 @@ However, some style properties may not work consistently in
 different browsers.
 }
 \examples{
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 style(color = "red")
 style(color = "red", "font-weight" = "bold")
 style("background-color" = "gray", "border-radius" = "4px")
@@ -41,6 +42,7 @@ style("padding-right" = "2px")
 formattable(mtcars, list(
   mpg = formatter("span",
     style = x ~ style(color = ifelse(x > median(x), "red", NA)))))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \href{https://www.w3.org/Style/CSS/all-properties}{List of CSS properties},

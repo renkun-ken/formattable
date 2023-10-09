@@ -20,7 +20,7 @@
 #' contains `'-'` in the middle of their names. In this case, use
 #' `"the-name" = value` instead. `NA` will cancel the attribute.
 #' @return a string-representation of css styles
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' style(color = "red")
 #' style(color = "red", "font-weight" = "bold")
 #' style("background-color" = "gray", "border-radius" = "4px")
@@ -61,7 +61,7 @@ style <- function(...) {
 #' @seealso [Glyphicons in Bootstrap](https://getbootstrap.com/docs/3.4/components/#glyphicons),
 #' [Glyphicons](https://glyphicons.com/)
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' icontext("plus")
 #' icontext(c("star","star-empty"))
 #' icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)

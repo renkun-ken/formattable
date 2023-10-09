@@ -58,6 +58,7 @@ To generate a formatted table, columns or areas of the
 input data frame can be transformed by formatter functions.
 }
 \examples{
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # mtcars (mpg in red)
 format_table(mtcars,
    list(mpg = formatter("span", style = "color:red")))
@@ -98,6 +99,7 @@ format_table(df, list(area() ~ color_tile("transparent", "lightgray")))
 format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 format_table(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
   area(6:10) ~ color_tile("transparent", "lightpink")))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=formattable]{formattable()}}, \code{\link[=area]{area()}}

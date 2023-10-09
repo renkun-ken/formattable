@@ -45,6 +45,7 @@ not be changed even if the formatters are applied to produce
 the printed version.
 }
 \examples{
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # mtcars (mpg in red)
 formattable(mtcars,
    list(mpg = formatter("span", style = "color:red")))
@@ -85,6 +86,7 @@ formattable(df, list(area() ~ color_tile("transparent", "lightgray")))
 formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray")))
 formattable(df, list(area(1:5) ~ color_tile("transparent", "lightgray"),
   area(6:10) ~ color_tile("transparent", "lightpink")))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=format_table]{format_table()}}, \code{\link[=area]{area()}}

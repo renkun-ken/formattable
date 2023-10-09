@@ -15,7 +15,9 @@ normalize_bar(color = "lightgray", ...)
 Create a color-bar formatter using normalize
 }
 \examples{
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 formattable(mtcars, list(mpg = normalize_bar()))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=color_bar]{color_bar()}}, \code{\link[=normalize]{normalize()}}

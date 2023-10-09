@@ -63,7 +63,7 @@ normalize <- function(x, min = 0, max = 1, na.rm = FALSE) {
 #' @param x a numeric vector
 #' @param na.rm a logical indicating whether missing values should be removed
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' proportion(mtcars$mpg)
 proportion <- function(x, na.rm = FALSE) {
   x / max(abs(x), na.rm = na.rm)
