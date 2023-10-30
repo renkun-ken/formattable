@@ -23,7 +23,7 @@
 #' accepted. See details for how different forms of formula will behave differently.
 #' @return a function that transforms a column of data (usually an atomic vector)
 #' to formatted data represented in HTML and CSS.
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' top10red <- formatter("span",
 #'   style = x ~ ifelse(rank(-x) <= 10, "color:red", NA))
 #' yesno <- function(x) ifelse(x, "yes", "no")
@@ -117,7 +117,7 @@ area <- function(row, col) {
 #'
 #' @param ... parameters passed to [gradient()].
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' formattable(mtcars, list(mpg = color_tile("white", "pink")))
 color_tile <- function(...) {
   formatter("span",
@@ -135,7 +135,7 @@ color_tile <- function(...) {
 #' values from 0 to 1. Uses [proportion()] by default.
 #' @param ... additional parameters passed to `fun`
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 #' @seealso
 #' [normalize_bar()], [proportion_bar()]
@@ -158,7 +158,7 @@ color_bar <- function(color = "lightgray", fun = proportion, ...) {
 #' @param color the background color of the bars
 #' @param ... additional parameters passed to [normalize()]
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' formattable(mtcars, list(mpg = normalize_bar()))
 #' @seealso
 #' [color_bar()], [normalize()]
@@ -171,7 +171,7 @@ normalize_bar <- function(color = "lightgray", ...) {
 #' @param color the background color of the bars
 #' @param ... additional parameters passed to [proportion()]
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' formattable(mtcars, list(mpg = proportion_bar()))
 #' @seealso
 #' [color_bar()], [proportion()]
@@ -183,7 +183,7 @@ proportion_bar <- function(color = "lightgray", ...) {
 #'
 #' @param ... parameters passed to [gradient()].
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' formattable(mtcars, list(mpg = color_text("black", "red")))
 color_text <- function(...) {
   formatter("span",

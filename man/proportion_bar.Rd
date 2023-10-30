@@ -15,7 +15,9 @@ proportion_bar(color = "lightgray", ...)
 Create a color-bar formatter using proportion
 }
 \examples{
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 formattable(mtcars, list(mpg = proportion_bar()))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=color_bar]{color_bar()}}, \code{\link[=proportion]{proportion()}}

@@ -3,7 +3,12 @@ check_installed <- function(...) {
 
   for (pkg in packages) {
     if (!requireNamespace(pkg, quietly = TRUE)) {
-      stop("Please install the ", pkg, " package.", call. = FALSE)
+      msg <- paste0("Please install the ", pkg, " package.")
+      if (identical(Sys.getenv("TESTTHAT"), "true")) {
+        testthat::skip(msg)
+      } else {
+        stop(msg, call. = FALSE)
+      }
     }
   }
 }

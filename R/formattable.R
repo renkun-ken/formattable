@@ -497,7 +497,7 @@ render_html_matrix.formattable <- function(x, ...) {
 #' string-representation of `data` formatted by `formatter` in
 #' specific `format`.
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' # mtcars (mpg in red)
 #' format_table(mtcars,
 #'    list(mpg = formatter("span", style = "color:red")))
@@ -575,7 +575,7 @@ format_table <- function(x, formatters = list(),
 #' @param formatter formatting function, [format_table()] in default.
 #' @export
 #' @return a `formattable data.frame`
-#' @examples
+#' @examplesIf requireNamespace("htmlwidgets", quietly = TRUE)
 #' # mtcars (mpg in red)
 #' formattable(mtcars,
 #'    list(mpg = formatter("span", style = "color:red")))

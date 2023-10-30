@@ -13,5 +13,7 @@ color_tile(...)
 Create a color-tile formatter
 }
 \examples{
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 formattable(mtcars, list(mpg = color_tile("white", "pink")))
+\dontshow{\}) # examplesIf}
 }

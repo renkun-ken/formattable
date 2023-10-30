@@ -35,10 +35,12 @@ represent \code{icon} values.}
 Create icon-text elements
 }
 \examples{
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 icontext("plus")
 icontext(c("star","star-empty"))
 icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)
 icontext(list(rep("star",3), rep("star",2)), c("item 1", "item 2"))
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \href{https://getbootstrap.com/docs/3.4/components/#glyphicons}{Glyphicons in Bootstrap},
