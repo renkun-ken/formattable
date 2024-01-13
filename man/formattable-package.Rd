@@ -29,3 +29,21 @@ to produce its markdown representation. By default the resulted table is in a pl
 theme with no additional formatting. However, in some cases, additional formatting
 may help clarify the information and make contrast of the data.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://renkun-ken.github.io/formattable/}
+  \item \url{https://github.com/renkun-ken/formattable}
+  \item Report bugs at \url{https://github.com/renkun-ken/formattable/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Kun Ren \email{ken@renkun.me}
+
+Authors:
+\itemize{
+  \item Kenton Russell \email{kent.russell@timelyportfolio.com}
+}
+
+}
