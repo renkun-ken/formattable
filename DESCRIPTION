@@ -24,7 +24,8 @@ Depends:
     R (> 3.0.2)
 Imports:
     lifecycle,
-    methods
+    methods,
+    vctrs
 Suggests: 
     covr,
     DT,
