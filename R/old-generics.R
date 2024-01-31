@@ -13,7 +13,11 @@
 #' @export
 digits <- function(x, digits, format = "f", ...) {
   signal_superseded("0.3.0", "formattable::digits()", "num_digits()")
-  formattable(as.numeric(x), format = format, digits = digits, ...)
+  formattable(as.numeric(x),
+    format = format, digits = digits,
+    class = "formattable_digits",
+    ...
+  )
 }
 
 #' @inheritParams num_scientific
@@ -21,7 +25,11 @@ digits <- function(x, digits, format = "f", ...) {
 #' @export
 scientific <- function(x, format = c("e", "E"), ...) {
   signal_superseded("0.3.0", "formattable::scientific()", "num_scientific()")
-  formattable(as_numeric(x), format = match.arg(format), ...)
+  formattable(as_numeric(x),
+    format = match.arg(format),
+    class = "formattable_scientific",
+    ...
+  )
 }
 
 #' @inheritParams num_accounting

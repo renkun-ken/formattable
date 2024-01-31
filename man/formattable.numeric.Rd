@@ -4,7 +4,14 @@
 \alias{formattable.numeric}
 \title{Create a formattable numeric vector}
 \usage{
-\method{formattable}{numeric}(x, ..., formatter = "formatC", preproc = NULL, postproc = NULL)
+\method{formattable}{numeric}(
+  x,
+  ...,
+  formatter = "formatC",
+  preproc = NULL,
+  postproc = NULL,
+  class = "formattable_numeric"
+)
 }
 \arguments{
 \item{x}{a numeric vector.}
@@ -18,6 +25,8 @@ formatting function.}
 
 \item{postproc}{post-processor function that transforms formatted
 output for printing.}
+
+\item{class}{a subclass to use for the resulting object.}
 }
 \value{
 a \code{formattable} numeric vector.

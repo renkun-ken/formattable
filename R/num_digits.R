@@ -13,5 +13,9 @@
 #' num_digits(pi, 2)
 #' num_digits(123.45678, 3)
 num_digits <- function(x, digits, format = "f", ...) {
-  formattable(as.numeric(x), format = format, digits = digits, ...)
+  formattable(as.numeric(x),
+    format = format, digits = digits,
+    class = "formattable_digits",
+    ...
+  )
 }
