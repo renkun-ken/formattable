@@ -1,159 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/README.ja.html</loc>
-  </url>
-  <url>
-    <loc>/articles/formattable-data-frame.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/introduction.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/area.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.datatable.formattable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.datatable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.htmlwidget.formattable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/as.htmlwidget.html</loc>
-  </url>
-  <url>
-    <loc>/reference/color_bar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/color_text.html</loc>
-  </url>
-  <url>
-    <loc>/reference/color_tile.html</loc>
-  </url>
-  <url>
-    <loc>/reference/csscolor.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.Date.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.POSIXct.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.POSIXlt.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.data.frame.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.default.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.factor.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.logical.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattable.numeric.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formattableOutput.html</loc>
-  </url>
-  <url>
-    <loc>/reference/formatter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gradient.html</loc>
-  </url>
-  <url>
-    <loc>/reference/icontext.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is.formattable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/legacy.html</loc>
-  </url>
-  <url>
-    <loc>/reference/normalize.html</loc>
-  </url>
-  <url>
-    <loc>/reference/normalize_bar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/num_accounting.html</loc>
-  </url>
-  <url>
-    <loc>/reference/num_comma.html</loc>
-  </url>
-  <url>
-    <loc>/reference/num_currency.html</loc>
-  </url>
-  <url>
-    <loc>/reference/num_digits.html</loc>
-  </url>
-  <url>
-    <loc>/reference/num_percent.html</loc>
-  </url>
-  <url>
-    <loc>/reference/num_scientific.html</loc>
-  </url>
-  <url>
-    <loc>/reference/prefix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/proportion.html</loc>
-  </url>
-  <url>
-    <loc>/reference/proportion_bar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qrank.html</loc>
-  </url>
-  <url>
-    <loc>/reference/renderFormattable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/style.html</loc>
-  </url>
-  <url>
-    <loc>/reference/suffix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/vmap.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/README.ja.html</loc></url>
+<url><loc>/articles/formattable-data-frame.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/introduction.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/reference/area.html</loc></url>
+<url><loc>/reference/as.datatable.formattable.html</loc></url>
+<url><loc>/reference/as.datatable.html</loc></url>
+<url><loc>/reference/as.htmlwidget.formattable.html</loc></url>
+<url><loc>/reference/as.htmlwidget.html</loc></url>
+<url><loc>/reference/color_bar.html</loc></url>
+<url><loc>/reference/color_text.html</loc></url>
+<url><loc>/reference/color_tile.html</loc></url>
+<url><loc>/reference/csscolor.html</loc></url>
+<url><loc>/reference/format_table.html</loc></url>
+<url><loc>/reference/formattable-package.html</loc></url>
+<url><loc>/reference/formattable.Date.html</loc></url>
+<url><loc>/reference/formattable.POSIXct.html</loc></url>
+<url><loc>/reference/formattable.POSIXlt.html</loc></url>
+<url><loc>/reference/formattable.data.frame.html</loc></url>
+<url><loc>/reference/formattable.default.html</loc></url>
+<url><loc>/reference/formattable.factor.html</loc></url>
+<url><loc>/reference/formattable.html</loc></url>
+<url><loc>/reference/formattable.logical.html</loc></url>
+<url><loc>/reference/formattable.numeric.html</loc></url>
+<url><loc>/reference/formattableOutput.html</loc></url>
+<url><loc>/reference/formatter.html</loc></url>
+<url><loc>/reference/gradient.html</loc></url>
+<url><loc>/reference/icontext.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/is.formattable.html</loc></url>
+<url><loc>/reference/legacy.html</loc></url>
+<url><loc>/reference/normalize.html</loc></url>
+<url><loc>/reference/normalize_bar.html</loc></url>
+<url><loc>/reference/num_accounting.html</loc></url>
+<url><loc>/reference/num_comma.html</loc></url>
+<url><loc>/reference/num_currency.html</loc></url>
+<url><loc>/reference/num_digits.html</loc></url>
+<url><loc>/reference/num_percent.html</loc></url>
+<url><loc>/reference/num_scientific.html</loc></url>
+<url><loc>/reference/prefix.html</loc></url>
+<url><loc>/reference/proportion.html</loc></url>
+<url><loc>/reference/proportion_bar.html</loc></url>
+<url><loc>/reference/qrank.html</loc></url>
+<url><loc>/reference/renderFormattable.html</loc></url>
+<url><loc>/reference/style.html</loc></url>
+<url><loc>/reference/suffix.html</loc></url>
+<url><loc>/reference/vmap.html</loc></url>
 </urlset>
+

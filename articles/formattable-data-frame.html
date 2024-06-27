@@ -6,20 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formattable data frame • formattable</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Formattable data frame">
-<meta property="og:description" content="formattable">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -45,7 +44,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -62,7 +61,7 @@
 <li>
   <a href="https://github.com/renkun-ken/formattable/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -73,21 +72,22 @@
 </div>
 <!--/.navbar -->
 
-      
 
-      </header><script src="formattable-data-frame_files/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="formattable-data-frame_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="formattable-data-frame_files/datatables-binding-0.30/datatables.js"></script><link href="formattable-data-frame_files/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="formattable-data-frame_files/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="formattable-data-frame_files/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="formattable-data-frame_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="formattable-data-frame_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
+
+      </header><link href="formattable-data-frame_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="formattable-data-frame_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="formattable-data-frame_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="formattable-data-frame_files/datatables-binding-0.33/datatables.js"></script><link href="formattable-data-frame_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="formattable-data-frame_files/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="formattable-data-frame_files/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="formattable-data-frame_files/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="formattable-data-frame_files/crosstalk-1.2.1/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Formattable data frame</h1>
                         <h4 data-toc-skip class="author">Kun Ren</h4>
             
-            <h4 data-toc-skip class="date">2023-10-30</h4>
+            <h4 data-toc-skip class="date">2024-06-27</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/HEAD/vignettes/formattable-data-frame.Rmd" class="external-link"><code>vignettes/formattable-data-frame.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/renkun-ken/formattable/blob/master/vignettes/formattable-data-frame.Rmd" class="external-link"><code>vignettes/formattable-data-frame.Rmd</code></a></small>
       <div class="hidden name"><code>formattable-data-frame.Rmd</code></div>
 
     </div>
@@ -1667,23 +1667,21 @@ id
 frame to <code>DT::datatables</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-530a78b6872d546cc16a" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-530a78b6872d546cc16a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["10","15","12","8","9"],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["55,000.00","36,400.00","12,000.00","(25,000.00)","98,100.00"],["25,300.00","11,500.00","(8,200.00)","(46,000.00)","65,000.00"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Some formatters can be preserved well after the conversion.</p>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["10","15","12","8","9"],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["55,000.00","36,400.00","12,000.00","(25,000.00)","98,100.00"],["25,300.00","11,500.00","(8,200.00)","(46,000.00)","65,000.00"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"id","targets":1},{"name":"price","targets":2},{"name":"rating","targets":3},{"name":"market_share","targets":4},{"name":"revenue","targets":5},{"name":"profit","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Some formatters can be preserved well after the conversion.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/as.datatable.html">as.datatable</a></span><span class="op">(</span><span class="fu"><a href="../reference/formattable.html">formattable</a></span><span class="op">(</span><span class="va">products</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  price <span class="op">=</span> <span class="fu"><a href="../reference/color_tile.html">color_tile</a></span><span class="op">(</span><span class="st">"transparent"</span>, <span class="st">"lightpink"</span><span class="op">)</span>,</span>
 <span>  revenue <span class="op">=</span> <span class="va">sign_formatter</span>,</span>
 <span>  profit <span class="op">=</span> <span class="va">sign_formatter</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4cadc5f8c7ab9ff923ac" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4cadc5f8c7ab9ff923ac">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffeaed\">10<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1\">15<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd5db\">12<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">8<\/span> ","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fff4f6\">9<\/span> "],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["<span style=\"color: green\">55,000.00<\/span>","<span style=\"color: green\">36,400.00<\/span>","<span style=\"color: green\">12,000.00<\/span>","<span style=\"color: red\">(25,000.00)<\/span>","<span style=\"color: green\">98,100.00<\/span>"],["<span style=\"color: green\">25,300.00<\/span>","<span style=\"color: green\">11,500.00<\/span>","<span style=\"color: red\">(8,200.00)<\/span> ","<span style=\"color: red\">(46,000.00)<\/span>","<span style=\"color: green\">65,000.00<\/span>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e5c8c404fe174e4c81bd" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],["1","2","3","4","5"],["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffeaed\">10<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffb6c1\">15<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffd5db\">12<\/span>","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff\">8<\/span> ","<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fff4f6\">9<\/span> "],["5","4","4","3","4"],["10.00%","12.00%","5.00%","3.00%","14.00%"],["<span style=\"color: green\">55,000.00<\/span>","<span style=\"color: green\">36,400.00<\/span>","<span style=\"color: green\">12,000.00<\/span>","<span style=\"color: red\">(25,000.00)<\/span>","<span style=\"color: green\">98,100.00<\/span>"],["<span style=\"color: green\">25,300.00<\/span>","<span style=\"color: green\">11,500.00<\/span>","<span style=\"color: red\">(8,200.00)<\/span> ","<span style=\"color: red\">(46,000.00)<\/span>","<span style=\"color: green\">65,000.00<\/span>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>price<\/th>\n      <th>rating<\/th>\n      <th>market_share<\/th>\n      <th>revenue<\/th>\n      <th>profit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"id","targets":1},{"name":"price","targets":2},{"name":"rating","targets":3},{"name":"market_share","targets":4},{"name":"revenue","targets":5},{"name":"profit","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -1696,16 +1694,16 @@ frame to <code>DT::datatables</code>.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
