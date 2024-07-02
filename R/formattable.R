@@ -33,14 +33,16 @@ is.formattable <- function(x) {
 #' formatting function.
 #' @param postproc post-processor function that transforms formatted
 #' output for printing.
+#' @param class a subclass to use for the resulting object.
 #' @export
 #' @return a `formattable` object that inherits from the original
 #' object.
 #' @examples
 #' formattable(rnorm(10), formatter = "formatC", digits = 1)
 formattable.default <- function(x, ..., formatter,
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = NULL) {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -61,16 +63,18 @@ formattable.default <- function(x, ..., formatter,
 #'   postproc = function(str, x)
 #'     paste(str, ifelse(x <= 1, "unit", "units")))
 formattable.numeric <- function(x, ..., formatter = "formatC",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_numeric") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
 formattable.table <- function(x, ..., formatter = "format",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_table") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -89,8 +93,9 @@ formattable.table <- function(x, ..., formatter = "format",
 #' any(flogi)
 #' all(flogi)
 formattable.logical <- function(x, ..., formatter = "ifelse",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_logical") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -105,8 +110,9 @@ formattable.logical <- function(x, ..., formatter = "ifelse",
 #' formattable(as.factor(c("a", "b", "b", "c")),
 #'   a = "good", b = "fair", c = "bad")
 formattable.factor <- function(x, ..., formatter = "vmap",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_factor") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -123,8 +129,9 @@ formattable.factor <- function(x, ..., formatter = "vmap",
 #' fdates
 #' fdates + 30
 formattable.Date <- function(x, ..., formatter = "format.Date",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_date") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -141,8 +148,9 @@ formattable.Date <- function(x, ..., formatter = "format.Date",
 #' ftimes
 #' ftimes + 30
 formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_datetime") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
@@ -159,14 +167,16 @@ formattable.POSIXct <- function(x, ..., formatter = "format.POSIXct",
 #' ftimes
 #' ftimes + 30
 formattable.POSIXlt <- function(x, ..., formatter = "format.POSIXlt",
-  preproc = NULL, postproc = NULL) {
-  create_obj(x, "formattable",
+  preproc = NULL, postproc = NULL, class = "formattable_datetime") {
+
+  create_obj(x, c(class, "formattable"),
     list(formatter = formatter,
       format = list(...), preproc = preproc, postproc = postproc))
 }
 
 #' @export
-formattable.formattable <- function(x, ..., formatter, preproc, postproc) {
+formattable.formattable <- function(x, ..., formatter, preproc, postproc,
+                                    class = "formattable_formattable") {
   attrs <- attr(x, "formattable", exact = TRUE)
   if (is.null(attrs)) return(NextMethod("formattable"))
   if (!missing(formatter)) attrs$formatter <- formatter
@@ -175,6 +185,7 @@ formattable.formattable <- function(x, ..., formatter, preproc, postproc) {
     attrs$preproc <- if (is.list(preproc)) c(preproc, attrs$preproc) else preproc
   if (!missing(postproc))
     attrs$postproc <- if (is.list(postproc)) c(attrs$postproc, postproc) else postproc
+  attrs$class <- c(class, class(x))
   attr(x, "formattable") <- attrs
   x
 }
@@ -228,6 +239,7 @@ knit_print.formattable <- function(x, ...)
 format.formattable <- function(x, ...,
   format = NULL,
   justify = "none", na.encode = FALSE, trim = FALSE, use.names = TRUE) {
+
   attrs <- attr(x, "formattable", exact = TRUE)
   if (length(x) == 0L || is.null(attrs) || is.null(attrs$formatter))
     return(NextMethod("format"))
@@ -258,30 +270,38 @@ as.list.formattable <- function(x, ...) {
 
 #' @export
 `[.formattable` <- function(x, ...) {
+  class_out <- class(x)
   value <- NextMethod("[")
-  if (is.atomic(x) || is.data.frame(x))
-    copy_obj(x, value, "formattable")
-  else value
+  if (is.atomic(x) || is.data.frame(x)) {
+    copy_obj(x, value, "formattable", class_out)
+  } else {
+    value
+  }
 }
 
 #' @export
 `[<-.formattable` <- function(x, ..., value) {
+  class_out <- class(x)
   value <- NextMethod("[<-")
-  reset_class(x, value, "formattable")
+  reset_class(x, value, class_out)
 }
 
 #' @export
 `[[.formattable` <- function(x, ...) {
+  class_out <- class(x)
   value <- NextMethod("[[")
-  if (is.atomic(x))
-    copy_obj(x, value, "formattable")
-  else value
+  if (is.atomic(x)) {
+    copy_obj(x, value, "formattable", class_out)
+  } else {
+    value
+  }
 }
 
 #' @export
 `[[<-.formattable` <- function(x, ..., value) {
+  class_out <- class(x)
   value <- NextMethod("[[<-")
-  reset_class(x, value, "formattable")
+  reset_class(x, value, class_out)
 }
 
 #' @export
