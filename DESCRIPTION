@@ -39,6 +39,6 @@ VignetteBuilder:
     knitr
 ByteCompile: TRUE
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
