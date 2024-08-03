@@ -45,7 +45,7 @@ not be changed even if the formatters are applied to produce
 the printed version.
 }
 \examples{
-\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # mtcars (mpg in red)
 formattable(mtcars,
    list(mpg = formatter("span", style = "color:red")))

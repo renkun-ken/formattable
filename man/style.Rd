@@ -33,7 +33,7 @@ However, some style properties may not work consistently in
 different browsers.
 }
 \examples{
-\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 style(color = "red")
 style(color = "red", "font-weight" = "bold")
 style("background-color" = "gray", "border-radius" = "4px")

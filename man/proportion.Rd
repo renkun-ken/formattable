@@ -15,7 +15,7 @@ proportion(x, na.rm = FALSE)
 Rescale a vector relative to the maximal absolute value in the vector
 }
 \examples{
-\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 proportion(mtcars$mpg)
 \dontshow{\}) # examplesIf}
 }

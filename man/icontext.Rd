@@ -35,7 +35,7 @@ represent \code{icon} values.}
 Create icon-text elements
 }
 \examples{
-\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 icontext("plus")
 icontext(c("star","star-empty"))
 icontext(ifelse(mtcars$mpg > mean(mtcars$mpg), "plus", "minus"), mtcars$mpg)

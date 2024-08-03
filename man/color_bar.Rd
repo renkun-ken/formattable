@@ -18,7 +18,7 @@ values from 0 to 1. Uses \code{\link[=proportion]{proportion()}} by default.}
 Create a color-bar formatter
 }
 \examples{
-\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 formattable(mtcars, list(mpg = color_bar("lightgray", proportion)))
 \dontshow{\}) # examplesIf}
 }

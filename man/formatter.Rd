@@ -39,7 +39,7 @@ other columns, \code{~expr} should be used and the column names can directly
 appear in \code{expr}.
 }
 \examples{
-\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("htmlwidgets", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 top10red <- formatter("span",
   style = x ~ ifelse(rank(-x) <= 10, "color:red", NA))
 yesno <- function(x) ifelse(x, "yes", "no")
