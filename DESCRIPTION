@@ -21,7 +21,7 @@ URL: https://renkun-ken.github.io/formattable/,
     https://github.com/renkun-ken/formattable
 BugReports: https://github.com/renkun-ken/formattable/issues
 Depends:
-    R (> 3.0.2)
+    R (>= 3.0.3)
 Imports:
     lifecycle,
     methods
