@@ -12,8 +12,10 @@
 #' num_accounting(c(1200, -3500, 2600), format = "d")
 num_accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
   formattable(as_numeric(x),
-    format = format, big.mark = big.mark, digits = digits, ...,
-    postproc = "accounting_postproc"
+    format = format, big.mark = big.mark, digits = digits,
+    class = "formattable_accounting",
+    postproc = "accounting_postproc",
+    ...
   )
 }
 
