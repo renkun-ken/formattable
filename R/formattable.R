@@ -623,3 +623,17 @@ formattable.data.frame <- function(x, ..., formatter = "format_table",
     list(formatter = formatter, format = list(...),
       preproc = preproc, postproc = postproc))
 }
+
+
+
+#' @importFrom vctrs vec_ptype2 vec_cast
+NULL
+#' @export
+vec_ptype2.formattable.formattable <- function(x, y, ...) {
+  x
+}
+
+#' @export
+vec_cast.formattable.formattable <- function(x, to, ...) {
+  x
+}

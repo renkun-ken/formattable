@@ -329,3 +329,15 @@ test_that("is.formattable", {
   expect_equal(is.formattable(1), FALSE)
   expect_equal(is.formattable(formattable(1)), TRUE)
 })
+
+test_that("formattable vectors have the same type", {
+
+  expect_s3_class(vec_ptype2.formattable.formattable(currency(1:5),currency(1:5)),
+               c("formattable", "integer"))
+})
+
+
+test_that("vector casting of formattable types is allowed", {
+  expect_true(is.formattable(vec_cast.formattable.formattable(currency(1:5))))
+  expect_true(is.formattable(vec_cast.formattable.formattable(comma(1:5))))
+})
