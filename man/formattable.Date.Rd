@@ -4,7 +4,14 @@
 \alias{formattable.Date}
 \title{Create a formattable Date vector}
 \usage{
-\method{formattable}{Date}(x, ..., formatter = "format.Date", preproc = NULL, postproc = NULL)
+\method{formattable}{Date}(
+  x,
+  ...,
+  formatter = "format.Date",
+  preproc = NULL,
+  postproc = NULL,
+  class = "formattable_date"
+)
 }
 \arguments{
 \item{x}{a vector of class \code{Date}.}
@@ -18,6 +25,8 @@ formatting function.}
 
 \item{postproc}{post-processor function that transforms formatted
 output for printing.}
+
+\item{class}{a subclass to use for the resulting object.}
 }
 \value{
 a \code{formattable} Date vector

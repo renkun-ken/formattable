@@ -12,7 +12,11 @@
 #' num_comma(c(1250000, 225000))
 #' num_comma(c(1250000, 225000), format = "d")
 num_comma <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
-  formattable(as_numeric(x), format = format, big.mark = big.mark, digits = digits, ...)
+  formattable(as_numeric(x),
+    format = format, big.mark = big.mark, digits = digits,
+    class = "formattable_comma",
+    ...
+  )
 }
 
 #' @rdname num_comma
