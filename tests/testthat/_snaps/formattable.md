@@ -34,6 +34,10 @@
     Code
       df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
       format_table(df, list(~percent))
+    Condition
+      Warning:
+      `signal_superseded()` was deprecated in lifecycle 1.1.0.
+      i Please use `signal_stage()` instead.
     Output
       <table class="table table-condensed">
        <thead>
@@ -217,6 +221,10 @@
     Code
       df <- data.frame(a = rnorm(10, 0.1), b = rnorm(10, 0.1), c = rnorm(10, 0.1))
       format_table(df, list(area(col = c("a", "b")) ~ percent))
+    Condition
+      Warning:
+      `signal_superseded()` was deprecated in lifecycle 1.1.0.
+      i Please use `signal_stage()` instead.
     Output
       <table class="table table-condensed">
        <thead>
@@ -281,6 +289,10 @@
       </table>
     Code
       format_table(df, list(area(col = b:c) ~ percent))
+    Condition
+      Warning:
+      `signal_superseded()` was deprecated in lifecycle 1.1.0.
+      i Please use `signal_stage()` instead.
     Output
       <table class="table table-condensed">
        <thead>
@@ -345,6 +357,10 @@
       </table>
     Code
       format_table(df, list(area(1:5) ~ percent))
+    Condition
+      Warning:
+      `signal_superseded()` was deprecated in lifecycle 1.1.0.
+      i Please use `signal_stage()` instead.
     Output
       <table class="table table-condensed">
        <thead>
@@ -409,6 +425,10 @@
       </table>
     Code
       format_table(df, list(area(1:5, b:c) ~ percent))
+    Condition
+      Warning:
+      `signal_superseded()` was deprecated in lifecycle 1.1.0.
+      i Please use `signal_stage()` instead.
     Output
       <table class="table table-condensed">
        <thead>
