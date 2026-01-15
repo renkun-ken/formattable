@@ -13,8 +13,10 @@
 #' num_percent(rnorm(10, 0, 0.1), digits = 0)
 num_percent <- function(x, digits = 2L, format = "f", ...) {
   formattable(as_numeric(x),
-    format = format, digits = digits, ...,
-    preproc = "percent_preproc", postproc = "percent_postproc"
+    format = format, digits = digits,
+    class = "formattable_percent",
+    preproc = "percent_preproc", postproc = "percent_postproc",
+    ...
   )
 }
 

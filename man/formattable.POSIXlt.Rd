@@ -9,7 +9,8 @@
   ...,
   formatter = "format.POSIXlt",
   preproc = NULL,
-  postproc = NULL
+  postproc = NULL,
+  class = "formattable_datetime"
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ formatting function.}
 
 \item{postproc}{post-processor function that transforms formatted
 output for printing.}
+
+\item{class}{a subclass to use for the resulting object.}
 }
 \value{
 a \code{formattable} POSIXlt vector

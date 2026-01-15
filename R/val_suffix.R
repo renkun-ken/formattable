@@ -12,13 +12,15 @@
 #' suffix(c(1:10, NA), "km/h", na.text = "(missing)")
 #' suffix(percent(c(0.1, 0.25)), "*")
 suffix <- function(x, suffix = "", sep = "", ..., na.text = NULL) {
-  formattable(x, ...,
+  formattable(x,
+    class = setdiff(class(x), "formattable"),
     postproc = list(function(str, x) {
       xna <- is.na(x)
       paste0(
         if (is.null(na.text)) str else ifelse(xna, na.text, str),
         ifelse(xna, "", paste0(sep, suffix))
       )
-    })
+    }),
+    ...
   )
 }

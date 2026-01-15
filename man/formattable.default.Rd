@@ -4,7 +4,7 @@
 \alias{formattable.default}
 \title{Create a formattable object}
 \usage{
-\method{formattable}{default}(x, ..., formatter, preproc = NULL, postproc = NULL)
+\method{formattable}{default}(x, ..., formatter, preproc = NULL, postproc = NULL, class = NULL)
 }
 \arguments{
 \item{x}{an object.}
@@ -18,6 +18,8 @@ formatting function.}
 
 \item{postproc}{post-processor function that transforms formatted
 output for printing.}
+
+\item{class}{a subclass to use for the resulting object.}
 }
 \value{
 a \code{formattable} object that inherits from the original
