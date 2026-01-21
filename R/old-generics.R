@@ -12,7 +12,7 @@
 #' @inheritParams num_digits
 #' @export
 digits <- function(x, digits, format = "f", ...) {
-  signal_superseded("0.3.0", "formattable::digits()", "num_digits()")
+  signal_stage("superseded", "formattable::digits()", "num_digits()")
   formattable(as.numeric(x), format = format, digits = digits, ...)
 }
 
@@ -20,7 +20,7 @@ digits <- function(x, digits, format = "f", ...) {
 #' @rdname legacy
 #' @export
 scientific <- function(x, format = c("e", "E"), ...) {
-  signal_superseded("0.3.0", "formattable::scientific()", "num_scientific()")
+  signal_stage("superseded", "formattable::scientific()", "num_scientific()")
   formattable(as_numeric(x), format = match.arg(format), ...)
 }
 
@@ -28,7 +28,7 @@ scientific <- function(x, format = c("e", "E"), ...) {
 #' @rdname legacy
 #' @export
 accounting <- function(x, digits = 2L, format = "f", big.mark = ",", ...) {
-  signal_superseded("0.3.0", "formattable::accounting()", "num_accounting()")
+  signal_stage("superseded", "formattable::accounting()", "num_accounting()")
   UseMethod("accounting")
 }
 #' @export
@@ -40,7 +40,7 @@ accounting.character <- parse_accounting
 #' @rdname legacy
 #' @export
 comma <- function(x, digits, format = "f", big.mark = ",", ...) {
-  signal_superseded("0.3.0", "formattable::comma()", "num_comma()")
+  signal_stage("superseded", "formattable::comma()", "num_comma()")
   UseMethod("comma")
 }
 #' @export
@@ -53,7 +53,7 @@ comma.character <- parse_comma
 #' @export
 currency <- function(x, symbol, digits,
                      format = "f", big.mark = ",", ...) {
-  signal_superseded("0.3.0", "formattable::currency()", "num_currency()")
+  signal_stage("superseded", "formattable::currency()", "num_currency()")
   UseMethod("currency")
 }
 #' @export
@@ -65,7 +65,7 @@ currency.character <- parse_currency
 #' @inheritParams num_percent
 #' @export
 percent <- function(x, digits, format = "f", ...) {
-  signal_superseded("0.3.0", "formattable::percent()", "num_percent()")
+  signal_stage("superseded", "formattable::percent()", "num_percent()")
   UseMethod("percent")
 }
 #' @export

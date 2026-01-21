@@ -23,7 +23,7 @@ BugReports: https://github.com/renkun-ken/formattable/issues
 Depends:
     R (>= 3.0.3)
 Imports:
-    lifecycle,
+    lifecycle (>= 1.1.0),
     methods
 Suggests: 
     covr,
