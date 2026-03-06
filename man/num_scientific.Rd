@@ -22,7 +22,7 @@ num_scientific(1253421, digits = 8)
 num_scientific(1253421, digits = 8, format = "E")
 }
 \seealso{
-Other numeric vectors: 
+Other numeric vectors:
 \code{\link{num_accounting}()},
 \code{\link{num_comma}()},
 \code{\link{num_currency}()},

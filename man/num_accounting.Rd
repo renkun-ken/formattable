@@ -37,7 +37,7 @@ num_accounting(c(1200, -3500, 2600), format = "d")
 parse_accounting(c("123,23.50", "(123.243)"))
 }
 \seealso{
-Other numeric vectors: 
+Other numeric vectors:
 \code{\link{num_comma}()},
 \code{\link{num_currency}()},
 \code{\link{num_digits}()},

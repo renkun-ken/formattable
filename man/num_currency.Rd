@@ -53,7 +53,7 @@ parse_currency("HK$ 120,250.50", symbol = "HK$")
 parse_currency("HK$ 120, 250.50")
 }
 \seealso{
-Other numeric vectors: 
+Other numeric vectors:
 \code{\link{num_accounting}()},
 \code{\link{num_comma}()},
 \code{\link{num_digits}()},
