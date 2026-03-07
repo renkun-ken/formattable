@@ -43,6 +43,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Kun Ren \email{ken@renkun.me}
   \item Kenton Russell \email{kent.russell@timelyportfolio.com}
 }
 
