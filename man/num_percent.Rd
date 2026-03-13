@@ -29,10 +29,10 @@ parse_percent(c("15.5\%", "25.12\%", "73.5"))
 }
 \seealso{
 Other numeric vectors:
-\code{\link{num_accounting}()},
-\code{\link{num_comma}()},
-\code{\link{num_currency}()},
-\code{\link{num_digits}()},
-\code{\link{num_scientific}()}
+\code{\link[=num_accounting]{num_accounting()}},
+\code{\link[=num_comma]{num_comma()}},
+\code{\link[=num_currency]{num_currency()}},
+\code{\link[=num_digits]{num_digits()}},
+\code{\link[=num_scientific]{num_scientific()}}
 }
 \concept{numeric vectors}

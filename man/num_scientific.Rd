@@ -23,10 +23,10 @@ num_scientific(1253421, digits = 8, format = "E")
 }
 \seealso{
 Other numeric vectors:
-\code{\link{num_accounting}()},
-\code{\link{num_comma}()},
-\code{\link{num_currency}()},
-\code{\link{num_digits}()},
-\code{\link{num_percent}()}
+\code{\link[=num_accounting]{num_accounting()}},
+\code{\link[=num_comma]{num_comma()}},
+\code{\link[=num_currency]{num_currency()}},
+\code{\link[=num_digits]{num_digits()}},
+\code{\link[=num_percent]{num_percent()}}
 }
 \concept{numeric vectors}

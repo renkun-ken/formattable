@@ -25,10 +25,10 @@ num_digits(123.45678, 3)
 }
 \seealso{
 Other numeric vectors:
-\code{\link{num_accounting}()},
-\code{\link{num_comma}()},
-\code{\link{num_currency}()},
-\code{\link{num_percent}()},
-\code{\link{num_scientific}()}
+\code{\link[=num_accounting]{num_accounting()}},
+\code{\link[=num_comma]{num_comma()}},
+\code{\link[=num_currency]{num_currency()}},
+\code{\link[=num_percent]{num_percent()}},
+\code{\link[=num_scientific]{num_scientific()}}
 }
 \concept{numeric vectors}
