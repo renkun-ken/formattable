@@ -1,0 +1,152 @@
+name: fledge
+
+on:
+  # for manual triggers
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "Create PR"
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - ".github/workflows/fledge.yaml"
+  # daily run
+  schedule:
+  - cron: "30 0 * * *"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.head_ref || '' }}-${{ github.base_ref || '' }}
+  cancel-in-progress: true
+
+jobs:
+  check_news:
+    runs-on: ubuntu-24.04
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      # Fetch NEWS.md via API instead of full checkout for speed
+      - name: Check if not forked and NEWS.md mentions fledge
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euxo pipefail
+
+          # Check if repo is not forked
+          is_forked=$(gh api repos/${{ github.repository }} | jq .fork)
+          if [ "$is_forked" == "true" ]; then
+            echo "Repository is a fork. Skipping fledge workflow."
+            exit 0
+          fi
+
+          # Special case: duckdb and igraph
+          if [[ "${{ github.repository }}" == 'krlmlr/duckdb-r' ]]; then
+            echo "Repository is krlmlr/duckdb-r. Skipping fledge workflow."
+            exit 0
+          fi
+
+          if [[ "${{ github.repository }}" == 'krlmlr/rigraph' ]]; then
+            echo "Repository is krlmlr/rigraph. Skipping fledge workflow."
+            exit 0
+          fi
+
+          # Fetch NEWS.md content via API without full checkout
+          gh api repos/${{ github.repository }}/contents/NEWS.md --jq .content 2>/dev/null | base64 -d > /tmp/news.md || true
+
+          if [ ! -s /tmp/news.md ]; then
+            echo "NEWS.md not found. Skipping fledge workflow."
+            exit 0
+          fi
+
+          # Read first line of NEWS.md and check if it mentions fledge
+          news_content=$(head -n 1 /tmp/news.md)
+          if ! [[ "$news_content" == *"fledge"* ]]; then
+            echo "NEWS.md does not mention fledge. Skipping fledge workflow."
+            exit 0
+          fi
+
+          echo "should_run=true" >> $GITHUB_OUTPUT
+        shell: bash
+
+  fledge:
+    runs-on: ubuntu-24.04
+    needs: check_news
+    if: needs.check_news.outputs.should_run == 'true'
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      FLEDGE_GHA_CI: true
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - uses: ./.github/workflows/git-identity
+
+      - name: Update apt
+        run: |
+          sudo apt-get update
+        shell: bash
+
+      - uses: ./.github/workflows/install
+        with:
+          pak-version: devel
+          packages: cynkra/fledge
+          cache-version: fledge-1
+
+      - name: Count rulesets
+        # Assume that branch is protected if ruleset exists
+        id: rulesets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n_rulesets=$(gh api repos/${{ github.repository }}/rulesets -q length)
+          echo "count=${n_rulesets}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Switch to branch if branch protection is enabled
+        if: github.ref_protected == 'true' || inputs.pr == 'true' || steps.rulesets.outputs.count > 0
+        run: |
+          git checkout -b fledge
+          git push -f -u origin HEAD
+        shell: bash
+
+      - name: Bump version
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          check_default_branch <- ("${{ github.ref_protected == 'true' || inputs.pr == 'true' || steps.rulesets.outputs.count > 0 }}" != "true")
+          if (fledge::bump_version(which = "dev", no_change_behavior = "noop", check_default_branch = check_default_branch)) {
+            fledge::finalize_version(push = TRUE)
+          }
+        shell: Rscript {0}
+
+      - name: Create and merge PR if branch protection is enabled
+        if: github.ref_protected == 'true' || inputs.pr == 'true' || steps.rulesets.outputs.count > 0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -ex
+          if [ -n "$(git diff main --numstat)" ]; then
+            gh pr create --base main --head fledge --fill-first
+            gh workflow run rcc -f ref=$(git rev-parse HEAD)
+            gh pr merge --squash --auto
+          else
+            echo "No changes."
+          fi
+        shell: bash
+
+      - name: Check release
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          fledge:::release_after_cran_built_binaries()
+        shell: Rscript {0}
