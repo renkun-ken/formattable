@@ -95,5 +95,7 @@ export(suffix)
 export(vmap)
 import(lifecycle)
 importFrom(grDevices,col2rgb)
-importFrom(stats,median)
-importFrom(stats,quantile)
+importFrom(stats,
+  median,
+  quantile
+)
