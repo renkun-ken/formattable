@@ -317,12 +317,23 @@ jobs:
         with:
           ref: ${{ needs.rcc-smoke.outputs.sha }}
 
+      - name: Apply environment variables from the test matrix
+        # Generic: matrix entries defined in .github/versions-matrix.R can
+        # carry an "env" field (one KEY=VALUE per line).
+        # Write it to $GITHUB_ENV here, in the workflow,
+        # because composite actions cannot read the matrix context.
+        # The variables then reach every subsequent step,
+        # including the custom before-install and after-install actions,
+        # without requiring repos to implement any plumbing of their own.
+        if: matrix.env != ''
+        env:
+          MATRIX_ENV: ${{ matrix.env }}
+        run: |
+          printf '%s\n' "$MATRIX_ENV" | tee -a "$GITHUB_ENV"
+        shell: bash
+
       - uses: ./.github/workflows/custom/before-install
         if: hashFiles('.github/workflows/custom/before-install/action.yml') != ''
-        with:
-          # Generic: forward any per-entry environment variables defined in the
-          # test matrix (see .github/versions-matrix.R) to the custom action.
-          env: ${{ matrix.env }}
 
       - uses: ./.github/workflows/install
         with:

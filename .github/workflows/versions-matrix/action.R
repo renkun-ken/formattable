@@ -67,9 +67,18 @@ if (!is.na(filter)) {
 
 to_json <- function(x) {
   if (nrow(x) == 0) return(character())
+  # Minimal JSON string escaping: backslash, double quote, newline.
+  # Newlines matter for the "env" field,
+  # which carries one KEY=VALUE per line.
+  escape <- function(v) {
+    v <- gsub("\\", "\\\\", v, fixed = TRUE)
+    v <- gsub('"', '\\"', v, fixed = TRUE)
+    v <- gsub("\n", "\\n", v, fixed = TRUE)
+    v
+  }
   parallel <- vector("list", length(x))
   for (i in seq_along(x)) {
-    parallel[[i]] <- paste0('"', names(x)[[i]], '":"', x[[i]], '"')
+    parallel[[i]] <- paste0('"', escape(names(x)[[i]]), '":"', escape(x[[i]]), '"')
   }
   paste0("{", do.call(paste, c(parallel, sep = ",")), "}")
 }
