@@ -139,7 +139,12 @@ jobs:
           _R_SHLIB_STRIP_=true R CMD INSTALL .
         shell: bash
 
+      # From here on, every step is marked `continue-on-error: true` so that a
+      # failing check doesn't hide the results of all the checks that follow.
+      # The "Summarize checks" step at the end fails the job if any of them
+      # did not succeed.
       - id: versions-matrix
+        continue-on-error: true
         # Only run for:
         # - pull requests if the base repo is different from the head repo
         # - pull requests if the branch name starts with "cran-"
@@ -150,6 +155,7 @@ jobs:
         uses: ./.github/workflows/versions-matrix
 
       - id: dep-suggests-matrix
+        continue-on-error: true
         # Not for workflow_dispatch if not requested, always run for other events
         if: github.event_name != 'workflow_dispatch' || inputs.dep-suggests-matrix
         uses: ./.github/workflows/dep-suggests-matrix
@@ -159,16 +165,22 @@ jobs:
         uses: ./.github/workflows/repo-state
 
       # Styling on foreign PRs works through the format-suggest workflow
-      - uses: ./.github/workflows/style
+      - id: style
+        continue-on-error: true
+        uses: ./.github/workflows/style
         if: steps.repo-state.outputs.foreign != 'true' || steps.repo-state.outputs.is_pr != 'true'
 
       # Snapshot tests can't work in a way similar to format-suggests
       # because it requires running code which is a security risk on pull_request_target workflows
-      - uses: ./.github/workflows/update-snapshots
+      - id: snapshots
+        continue-on-error: true
+        uses: ./.github/workflows/update-snapshots
         with:
           base: ${{ inputs.ref || github.head_ref }}
 
-      - uses: ./.github/workflows/roxygenize
+      - id: roxygenize
+        continue-on-error: true
+        uses: ./.github/workflows/roxygenize
 
       - name: Remove config files from previous iteration
         run: |
@@ -176,23 +188,32 @@ jobs:
         shell: bash
 
       - id: commit
+        continue-on-error: true
         uses: ./.github/workflows/commit
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/workflows/check
+      - id: check
+        continue-on-error: true
+        uses: ./.github/workflows/check
         with:
           results: ${{ runner.os }}-smoke-test
 
-      - uses: ./.github/workflows/pkgdown-build
+      - id: pkgdown-build
+        continue-on-error: true
+        uses: ./.github/workflows/pkgdown-build
         if: github.event_name != 'push'
 
       # Deliberately deploy only on push
       # Deployment on schedule adds too much noise.
       # Deployment on pull_request is not possible because it requires a token with write permissions, which is not available in pull_request workflows for security reasons.
       # Deployment on workflow_dispatch is available via the pkgdown workflow
-      - uses: ./.github/workflows/pkgdown-deploy
-        if: github.event_name == 'push'
+      # Deploying a broken package's website is worse than not deploying at all,
+      # hence this is the one step that is still gated on a check.
+      - id: pkgdown-deploy
+        continue-on-error: true
+        uses: ./.github/workflows/pkgdown-deploy
+        if: github.event_name == 'push' && steps.check.outcome == 'success'
 
       # Upload sha as artifact
       - run: |
@@ -203,6 +224,47 @@ jobs:
         with:
           name: rcc-smoke-sha
           path: rcc-smoke-sha.txt
+
+      # This is the step that fails the job if any of the checks above failed
+      - name: Summarize checks
+        if: always()
+        run: |
+          ## -- Summarize checks --
+          status=0
+
+          report() {
+            outcome="${2:-skipped}"
+            case "${outcome}" in
+              success) icon="✅" ;;
+              skipped) icon="⏭️" ;;
+              *) icon="❌" ; status=1 ;;
+            esac
+            echo "| ${1} | ${icon} ${outcome} |" >> "${GITHUB_STEP_SUMMARY}"
+          }
+
+          {
+            echo "## Smoke test summary"
+            echo
+            echo "| Check | Result |"
+            echo "| --- | --- |"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+          report "R versions matrix" "${{ steps.versions-matrix.outcome }}"
+          report "Suggested dependencies matrix" "${{ steps.dep-suggests-matrix.outcome }}"
+          report "Style" "${{ steps.style.outcome }}"
+          report "Snapshots" "${{ steps.snapshots.outcome }}"
+          report "Roxygenize" "${{ steps.roxygenize.outcome }}"
+          report "Commit" "${{ steps.commit.outcome }}"
+          report "R CMD check" "${{ steps.check.outcome }}"
+          report "pkgdown build" "${{ steps.pkgdown-build.outcome }}"
+          report "pkgdown deploy" "${{ steps.pkgdown-deploy.outcome }}"
+
+          if [ "${status}" -ne 0 ]; then
+            printf '\nAt least one check failed, see the log for details.\n' >> "${GITHUB_STEP_SUMMARY}"
+          fi
+
+          exit "${status}"
+        shell: bash
 
       - name: Update status for rcc
         # FIXME: Wrap into action
