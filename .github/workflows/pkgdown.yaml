@@ -16,11 +16,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.head_ref || github.sha }}-${{ github.base_ref || '' }}
   cancel-in-progress: true
 
+permissions: {}
+
 jobs:
   pkgdown:
     runs-on: ubuntu-26.04
 
     name: "pkgdown"
+
+    permissions:
+      # Required by pkgdown::deploy_to_branch(), which pushes to gh-pages
+      contents: write
 
     # Begin custom: services
     # End custom: services

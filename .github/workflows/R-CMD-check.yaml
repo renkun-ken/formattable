@@ -50,6 +50,12 @@ concurrency:
 
 name: rcc
 
+# Read-only by default; every job opts back into what it actually needs.
+# Note that for a pull request from a fork GitHub caps the token at read-only
+# regardless of what is requested here.
+permissions:
+  contents: read
+
 jobs:
   rcc-smoke:
     # Deliberately amd64. The smoke test is the gate that also styles,
@@ -352,6 +358,9 @@ jobs:
     needs:
       - rcc-smoke
 
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v6
         with:
@@ -374,6 +383,13 @@ jobs:
     if: ${{ needs.rcc-smoke.outputs.versions-matrix != '' }}
 
     name: 'rcc: ${{ matrix.os }} (${{ matrix.r }}) ${{ matrix.desc }}'
+
+    permissions:
+      # Both required by the update-snapshots action, which opens a pull
+      # request with refreshed snapshots. It is skipped for forks, where the
+      # token is read-only anyway.
+      contents: write
+      pull-requests: write
 
     # Begin custom: services
     # End custom: services
@@ -461,6 +477,9 @@ jobs:
     if: ${{ needs.rcc-smoke.outputs.dep-suggests-matrix != '' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.run-rcc-suggests)) }}
 
     name: Without ${{ matrix.package }}
+
+    permissions:
+      contents: read
 
     # Begin custom: services
     # End custom: services

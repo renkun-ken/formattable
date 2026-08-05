@@ -6,6 +6,9 @@ on:
 
 name: revdep
 
+permissions:
+  contents: read
+
 jobs:
   matrix:
     runs-on: ubuntu-26.04

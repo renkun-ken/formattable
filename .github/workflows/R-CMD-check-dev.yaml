@@ -12,6 +12,10 @@ on:
 
 name: rcc dev
 
+# Read-only by default; the jobs that need more opt back in below.
+permissions:
+  contents: read
+
 jobs:
   matrix:
     runs-on: ubuntu-26.04
@@ -58,6 +62,12 @@ jobs:
 
     name: base
 
+    permissions:
+      # Both required by the update-snapshots action, which opens a pull
+      # request with refreshed snapshots.
+      contents: write
+      pull-requests: write
+
     # Begin custom: services
     # End custom: services
 
@@ -103,6 +113,11 @@ jobs:
     runs-on: ubuntu-26.04
 
     name: 'rcc-dev: ${{ matrix.package }}'
+
+    permissions:
+      # Both required by the update-snapshots action.
+      contents: write
+      pull-requests: write
 
     # Begin custom: services
     # End custom: services

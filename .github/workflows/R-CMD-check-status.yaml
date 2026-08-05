@@ -10,6 +10,8 @@ on:
 
 name: rcc-status
 
+permissions: {}
+
 jobs:
   rcc-status:
     runs-on: ubuntu-26.04
@@ -17,6 +19,10 @@ jobs:
     name: "Update commit status"
 
     permissions:
+      # Required to list and download the triggering run's artifacts.
+      # The workflow did not previously request this, so the `rcc-smoke-sha`
+      # lookup below could not have succeeded.
+      actions: read
       contents: read
       statuses: write
 

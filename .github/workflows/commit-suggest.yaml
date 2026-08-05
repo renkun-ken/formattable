@@ -6,14 +6,26 @@ on:
     types:
       - completed
 
-permissions:
-  contents: write
-  pull-requests: write
+# Deny everything by default; the job opts back into the minimum it needs.
+# This matters more here than in most workflows: `workflow_run` runs from the
+# default branch with a token that can write to this repository, on runs that
+# belong to a pull request from a fork.
+permissions: {}
 
 jobs:
   commit-suggest:
     runs-on: ubuntu-26.04
     if: github.event.workflow_run.event == 'pull_request'
+
+    permissions:
+      # Required by actions/download-artifact to read another run's artifacts.
+      # The workflow did not previously request this, so the download could
+      # only ever have failed -- silently, under `continue-on-error: true`.
+      actions: read
+      # Required to check out the pull request head
+      contents: read
+      # Required to post the suggestion comment
+      pull-requests: write
 
     steps:
       - name: Show event payload
