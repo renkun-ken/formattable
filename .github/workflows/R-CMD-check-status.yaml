@@ -1,5 +1,20 @@
 # Workflow to update the status of a commit for the R-CMD-check workflow
 # Necessary because remote PRs cannot update the status of the commit
+#
+# SECURITY -- `workflow_run` runs from the default branch of the BASE
+# repository and this job holds `statuses: write`, so it can mark any commit
+# in this repository green. The run it reacts to may be a pull request from a
+# fork, which means both the run's metadata and its artifacts are
+# attacker-controlled. Two rules follow, and both are load-bearing:
+#
+#   1. The `rcc-smoke-sha` artifact is only read when the triggering run came
+#      from this repository. For a `pull_request` event GitHub uses the
+#      workflow file *from the pull request head*, so a fork can rewrite `rcc`
+#      to upload any artifact it likes; trusting it would let anyone set an
+#      arbitrary `rcc` status on an arbitrary commit and so satisfy a required
+#      status check. Even then the value must be a real 40-hex commit.
+#   2. No event field is interpolated with `${{ }}` into the script. Values
+#      reach the shell through the environment, where they stay inert data.
 on:
   workflow_run:
     workflows:
@@ -18,68 +33,81 @@ jobs:
 
     name: "Update commit status"
 
+    # Only run if triggered by rcc workflow
+    if: github.event.workflow_run.name == 'rcc'
+
     permissions:
       # Required to list and download the triggering run's artifacts.
       # The workflow did not previously request this, so the `rcc-smoke-sha`
       # lookup below could not have succeeded.
       actions: read
+      # Also used to verify that the SHA read from the artifact really exists
       contents: read
       statuses: write
 
     steps:
       - name: "Update commit status"
-        # Only run if triggered by rcc workflow
-        if: github.event.workflow_run.name == 'rcc'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_STATUS: ${{ github.event.workflow_run.status }}
+          RUN_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          RUN_NAME: ${{ github.event.workflow_run.name }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          HEAD_REPO: ${{ github.event.workflow_run.head_repository.full_name }}
         run: |
-          set -x
+          set -euo pipefail
 
-          if [ "${{ github.event.workflow_run.status }}" == "completed" ]; then
-            if [ "${{ github.event.workflow_run.conclusion }}" == "success" ]; then
+          sha=""
+
+          if [ "${RUN_STATUS}" = "completed" ]; then
+            if [ "${RUN_CONCLUSION}" = "success" ]; then
               state="success"
             else
               state="failure"
             fi
 
-            # Read artifact ID
-            artifact_id=$(gh api \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2022-11-28" \
-              repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/artifacts | jq -r '.artifacts[] | select(.name == "rcc-smoke-sha") | .id')
+            # See rule 1 in the security note at the top of this file.
+            if [ "${HEAD_REPO}" = "${REPO}" ]; then
+              artifact_id=$(
+                gh api "repos/${REPO}/actions/runs/${RUN_ID}/artifacts" \
+                  --jq '[.artifacts[] | select(.name == "rcc-smoke-sha") | .id][0] // empty'
+              ) || artifact_id=""
 
-            if [ -n "${artifact_id}" ]; then
-              # Download artifact
-              curl -L -o rcc-smoke-sha.zip \
-                -H "Accept: application/vnd.github+json" \
-                -H "Authorization: Bearer ${GH_TOKEN}" \
-                -H "X-GitHub-Api-Version: 2022-11-28" \
-                https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${artifact_id}/zip
+              if [ -n "${artifact_id}" ]; then
+                workdir=$(mktemp -d)
+                gh api "repos/${REPO}/actions/artifacts/${artifact_id}/zip" > "${workdir}/artifact.zip"
+                # -j flattens stored paths, so a crafted archive cannot write
+                # outside the temporary directory.
+                unzip -j -o "${workdir}/artifact.zip" -d "${workdir}" > /dev/null
+                candidate=$(tr -d '[:space:]' < "${workdir}/rcc-smoke-sha.txt") || candidate=""
+                rm -rf "${workdir}"
 
-              # Unzip artifact
-              unzip rcc-smoke-sha.zip
-
-              # Read artifact
-              sha=$(cat rcc-smoke-sha.txt)
-
-              # Clean up
-              rm rcc-smoke-sha.zip rcc-smoke-sha.txt
+                if printf '%s' "${candidate}" | grep -qE '^[0-9a-f]{40}$' &&
+                   gh api "repos/${REPO}/commits/${candidate}" --jq .sha > /dev/null 2>&1; then
+                  sha="${candidate}"
+                elif [ -n "${candidate}" ]; then
+                  echo "::warning::Ignoring unusable rcc-smoke-sha artifact contents"
+                fi
+              fi
             fi
           else
             state="pending"
           fi
 
           if [ -z "${sha}" ]; then
-            sha=${{ github.event.workflow_run.head_sha }}
+            sha="${HEAD_SHA}"
           fi
-
-          html_url=${{ github.event.workflow_run.html_url }}
-          description=${{ github.event.workflow_run.name }}
 
           gh api \
             --method POST \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            repos/${{ github.repository }}/statuses/${sha} \
-            -f "state=${state}" -f "target_url=${html_url}" -f "description=${description}" -f "context=rcc"
+            "repos/${REPO}/statuses/${sha}" \
+            -f "state=${state}" \
+            -f "target_url=${RUN_URL}" \
+            -f "description=${RUN_NAME}" \
+            -f "context=rcc"
         shell: bash

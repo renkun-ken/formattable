@@ -75,9 +75,12 @@ runs:
       shell: bash
 
     - name: Review environment variables
+      # Deliberately limited to the R-related variables this action sets.
+      # A blanket `env | sort` also prints anything a caller happens to export;
+      # log masking only covers values GitHub knows are secret, so a token that
+      # was derived, decoded or assembled from parts would be printed in clear.
       run: |
-        set -x
-        env | sort
+        env | grep -E '^(_?R_|RGL_|CCACHE_|PKG_BUILD_)' | sort
       shell: bash
 
     - name: Update apt

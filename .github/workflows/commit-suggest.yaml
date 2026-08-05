@@ -1,3 +1,29 @@
+# Posts the formatting patch produced by the `rcc` workflow
+# as a comment on the pull request it came from.
+#
+# SECURITY -- `workflow_run` is a privileged trigger.
+# It runs from the default branch of the BASE repository
+# with a token that can write to it,
+# and it fires for `rcc` runs of pull requests from forks.
+# Everything reachable from `github.event.workflow_run` is therefore
+# attacker-controlled data, not trusted input:
+#
+#   * `head_branch` is a fork branch name, and `git check-ref-format`
+#     permits `"`, `` ` ``, `;` and `$(...)` in branch names.
+#   * `head_commit.message`, repository descriptions and similar fields
+#     are free text and may contain quotes.
+#   * The `changes-patch` artifact was produced by a run
+#     that executed the fork's code, so its contents are arbitrary.
+#
+# Consequently no field of the event is ever interpolated with `${{ }}`
+# into a shell script; values are passed through the environment
+# so the shell treats them as inert data.
+# The pull request head is deliberately NOT checked out:
+# this job only needs the artifact, and not checking out
+# avoids placing a credentialed `.git/config`
+# next to attacker-controlled files.
+#
+# https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/
 name: commit-suggest.yaml
 
 on:
@@ -22,22 +48,12 @@ jobs:
       # The workflow did not previously request this, so the download could
       # only ever have failed -- silently, under `continue-on-error: true`.
       actions: read
-      # Required to check out the pull request head
-      contents: read
+      # `contents: read` is deliberately absent: the pull request checkout is
+      # gone, and nothing else in this job reads the repository.
       # Required to post the suggestion comment
       pull-requests: write
 
     steps:
-      - name: Show event payload
-        run: |
-          echo '${{ toJson(github.event) }}' | jq .
-        shell: bash
-
-      - name: Checkout PR
-        uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
-
       - name: Download artifact
         uses: actions/download-artifact@v6
         with:
@@ -59,59 +75,104 @@ jobs:
 
       - name: Find PR number for branch from correct head repository
         id: find-pr
+        if: steps.check-artifact.outputs.has_diff == 'true'
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          HEAD_OWNER: ${{ github.event.workflow_run.head_repository.owner.login }}
         run: |
-          PR_NUMBER=$(gh pr list --head ${{ github.event.workflow_run.head_branch }} --state open --json number,headRepositoryOwner --jq '.[] | select(.headRepositoryOwner.login == "${{ github.event.workflow_run.head_repository.owner.login }}") | .number' || echo "")
-          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          set -euo pipefail
+
+          # `--arg` keeps the owner login out of the jq program text,
+          # and `"${HEAD_BRANCH}"` keeps the branch name out of the shell's
+          # parsing -- see the security note at the top of this file.
+          pr_number=$(
+            gh pr list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --head "${HEAD_BRANCH}" \
+              --state open \
+              --json number,headRepositoryOwner |
+              jq -r --arg owner "${HEAD_OWNER}" \
+                '[.[] | select(.headRepositoryOwner.login == $owner) | .number][0] // empty'
+          ) || pr_number=""
+
+          # Belt and braces: only ever emit a plain integer downstream.
+          if ! printf '%s' "${pr_number}" | grep -qE '^[0-9]+$'; then
+            echo "No matching open pull request found"
+            pr_number=""
+          fi
+
+          echo "pr_number=${pr_number}" >> "${GITHUB_OUTPUT}"
         shell: bash
 
       - name: Generate comment body
-        if: steps.check-artifact.outputs.has_diff == 'true'
-        id: comment-body
+        if: steps.check-artifact.outputs.has_diff == 'true' && steps.find-pr.outputs.pr_number != ''
+        env:
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ steps.find-pr.outputs.pr_number }}
         run: |
-          cat << 'EOF' > comment.md
-          ## Formatting suggestions available
+          set -euo pipefail
 
-          A patch file with formatting suggestions has been generated. You can apply it using one of these methods:
+          # A GitHub comment is capped at 65536 characters, and the patch is
+          # attacker-controlled, so cap what we embed and say so when we do.
+          max_bytes=40000
+          truncated=false
+          if [ "$(wc -c < changes.patch)" -gt "${max_bytes}" ]; then
+            head -c "${max_bytes}" changes.patch > patch.txt
+            truncated=true
+          else
+            cp changes.patch patch.txt
+          fi
 
-          ### Method 1: Apply via gh CLI
+          # Pick a fence longer than the longest run of backticks in the patch.
+          # Otherwise a crafted patch could close the code block early and
+          # inject arbitrary Markdown into a comment authored by github-actions.
+          longest=$(
+            { grep -o '`\+' patch.txt || true; } |
+              awk '{ if (length($0) > n) n = length($0) } END { print n + 0 }'
+          )
+          if [ "${longest}" -lt 3 ]; then
+            fence_len=3
+          else
+            fence_len=$((longest + 1))
+          fi
+          fence=$(printf '`%.0s' $(seq 1 "${fence_len}"))
 
-          ```bash
-          # Download and apply the patch directly
-          gh run download ${{ github.event.workflow_run.id }} --repo ${{ github.repository }} --name changes-patch && patch -p1 < changes.patch && rm changes.patch
-          ```
-
-          Repo owners can also apply the patch automatically. Click the button to jump to the comment box, then post:
-
-          ```
-          /apply-patch
-          ```
-
-          [![Apply patch](https://img.shields.io/badge/Apply%20patch-%2Fapply--patch-2ea44f?style=for-the-badge&logo=github)](https://github.com/${{ github.repository }}/pull/${{ steps.find-pr.outputs.pr_number }}#new_comment_field)
-
-          ### Method 2: View the patch
-
-          <details>
-          <summary>Click to see the patch contents</summary>
-
-          ```diff
-          EOF
-
-          cat changes.patch >> comment.md
-
-          cat << 'EOF' >> comment.md
-          ```
-
-          </details>
-
-          ---
-          *This comment was automatically generated by the commit-suggester workflow.*
-          EOF
+          {
+            printf '## Formatting suggestions available\n\n'
+            printf 'A patch file with formatting suggestions has been generated. '
+            printf 'You can apply it using one of these methods:\n\n'
+            printf '### Method 1: Apply via gh CLI\n\n'
+            printf '%s\n' '```bash'
+            printf '# Download and apply the patch directly\n'
+            printf 'gh run download %s --repo %s --name changes-patch && patch -p1 < changes.patch && rm changes.patch\n' \
+              "${RUN_ID}" "${REPO}"
+            printf '%s\n\n' '```'
+            printf 'Repo owners can also apply the patch automatically. '
+            printf 'Click the button to jump to the comment box, then post:\n\n'
+            printf '%s\n' '```'
+            printf '/apply-patch\n'
+            printf '%s\n\n' '```'
+            printf '[![Apply patch](https://img.shields.io/badge/Apply%%20patch-%%2Fapply--patch-2ea44f?style=for-the-badge&logo=github)]'
+            printf '(https://github.com/%s/pull/%s#new_comment_field)\n\n' "${REPO}" "${PR_NUMBER}"
+            printf '### Method 2: View the patch\n\n'
+            printf '<details>\n'
+            printf '<summary>Click to see the patch contents</summary>\n\n'
+            printf '%sdiff\n' "${fence}"
+            cat patch.txt
+            printf '\n%s\n\n' "${fence}"
+            if [ "${truncated}" = "true" ]; then
+              printf '_Patch truncated at %s bytes; download the artifact for the full diff._\n\n' "${max_bytes}"
+            fi
+            printf '</details>\n\n'
+            printf -- '---\n'
+            printf '*This comment was automatically generated by the commit-suggester workflow.*\n'
+          } > comment.md
         shell: bash
 
       - name: Post or update comment
-        if: steps.check-artifact.outputs.has_diff == 'true'
+        if: steps.check-artifact.outputs.has_diff == 'true' && steps.find-pr.outputs.pr_number != ''
         uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
         with:
           pr-number: ${{ steps.find-pr.outputs.pr_number }}
