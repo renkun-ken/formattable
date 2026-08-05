@@ -28,9 +28,6 @@ jobs:
       # Required by pkgdown::deploy_to_branch(), which pushes to gh-pages
       contents: write
 
-    # Begin custom: services
-    # End custom: services
-
     steps:
       - uses: actions/checkout@v6
 

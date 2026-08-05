@@ -68,9 +68,6 @@ jobs:
       contents: write
       pull-requests: write
 
-    # Begin custom: services
-    # End custom: services
-
     strategy:
       fail-fast: false
 
@@ -118,9 +115,6 @@ jobs:
       # Both required by the update-snapshots action.
       contents: write
       pull-requests: write
-
-    # Begin custom: services
-    # End custom: services
 
     strategy:
       fail-fast: false

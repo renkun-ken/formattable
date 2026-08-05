@@ -86,9 +86,6 @@ jobs:
       pull-requests: write
       actions: write
 
-    # Begin custom: services
-    # End custom: services
-
     steps:
       - uses: actions/checkout@v6
         with:
@@ -397,9 +394,6 @@ jobs:
       contents: write
       pull-requests: write
 
-    # Begin custom: services
-    # End custom: services
-
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.rcc-smoke.outputs.versions-matrix)}}
@@ -486,9 +480,6 @@ jobs:
 
     permissions:
       contents: read
-
-    # Begin custom: services
-    # End custom: services
 
     strategy:
       fail-fast: false
