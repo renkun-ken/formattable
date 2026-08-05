@@ -84,7 +84,7 @@ runs:
       # Fall through if PR, will use reviewdog/action-suggester in the commit action
       if: ${{ steps.check-changed.outputs.changed }}
       id: cpr
-      uses: peter-evans/create-pull-request@v8
+      uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
       with:
         base: ${{ inputs.base }}
         branch: snapshot-${{ inputs.base }}-${{ github.job }}-${{ steps.matrix-desc.outputs.branch }}

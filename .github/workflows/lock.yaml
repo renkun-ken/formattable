@@ -12,7 +12,10 @@ jobs:
   lock:
     runs-on: ubuntu-26.04
     steps:
-      - uses: krlmlr/lock-threads@patch-1
+      # Pinned to a commit, not to `@patch-1`: a branch ref is mutable, so
+      # anything landing on that branch would run here with write access to
+      # issues, pull requests and discussions.
+      - uses: krlmlr/lock-threads@cf0b2ef2052cc3189765bb2e9c24033039bbfab8 # patch-1
         with:
           github-token: ${{ github.token }}
           issue-inactive-days: "365"
