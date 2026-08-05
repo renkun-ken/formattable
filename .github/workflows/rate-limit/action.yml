@@ -8,6 +8,11 @@ runs:
   using: "composite"
   steps:
     - name: Check rate limits
+      # The token travels through the environment rather than the command line:
+      # a `${{ }}` splice would embed it in the script text, where `set -x` or a
+      # shell trace in a neighbouring step could surface it.
+      env:
+        GH_TOKEN: ${{ inputs.token }}
       run: |
-        curl -s --header "authorization: Bearer ${{ inputs.token }}" https://api.github.com/rate_limit
+        curl -s --header "authorization: Bearer ${GH_TOKEN}" https://api.github.com/rate_limit
       shell: bash

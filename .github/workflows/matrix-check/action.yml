@@ -12,11 +12,15 @@ runs:
         sudo npm install -g json2yaml
       shell: bash
 
-    - run: |
-        matrix='${{ inputs.matrix }}'
-        if [ -n "${matrix}" ]; then
-          echo $matrix | jq .
-          echo $matrix | json2yaml
+    # The matrix is generated from repository content, so it is passed through
+    # the environment: a `${{ }}` splice into the single-quoted assignment below
+    # would let a single `'` in the generated JSON escape into the shell.
+    - env:
+        MATRIX: ${{ inputs.matrix }}
+      run: |
+        if [ -n "${MATRIX}" ]; then
+          printf '%s' "${MATRIX}" | jq .
+          printf '%s' "${MATRIX}" | json2yaml
         else
           echo "No matrix found"
         fi

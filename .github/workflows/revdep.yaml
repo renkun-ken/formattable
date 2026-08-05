@@ -25,8 +25,10 @@ jobs:
 
     steps:
       - name: Check rate limits
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -s --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/rate_limit
+          curl -s --header "authorization: Bearer ${GH_TOKEN}" https://api.github.com/rate_limit
         shell: bash
 
       - uses: actions/checkout@v6
@@ -67,11 +69,14 @@ jobs:
           sudo npm install -g json2yaml
 
       - name: Check matrix definition
+        # Passed through the environment rather than spliced into the script:
+        # the matrix is generated from DESCRIPTION in the checkout.
+        env:
+          MATRIX: ${{ needs.matrix.outputs.matrix }}
         run: |
-          matrix='${{ needs.matrix.outputs.matrix }}'
-          echo $matrix
-          echo $matrix | jq .
-          echo $matrix | json2yaml
+          printf '%s\n' "${MATRIX}"
+          printf '%s' "${MATRIX}" | jq .
+          printf '%s' "${MATRIX}" | json2yaml
 
   R-CMD-check:
     needs: matrix
@@ -98,8 +103,10 @@ jobs:
 
     steps:
       - name: Check rate limits
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -s --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/rate_limit
+          curl -s --header "authorization: Bearer ${GH_TOKEN}" https://api.github.com/rate_limit
         shell: bash
 
       - uses: actions/checkout@v6
@@ -224,6 +231,8 @@ jobs:
 
       - name: Check rate limits
         if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -s --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/rate_limit
+          curl -s --header "authorization: Bearer ${GH_TOKEN}" https://api.github.com/rate_limit
         shell: bash

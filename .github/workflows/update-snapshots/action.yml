@@ -66,11 +66,18 @@ runs:
     - name: Derive branch name
       if: ${{ steps.check-changed.outputs.changed }}
       id: matrix-desc
+      # The matrix is built by .github/workflows/versions-matrix, which reads
+      # DESCRIPTION and sources .github/versions-matrix.R from the checkout, so
+      # its values are repository content. Splicing them into a single-quoted
+      # shell string would let one stray `'` end the quote and run the rest as
+      # commands; the environment keeps them inert.
+      env:
+        MATRIX_JSON: ${{ toJSON(matrix) }}
       run: |
         set -x
-        config=$(echo '${{ toJSON(matrix) }}' | jq -c .)
-        echo "text=$(echo ${config})" | tee -a $GITHUB_OUTPUT
-        echo "branch=$(echo ${config} | sed -r 's/[^0-9a-zA-Z]+/-/g;s/^-//;s/-$//')" | tee -a $GITHUB_OUTPUT
+        config=$(printf '%s' "${MATRIX_JSON}" | jq -c .)
+        echo "text=${config}" | tee -a $GITHUB_OUTPUT
+        echo "branch=$(printf '%s' "${config}" | sed -r 's/[^0-9a-zA-Z]+/-/g;s/^-//;s/-$//')" | tee -a $GITHUB_OUTPUT
       shell: bash
 
     - name: Create pull request

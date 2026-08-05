@@ -44,11 +44,14 @@ jobs:
           sudo npm install -g json2yaml
 
       - name: Check matrix definition
+        # Passed through the environment rather than spliced into the script:
+        # the matrix is generated from DESCRIPTION in the checkout.
+        env:
+          MATRIX: ${{ needs.matrix.outputs.matrix }}
         run: |
-          matrix='${{ needs.matrix.outputs.matrix }}'
-          echo $matrix
-          echo $matrix | jq .
-          echo $matrix | json2yaml
+          printf '%s\n' "${MATRIX}"
+          printf '%s' "${MATRIX}" | jq .
+          printf '%s' "${MATRIX}" | json2yaml
 
   R-CMD-check-base:
     runs-on: ubuntu-26.04
