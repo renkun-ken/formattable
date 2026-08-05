@@ -431,7 +431,11 @@ jobs:
       - uses: ./.github/workflows/check
         if: ${{ ! matrix.covr }}
         with:
-          results: ${{ runner.os }}-r${{ matrix.r }}
+          # Include the architecture: the matrix pairs each arm64 runner with an
+          # amd64 one on the same OS and the same R version (ubuntu-26.04-arm /
+          # ubuntu-26.04, windows-11-arm / windows-latest), so `runner.os` alone
+          # yields duplicate artifact names, which upload-artifact rejects.
+          results: ${{ runner.os }}-${{ runner.arch }}-r${{ matrix.r }}
 
       - uses: ./.github/workflows/covr
         if: ${{ matrix.covr }}

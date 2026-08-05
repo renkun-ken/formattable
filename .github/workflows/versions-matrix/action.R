@@ -44,7 +44,30 @@ covr <- data.frame(os = "ubuntu-26.04", r = r_versions[2], covr = "true", desc =
 # since PPM 2026.05.0, so arm64 jobs on @v2 now install binaries, not source.
 linux_arm64 <- data.frame(os = "ubuntu-26.04-arm", r = r_versions[1:2])
 
-include_list <- list(macos, windows, linux_devel, linux, covr, linux_arm64)
+# Windows arm64 (windows-11-arm) is ragged for the same reason as Linux arm64,
+# only more so: a single entry, R-release. Windows on Arm is the youngest of the
+# three arm64 targets, and R for Windows/aarch64 is a separate distribution from
+# the x86_64 one rather than a second build of it, so the point here is to catch
+# "does this package build and check at all on Windows/aarch64", not to sweep R
+# versions. R-release overlaps with the windows-latest (amd64) entries, which
+# keeps the two Windows architectures comparable on at least one R version.
+# Tooling note: r-lib/actions/setup-r resolves the aarch64 Windows installer
+# through the r-hub rversions API and installs the matching aarch64 Rtools45
+# (r-lib/actions NEWS v2.11.4, 2025-10-08). Posit Package Manager publishes no
+# aarch64 Windows binaries, and setup-r's `use-public-rspm: true` enables PPM on
+# x86_64 Windows only, so dependencies are compiled from source on this runner
+# and it is the slowest entry in the matrix.
+windows_arm64 <- data.frame(os = "windows-11-arm", r = r_versions[2])
+
+include_list <- list(
+  macos,
+  windows,
+  linux_devel,
+  linux,
+  covr,
+  linux_arm64,
+  windows_arm64
+)
 
 if (file.exists(".github/versions-matrix.R")) {
   custom <- source(".github/versions-matrix.R")$value
