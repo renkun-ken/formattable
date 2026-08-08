@@ -37,7 +37,8 @@ jobs:
       # FIXME: Avoid reissuing successful jobs
       # https://docs.github.com/en/free-pro-team@latest/rest/reference/actions#list-jobs-for-a-workflow-run
       # https://docs.github.com/en/free-pro-team@latest/rest/reference/actions#workflow-runs
-      - id: set-matrix
+      - name: Collect the reverse dependencies
+        id: set-matrix
         run: |
           package <- read.dcf("DESCRIPTION")[, "Package"][[1]]
           deps <- tools:::package_dependencies(package, reverse = TRUE, which = c("Depends", "Imports", "LinkingTo", "Suggests"))[[1]]
@@ -98,7 +99,7 @@ jobs:
       RGL_USE_NULL: true
 
     steps:
-      - name: Check rate limits
+      - name: Check rate limits before checking
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -119,6 +120,14 @@ jobs:
         shell: Rscript {0}
 
       - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Close the log group that setup-pandoc leaves open
+        # See `.github/workflows/install/action.yml` for why this is needed.
+        # Fixed upstream by https://github.com/r-lib/actions/pull/1103.
+        if: runner.os == 'Linux'
+        run: |
+          echo "::endgroup::"
+        shell: bash
 
       - name: Install system dependencies
         if: runner.os == 'Linux'
@@ -219,7 +228,7 @@ jobs:
           name: ${{ matrix.package }}-results
           path: revdep/${{ matrix.package }}
 
-      - name: Check rate limits
+      - name: Check rate limits after checking
         if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -93,14 +93,16 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
 
-      - uses: ./.github/workflows/git-identity
+      - name: Configure the Git identity
+        uses: ./.github/workflows/git-identity
 
       - name: Update apt
         run: |
           sudo apt-get update
         shell: bash
 
-      - uses: ./.github/workflows/install
+      - name: Install R and the package dependencies
+        uses: ./.github/workflows/install
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           packages: ${{ github.repository == 'cynkra/fledge' && 'local::.' || 'cynkra/fledge' }}

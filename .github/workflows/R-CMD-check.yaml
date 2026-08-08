@@ -91,7 +91,7 @@ jobs:
         with:
           ref: ${{ inputs.ref }}
 
-      - name: Update status for rcc
+      - name: Update status for rcc (pending)
         if: github.actor != 'Copilot' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         # FIXME: Wrap into action
         # `inputs.ref` is free-form text supplied by whoever dispatched the run
@@ -127,16 +127,20 @@ jobs:
             -f "state=${state}" -f "target_url=${html_url}" -f "description=${DESCRIPTION}" -f "context=rcc"
         shell: bash
 
-      - uses: ./.github/workflows/rate-limit
+      - name: Report the GitHub API rate limit
+        uses: ./.github/workflows/rate-limit
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/workflows/git-identity
+      - name: Configure the Git identity
+        uses: ./.github/workflows/git-identity
 
-      - uses: ./.github/workflows/custom/before-install
+      - name: Run the repository-specific before-install steps
+        uses: ./.github/workflows/custom/before-install
         if: hashFiles('.github/workflows/custom/before-install/action.yml') != ''
 
-      - uses: ./.github/workflows/install
+      - name: Install R and the package dependencies
+        uses: ./.github/workflows/install
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           cache-version: rcc-smoke-2
@@ -144,7 +148,8 @@ jobs:
           # Beware of using dev pkgdown here, has brought in dev dependencies in the past
           extra-packages: any::rcmdcheck r-lib/roxygen2 any::decor r-lib/pkgdown deps::.
 
-      - uses: ./.github/workflows/custom/after-install
+      - name: Run the repository-specific after-install steps
+        uses: ./.github/workflows/custom/after-install
         if: hashFiles('.github/workflows/custom/after-install/action.yml') != ''
 
       # Must come after the custom after-install workflow
@@ -157,7 +162,8 @@ jobs:
       # failing check doesn't hide the results of all the checks that follow.
       # The "Summarize checks" step at the end fails the job if any of them
       # did not succeed.
-      - id: versions-matrix
+      - name: Collect the R versions into a matrix
+        id: versions-matrix
         continue-on-error: true
         # Only run for:
         # - pull requests if the base repo is different from the head repo
@@ -168,31 +174,35 @@ jobs:
         if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository || startsWith(github.head_ref, 'cran-')) && (github.event_name != 'workflow_dispatch' || inputs.versions-matrix)
         uses: ./.github/workflows/versions-matrix
 
-      - id: dep-suggests-matrix
+      - name: Collect the suggested dependencies into a matrix
+        id: dep-suggests-matrix
         continue-on-error: true
         # Not for workflow_dispatch if not requested, always run for other events
         if: github.event_name != 'workflow_dispatch' || inputs.dep-suggests-matrix
         uses: ./.github/workflows/dep-suggests-matrix
 
-      - id: repo-state
-        name: Determine repository state
+      - name: Determine repository state
+        id: repo-state
         uses: ./.github/workflows/repo-state
 
       # Styling on foreign PRs works through the format-suggest workflow
-      - id: style
+      - name: Style the R sources
+        id: style
         continue-on-error: true
         uses: ./.github/workflows/style
         if: steps.repo-state.outputs.foreign != 'true' || steps.repo-state.outputs.is_pr != 'true'
 
       # Snapshot tests can't work in a way similar to format-suggests
       # because it requires running code which is a security risk on pull_request_target workflows
-      - id: snapshots
+      - name: Update the testthat snapshots
+        id: snapshots
         continue-on-error: true
         uses: ./.github/workflows/update-snapshots
         with:
           base: ${{ inputs.ref || github.head_ref }}
 
-      - id: roxygenize
+      - name: Roxygenize the documentation
+        id: roxygenize
         continue-on-error: true
         uses: ./.github/workflows/roxygenize
 
@@ -201,19 +211,22 @@ jobs:
           rm -f .github/dep-suggests-matrix.json .github/versions-matrix.json
         shell: bash
 
-      - id: commit
+      - name: Commit and push the generated changes
+        id: commit
         continue-on-error: true
         uses: ./.github/workflows/commit
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - id: check
+      - name: Run R CMD check
+        id: check
         continue-on-error: true
         uses: ./.github/workflows/check
         with:
           results: ${{ runner.os }}-smoke-test
 
-      - id: pkgdown-build
+      - name: Build the pkgdown website
+        id: pkgdown-build
         continue-on-error: true
         uses: ./.github/workflows/pkgdown-build
         if: github.event_name != 'push'
@@ -224,17 +237,20 @@ jobs:
       # Deployment on workflow_dispatch is available via the pkgdown workflow
       # Deploying a broken package's website is worse than not deploying at all,
       # hence this is the one step that is still gated on a check.
-      - id: pkgdown-deploy
+      - name: Build and deploy the pkgdown website
+        id: pkgdown-deploy
         continue-on-error: true
         uses: ./.github/workflows/pkgdown-deploy
         if: github.event_name == 'push' && steps.check.outcome == 'success'
 
       # Upload sha as artifact
-      - run: |
+      - name: Record the commit SHA reached by the smoke test
+        run: |
           echo -n "${{ steps.commit.outputs.sha }}" > rcc-smoke-sha.txt
         shell: bash
 
-      - uses: actions/upload-artifact@v5
+      - name: Upload the commit SHA reached by the smoke test
+        uses: actions/upload-artifact@v5
         with:
           name: rcc-smoke-sha
           path: rcc-smoke-sha.txt
@@ -280,7 +296,7 @@ jobs:
           exit "${status}"
         shell: bash
 
-      - name: Update status for rcc
+      - name: Update status for rcc (final)
         # FIXME: Wrap into action
         if: always() && (github.actor != 'Copilot') && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         env:
@@ -369,11 +385,13 @@ jobs:
         with:
           ref: ${{ needs.rcc-smoke.outputs.sha }}
 
-      - uses: ./.github/workflows/matrix-check
+      - name: Show the R versions matrix
+        uses: ./.github/workflows/matrix-check
         with:
           matrix: ${{ needs.rcc-smoke.outputs.versions-matrix }}
 
-      - uses: ./.github/workflows/matrix-check
+      - name: Show the suggested dependencies matrix
+        uses: ./.github/workflows/matrix-check
         with:
           matrix: ${{ needs.rcc-smoke.outputs.dep-suggests-matrix }}
 
@@ -418,17 +436,20 @@ jobs:
           printf '%s\n' "$MATRIX_ENV" | tee -a "$GITHUB_ENV"
         shell: bash
 
-      - uses: ./.github/workflows/custom/before-install
+      - name: Run the repository-specific before-install steps
+        uses: ./.github/workflows/custom/before-install
         if: hashFiles('.github/workflows/custom/before-install/action.yml') != ''
 
-      - uses: ./.github/workflows/install
+      - name: Install R and the package dependencies
+        uses: ./.github/workflows/install
         with:
           r-version: ${{ matrix.r }}
           cache-version: rcc-full-1
           token: ${{ secrets.GITHUB_TOKEN }}
           needs: build, check
 
-      - uses: ./.github/workflows/custom/after-install
+      - name: Run the repository-specific after-install steps
+        uses: ./.github/workflows/custom/after-install
         if: hashFiles('.github/workflows/custom/after-install/action.yml') != ''
 
       - name: Must allow NOTEs if packages are missing, even with _R_CHECK_FORCE_SUGGESTS_
@@ -443,7 +464,8 @@ jobs:
           }
         shell: Rscript {0}
 
-      - uses: ./.github/workflows/update-snapshots
+      - name: Update the testthat snapshots
+        uses: ./.github/workflows/update-snapshots
         # Generic escape hatch: a custom action may set SKIP_UPDATE_SNAPSHOTS
         # to opt out of running the snapshot updater,
         # which runs tests directly via testthat::test_local()
@@ -452,7 +474,8 @@ jobs:
         with:
           base: ${{ github.head_ref }}
 
-      - uses: ./.github/workflows/check
+      - name: Run R CMD check
+        uses: ./.github/workflows/check
         if: ${{ ! matrix.covr }}
         with:
           # Include the architecture: the matrix pairs each arm64 runner with an
@@ -461,7 +484,8 @@ jobs:
           # yields duplicate artifact names, which upload-artifact rejects.
           results: ${{ runner.os }}-${{ runner.arch }}-r${{ matrix.r }}
 
-      - uses: ./.github/workflows/covr
+      - name: Compute and upload the test coverage
+        uses: ./.github/workflows/covr
         if: ${{ matrix.covr }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -488,10 +512,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: ./.github/workflows/custom/before-install
+      - name: Run the repository-specific before-install steps
+        uses: ./.github/workflows/custom/before-install
         if: hashFiles('.github/workflows/custom/before-install/action.yml') != ''
 
-      - uses: ./.github/workflows/install
+      - name: Install R and the package dependencies
+        uses: ./.github/workflows/install
         with:
           cache-version: rcc-dev-${{ matrix.package }}-1
           needs: build, check
@@ -516,7 +542,8 @@ jobs:
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
 
-      - uses: ./.github/workflows/custom/after-install
+      - name: Run the repository-specific after-install steps
+        uses: ./.github/workflows/custom/after-install
         if: hashFiles('.github/workflows/custom/after-install/action.yml') != ''
 
       - name: Must allow NOTEs, even with _R_CHECK_FORCE_SUGGESTS_
@@ -532,7 +559,8 @@ jobs:
           print(Sys.getenv('RCMDCHECK_ERROR_ON'))
         shell: Rscript {0}
 
-      - uses: ./.github/workflows/check
+      - name: Run R CMD check
+        uses: ./.github/workflows/check
         with:
           results: ${{ matrix.package }}
 

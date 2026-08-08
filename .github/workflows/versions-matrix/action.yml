@@ -13,7 +13,8 @@ runs:
         sudo npm install -g json2yaml
       shell: bash
 
-    - id: set-matrix
+    - name: Collect the R versions to check
+      id: set-matrix
       run: |
         Rscript ./.github/workflows/versions-matrix/action.R
       shell: bash

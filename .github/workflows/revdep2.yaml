@@ -161,8 +161,8 @@ jobs:
           install.packages("jsonlite")
         shell: Rscript {0}
 
-      - id: plan
-        name: Plan shards
+      - name: Plan shards
+        id: plan
         env:
           GH_TOKEN: ${{ github.token }}
           OUT: ${{ runner.temp }}/plan.json
@@ -170,7 +170,8 @@ jobs:
           Rscript ./.github/workflows/revdep2/plan.R
         shell: bash
 
-      - uses: actions/upload-artifact@v5
+      - name: Upload the shard plan
+        uses: actions/upload-artifact@v5
         if: steps.plan.outputs.shards != '0'
         with:
           name: revdep2-plan
@@ -196,7 +197,8 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.ref }}
 
-      - uses: ./.github/workflows/install
+      - name: Install R and the package dependencies
+        uses: ./.github/workflows/install
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           cache-version: revdep2-1
@@ -209,7 +211,8 @@ jobs:
           Rscript ./.github/workflows/revdep2/build.R
         shell: bash
 
-      - uses: actions/upload-artifact@v5
+      - name: Upload the package source
+        uses: actions/upload-artifact@v5
         with:
           name: revdep2-pkg
           path: ${{ runner.temp }}/pkg
@@ -246,14 +249,16 @@ jobs:
           install.packages("jsonlite")
         shell: Rscript {0}
 
-      - uses: actions/download-artifact@v6
+      - name: Download the shard plan
+        uses: actions/download-artifact@v6
         with:
           name: revdep2-plan
           path: ${{ runner.temp }}/plan
 
       # The preflight downloads every dependency binary once; saving the pak
       # cache under the plan's hash hands the shards a warm start.
-      - uses: actions/cache@v4
+      - name: Cache the pak package cache
+        uses: actions/cache@v4
         with:
           path: ~/.cache/R/pkgcache
           key: revdep2-pak-${{ needs.plan.outputs.plan_hash }}
@@ -269,7 +274,8 @@ jobs:
           Rscript ./.github/workflows/revdep2/preflight.R
         shell: bash
 
-      - uses: actions/upload-artifact@v5
+      - name: Upload the preflight library
+        uses: actions/upload-artifact@v5
         with:
           name: revdep2-preflight
           path: ${{ runner.temp }}/preflight
@@ -320,6 +326,14 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
+      - name: Close the log group that setup-pandoc leaves open
+        # See `.github/workflows/install/action.yml` for why this is needed.
+        # Fixed upstream by https://github.com/r-lib/actions/pull/1103.
+        if: runner.os == 'Linux'
+        run: |
+          echo "::endgroup::"
+        shell: bash
+
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
@@ -338,26 +352,30 @@ jobs:
           install.packages(c("jsonlite", "rcmdcheck"))
         shell: Rscript {0}
 
-      - uses: actions/cache/restore@v4
+      - name: Restore the pak package cache
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/R/pkgcache
           key: revdep2-pak-${{ needs.plan.outputs.plan_hash }}
           restore-keys: |
             revdep2-pak-
 
-      - uses: actions/download-artifact@v6
+      - name: Download the shard plan
+        uses: actions/download-artifact@v6
         with:
           name: revdep2-plan
           path: ${{ runner.temp }}/plan
 
-      - uses: actions/download-artifact@v6
+      - name: Download the package source
+        uses: actions/download-artifact@v6
         with:
           name: revdep2-pkg
           path: ${{ runner.temp }}/pkg
 
       # The baseline lives on an earlier run; absence is not an error, the
       # shard just checks the CRAN version fresh.
-      - uses: actions/download-artifact@v6
+      - name: Download the baseline results
+        uses: actions/download-artifact@v6
         if: needs.plan.outputs.baseline_run != '0'
         continue-on-error: true
         with:
@@ -384,7 +402,8 @@ jobs:
       # Named per attempt: a re-run of one shard must not overwrite the results
       # the other shards uploaded in the first attempt; the collector reads
       # every attempt and lets the later one win per package.
-      - uses: actions/upload-artifact@v5
+      - name: Upload the shard results
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: revdep2-results-${{ matrix.shard }}-${{ github.run_attempt }}
@@ -439,17 +458,20 @@ jobs:
           pak::pkg_install("krlmlr/revdepcheck")
         shell: Rscript {0}
 
-      - uses: actions/download-artifact@v6
+      - name: Download the shard plan
+        uses: actions/download-artifact@v6
         with:
           name: revdep2-plan
           path: ${{ runner.temp }}/plan
 
-      - uses: actions/download-artifact@v6
+      - name: Download the results of all shards
+        uses: actions/download-artifact@v6
         with:
           pattern: revdep2-results-*
           path: ${{ runner.temp }}/results
 
-      - uses: actions/download-artifact@v6
+      - name: Download the report of the run being retried
+        uses: actions/download-artifact@v6
         if: env.REVDEP2_RETRY_RUN != ''
         continue-on-error: true
         with:
@@ -469,7 +491,8 @@ jobs:
           Rscript ./.github/workflows/revdep2/collect.R
         shell: bash
 
-      - uses: actions/upload-artifact@v5
+      - name: Upload the report
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: revdep2-report
@@ -477,7 +500,8 @@ jobs:
           retention-days: 90
           overwrite: true
 
-      - uses: actions/upload-artifact@v5
+      - name: Upload the new baseline
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: revdep2-baseline

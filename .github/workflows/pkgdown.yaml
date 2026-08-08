@@ -31,28 +31,35 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: ./.github/workflows/rate-limit
+      - name: Report the GitHub API rate limit
+        uses: ./.github/workflows/rate-limit
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/workflows/git-identity
+      - name: Configure the Git identity
+        uses: ./.github/workflows/git-identity
         if: github.event_name == 'push'
 
-      - uses: ./.github/workflows/custom/before-install
+      - name: Run the repository-specific before-install steps
+        uses: ./.github/workflows/custom/before-install
         if: hashFiles('.github/workflows/custom/before-install/action.yml') != ''
 
-      - uses: ./.github/workflows/install
+      - name: Install R and the package dependencies
+        uses: ./.github/workflows/install
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           cache-version: pkgdown-2
           needs: website
           extra-packages: r-lib/pkgdown local::.
 
-      - uses: ./.github/workflows/custom/after-install
+      - name: Run the repository-specific after-install steps
+        uses: ./.github/workflows/custom/after-install
         if: hashFiles('.github/workflows/custom/after-install/action.yml') != ''
 
-      - uses: ./.github/workflows/pkgdown-build
+      - name: Build the pkgdown website
+        uses: ./.github/workflows/pkgdown-build
         if: github.event_name != 'push'
 
-      - uses: ./.github/workflows/pkgdown-deploy
+      - name: Build and deploy the pkgdown website
+        uses: ./.github/workflows/pkgdown-deploy
         if: github.event_name == 'push'

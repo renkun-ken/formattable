@@ -15,7 +15,8 @@ runs:
     # The matrix is generated from repository content, so it is passed through
     # the environment: a `${{ }}` splice into the single-quoted assignment below
     # would let a single `'` in the generated JSON escape into the shell.
-    - env:
+    - name: Show the matrix as JSON and as YAML
+      env:
         MATRIX: ${{ inputs.matrix }}
       run: |
         if [ -n "${MATRIX}" ]; then

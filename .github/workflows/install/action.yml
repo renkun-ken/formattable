@@ -99,6 +99,24 @@ runs:
 
     - uses: r-lib/actions/setup-pandoc@v2
 
+    - name: Close the log group that setup-pandoc leaves open
+      # `installPandocLinux()` in r-lib/actions/setup-pandoc writes
+      # `::group::Download pandoc` and never writes the matching `::endgroup::`
+      # (setup-pandoc/src/setup-pandoc.ts, the only `::group::` in that action),
+      # so from there on the job log is one nesting level too deep. The log
+      # viewer then swallows the heading of the step that follows: the entry for
+      # `r-lib/actions/setup-r@v2` was missing entirely and its output was folded
+      # into the collapsed setup-pandoc entry. Emitting the missing `::endgroup::`
+      # restores the balance. This step is the one that gets swallowed instead,
+      # which is why it does nothing but say so.
+      # Fixed upstream by https://github.com/r-lib/actions/pull/1103; drop this
+      # step, and its two copies in `revdep.yaml` and `revdep2.yaml`, once that
+      # is merged and released in the `v2` tag.
+      if: runner.os == 'Linux'
+      run: |
+        echo "::endgroup::"
+      shell: bash
+
     - uses: r-lib/actions/setup-r@v2
       with:
         r-version: ${{ inputs.r-version }}
@@ -106,7 +124,8 @@ runs:
         http-user-agent: ${{ matrix.config.http-user-agent }}
         use-public-rspm: true
 
-    - id: get-extra
+    - name: Read `Config/gha/extra-packages` from DESCRIPTION
+      id: get-extra
       run: |
         set -x
         packages=$( ( grep Config/gha/extra-packages DESCRIPTION || true ) | cut -d " " -f 2-)
