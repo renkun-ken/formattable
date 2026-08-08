@@ -190,7 +190,7 @@ runs:
       run: |
         mkdir -p ~/.R
         # Infer each compiler default for the active R version from R CMD config,
-        # then prepend ccache. Reading the resolved defaults preserves the
+        # then route it through ccache. Reading the resolved defaults preserves the
         # standard flags R selects per version (e.g. -std=gnu2x for C, -std=gnu++17
         # / -std=gnu++20 for C++); a plain "CC = ccache gcc" override would drop
         # them and silently downgrade the standard across the version matrix.
@@ -201,14 +201,76 @@ runs:
         # CXXnnSTD variable (CXX17STD = -std=gnu++17, ...) and applies it on top
         # at compile time, so wrapping only CXXnn with ccache is correct and we
         # must NOT pin -std here ourselves.
-        empty_makevars="$(mktemp)"
-        for var in CC CXX CXX11 CXX14 CXX17 CXX20 CXX23; do
-          val="$(R_MAKEVARS_USER="$empty_makevars" R CMD config "$var" 2>/dev/null || true)"
-          if [ -n "$val" ]; then
-            echo "$var = ccache $val" >> ~/.R/Makevars
+        #
+        # On Unix, ccache is attached through a generated one-word wrapper
+        # command (ccache-gcc, ccache-g++, ...) rather than the more obvious
+        # "CC = ccache gcc" prefix. R-devel briefly could not cope with a
+        # compiler command of more than one word: tools:::ccE(), which backs the
+        # "checking use of non-API entry points" check and therefore runs for
+        # every package with compiled code, read R CMD config CC, kept only the
+        # first word, and ran that. With "CC = ccache gcc" that left a bare
+        # "ccache", and the check died with "ccache: invalid option -- 'E'".
+        # https://github.com/r-devel/r-svn/commit/ca19f35240517186ed447e773ee67b55e207cf27
+        # https://bugs.r-project.org/show_bug.cgi?id=19130
+        # Upstream has since dropped the truncation again, so the prefix works
+        # once more -- but it takes a while for that to reach the R-devel builds
+        # CI installs, so the wrapper is still doing real work here. It stays
+        # after that too: it costs nothing and is correct either way.
+        #
+        # Windows deliberately keeps the plain prefix, as a control group: it is
+        # where a repeat of that upstream change would show up, while the Unix
+        # jobs carry on regardless.
+        ccache_bin="$(command -v ccache || true)"
+        if [ -z "$ccache_bin" ]; then
+          echo "::warning::ccache is not on the PATH, compiling without it."
+        else
+          wrapper_dir="$HOME/.R/ccache-wrappers"
+          if [ "$RUNNER_OS" != "Windows" ]; then
+            mkdir -p "$wrapper_dir"
           fi
-        done
-        rm -f "$empty_makevars"
+
+          empty_makevars="$(mktemp)"
+          for var in CC CXX CXX11 CXX14 CXX17 CXX20 CXX23; do
+            val="$(R_MAKEVARS_USER="$empty_makevars" R CMD config "$var" 2>/dev/null || true)"
+            if [ -z "$val" ]; then
+              continue
+            fi
+            if [ "$RUNNER_OS" = "Windows" ]; then
+              echo "$var = ccache $val" >> ~/.R/Makevars
+              continue
+            fi
+
+            # Split "gcc -std=gnu2x" into the compiler and its flags: only the
+            # compiler is wrapped, the flags are passed through unchanged.
+            # ccache and the compiler are both found on the PATH at run time,
+            # nothing is baked into the wrapper by path.
+            prog="${val%%[[:space:]]*}"
+            flags="${val#"$prog"}"
+            wrapper="ccache-$(basename "$prog")"
+
+            if [ ! -f "$wrapper_dir/$wrapper" ]; then
+              printf '#!/bin/sh\nexec ccache %s "$@"\n' "$prog" > "$wrapper_dir/$wrapper"
+              chmod +x "$wrapper_dir/$wrapper"
+              # Never hand R a wrapper that has not been shown to work.
+              if ! "$wrapper_dir/$wrapper" --version > /dev/null; then
+                rm -f "$wrapper_dir/$wrapper"
+                echo "::warning::No usable $wrapper, compiling $var without ccache."
+              fi
+            fi
+
+            if [ -f "$wrapper_dir/$wrapper" ]; then
+              echo "$var = $wrapper$flags" >> ~/.R/Makevars
+            fi
+          done
+          rm -f "$empty_makevars"
+
+          if [ "$RUNNER_OS" != "Windows" ]; then
+            echo "$wrapper_dir" >> "$GITHUB_PATH"
+            echo "===== ccache wrappers in $wrapper_dir ====="
+            ls -l "$wrapper_dir"
+            echo "==========================================="
+          fi
+        fi
         echo 'MAKEFLAGS = -j2' >> ~/.R/Makevars
         echo "===== generated ~/.R/Makevars ====="
         cat ~/.R/Makevars
