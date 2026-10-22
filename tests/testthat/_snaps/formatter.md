@@ -14,6 +14,10 @@
       <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffc0cb">0.3</span>
     Code
       writeLines(f(percent(x)))
+    Condition
+      Warning:
+      `signal_superseded()` was deprecated in lifecycle 1.1.0.
+      i Please use `signal_stage()` instead.
     Output
       <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffffff">10.00%</span>
       <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ffdfe5">20.00%</span>
